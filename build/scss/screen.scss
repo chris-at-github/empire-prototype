@@ -1,0 +1,46 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: #eee;
+}
+
+.map {
+	& {
+		position: absolute;
+	}
+
+	.map--tile-container, .map--object-container {
+		position: absolute;
+		top: 0; left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.map--object-container {
+		//background: #fff;
+	}
+}
+
+.tile {
+	& {
+		position: absolute;
+	}
+
+	.tile--terrain {
+		width: calc(100% + 1px);
+		height: calc(100% + 1px);
+	}
+}
+
+.object {
+	& {
+		position: absolute;
+	}
+
+	.object--skeleton {
+		width: 100%;
+		height: 100%;
+	}
+}
