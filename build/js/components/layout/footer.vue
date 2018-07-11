@@ -1,7 +1,7 @@
 <template>
-	<div id="empire-footer">
+	<div id="empire-footer" class="d-flex">
 		<div class="empire-footer--version">{{version}}</div>
-		<div class="empire-footer--name">name</div>
+		<div class="empire-footer--name">{{name}}</div>
 	</div>
 </template>
 
@@ -9,23 +9,9 @@
 	export default {
 		data: function() {
 			return {
-				version: '',
-				name: ''
+				version: empire.configuration.empire.version,
+				name: empire.configuration.empire.name
 			};
-		},
-
-		methods: {},
-
-		computed: {
-			// version: function() {
-			// 	// console.log(this.version);
-			//
-			// 	return 'XXX';
-			// }
-		},
-
-		created: function() {
-			this.version = '0.0.1';
 		}
 	}
 </script>

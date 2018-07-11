@@ -1,6 +1,14 @@
-.container-fluid {
-	width: 1200px;
-	max-width: 100%;
-	margin: 0 auto;
-	padding: 0 30px;
+#empire-footer {
+	& {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		padding: 5px 10px;
+		border-top: 1px solid $gray-500;
+	}
+
+	.empire-footer--name {
+		margin: 0 0 0 5px;
+	}
 }

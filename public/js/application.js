@@ -95,7 +95,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(2);
-module.exports = __webpack_require__(11);
+module.exports = __webpack_require__(13);
 
 
 /***/ }),
@@ -103,13 +103,13 @@ module.exports = __webpack_require__(11);
 /***/ (function(module, exports, __webpack_require__) {
 
 var vue = __webpack_require__(3);
-var empire = {
-	configuration: __webpack_require__(16)
+
+empire = {
+	configuration: __webpack_require__(7)
 };
-var game = {};
 
 // Layout
-vue.component('emp-footer', __webpack_require__(7));
+vue.component('emp-footer', __webpack_require__(9));
 
 // Game Objects
 // vue.component('emp-settlement', require('./components/settlement.vue'));
@@ -11541,12 +11541,29 @@ process.umask = function() { return 0; };
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = {
+	empire: __webpack_require__(8)
+};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	version: '0.0.1',
+	name: 'Empire'
+};
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var disposed = false
-var normalizeComponent = __webpack_require__(8)
+var normalizeComponent = __webpack_require__(10)
 /* script */
-var __vue_script__ = __webpack_require__(9)
+var __vue_script__ = __webpack_require__(11)
 /* template */
-var __vue_template__ = __webpack_require__(10)
+var __vue_template__ = __webpack_require__(12)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -11585,7 +11602,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -11694,7 +11711,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11710,40 +11727,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			version: '',
-			name: ''
+			version: empire.configuration.empire.version,
+			name: empire.configuration.empire.name
 		};
-	},
-
-	methods: {},
-
-	computed: {
-		// version: function() {
-		// 	// console.log(this.version);
-		//
-		// 	return 'XXX';
-		// }
-	},
-
-	created: function created() {
-		this.version = '0.0.1';
 	}
 });
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "empire-footer" } }, [
+  return _c("div", { staticClass: "d-flex", attrs: { id: "empire-footer" } }, [
     _c("div", { staticClass: "empire-footer--version" }, [
       _vm._v(_vm._s(_vm.version))
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "empire-footer--name" }, [_vm._v("name")])
+    _c("div", { staticClass: "empire-footer--name" }, [
+      _vm._v(_vm._s(_vm.name))
+    ])
   ])
 }
 var staticRenderFns = []
@@ -11757,31 +11762,10 @@ if (false) {
 }
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = {
-	empire: __webpack_require__(17)
-};
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-module.exports = {
-	version: '0.0.1',
-	name: 'Empire'
-};
 
 /***/ })
 /******/ ]);

@@ -4825,6 +4825,19 @@ template {
   display: none !important;
 }
 
+#empire-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 10px;
+  border-top: 1px solid #adb5bd;
+}
+
+#empire-footer .empire-footer--name {
+  margin: 0 0 0 5px;
+}
+
 .form-group,
 .form-check,
 .form-button {
