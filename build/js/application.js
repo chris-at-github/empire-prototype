@@ -1,11 +1,14 @@
 var vue = require('vue');
-
-empire = {
-	store: {
-	}
+var empire = {
+	configuration: require('./configuration')
 };
+var game = {};
 
-vue.component('emp-settlement', require('./components/settlement.vue'));
+// Layout
+vue.component('emp-footer', require('./components/layout/footer'));
+
+// Game Objects
+// vue.component('emp-settlement', require('./components/settlement.vue'));
 
 const application = new vue({
 	el: '#application'

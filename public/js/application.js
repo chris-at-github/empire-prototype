@@ -103,12 +103,16 @@ module.exports = __webpack_require__(11);
 /***/ (function(module, exports, __webpack_require__) {
 
 var vue = __webpack_require__(3);
-
-empire = {
-	store: {}
+var empire = {
+	configuration: __webpack_require__(16)
 };
+var game = {};
 
-vue.component('emp-settlement', __webpack_require__(7));
+// Layout
+vue.component('emp-footer', __webpack_require__(7));
+
+// Game Objects
+// vue.component('emp-settlement', require('./components/settlement.vue'));
 
 var application = new vue({
 	el: '#application'
@@ -11559,7 +11563,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "build\\js\\components\\settlement.vue"
+Component.options.__file = "build\\js\\components\\layout\\footer.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -11568,9 +11572,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-32f23518", Component.options)
+    hotAPI.createRecord("data-v-12a48d6e", Component.options)
   } else {
-    hotAPI.reload("data-v-32f23518", Component.options)
+    hotAPI.reload("data-v-12a48d6e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -11701,25 +11705,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
-		return {};
+		return {
+			version: '',
+			name: ''
+		};
 	},
 
 	methods: {},
 
 	computed: {
-		// objects: function() {
-		// 	console.log(empire.store);
+		// version: function() {
+		// 	// console.log(this.version);
 		//
-		// 	return this.store;
+		// 	return 'XXX';
 		// }
 	},
 
 	created: function created() {
-		this.store = empire.store.objects;
+		this.version = '0.0.1';
 	}
 });
 
@@ -11731,7 +11738,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "settlement" }, [_vm._v("\nSETTLEMENT\n\t")])
+  return _c("div", { attrs: { id: "empire-footer" } }, [
+    _c("div", { staticClass: "empire-footer--version" }, [
+      _vm._v(_vm._s(_vm.version))
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "empire-footer--name" }, [_vm._v("name")])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11739,7 +11752,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-32f23518", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-12a48d6e", module.exports)
   }
 }
 
@@ -11748,6 +11761,27 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = {
+	empire: __webpack_require__(17)
+};
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	version: '0.0.1',
+	name: 'Empire'
+};
 
 /***/ })
 /******/ ]);
