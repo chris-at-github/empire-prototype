@@ -1,0 +1,11 @@
+.card {
+	& {
+		margin: 10px;
+		border: 1px solid $gray-500;
+	}
+
+	.card--header {
+		padding: 5px 10px;
+		font-weight: 700;
+	}
+}

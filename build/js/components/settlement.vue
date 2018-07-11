@@ -1,7 +1,6 @@
 <template>
-	<div class="settlement">
-SETTLEMENT
-	</div>
+	<div class="card settlement">
+		<header class="card--header">{{name}}</header></div>
 </template>
 
 <script>
@@ -11,19 +10,15 @@ SETTLEMENT
 			return {};
 		},
 
+		props: ['id', 'properties'],
+
 		methods: {
 		},
 
 		computed: {
-			// objects: function() {
-			// 	console.log(empire.store);
-			//
-			// 	return this.store;
-			// }
-		},
-
-		created: function() {
-			this.store = empire.store.objects;
+			name: function() {
+				return this.properties.name;
+			}
 		}
 	}
 </script>

@@ -4943,3 +4943,13 @@ select.form-control:focus::-ms-value {
   outline: 0;
 }
 
+.card {
+  margin: 10px;
+  border: 1px solid #adb5bd;
+}
+
+.card .card--header {
+  padding: 5px 10px;
+  font-weight: 700;
+}
+
