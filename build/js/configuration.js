@@ -1,3 +1,3 @@
-module.exports = {
-	empire: require('./configuration/empire')
-};
+var configuration = require('./configuration/empire');
+
+module.exports = configuration;
