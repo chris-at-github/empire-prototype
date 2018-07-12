@@ -1,17 +1,17 @@
-.btn, .btn-primary, .btn-default, .btn-danger {
+.button {
 	& {
 		padding: 4px 15px;
-		background: #ccc;
+		background: $gray-300;
 		border: 0;
 	}
 
-	& + .btn {
+	& + .button {
 		margin-left: 5px;
 	}
 
 	&:hover {
 		cursor: pointer;
-		background: #aaa;
+		background: $gray-500;
 	}
 
 	&:focus,

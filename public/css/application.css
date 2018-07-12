@@ -4770,16 +4770,10 @@ textarea {
 
 fieldset {
   min-width: 0;
-  padding: 0;
-  margin: 0;
-  border: 0;
 }
 
 legend {
-  display: block;
-  width: 100%;
   max-width: 100%;
-  padding: 0;
   line-height: inherit;
   color: inherit;
   white-space: normal;
@@ -4838,113 +4832,96 @@ template {
   margin: 0 0 0 5px;
 }
 
-.form-group,
-.form-check,
-.form-button {
-  margin: 0.75rem 0 0 0;
+.fieldset-default {
+  margin: 10px 0 0 0;
+  padding: 20px 10px 10px 10px;
+  border: 1px solid #adb5bd;
 }
 
-label + .form-control {
-  margin: 0.25rem 0 0 0;
+.form--item,
+.form--button {
+  margin: 10px 0 0 0;
 }
 
-.form-control {
+.form--label + .form--field {
+  margin: 3px 0 0 0;
+}
+
+.form--field {
   display: block;
   width: 100%;
   padding: 3px;
   font-size: inherit;
-  border: 1px solid #ccc;
+  border: 1px solid #adb5bd;
   background-image: none;
   background-clip: padding-box;
 }
 
-.form-control::-ms-expand {
+.form--field::-ms-expand {
   background-color: transparent;
   border: 0;
 }
 
-.form-control:focus {
+.form--field:focus {
   outline: 0;
   border-color: #999;
 }
 
-.form-control::-webkit-input-placeholder {
+.form--field::-webkit-input-placeholder {
   opacity: 1;
 }
 
-.form-control:-ms-input-placeholder {
+.form--field:-ms-input-placeholder {
   opacity: 1;
 }
 
-.form-control::-ms-input-placeholder {
+.form--field::-ms-input-placeholder {
   opacity: 1;
 }
 
-.form-control::placeholder {
+.form--field::placeholder {
   opacity: 1;
 }
 
-select.form-control:not([size]):not([multiple]) {
+select.form--field:not([size]):not([multiple]) {
   height: 26px;
 }
 
-select.form-control:focus::-ms-value {
+select.form--field:focus::-ms-value {
   color: inherit;
   background-color: #fff;
 }
 
-.form-control-file,
-.form-control-range {
+.form--field-file,
+.form--field-range {
   display: block;
 }
 
-.btn,
-.btn-primary,
-.btn-default,
-.btn-danger {
+.button {
   padding: 4px 15px;
-  background: #ccc;
+  background: #dee2e6;
   border: 0;
 }
 
-.btn + .btn,
-.btn-primary + .btn,
-.btn-default + .btn,
-.btn-danger + .btn {
+.button + .button {
   margin-left: 5px;
 }
 
-.btn:hover,
-.btn-primary:hover,
-.btn-default:hover,
-.btn-danger:hover {
+.button:hover {
   cursor: pointer;
-  background: #aaa;
+  background: #adb5bd;
 }
 
-.btn:focus,
-.btn.focus,
-.btn:not([disabled]):not(.disabled):active,
-.btn:not([disabled]):not(.disabled).active,
-.btn-primary:focus,
-.btn-primary.focus,
-.btn-primary:not([disabled]):not(.disabled):active,
-.btn-primary:not([disabled]):not(.disabled).active,
-.btn-default:focus,
-.btn-default.focus,
-.btn-default:not([disabled]):not(.disabled):active,
-.btn-default:not([disabled]):not(.disabled).active,
-.btn-danger:focus,
-.btn-danger.focus,
-.btn-danger:not([disabled]):not(.disabled):active,
-.btn-danger:not([disabled]):not(.disabled).active {
+.button:focus,
+.button.focus,
+.button:not([disabled]):not(.disabled):active,
+.button:not([disabled]):not(.disabled).active {
   -webkit-box-shadow: none;
           box-shadow: none;
   outline: 0;
 }
 
 .card {
-  margin: 10px;
   border: 1px solid #adb5bd;
 }
 

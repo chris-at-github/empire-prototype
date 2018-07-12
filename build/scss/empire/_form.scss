@@ -1,17 +1,17 @@
-.form-group, .form-check, .form-button {
-	margin: 0.75rem 0 0 0;
+.form--item, .form--button {
+	margin: 10px 0 0 0;
 }
 
-label + .form-control {
-	margin: 0.25rem 0 0 0;
+.form--label + .form--field {
+	margin: 3px 0 0 0;
 }
 
-.form-control {
+.form--field {
 	display: block;
 	width: 100%;
 	padding: 3px;
 	font-size: inherit;
-	border: 1px solid #ccc;
+	border: 1px solid $gray-500;
 
 	// Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214.
 	background-image: none;
@@ -45,7 +45,7 @@ label + .form-control {
 //	}
 }
 
-select.form-control {
+select.form--field {
 	&:not([size]):not([multiple]) {
 		height: 26px;
 	}
@@ -62,7 +62,7 @@ select.form-control {
 }
 
 // Make file inputs better match text inputs by forcing them to new lines.
-.form-control-file,
-.form-control-range {
+.form--field-file,
+.form--field-range {
 	display: block;
 }
