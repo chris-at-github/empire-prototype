@@ -4,6 +4,10 @@ var mix = require('laravel-mix');
 // @see: https://github.com/JeffreyWay/laravel-mix/issues/1126
 mix.setPublicPath('public');
 
+// No Noise
+// @see: https://laravel.com/docs/5.6/mix#notifications
+mix.disableSuccessNotifications();
+
 /*
 	----------------------------------------------------------------------------------------------------------------------
 	Mix Asset Management
