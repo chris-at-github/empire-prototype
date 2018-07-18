@@ -211,10 +211,11 @@ module.exports = __webpack_require__(23);
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var vue = __webpack_require__(4);
+window.vue = __webpack_require__(4);
 
 empire = {
-	configuration: __webpack_require__(8)
+	configuration: __webpack_require__(8),
+	storageManager: __webpack_require__(28)
 };
 
 game = __webpack_require__(10);
@@ -11956,9 +11957,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		create: function create() {
-			this.$set(game.settlements, 2, {
-				name: this.name
-			});
+			var manager = new empire.storageManager();
+			manager.set(2, { name: this.name });
+			// this.$set(game.settlements, 2, {
+			// 	name: this.name
+			// });
 		}
 	}
 });
@@ -12122,6 +12125,24 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */
+/***/ (function(module, exports) {
+
+// import Vue from 'vue';
+//
+var storageManager = function storageManager() {};
+
+storageManager.prototype.set = function (key, value) {
+	vue.set(game.settlements, key, value);
+};
+
+module.exports = storageManager;
 
 /***/ })
 /******/ ]);

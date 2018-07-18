@@ -1,7 +1,8 @@
-var vue = require('vue');
+window.vue = require('vue');
 
 empire = {
-	configuration: require('./configuration')
+	configuration: require('./configuration'),
+	storageManager: require('./managers/storagemanager')
 };
 
 game = require('./game');
