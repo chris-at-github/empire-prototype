@@ -21,7 +21,7 @@
 
 		methods: {
 			create: function() {
-				var manager = new empire.storageManager();
+				var manager = new Empire.StorageManager();
 						manager.set(2, {name: this.name});
 				// this.$set(game.settlements, 2, {
 				// 	name: this.name

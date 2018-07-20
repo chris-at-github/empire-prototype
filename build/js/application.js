@@ -1,11 +1,11 @@
 window.vue = require('vue');
 
-empire = {
-	configuration: require('./configuration'),
-	storageManager: require('./managers/storagemanager')
+Empire = {
+	Configuration: require('./configuration'),
+	StorageManager: require('./managers/storagemanager')
 };
 
-game = require('./game');
+Game = require('./game');
 
 // Layout
 vue.component('emp-footer', require('./components/layout/footer'));

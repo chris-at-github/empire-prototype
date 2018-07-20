@@ -204,7 +204,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-module.exports = __webpack_require__(23);
+module.exports = __webpack_require__(24);
 
 
 /***/ }),
@@ -213,20 +213,20 @@ module.exports = __webpack_require__(23);
 
 window.vue = __webpack_require__(4);
 
-empire = {
-	configuration: __webpack_require__(8),
-	storageManager: __webpack_require__(28)
+Empire = {
+	Configuration: __webpack_require__(8),
+	StorageManager: __webpack_require__(10)
 };
 
-game = __webpack_require__(10);
+Game = __webpack_require__(11);
 
 // Layout
-vue.component('emp-footer', __webpack_require__(11));
+vue.component('emp-footer', __webpack_require__(12));
 
 // Game Objects
-vue.component('emp-settlement-container', __webpack_require__(14));
-vue.component('emp-settlement-form', __webpack_require__(17));
-vue.component('emp-settlement', __webpack_require__(20));
+vue.component('emp-settlement-container', __webpack_require__(15));
+vue.component('emp-settlement-form', __webpack_require__(18));
+vue.component('emp-settlement', __webpack_require__(21));
 
 var application = new vue({
 	el: '#application'
@@ -11672,6 +11672,20 @@ module.exports = {
 /* 10 */
 /***/ (function(module, exports) {
 
+// import Vue from 'vue';
+//
+var storageManager = function storageManager() {};
+
+storageManager.prototype.set = function (key, value) {
+	vue.set(Game.settlements, key, value);
+};
+
+module.exports = storageManager;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
 module.exports = {
 	settlements: {
 		1: {
@@ -11682,15 +11696,15 @@ module.exports = {
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(12)
+var __vue_script__ = __webpack_require__(13)
 /* template */
-var __vue_template__ = __webpack_require__(13)
+var __vue_template__ = __webpack_require__(14)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -11729,7 +11743,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11745,14 +11759,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			version: empire.configuration.version,
-			name: empire.configuration.name
+			version: Empire.Configuration.version,
+			name: Empire.Configuration.name
 		};
 	}
 });
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -11780,15 +11794,15 @@ if (false) {
 }
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(15)
+var __vue_script__ = __webpack_require__(16)
 /* template */
-var __vue_template__ = __webpack_require__(16)
+var __vue_template__ = __webpack_require__(17)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -11827,7 +11841,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11847,13 +11861,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			settlements: game.settlements
+			settlements: Game.settlements
 		};
 	}
 });
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -11882,15 +11896,15 @@ if (false) {
 }
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(18)
+var __vue_script__ = __webpack_require__(19)
 /* template */
-var __vue_template__ = __webpack_require__(19)
+var __vue_template__ = __webpack_require__(20)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -11929,7 +11943,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11957,7 +11971,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		create: function create() {
-			var manager = new empire.storageManager();
+			var manager = new Empire.StorageManager();
 			manager.set(2, { name: this.name });
 			// this.$set(game.settlements, 2, {
 			// 	name: this.name
@@ -11967,7 +11981,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -12023,15 +12037,15 @@ if (false) {
 }
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(21)
+var __vue_script__ = __webpack_require__(22)
 /* template */
-var __vue_template__ = __webpack_require__(22)
+var __vue_template__ = __webpack_require__(23)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -12070,7 +12084,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12099,7 +12113,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -12121,28 +12135,10 @@ if (false) {
 }
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */
-/***/ (function(module, exports) {
-
-// import Vue from 'vue';
-//
-var storageManager = function storageManager() {};
-
-storageManager.prototype.set = function (key, value) {
-	vue.set(game.settlements, key, value);
-};
-
-module.exports = storageManager;
 
 /***/ })
 /******/ ]);

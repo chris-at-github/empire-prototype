@@ -13,7 +13,7 @@
 	export default {
 		data: function() {
 			return {
-				settlements: game.settlements
+				settlements: Game.settlements
 			};
 		}
 	}
