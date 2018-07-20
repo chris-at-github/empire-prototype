@@ -2,8 +2,10 @@ window.vue = require('vue');
 
 Empire = {
 	Configuration: require('./configuration'),
-	StorageManager: require('./managers/storagemanager')
+	StorageManager: require('./managers/storage')
 };
+
+console.log(Empire.StorageManager);
 
 Game = require('./game');
 

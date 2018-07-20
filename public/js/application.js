@@ -215,8 +215,10 @@ window.vue = __webpack_require__(4);
 
 Empire = {
 	Configuration: __webpack_require__(8),
-	StorageManager: __webpack_require__(10)
+	StorageManager: __webpack_require__(29)
 };
+
+console.log(Empire.StorageManager);
 
 Game = __webpack_require__(11);
 
@@ -11669,20 +11671,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-// import Vue from 'vue';
-//
-var storageManager = function storageManager() {};
-
-storageManager.prototype.set = function (key, value) {
-	vue.set(Game.settlements, key, value);
-};
-
-module.exports = storageManager;
-
-/***/ }),
+/* 10 */,
 /* 11 */
 /***/ (function(module, exports) {
 
@@ -12139,6 +12128,66 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__storage_settlement__ = __webpack_require__(30);
+
+
+
+
+// console.log(Settlement);
+
+// module.exports = {
+// 	Settlementxxx: require('./storage/settlement')
+// };
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	Settlement: __WEBPACK_IMPORTED_MODULE_0__storage_settlement__["a" /* Settlement */]
+});
+
+/***/ }),
+/* 30 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Settlement; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(32);
+
+
+
+// let Settlement = 'xxx';
+
+// let Application = function() {
+// };
+//
+// storage.prototype.set = function(key, value) {
+// 	vue.set(Game.settlements, key, value);
+// };
+
+var Settlement = void 0;
+
+Settlement = 'xxx';
+
+/***/ }),
+/* 31 */,
+/* 32 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+var Application = function Application() {};
+
+/* unused harmony default export */ var _unused_webpack_default_export = (Application);
 
 /***/ })
 /******/ ]);
