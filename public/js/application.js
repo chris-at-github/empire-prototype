@@ -214,9 +214,10 @@ module.exports = __webpack_require__(24);
 window.vue = __webpack_require__(4);
 
 Empire = {
-	Configuration: __webpack_require__(8),
-	StorageManager: __webpack_require__(29)
+	Configuration: __webpack_require__(8)
 };
+
+__webpack_require__(29);
 
 console.log(Empire.StorageManager);
 
@@ -12144,15 +12145,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-// console.log(Settlement);
-
-// module.exports = {
-// 	Settlementxxx: require('./storage/settlement')
-// };
-
-/* harmony default export */ __webpack_exports__["default"] = ({
+Empire.StorageManager = {
 	Settlement: __WEBPACK_IMPORTED_MODULE_0__storage_settlement__["a" /* Settlement */]
-});
+};
 
 /***/ }),
 /* 30 */

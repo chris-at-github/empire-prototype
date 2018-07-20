@@ -1,13 +1,7 @@
 'use strict';
 
-import { Settlement } from "./storage/settlement";
+import {Settlement} from "./storage/settlement";
 
-// console.log(Settlement);
-
-// module.exports = {
-// 	Settlementxxx: require('./storage/settlement')
-// };
-
-export default {
+Empire.StorageManager = {
 	Settlement: Settlement
-}
+};
