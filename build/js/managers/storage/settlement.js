@@ -1,6 +1,12 @@
 'use strict';
 
 import Application from './application';
+
+let Settlement = function() {
+	Application.call(this);
+};
+Settlement.prototype = Object.create(Application.prototype);
+
 // let Settlement = 'xxx';
 
 // let Application = function() {
@@ -10,6 +16,8 @@ import Application from './application';
 // 	vue.set(Game.settlements, key, value);
 // };
 
-export let Settlement;
+Settlement.prototype.store = function(key, value) {
+	Vue.set(Game.settlements, key, value);
+};
 
-Settlement = 'xxx';
+export default Settlement;

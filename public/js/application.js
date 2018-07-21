@@ -204,34 +204,30 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-module.exports = __webpack_require__(24);
+module.exports = __webpack_require__(23);
 
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-window.vue = __webpack_require__(4);
+window.Vue = __webpack_require__(4);
 
 Empire = {
 	Configuration: __webpack_require__(8)
 };
 
-__webpack_require__(29);
-
-console.log(Empire.StorageManager);
-
-Game = __webpack_require__(11);
+Game = __webpack_require__(10);
 
 // Layout
-vue.component('emp-footer', __webpack_require__(12));
+Vue.component('emp-footer', __webpack_require__(11));
 
 // Game Objects
-vue.component('emp-settlement-container', __webpack_require__(15));
-vue.component('emp-settlement-form', __webpack_require__(18));
-vue.component('emp-settlement', __webpack_require__(21));
+Vue.component('emp-settlement-container', __webpack_require__(14));
+Vue.component('emp-settlement-form', __webpack_require__(17));
+Vue.component('emp-settlement', __webpack_require__(20));
 
-var application = new vue({
+var application = new Vue({
 	el: '#application'
 });
 
@@ -11672,8 +11668,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 10 */,
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -11686,15 +11681,15 @@ module.exports = {
 };
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(13)
+var __vue_script__ = __webpack_require__(12)
 /* template */
-var __vue_template__ = __webpack_require__(14)
+var __vue_template__ = __webpack_require__(13)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -11733,7 +11728,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11756,7 +11751,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -11784,15 +11779,15 @@ if (false) {
 }
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(16)
+var __vue_script__ = __webpack_require__(15)
 /* template */
-var __vue_template__ = __webpack_require__(17)
+var __vue_template__ = __webpack_require__(16)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -11831,7 +11826,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11857,7 +11852,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -11886,15 +11881,15 @@ if (false) {
 }
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(19)
+var __vue_script__ = __webpack_require__(18)
 /* template */
-var __vue_template__ = __webpack_require__(20)
+var __vue_template__ = __webpack_require__(19)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -11933,11 +11928,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__managers_storage_settlement__ = __webpack_require__(28);
 //
 //
 //
@@ -11951,6 +11947,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -11961,8 +11959,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		create: function create() {
-			var manager = new Empire.StorageManager();
-			manager.set(2, { name: this.name });
+			var manager = new __WEBPACK_IMPORTED_MODULE_0__managers_storage_settlement__["a" /* default */]();
+			manager.store(2, { name: this.name });
+			manager.get('d654-f54d-7sdf-sdf5');
 			// this.$set(game.settlements, 2, {
 			// 	name: this.name
 			// });
@@ -11971,7 +11970,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -12027,15 +12026,15 @@ if (false) {
 }
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(22)
+var __vue_script__ = __webpack_require__(21)
 /* template */
-var __vue_template__ = __webpack_require__(23)
+var __vue_template__ = __webpack_require__(22)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -12074,7 +12073,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12103,7 +12102,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -12125,39 +12124,29 @@ if (false) {
 }
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
+/* 24 */,
 /* 25 */,
 /* 26 */,
 /* 27 */,
-/* 28 */,
-/* 29 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__storage_settlement__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(29);
 
 
 
 
-Empire.StorageManager = {
-	Settlement: __WEBPACK_IMPORTED_MODULE_0__storage_settlement__["a" /* Settlement */]
+var Settlement = function Settlement() {
+	__WEBPACK_IMPORTED_MODULE_0__application__["a" /* default */].call(this);
 };
-
-/***/ }),
-/* 30 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Settlement; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(32);
-
-
+Settlement.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0__application__["a" /* default */].prototype);
 
 // let Settlement = 'xxx';
 
@@ -12168,13 +12157,14 @@ Empire.StorageManager = {
 // 	vue.set(Game.settlements, key, value);
 // };
 
-var Settlement = void 0;
+Settlement.prototype.store = function (key, value) {
+	Vue.set(Game.settlements, key, value);
+};
 
-Settlement = 'xxx';
+/* harmony default export */ __webpack_exports__["a"] = (Settlement);
 
 /***/ }),
-/* 31 */,
-/* 32 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12182,7 +12172,11 @@ Settlement = 'xxx';
 
 var Application = function Application() {};
 
-/* unused harmony default export */ var _unused_webpack_default_export = (Application);
+Application.prototype.get = function (uuid) {
+	console.log(uuid);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Application);
 
 /***/ })
 /******/ ]);

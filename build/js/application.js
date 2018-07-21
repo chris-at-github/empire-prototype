@@ -1,23 +1,19 @@
-window.vue = require('vue');
+window.Vue = require('vue');
 
 Empire = {
 	Configuration: require('./configuration'),
 };
 
-require('./managers/storage');
-
-console.log(Empire.StorageManager);
-
 Game = require('./game');
 
 // Layout
-vue.component('emp-footer', require('./components/layout/footer'));
+Vue.component('emp-footer', require('./components/layout/footer'));
 
 // Game Objects
-vue.component('emp-settlement-container', require('./components/settlement/container'));
-vue.component('emp-settlement-form', require('./components/settlement/form'));
-vue.component('emp-settlement', require('./components/settlement/settlement'));
+Vue.component('emp-settlement-container', require('./components/settlement/container'));
+Vue.component('emp-settlement-form', require('./components/settlement/form'));
+Vue.component('emp-settlement', require('./components/settlement/settlement'));
 
-const application = new vue({
+const application = new Vue({
 	el: '#application'
 });
