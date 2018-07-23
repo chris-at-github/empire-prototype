@@ -9,6 +9,10 @@ Empire = {
 import ScreenManager from './managers/screen';
 Empire.ScreenManager = new ScreenManager();
 
+// ActivateManager
+import ActivateManager  from './managers/activate';
+Empire.ActivateManager = new ActivateManager();
+
 Game = require('./game');
 
 // Layout

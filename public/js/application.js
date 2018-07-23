@@ -214,6 +214,7 @@ module.exports = __webpack_require__(24);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__managers_screen__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__managers_activate__ = __webpack_require__(42);
 window.Vue = __webpack_require__(4);
 window._ = __webpack_require__(30);
 
@@ -224,6 +225,10 @@ Empire = {
 // ScreenManager
 
 Empire.ScreenManager = new __WEBPACK_IMPORTED_MODULE_0__managers_screen__["a" /* default */]();
+
+// ActivateManager
+
+Empire.ActivateManager = new __WEBPACK_IMPORTED_MODULE_1__managers_activate__["a" /* default */]();
 
 Game = __webpack_require__(10);
 
@@ -11681,11 +11686,15 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = {
-	screen: 'world',
+	screen: 'settlement',
+	activate: {
+		settlement: '0363dec2-e331-4e64-9b06-dce06941095c'
+	},
 	settlements: {
 		'0363dec2-e331-4e64-9b06-dce06941095c': {
 			id: '0363dec2-e331-4e64-9b06-dce06941095c',
-			name: 'Blatthausen'
+			name: 'Blatthausen',
+			object: 'settlement/colony'
 		}
 	}
 };
@@ -29325,6 +29334,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	methods: {
 		activate: function activate(id) {
 			Empire.ScreenManager.activate(Empire.ScreenManager.SETTLEMENT);
+			Empire.ActivateManager.settlement(id);
 		}
 	}
 });
@@ -29452,29 +29462,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {};
 	},
 
-	// props: ['id', 'properties'],
-	props: ['name', 'screen'],
-
-	// methods: {
-	// 	active: function() {
-	// 		console.log(Game.screen);
-	// 		// return this.activexx;
-	// 	}
-	// },
+	props: ['screen', 'activate'],
 
 	computed: {
 		active: function active() {
-			if (this.screen === Empire.ScreenManager.SETTLEMENT) {
+			if (this.screen === Empire.ScreenManager.SETTLEMENT && this.activate.settlement !== null) {
 				return true;
 			}
 
 			return false;
+		},
+
+		properties: function properties() {
+			if (_.isUndefined(Game.settlements[this.activate.settlement]) === false) {
+				return Game.settlements[this.activate.settlement];
+			}
+		},
+
+		object: function object() {
+			console.log(this.properties.object);
+		},
+
+		name: function name() {
+			return this.properties.name;
 		}
 	}
 });
@@ -29488,10 +29506,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.active
-    ? _c("div", { staticClass: "screen--settlement settlement" }, [
+    ? _c("div", { staticClass: "screen--settlement object settlement" }, [
         _c("div", { staticClass: "container" }, [
-          _c("header", { staticClass: "card--header" }, [
-            _vm._v(_vm._s(_vm.name))
+          _c("header", { staticClass: "object--header" }, [
+            _c("div", { staticClass: "object--title" }, [
+              _vm._v(_vm._s(_vm.name))
+            ])
           ])
         ])
       ])
@@ -29506,6 +29526,25 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-5a016c0e", module.exports)
   }
 }
+
+/***/ }),
+/* 42 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+var Activate = function Activate() {};
+
+/**
+ * @param {string} id
+ * @return {void}
+ */
+Activate.prototype.settlement = function (id) {
+  Game.activate.settlement = id;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Activate);
 
 /***/ })
 /******/ ]);
