@@ -17,7 +17,7 @@ Vue.component('emp-footer', require('./components/layout/footer'));
 // Game Objects
 Vue.component('emp-settlement-listing', require('./components/settlement/listing'));
 Vue.component('emp-settlement-form', require('./components/settlement/form'));
-Vue.component('emp-settlement', require('./components/settlement/settlement'));
+Vue.component('emp-settlement', require('./components/settlement/index'));
 
 var vm = new Vue({
 	el: '#application',

@@ -3,6 +3,10 @@
 let Screen = function() {
 };
 
+// 'Konstanten' Definition
+Screen.prototype.WORLD = 'world';
+Screen.prototype.SETTLEMENT = 'settlement';
+
 /**
  * @param {string} name
  * @return {void}

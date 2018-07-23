@@ -233,7 +233,7 @@ Vue.component('emp-footer', __webpack_require__(11));
 // Game Objects
 Vue.component('emp-settlement-listing', __webpack_require__(35));
 Vue.component('emp-settlement-form', __webpack_require__(17));
-Vue.component('emp-settlement', __webpack_require__(21));
+Vue.component('emp-settlement', __webpack_require__(39));
 
 var vm = new Vue({
 	el: '#application',
@@ -11959,122 +11959,9 @@ if (false) {
 }
 
 /***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(22)
-/* template */
-var __vue_template__ = __webpack_require__(23)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "build\\js\\components\\settlement\\settlement.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4e3e9c1d", Component.options)
-  } else {
-    hotAPI.reload("data-v-4e3e9c1d", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 22 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {};
-	},
-
-	// props: ['id', 'properties'],
-	props: ['name', 'screen'],
-
-	// methods: {
-	// 	active: function() {
-	// 		console.log(Game.screen);
-	// 		// return this.activexx;
-	// 	}
-	// },
-
-	computed: {
-		active: function active() {
-			if (this.screen === 'settlement') {
-				return true;
-			}
-
-			return false;
-		}
-	}
-});
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.active
-    ? _c("div", { staticClass: "screen--settlement settlement" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("header", { staticClass: "card--header" }, [
-            _vm._v(_vm._s(_vm.name))
-          ])
-        ])
-      ])
-    : _vm._e()
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4e3e9c1d", module.exports)
-  }
-}
-
-/***/ }),
+/* 21 */,
+/* 22 */,
+/* 23 */,
 /* 24 */
 /***/ (function(module, exports) {
 
@@ -29437,7 +29324,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	methods: {
 		activate: function activate(id) {
-			Empire.ScreenManager.activate('settlement');
+			Empire.ScreenManager.activate(Empire.ScreenManager.SETTLEMENT);
 		}
 	}
 });
@@ -29490,6 +29377,10 @@ if (false) {
 
 var Screen = function Screen() {};
 
+// 'Konstanten' Definition
+Screen.prototype.WORLD = 'world';
+Screen.prototype.SETTLEMENT = 'settlement';
+
 /**
  * @param {string} name
  * @return {void}
@@ -29499,6 +29390,122 @@ Screen.prototype.activate = function (name) {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Screen);
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(40)
+/* template */
+var __vue_template__ = __webpack_require__(41)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "build\\js\\components\\settlement\\index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5a016c0e", Component.options)
+  } else {
+    hotAPI.reload("data-v-5a016c0e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {};
+	},
+
+	// props: ['id', 'properties'],
+	props: ['name', 'screen'],
+
+	// methods: {
+	// 	active: function() {
+	// 		console.log(Game.screen);
+	// 		// return this.activexx;
+	// 	}
+	// },
+
+	computed: {
+		active: function active() {
+			if (this.screen === Empire.ScreenManager.SETTLEMENT) {
+				return true;
+			}
+
+			return false;
+		}
+	}
+});
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.active
+    ? _c("div", { staticClass: "screen--settlement settlement" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("header", { staticClass: "card--header" }, [
+            _vm._v(_vm._s(_vm.name))
+          ])
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5a016c0e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

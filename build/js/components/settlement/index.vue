@@ -24,7 +24,7 @@
 
 		computed: {
 			active: function() {
-				if(this.screen === 'settlement') {
+				if(this.screen === Empire.ScreenManager.SETTLEMENT) {
 					return true;
 				}
 
