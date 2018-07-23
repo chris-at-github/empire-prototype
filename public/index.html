@@ -17,14 +17,19 @@
 </head>
 <body>
 	<div id="application">
-		<div class="container">
-			<fieldset class="fieldset-default">
-				<legend>Settlement</legend>
 
-				<emp-settlement-container></emp-settlement-container>
-				<emp-settlement-form></emp-settlement-form>
-			</fieldset>
+		<div class="screen--world">
+			<div class="container">
+				<fieldset class="fieldset-default">
+					<legend>Settlement</legend>
+
+					<emp-settlement-listing></emp-settlement-listing>
+					<emp-settlement-form></emp-settlement-form>
+				</fieldset>
+			</div>
 		</div>
+
+		<emp-settlement name="Blatthausen" v-bind:screen="screen"></emp-settlement>
 
 		<emp-footer></emp-footer>
 	</div>

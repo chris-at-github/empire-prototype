@@ -209,8 +209,11 @@ module.exports = __webpack_require__(24);
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__managers_screen__ = __webpack_require__(38);
 window.Vue = __webpack_require__(4);
 window._ = __webpack_require__(30);
 
@@ -218,19 +221,29 @@ Empire = {
 	Configuration: __webpack_require__(8)
 };
 
+// ScreenManager
+
+Empire.ScreenManager = new __WEBPACK_IMPORTED_MODULE_0__managers_screen__["a" /* default */]();
+
 Game = __webpack_require__(10);
 
 // Layout
 Vue.component('emp-footer', __webpack_require__(11));
 
 // Game Objects
-Vue.component('emp-settlement-container', __webpack_require__(14));
+Vue.component('emp-settlement-listing', __webpack_require__(35));
 Vue.component('emp-settlement-form', __webpack_require__(17));
 Vue.component('emp-settlement', __webpack_require__(21));
 
-var application = new Vue({
-	el: '#application'
+var vxx = new Vue({
+	el: '#application',
+	data: Game
 });
+
+// setTimeout(function() {
+// 	vm.screen = 'settlement';
+// 	Game.screen = 'battle';
+// }, 1000);
 
 /***/ }),
 /* 4 */
@@ -11673,6 +11686,7 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = {
+	screen: 'world',
 	settlements: {
 		'0363dec2-e331-4e64-9b06-dce06941095c': {
 			id: '0363dec2-e331-4e64-9b06-dce06941095c',
@@ -11780,108 +11794,9 @@ if (false) {
 }
 
 /***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(15)
-/* template */
-var __vue_template__ = __webpack_require__(16)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "build\\js\\components\\settlement\\container.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-59caa386", Component.options)
-  } else {
-    hotAPI.reload("data-v-59caa386", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			settlements: Game.settlements
-		};
-	}
-});
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "card-container settlement-container" },
-    _vm._l(_vm.settlements, function(settlement, id) {
-      return _c("emp-settlement", {
-        key: id,
-        attrs: { id: id, properties: settlement }
-      })
-    })
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-59caa386", module.exports)
-  }
-}
-
-/***/ }),
+/* 14 */,
+/* 15 */,
+/* 16 */,
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12106,22 +12021,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {};
 	},
 
-	props: ['id', 'properties'],
+	// props: ['id', 'properties'],
+	props: ['name', 'screen']
 
-	methods: {},
+	// methods: {
+	// 	active: function() {
+	// 		console.log(Game.screen);
+	// 		// return this.activexx;
+	// 	}
+	// },
 
-	computed: {
-		name: function name() {
-			return this.properties.name;
-		}
-	}
+	// computed: {
+	// 	activex: function() {
+	// 		// console.log(Game);
+	// 		//
+	// 		// if(Game.screen === 'settlement') {
+	// 		// 	return true;
+	// 		// }
+	//
+	// 		// console.log(Game.screen);
+	//
+	// 		return false;
+	// 	}
+	// }
 });
 
 /***/ }),
@@ -12132,9 +12063,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card settlement" }, [
-    _c("header", { staticClass: "card--header" }, [_vm._v(_vm._s(_vm.name))])
-  ])
+  return _vm.screen == "settlement"
+    ? _c("div", { staticClass: "screen--settlement settlement" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("header", { staticClass: "card--header" }, [
+            _vm._v(_vm._s(_vm.name) + " - " + _vm._s(_vm.screen))
+          ])
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -29438,6 +29375,146 @@ function bytesToUuid(buf, offset) {
 
 module.exports = bytesToUuid;
 
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(36)
+/* template */
+var __vue_template__ = __webpack_require__(37)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "build\\js\\components\\settlement\\listing.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1ce20880", Component.options)
+  } else {
+    hotAPI.reload("data-v-1ce20880", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			settlements: Game.settlements
+		};
+	},
+	methods: {
+		activate: function activate(id) {
+			Empire.ScreenManager.activate('settlement');
+		}
+	}
+});
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "card-container settlement-container" },
+    _vm._l(_vm.settlements, function(settlement, id) {
+      return _c("div", { staticClass: "card card-settlement" }, [
+        _c(
+          "header",
+          {
+            staticClass: "card--header",
+            on: {
+              click: function($event) {
+                _vm.activate(id)
+              }
+            }
+          },
+          [_vm._v(_vm._s(settlement.name))]
+        )
+      ])
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1ce20880", module.exports)
+  }
+}
+
+/***/ }),
+/* 38 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+var Screen = function Screen() {};
+
+/**
+ * @param {string} name
+ * @return {void}
+ */
+Screen.prototype.activate = function (name) {
+	Vue.set(Game, 'screen', name);
+	Game.screen = name;
+	// Vue.nextTick(function() {
+	// 	console.log('next tick');
+	// });
+	application.screen = 'XXX';
+
+	// console.log(application.screen = 'XXX');
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Screen);
 
 /***/ })
 /******/ ]);
