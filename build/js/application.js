@@ -1,17 +1,24 @@
+// Global libraries
 window.Vue = require('vue');
 window._ = require('lodash');
 
+// Empire environment
+import managers from './managers/manager';
+import objects from './objects/object';
+
 Empire = {
 	Configuration: require('./configuration'),
+	Managers: managers,
+	object: objects
 };
 
-// ScreenManager
-import ScreenManager from './managers/screen';
-Empire.ScreenManager = new ScreenManager();
+// console.log(Empire);
 
-// ActivateManager
-import ActivateManager  from './managers/activate';
-Empire.ActivateManager = new ActivateManager();
+// Empire.Objects = {};
+// import * as {Empire.Objects} from './objects/settlement/colony';
+import SettlementFactory from './factories/settlement';
+Empire.SettlementFactory = new SettlementFactory();
+// console.log(Empire.SettlementFactory.create('settlement.colony'));
 
 Game = require('./game');
 

@@ -17,7 +17,11 @@ mix.webpackConfig({
 			path.resolve('./build/js'),
 			path.resolve('./node_modules')
 		]
-	}
+	},
+	output: {
+		publicPath: '/',
+		chunkFilename: 'cache/[name].js'
+	},
 });
 
 /*

@@ -3,6 +3,7 @@
 		<div class="container">
 			<header class="object--header">
 				<div class="object--title">{{name}}</div>
+				<div class="object--type">{{object.icon}}</div>
 			</header>
 		</div>
 	</div>
@@ -18,7 +19,7 @@
 
 		computed: {
 			active: function() {
-				if(this.screen === Empire.ScreenManager.SETTLEMENT && this.activate.settlement !== null) {
+				if(this.screen === Empire.Managers.Screen.SETTLEMENT && this.activate.settlement !== null) {
 					return true;
 				}
 
@@ -31,9 +32,8 @@
 				}
 			},
 
-
 			object: function() {
-				console.log(this.properties.object);
+				return Empire.SettlementFactory.create(this.properties.object);
 			},
 
 			name: function() {

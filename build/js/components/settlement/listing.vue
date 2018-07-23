@@ -15,8 +15,8 @@
 		},
 		methods: {
 			activate: function(id) {
-				Empire.ScreenManager.activate(Empire.ScreenManager.SETTLEMENT);
-				Empire.ActivateManager.settlement(id);
+				Empire.Managers.Screen.activate(Empire.Managers.Screen.SETTLEMENT);
+				Empire.Managers.Activate.settlement(id);
 			}
 		}
 	}
