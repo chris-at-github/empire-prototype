@@ -1,4 +1,5 @@
 window.Vue = require('vue');
+window._ = require('lodash');
 
 Empire = {
 	Configuration: require('./configuration'),

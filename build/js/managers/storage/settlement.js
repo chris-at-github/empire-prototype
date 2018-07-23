@@ -1,23 +1,17 @@
 'use strict';
 
-import Application from './application';
+import Application from 'managers/storage/application';
 
+// Settlement Storage Manager
+// Extends Application Storage Manager
 let Settlement = function() {
 	Application.call(this);
+	this.storage = Game.settlements;
 };
 Settlement.prototype = Object.create(Application.prototype);
 
-// let Settlement = 'xxx';
-
-// let Application = function() {
-// };
-//
-// storage.prototype.set = function(key, value) {
-// 	vue.set(Game.settlements, key, value);
-// };
-
-Settlement.prototype.store = function(key, value) {
-	Vue.set(Game.settlements, key, value);
+Settlement.prototype.store = function(settlement) {
+	return this._store(settlement);
 };
 
 export default Settlement;

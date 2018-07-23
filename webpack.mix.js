@@ -8,6 +8,18 @@ mix.setPublicPath('public');
 // @see: https://laravel.com/docs/5.6/mix#notifications
 mix.disableSuccessNotifications();
 
+
+// Import statements without relative paths
+// @see: https://moduscreate.com/blog/es6-es2015-import-no-relative-path-webpack/
+mix.webpackConfig({
+	resolve: {
+		modules: [
+			path.resolve('./build/js'),
+			path.resolve('./node_modules')
+		]
+	}
+});
+
 /*
 	----------------------------------------------------------------------------------------------------------------------
 	Mix Asset Management
