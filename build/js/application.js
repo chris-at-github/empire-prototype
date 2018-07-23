@@ -19,12 +19,7 @@ Vue.component('emp-settlement-listing', require('./components/settlement/listing
 Vue.component('emp-settlement-form', require('./components/settlement/form'));
 Vue.component('emp-settlement', require('./components/settlement/settlement'));
 
-var vxx = new Vue({
+var vm = new Vue({
 	el: '#application',
 	data: Game
 });
-
-// setTimeout(function() {
-// 	vm.screen = 'settlement';
-// 	Game.screen = 'battle';
-// }, 1000);

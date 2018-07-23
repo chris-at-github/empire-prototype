@@ -235,15 +235,10 @@ Vue.component('emp-settlement-listing', __webpack_require__(35));
 Vue.component('emp-settlement-form', __webpack_require__(17));
 Vue.component('emp-settlement', __webpack_require__(21));
 
-var vxx = new Vue({
+var vm = new Vue({
 	el: '#application',
 	data: Game
 });
-
-// setTimeout(function() {
-// 	vm.screen = 'settlement';
-// 	Game.screen = 'battle';
-// }, 1000);
 
 /***/ }),
 /* 4 */
@@ -12031,7 +12026,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 
 	// props: ['id', 'properties'],
-	props: ['name', 'screen']
+	props: ['name', 'screen'],
 
 	// methods: {
 	// 	active: function() {
@@ -12040,19 +12035,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	// 	}
 	// },
 
-	// computed: {
-	// 	activex: function() {
-	// 		// console.log(Game);
-	// 		//
-	// 		// if(Game.screen === 'settlement') {
-	// 		// 	return true;
-	// 		// }
-	//
-	// 		// console.log(Game.screen);
-	//
-	// 		return false;
-	// 	}
-	// }
+	computed: {
+		active: function active() {
+			if (this.screen === 'settlement') {
+				return true;
+			}
+
+			return false;
+		}
+	}
 });
 
 /***/ }),
@@ -12063,11 +12054,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.screen == "settlement"
+  return _vm.active
     ? _c("div", { staticClass: "screen--settlement settlement" }, [
         _c("div", { staticClass: "container" }, [
           _c("header", { staticClass: "card--header" }, [
-            _vm._v(_vm._s(_vm.name) + " - " + _vm._s(_vm.screen))
+            _vm._v(_vm._s(_vm.name))
           ])
         ])
       ])
@@ -29504,14 +29495,7 @@ var Screen = function Screen() {};
  * @return {void}
  */
 Screen.prototype.activate = function (name) {
-	Vue.set(Game, 'screen', name);
-	Game.screen = name;
-	// Vue.nextTick(function() {
-	// 	console.log('next tick');
-	// });
-	application.screen = 'XXX';
-
-	// console.log(application.screen = 'XXX');
+  Game.screen = name;
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Screen);

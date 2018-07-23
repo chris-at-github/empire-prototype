@@ -1,7 +1,7 @@
 <template>
-	<div class="screen--settlement settlement" v-if="screen == 'settlement'">
+	<div class="screen--settlement settlement" v-if="active">
 		<div class="container">
-			<header class="card--header">{{name}} - {{screen}}</header>
+			<header class="card--header">{{name}}</header>
 		</div>
 	</div>
 </template>
@@ -13,7 +13,7 @@
 		},
 
 		// props: ['id', 'properties'],
-		props: ['name', 'screen']
+		props: ['name', 'screen'],
 
 		// methods: {
 		// 	active: function() {
@@ -22,18 +22,14 @@
 		// 	}
 		// },
 
-		// computed: {
-		// 	activex: function() {
-		// 		// console.log(Game);
-		// 		//
-		// 		// if(Game.screen === 'settlement') {
-		// 		// 	return true;
-		// 		// }
-		//
-		// 		// console.log(Game.screen);
-		//
-		// 		return false;
-		// 	}
-		// }
+		computed: {
+			active: function() {
+				if(this.screen === 'settlement') {
+					return true;
+				}
+
+				return false;
+			}
+		}
 	}
 </script>
