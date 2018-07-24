@@ -9,8 +9,8 @@
 	export default {
 		data: function() {
 			return {
-				version: Empire.Configuration.version,
-				name: Empire.Configuration.name
+				version: Empire.configuration.version,
+				name: Empire.configuration.name
 			};
 		}
 	}
