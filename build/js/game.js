@@ -1,5 +1,5 @@
 module.exports = {
-	screen: 'settlement',
+	screen: 'world',
 	activate: {
 		settlement: null
 	},

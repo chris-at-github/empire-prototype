@@ -4,21 +4,23 @@ window._ = require('lodash');
 
 // Empire environment
 import managers from './managers/manager';
+import factories from './factories/factory';
 import objects from './objects/object';
 
 Empire = {
 	Configuration: require('./configuration'),
 	Managers: managers,
+	factory: factories,
 	object: objects
 };
 
-// console.log(Empire);
-
-// Empire.Objects = {};
-// import * as {Empire.Objects} from './objects/settlement/colony';
-import SettlementFactory from './factories/settlement';
-Empire.SettlementFactory = new SettlementFactory();
-// console.log(Empire.SettlementFactory.create('settlement.colony'));
+// // console.log(Empire);
+//
+// // Empire.Objects = {};
+// // import * as {Empire.Objects} from './objects/settlement/colony';
+// import SettlementFactory from './factories/settlement';
+// Empire.SettlementFactory = new SettlementFactory();
+// // console.log(Empire.SettlementFactory.create('settlement.colony'));
 
 Game = require('./game');
 

@@ -33,7 +33,7 @@
 			},
 
 			object: function() {
-				return Empire.SettlementFactory.create(this.properties.object);
+				return Empire.factory.settlement.create(this.properties.object);
 			},
 
 			name: function() {

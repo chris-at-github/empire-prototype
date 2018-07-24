@@ -1,24 +1,26 @@
 'use strict';
 
+import Application from './application';
+
 let Settlement = function() {
+	Application.call(this);
 };
 
 /**
- * @see: https://stackoverflow.com/questions/359788/how-to-execute-a-javascript-function-when-i-have-its-name-as-a-string
+ * Vererbung der Application Eigenschaften und Methoden
+ *
+ * @type {Application}
  */
-Settlement.prototype.resolveNamespace = function(namespace, context) {
-	let sections = namespace.split('.');
-	let name = sections.pop();
+Settlement.prototype = Object.create(Application.prototype);
 
-	for(let i = 0; i < sections.length; i ++) {
-		context = context[sections[i]];
-	}
-
-	return new context[name]();
-};
-
+/**
+ * Erzeugt eine neue Instanz zur einem Objekt anhand des Namespaces
+ *
+ * @param {string} namespace
+ * @return {object}
+ */
 Settlement.prototype.create = function(namespace) {
-	return this.resolveNamespace(namespace, Empire.object);
+	return this.createByNamespace(namespace, Empire.object);
 };
 
 export default Settlement;
