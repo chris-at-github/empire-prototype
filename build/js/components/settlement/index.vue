@@ -19,7 +19,7 @@
 
 		computed: {
 			active: function() {
-				if(this.screen === Empire.Managers.Screen.SETTLEMENT && this.activate.settlement !== null) {
+				if(this.screen === Empire.manager.screen.SETTLEMENT && this.activate.settlement !== null) {
 					return true;
 				}
 

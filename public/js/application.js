@@ -227,18 +227,10 @@ window._ = __webpack_require__(8);
 
 Empire = {
 	Configuration: __webpack_require__(15),
-	Managers: __WEBPACK_IMPORTED_MODULE_0__managers_manager__["a" /* default */],
+	manager: __WEBPACK_IMPORTED_MODULE_0__managers_manager__["a" /* default */],
 	factory: __WEBPACK_IMPORTED_MODULE_1__factories_factory__["a" /* default */],
 	object: __WEBPACK_IMPORTED_MODULE_2__objects_object__["a" /* default */]
 };
-
-// // console.log(Empire);
-//
-// // Empire.Objects = {};
-// // import * as {Empire.Objects} from './objects/settlement/colony';
-// import SettlementFactory from './factories/settlement';
-// Empire.SettlementFactory = new SettlementFactory();
-// // console.log(Empire.SettlementFactory.create('settlement.colony'));
 
 Game = __webpack_require__(18);
 
@@ -28828,8 +28820,8 @@ module.exports = function(module) {
 
 
 var managers = {
-	Screen: new __WEBPACK_IMPORTED_MODULE_0__screen__["a" /* default */](),
-	Activate: new __WEBPACK_IMPORTED_MODULE_1__activate__["a" /* default */]()
+	screen: new __WEBPACK_IMPORTED_MODULE_0__screen__["a" /* default */](),
+	activate: new __WEBPACK_IMPORTED_MODULE_1__activate__["a" /* default */]()
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (managers);
@@ -29149,8 +29141,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	methods: {
 		activate: function activate(id) {
-			Empire.Managers.Screen.activate(Empire.Managers.Screen.SETTLEMENT);
-			Empire.Managers.Activate.settlement(id);
+			Empire.manager.screen.activate(Empire.manager.screen.SETTLEMENT);
+			Empire.manager.activate.settlement(id);
 		}
 	}
 });
@@ -29577,7 +29569,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	computed: {
 		active: function active() {
-			if (this.screen === Empire.Managers.Screen.SETTLEMENT && this.activate.settlement !== null) {
+			if (this.screen === Empire.manager.screen.SETTLEMENT && this.activate.settlement !== null) {
 				return true;
 			}
 
