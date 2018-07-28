@@ -1,9 +1,8 @@
 <template>
-	<div class="screen--settlement object settlement" v-if="active">
+	<div class="screen screen--settlement object settlement" v-if="active">
 		<div class="container">
 			<header class="object--header">
 				<div class="object--title">{{name}}</div>
-				<div class="object--type">{{object.icon}}</div>
 			</header>
 		</div>
 	</div>

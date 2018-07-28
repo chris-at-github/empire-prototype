@@ -204,7 +204,7 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-module.exports = __webpack_require__(36);
+module.exports = __webpack_require__(38);
 
 
 /***/ }),
@@ -214,8 +214,8 @@ module.exports = __webpack_require__(36);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__managers_manager__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__factories_factory__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objects_object__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__factories_factory__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objects_object__ = __webpack_require__(16);
 // Global libraries
 window.Vue = __webpack_require__(4);
 window._ = __webpack_require__(8);
@@ -226,21 +226,21 @@ window._ = __webpack_require__(8);
 
 
 Empire = {
-	Configuration: __webpack_require__(15),
+	Configuration: __webpack_require__(18),
 	manager: __WEBPACK_IMPORTED_MODULE_0__managers_manager__["a" /* default */],
 	factory: __WEBPACK_IMPORTED_MODULE_1__factories_factory__["a" /* default */],
 	object: __WEBPACK_IMPORTED_MODULE_2__objects_object__["a" /* default */]
 };
 
-Game = __webpack_require__(18);
+Game = __webpack_require__(20);
 
 // Layout
-Vue.component('emp-footer', __webpack_require__(19));
+Vue.component('emp-footer', __webpack_require__(21));
 
 // Game Objects
-Vue.component('emp-settlement-listing', __webpack_require__(22));
-Vue.component('emp-settlement-form', __webpack_require__(25));
-Vue.component('emp-settlement', __webpack_require__(33));
+Vue.component('emp-settlement-listing', __webpack_require__(24));
+Vue.component('emp-settlement-form', __webpack_require__(27));
+Vue.component('emp-settlement', __webpack_require__(35));
 
 var vm = new Vue({
 	el: '#application',
@@ -28873,61 +28873,23 @@ Activate.prototype.settlement = function (id) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement_colony__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement__ = __webpack_require__(14);
 
 
-var object = {};
-
-// ---------------------------------------------------------------------------------------------------------------------
-// Settlement
 
 
-object.settlement = {
-	colony: __WEBPACK_IMPORTED_MODULE_0__settlement_colony__["a" /* default */]
+var factories = {
+	settlement: new __WEBPACK_IMPORTED_MODULE_0__settlement__["a" /* default */]()
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (object);
+/* harmony default export */ __webpack_exports__["a"] = (factories);
 
 /***/ }),
 /* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-var Colony = function Colony() {
-	this.icon = 'emp-colony.svg';
-};
-
-Colony.prototype.test = function () {
-	console.log('Colony::test');
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (Colony);
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var configuration = __webpack_require__(16);
-
-module.exports = configuration;
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-module.exports = {
-	version: '0.0.1',
-	name: 'Empire'
-};
-
-/***/ }),
-/* 17 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(15);
 
 
 
@@ -28956,7 +28918,92 @@ Settlement.prototype.create = function (namespace) {
 /* harmony default export */ __webpack_exports__["a"] = (Settlement);
 
 /***/ }),
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+var Application = function Application() {};
+
+/**
+ * Ueberprueft ob es in dem uebergebenen Namespache (object.unit.hero) eine passende Funktion / Klasse gibt (Empire[object][unit][hero]
+ *
+ * @see: https://stackoverflow.com/questions/359788/how-to-execute-a-javascript-function-when-i-have-its-name-as-a-string
+ *
+ * @param {string} namespace
+ * @param {object} context
+ * @return {object}
+ */
+Application.prototype.createByNamespace = function (namespace, context) {
+  var sections = namespace.split('.');
+  var name = sections.pop();
+
+  for (var i = 0; i < sections.length; i++) {
+    context = context[sections[i]];
+  }
+
+  return new context[name]();
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Application);
+
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement_colony__ = __webpack_require__(17);
+
+
+var object = {};
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Settlement
+
+
+object.settlement = {
+	colony: __WEBPACK_IMPORTED_MODULE_0__settlement_colony__["a" /* default */]
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (object);
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+var Colony = function Colony() {
+	this.icon = 'emp-colony.svg';
+};
+
+Colony.prototype.test = function () {
+	console.log('Colony::test');
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Colony);
+
+/***/ }),
 /* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var configuration = __webpack_require__(19);
+
+module.exports = configuration;
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	version: '0.0.1',
+	name: 'Empire'
+};
+
+/***/ }),
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -28974,15 +29021,15 @@ module.exports = {
 };
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(20)
+var __vue_script__ = __webpack_require__(22)
 /* template */
-var __vue_template__ = __webpack_require__(21)
+var __vue_template__ = __webpack_require__(23)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29021,7 +29068,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29044,7 +29091,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -29072,15 +29119,15 @@ if (false) {
 }
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(23)
+var __vue_script__ = __webpack_require__(25)
 /* template */
-var __vue_template__ = __webpack_require__(24)
+var __vue_template__ = __webpack_require__(26)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29119,7 +29166,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29148,7 +29195,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -29187,15 +29234,15 @@ if (false) {
 }
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(26)
+var __vue_script__ = __webpack_require__(28)
 /* template */
-var __vue_template__ = __webpack_require__(32)
+var __vue_template__ = __webpack_require__(34)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29234,12 +29281,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_settlement__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_settlement__ = __webpack_require__(29);
 //
 //
 //
@@ -29274,11 +29321,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__ = __webpack_require__(30);
 
 
 
@@ -29298,7 +29345,7 @@ Settlement.prototype.store = function (settlement) {
 /* harmony default export */ __webpack_exports__["a"] = (Settlement);
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29307,7 +29354,7 @@ Settlement.prototype.store = function (settlement) {
 // Uuid/v4 Generator
 // @see: https://www.npmjs.com/package/uuid
 
-var uuid = __webpack_require__(29);
+var uuid = __webpack_require__(31);
 
 var Application = function Application() {
 	this.storage = null;
@@ -29335,11 +29382,11 @@ Application.prototype._store = function (object) {
 /* harmony default export */ __webpack_exports__["a"] = (Application);
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var rng = __webpack_require__(30);
-var bytesToUuid = __webpack_require__(31);
+var rng = __webpack_require__(32);
+var bytesToUuid = __webpack_require__(33);
 
 function v4(options, buf, offset) {
   var i = buf && offset || 0;
@@ -29370,7 +29417,7 @@ module.exports = v4;
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports) {
 
 // Unique ID creation requires a high quality random # generator.  In the
@@ -29410,7 +29457,7 @@ if (getRandomValues) {
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports) {
 
 /**
@@ -29440,7 +29487,7 @@ module.exports = bytesToUuid;
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -29496,15 +29543,15 @@ if (false) {
 }
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(34)
+var __vue_script__ = __webpack_require__(36)
 /* template */
-var __vue_template__ = __webpack_require__(35)
+var __vue_template__ = __webpack_require__(37)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29543,12 +29590,11 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -29593,7 +29639,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -29601,19 +29647,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.active
-    ? _c("div", { staticClass: "screen--settlement object settlement" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("header", { staticClass: "object--header" }, [
-            _c("div", { staticClass: "object--title" }, [
-              _vm._v(_vm._s(_vm.name))
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "object--type" }, [
-              _vm._v(_vm._s(_vm.object.icon))
+    ? _c(
+        "div",
+        { staticClass: "screen screen--settlement object settlement" },
+        [
+          _c("div", { staticClass: "container" }, [
+            _c("header", { staticClass: "object--header" }, [
+              _c("div", { staticClass: "object--title" }, [
+                _vm._v(_vm._s(_vm.name))
+              ])
             ])
           ])
-        ])
-      ])
+        ]
+      )
     : _vm._e()
 }
 var staticRenderFns = []
@@ -29627,61 +29673,10 @@ if (false) {
 }
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-var Application = function Application() {};
-
-/**
- * Ueberprueft ob es in dem uebergebenen Namespache (object.unit.hero) eine passende Funktion / Klasse gibt (Empire[object][unit][hero]
- *
- * @see: https://stackoverflow.com/questions/359788/how-to-execute-a-javascript-function-when-i-have-its-name-as-a-string
- *
- * @param {string} namespace
- * @param {object} context
- * @return {object}
- */
-Application.prototype.createByNamespace = function (namespace, context) {
-  var sections = namespace.split('.');
-  var name = sections.pop();
-
-  for (var i = 0; i < sections.length; i++) {
-    context = context[sections[i]];
-  }
-
-  return new context[name]();
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (Application);
-
-/***/ }),
-/* 42 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement__ = __webpack_require__(17);
-
-
-
-
-var factories = {
-	settlement: new __WEBPACK_IMPORTED_MODULE_0__settlement__["a" /* default */]()
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (factories);
 
 /***/ })
 /******/ ]);

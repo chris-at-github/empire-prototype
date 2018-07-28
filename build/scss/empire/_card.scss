@@ -3,6 +3,10 @@
 		border: 1px solid $gray-500;
 	}
 
+	& + .card {
+		margin-top: 10px;
+	}
+
 	.card--header {
 		padding: 5px 10px;
 		font-weight: 700;
