@@ -8,7 +8,7 @@ import factories from './factories/factory';
 import objects from './objects/object';
 
 Empire = {
-	Configuration: require('./configuration'),
+	configuration: require('./configuration'),
 	manager: managers,
 	factory: factories,
 	object: objects

@@ -21,12 +21,23 @@
 			};
 		},
 
+		computed: {
+			object: function() {
+				return Empire.configuration.settlement.default;
+			}
+		},
+
 		methods: {
 			create: function() {
 				var manager = new StorageManager();
-						manager.store({
-							name: this.name
-						});
+						manager.store(this.toJson());
+			},
+
+			toJson: function() {
+				return  {
+					name: this.name,
+					object: this.object
+				}
 			}
 		}
 	}
