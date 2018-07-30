@@ -13,11 +13,26 @@
 				</ul>
 			</div>
 		</div>
+
+		<div class="container" v-if="buildings.length !== 0">
+			<fieldset class="fieldset-default">
+				<legend>Gebäude</legend>
+				<emp-object-listing v-bind:objects="buildings"></emp-object-listing>
+			</fieldset>
+		</div>
 	</div>
 </template>
 
 <script>
+	import ObjectListing from 'components/object/listing';
+
 	export default {
+
+		// @see: https://vuejs.org/v2/guide/components.html#Local-Registration
+		components: {
+			'emp-object-listing': ObjectListing
+		},
+
 		data: function() {
 			return {};
 		},
@@ -45,6 +60,16 @@
 
 			name: function() {
 				return this.properties.name;
+			},
+
+			buildings: function() {
+				let settlement = this;
+
+				return _.filter(Game.buildings, function(building) {
+					if(building.parent === settlement.properties.id) {
+						return building;
+					}
+				});
 			}
 		},
 

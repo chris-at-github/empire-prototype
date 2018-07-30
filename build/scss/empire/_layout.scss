@@ -1,8 +1,8 @@
 #empire-footer {
 	& {
 		position: fixed;
-		bottom: 0;
-		left: 0;
+		bottom: 0; left: 0;
+		z-index: 100;
 		width: 100%;
 		padding: 5px 10px;
 		border-top: 1px solid $gray-500;
