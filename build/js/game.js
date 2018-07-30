@@ -25,6 +25,11 @@ module.exports = {
 			id:     '938f3cc9-a14e-4f74-9768-3d348b0a65df',
 			object: 'building.livingRoom',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
+		},
+		'1f60519b-adea-4c2f-b780-f81c6e5b68ad': {
+			id:     '1f60519b-adea-4c2f-b780-f81c6e5b68ad',
+			object: 'building.storeRoom',
+			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
 		}
 	}
 };

@@ -28966,6 +28966,7 @@ Application.prototype.createByNamespace = function (namespace, context) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement_colony__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__building_entrance__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__building_livingroom__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__building_storeroom__ = __webpack_require__(50);
 
 
 var object = {};
@@ -28983,9 +28984,11 @@ object.settlement = {
 
 
 
+
 object.building = {
 	entrance: __WEBPACK_IMPORTED_MODULE_1__building_entrance__["a" /* default */],
-	livingRoom: __WEBPACK_IMPORTED_MODULE_2__building_livingroom__["a" /* default */]
+	livingRoom: __WEBPACK_IMPORTED_MODULE_2__building_livingroom__["a" /* default */],
+	storeRoom: __WEBPACK_IMPORTED_MODULE_3__building_storeroom__["a" /* default */]
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (object);
@@ -29058,6 +29061,11 @@ module.exports = {
 		'938f3cc9-a14e-4f74-9768-3d348b0a65df': {
 			id: '938f3cc9-a14e-4f74-9768-3d348b0a65df',
 			object: 'building.livingRoom',
+			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
+		},
+		'1f60519b-adea-4c2f-b780-f81c6e5b68ad': {
+			id: '1f60519b-adea-4c2f-b780-f81c6e5b68ad',
+			object: 'building.storeRoom',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
 		}
 	}
@@ -30020,6 +30028,31 @@ var LivingRoom = function LivingRoom() {
 LivingRoom.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].prototype);
 
 /* harmony default export */ __webpack_exports__["a"] = (LivingRoom);
+
+/***/ }),
+/* 50 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_objects_application__ = __webpack_require__(47);
+
+
+
+
+var StoreRoom = function StoreRoom() {
+  __WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].call(this);
+
+  this.name = 'Lagerraum';
+};
+
+/**
+ * Vererbung der Application Eigenschaften und Methoden
+ *
+ * @type {Application}
+ */
+StoreRoom.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].prototype);
+
+/* harmony default export */ __webpack_exports__["a"] = (StoreRoom);
 
 /***/ })
 /******/ ]);
