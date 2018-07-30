@@ -4819,36 +4819,6 @@ template {
   display: none !important;
 }
 
-#empire-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 5px 10px;
-  border-top: 1px solid #adb5bd;
-}
-
-#empire-footer .empire-footer--name {
-  margin: 0 0 0 5px;
-}
-
-.screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-}
-
-.screen--world {
-  z-index: 10;
-}
-
-.screen--settlement {
-  z-index: 20;
-}
-
 .fieldset-default {
   margin: 10px 0 0 0;
   padding: 20px 10px 10px 10px;
@@ -4949,5 +4919,65 @@ select.form--field:focus::-ms-value {
 .card .card--header {
   padding: 5px 10px;
   font-weight: 700;
+}
+
+#empire-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 10px;
+  border-top: 1px solid #adb5bd;
+}
+
+#empire-footer .empire-footer--name {
+  margin: 0 0 0 5px;
+}
+
+.screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  margin: 10px;
+}
+
+.screen--world {
+  z-index: 10;
+}
+
+.screen--settlement {
+  z-index: 20;
+}
+
+.object .object--title {
+  font-size: 20px;
+}
+
+.object .object--actions {
+  margin: 10px 0 0 0;
+}
+
+.object .object--actions ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.object .object--actions ul li {
+  margin: 0;
+  padding: 0;
+}
+
+.object .object--actions ul::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.object .object--actions li {
+  float: left;
 }
 

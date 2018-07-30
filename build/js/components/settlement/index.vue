@@ -4,6 +4,14 @@
 			<header class="object--header">
 				<div class="object--title">{{name}}</div>
 			</header>
+
+			<div class="object--actions">
+				<ul>
+					<li>
+						<button v-on:click="close" class="button">Schliessen</button>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </template>
@@ -37,6 +45,13 @@
 
 			name: function() {
 				return this.properties.name;
+			}
+		},
+
+		methods: {
+			close: function() {
+				Empire.manager.screen.activate(Empire.manager.screen.WORLD);
+				Empire.manager.activate.deactivateSettlement();
 			}
 		}
 	}

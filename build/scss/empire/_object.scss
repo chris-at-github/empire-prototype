@@ -1,0 +1,20 @@
+.object {
+	.object--title {
+		font-size: 20px;
+	}
+
+	.object--actions {
+		& {
+			margin: 10px 0 0 0;
+		}
+
+		ul {
+			@include list-unstyled();
+			@include clearfix();
+		}
+
+		li {
+			float: left;
+		}
+	}
+}

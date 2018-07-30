@@ -7,8 +7,15 @@ let Activate = function() {
  * @param {string} id
  * @return {void}
  */
-Activate.prototype.settlement = function(id) {
+Activate.prototype.activateSettlement = function(id) {
 	Game.activate.settlement = id;
+};
+
+/**
+ * @return {void}
+ */
+Activate.prototype.deactivateSettlement = function() {
+	Game.activate.settlement = null;
 };
 
 export default Activate;

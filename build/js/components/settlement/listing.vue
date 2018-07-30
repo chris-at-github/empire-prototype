@@ -16,7 +16,7 @@
 		methods: {
 			activate: function(id) {
 				Empire.manager.screen.activate(Empire.manager.screen.SETTLEMENT);
-				Empire.manager.activate.settlement(id);
+				Empire.manager.activate.activateSettlement(id);
 			}
 		}
 	}
