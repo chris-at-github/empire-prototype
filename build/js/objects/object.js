@@ -13,9 +13,11 @@ object.settlement = {
 // ---------------------------------------------------------------------------------------------------------------------
 // Building
 import EntranceBulding from './building/entrance';
+import LivingRoomBuilding from './building/livingroom';
 
 object.building = {
-	entrance: EntranceBulding
+	entrance: EntranceBulding,
+	livingRoom: LivingRoomBuilding
 };
 
 export default object;
