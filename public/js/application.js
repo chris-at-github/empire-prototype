@@ -28881,12 +28881,15 @@ Activate.prototype.deactivateSettlement = function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__(48);
+
 
 
 
 
 var factories = {
-	settlement: new __WEBPACK_IMPORTED_MODULE_0__settlement__["a" /* default */]()
+	settlement: new __WEBPACK_IMPORTED_MODULE_0__settlement__["a" /* default */](),
+	object: new __WEBPACK_IMPORTED_MODULE_1__object__["a" /* default */]()
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (factories);
@@ -28961,6 +28964,7 @@ Application.prototype.createByNamespace = function (namespace, context) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement_colony__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__building_entrance__ = __webpack_require__(46);
 
 
 var object = {};
@@ -28971,6 +28975,14 @@ var object = {};
 
 object.settlement = {
 	colony: __WEBPACK_IMPORTED_MODULE_0__settlement_colony__["a" /* default */]
+};
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Building
+
+
+object.building = {
+	entrance: __WEBPACK_IMPORTED_MODULE_1__building_entrance__["a" /* default */]
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (object);
@@ -29032,7 +29044,7 @@ module.exports = {
 	buildings: {
 		'c999ae6b-d5cc-46fb-91c3-dccf2860f56d': {
 			id: 'c999ae6b-d5cc-46fb-91c3-dccf2860f56d',
-			object: 'building.settlement.entrance',
+			object: 'building.entrance',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
 		}
 	}
@@ -29845,9 +29857,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
-		return {};
+		return {
+			'objectCache': {}
+		};
 	},
-	props: ['objects']
+	props: ['objects'],
+	methods: {
+		getObject: function getObject(object) {
+			if (_.isUndefined(this.objectCache[object.id]) === true) {
+				this.objectCache[object.id] = Empire.factory.object.create(object.object);
+			}
+
+			return this.objectCache[object.id];
+		}
+	}
 });
 
 /***/ }),
@@ -29864,7 +29887,7 @@ var render = function() {
     _vm._l(_vm.objects, function(object, id) {
       return _c("div", { staticClass: "card card-object" }, [
         _c("header", { staticClass: "card--header" }, [
-          _vm._v(_vm._s(object.object))
+          _vm._v(_vm._s(_vm.getObject(object).getName()))
         ])
       ])
     })
@@ -29879,6 +29902,86 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-2913a856", module.exports)
   }
 }
+
+/***/ }),
+/* 46 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_objects_application__ = __webpack_require__(47);
+
+
+
+
+var Entrance = function Entrance() {
+  __WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].call(this);
+
+  this.name = 'Eingang';
+};
+
+/**
+ * Vererbung der Application Eigenschaften und Methoden
+ *
+ * @type {Application}
+ */
+Entrance.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].prototype);
+
+/* harmony default export */ __webpack_exports__["a"] = (Entrance);
+
+/***/ }),
+/* 47 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+var Application = function Application() {
+  this.name = null;
+};
+
+/**
+ * Liefert den fest hinterlegten Namen des Objekts
+ *
+ * @return string
+ */
+Application.prototype.getName = function (object) {
+  return this.name;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Application);
+
+/***/ }),
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(15);
+
+
+
+
+var ObjectFactory = function ObjectFactory() {
+  __WEBPACK_IMPORTED_MODULE_0__application__["a" /* default */].call(this);
+};
+
+/**
+ * Vererbung der Application Eigenschaften und Methoden
+ *
+ * @type {Application}
+ */
+ObjectFactory.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0__application__["a" /* default */].prototype);
+
+/**
+ * Erzeugt eine neue Instanz zur einem Objekt anhand des Namespaces
+ *
+ * @param {string} namespace
+ * @return {object}
+ */
+ObjectFactory.prototype.create = function (namespace) {
+  return this.createByNamespace(namespace, Empire.object);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (ObjectFactory);
 
 /***/ })
 /******/ ]);

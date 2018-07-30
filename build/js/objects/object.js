@@ -10,4 +10,12 @@ object.settlement = {
 	colony: ColonySettlement
 };
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Building
+import EntranceBulding from './building/entrance';
+
+object.building = {
+	entrance: EntranceBulding
+};
+
 export default object;
