@@ -1,5 +1,5 @@
 <template>
-	<div class="card-container object-container">
+	<div class="card-container object-container" v-if="objects.length !== 0">
 		<div class="card card-object" v-for="(object, id) in objects">
 			<header class="card--header">{{getObject(object).getName()}}</header>
 		</div>

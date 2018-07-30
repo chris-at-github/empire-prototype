@@ -14,7 +14,7 @@
 			</div>
 		</div>
 
-		<div class="container" v-if="buildings.length !== 0">
+		<div class="container">
 			<fieldset class="fieldset-default">
 				<legend>Gebäude</legend>
 				<emp-object-listing v-bind:objects="buildings"></emp-object-listing>

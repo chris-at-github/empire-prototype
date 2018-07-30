@@ -29775,22 +29775,18 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm.buildings.length !== 0
-            ? _c("div", { staticClass: "container" }, [
-                _c(
-                  "fieldset",
-                  { staticClass: "fieldset-default" },
-                  [
-                    _c("legend", [_vm._v("Gebäude")]),
-                    _vm._v(" "),
-                    _c("emp-object-listing", {
-                      attrs: { objects: _vm.buildings }
-                    })
-                  ],
-                  1
-                )
-              ])
-            : _vm._e()
+          _c("div", { staticClass: "container" }, [
+            _c(
+              "fieldset",
+              { staticClass: "fieldset-default" },
+              [
+                _c("legend", [_vm._v("Gebäude")]),
+                _vm._v(" "),
+                _c("emp-object-listing", { attrs: { objects: _vm.buildings } })
+              ],
+              1
+            )
+          ])
         ]
       )
     : _vm._e()
@@ -29902,17 +29898,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "card-container object-container" },
-    _vm._l(_vm.objects, function(object, id) {
-      return _c("div", { staticClass: "card card-object" }, [
-        _c("header", { staticClass: "card--header" }, [
-          _vm._v(_vm._s(_vm.getObject(object).getName()))
-        ])
-      ])
-    })
-  )
+  return _vm.objects.length !== 0
+    ? _c(
+        "div",
+        { staticClass: "card-container object-container" },
+        _vm._l(_vm.objects, function(object, id) {
+          return _c("div", { staticClass: "card card-object" }, [
+            _c("header", { staticClass: "card--header" }, [
+              _vm._v(_vm._s(_vm.getObject(object).getName()))
+            ])
+          ])
+        })
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
