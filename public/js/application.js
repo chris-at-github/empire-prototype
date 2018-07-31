@@ -29552,8 +29552,18 @@ Settlement.prototype.store = function (settlement) {
 
 var uuid = __webpack_require__(36);
 
-var Application = function Application() {
-	this.storage = null;
+var ApplicationStore = function ApplicationStore() {
+  this.storage = null;
+};
+
+/**
+ * setzt den Speicherort fuer ueber Application._store gesetzte Objekte
+ *
+ * @param {object} storage
+ * @return {void}
+ */
+ApplicationStore.prototype.setStorage = function (storage) {
+  this.storage = storage;
 };
 
 /**
@@ -29563,19 +29573,19 @@ var Application = function Application() {
  * @param object
  * @return object
  */
-Application.prototype._store = function (object) {
+ApplicationStore.prototype._store = function (object) {
 
-	if (_.isUndefined(object.id) === true) {
-		object.id = uuid();
-	}
+  if (_.isUndefined(object.id) === true) {
+    object.id = uuid();
+  }
 
-	// Object Vue global verfuegbar machen
-	Vue.set(this.storage, object.id, object);
+  // Object Vue global verfuegbar machen
+  Vue.set(this.storage, object.id, object);
 
-	return object;
+  return object;
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (Application);
+/* harmony default export */ __webpack_exports__["a"] = (ApplicationStore);
 
 /***/ }),
 /* 36 */
@@ -29858,6 +29868,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			return Empire.factory.settlement.create(this.properties.object);
 		},
 
+		id: function id() {
+			return this.properties.id;
+		},
+
 		name: function name() {
 			return this.properties.name;
 		},
@@ -29874,6 +29888,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		availableBuildings: function availableBuildings() {
 			return Empire.configuration.object.buildings;
+		},
+
+		buildingStore: function buildingStore() {
+			return Game.buildings;
 		}
 	},
 
@@ -30039,7 +30057,11 @@ var render = function() {
                 _c("emp-object-listing", { attrs: { objects: _vm.buildings } }),
                 _vm._v(" "),
                 _c("emp-object-form", {
-                  attrs: { objects: _vm.availableBuildings }
+                  attrs: {
+                    store: _vm.buildingStore,
+                    objects: _vm.availableBuildings,
+                    parent: _vm.id
+                  }
                 })
               ],
               1
@@ -30122,6 +30144,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_object__ = __webpack_require__(54);
 //
 //
 //
@@ -30138,16 +30161,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-// import StorageManager from 'managers/storage/settlement';
 
+
+/**
+ * Beispielaufruf in SettlementIndex: <emp-object-form v-bind:store="buildingStore" v-bind:objects="availableBuildings" v-bind:parent="id"></emp-object-form>
+ *
+ * @param {object} store Zielobjekt zum Speichern der Objekte z.B. Game.buildings
+ * @param {array} objects (Namespace-) Liste mit Objekten zur Auswahl
+ * @param {string} parent Eltern-Id
+ */
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			type: ''
+			object: ''
 		};
 	},
 
-	props: ['objects'],
+	props: ['objects', 'parent', 'store'],
 
 	computed: {
 		options: function options() {
@@ -30168,13 +30198,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		create: function create() {
-			// var manager = new StorageManager();
-			// 		manager.store(this.toJson());
+			var manager = new __WEBPACK_IMPORTED_MODULE_0_managers_storage_object__["a" /* default */]();
+
+			manager.setStorage(this.store);
+			manager.store(this.toJson());
 		},
 
 		toJson: function toJson() {
 			return {
-				type: this.type
+				object: this.object,
+				parent: this.parent
 			};
 		}
 	}
@@ -30192,7 +30225,7 @@ var render = function() {
     _c("div", { staticClass: "form--item" }, [
       _c(
         "label",
-        { staticClass: "form--label", attrs: { for: "object-type" } },
+        { staticClass: "form--label", attrs: { for: "object-object" } },
         [_vm._v("Typ")]
       ),
       _vm._v(" "),
@@ -30203,12 +30236,12 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.type,
-              expression: "type"
+              value: _vm.object,
+              expression: "object"
             }
           ],
           staticClass: "form--field",
-          attrs: { type: "text", id: "object-type" },
+          attrs: { id: "object-object" },
           on: {
             change: function($event) {
               var $$selectedVal = Array.prototype.filter
@@ -30219,7 +30252,7 @@ var render = function() {
                   var val = "_value" in o ? o._value : o.value
                   return val
                 })
-              _vm.type = $event.target.multiple
+              _vm.object = $event.target.multiple
                 ? $$selectedVal
                 : $$selectedVal[0]
             }
@@ -30249,6 +30282,42 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-32333a62", module.exports)
   }
 }
+
+/***/ }),
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__ = __webpack_require__(35);
+
+
+
+
+// Object Storage Manager
+// Extends Application Storage Manager
+var ObjectStore = function ObjectStore() {
+  __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].call(this);
+};
+
+/**
+ * Vererbung der Application Eigenschaften und Methoden
+ *
+ * @type {ApplicationStore}
+ */
+ObjectStore.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].prototype);
+
+/**
+ * Speichert ein Objekt dem globalen Game.xxx Store hinzu. Das Storage Objekt muss zuvor ueber setStorage gesetzt worden
+ * sein
+ *
+ * @param object
+ * @return {Object}
+ */
+ObjectStore.prototype.store = function (object) {
+  return this._store(object);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (ObjectStore);
 
 /***/ })
 /******/ ]);

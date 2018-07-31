@@ -1,8 +1,8 @@
 <template>
 	<div class="settlement-form">
 		<div class="form--item">
-			<label class="form--label" for="object-type">Typ</label>
-			<select v-model="type" type="text" id="object-type" class="form--field">
+			<label class="form--label" for="object-object">Typ</label>
+			<select v-model="object" id="object-object" class="form--field">
 				<option v-for="option in options" v-bind:value="option.value">{{option.title}}</option>
 			</select>
 		</div>
@@ -14,16 +14,23 @@
 </template>
 
 <script>
-	// import StorageManager from 'managers/storage/settlement';
+	import ObjectStore from 'managers/storage/object';
 
+	/**
+	 * Beispielaufruf in SettlementIndex: <emp-object-form v-bind:store="buildingStore" v-bind:objects="availableBuildings" v-bind:parent="id"></emp-object-form>
+	 *
+	 * @param {object} store Zielobjekt zum Speichern der Objekte z.B. Game.buildings
+	 * @param {array} objects (Namespace-) Liste mit Objekten zur Auswahl
+	 * @param {string} parent Eltern-Id
+	 */
 	export default {
 		data: function() {
 			return {
-				type: ''
+				object: ''
 			};
 		},
 
-		props: ['objects'],
+		props: ['objects', 'parent', 'store'],
 
 		computed: {
 			options: function() {
@@ -44,13 +51,16 @@
 
 		methods: {
 			create: function() {
-				// var manager = new StorageManager();
-				// 		manager.store(this.toJson());
+				var manager = new ObjectStore();
+
+				manager.setStorage(this.store);
+				manager.store(this.toJson());
 			},
 
 			toJson: function() {
 				return  {
-					type: this.type
+					object: this.object,
+					parent: this.parent
 				}
 			}
 		}

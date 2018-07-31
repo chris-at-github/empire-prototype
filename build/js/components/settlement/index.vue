@@ -18,7 +18,7 @@
 			<fieldset class="fieldset-default">
 				<legend>Gebäude</legend>
 				<emp-object-listing v-bind:objects="buildings"></emp-object-listing>
-				<emp-object-form v-bind:objects="availableBuildings"></emp-object-form>
+				<emp-object-form v-bind:store="buildingStore" v-bind:objects="availableBuildings" v-bind:parent="id"></emp-object-form>
 			</fieldset>
 		</div>
 	</div>
@@ -61,6 +61,10 @@
 				return Empire.factory.settlement.create(this.properties.object);
 			},
 
+			id: function() {
+				return this.properties.id;
+			},
+
 			name: function() {
 				return this.properties.name;
 			},
@@ -77,6 +81,10 @@
 
 			availableBuildings: function() {
 				return Empire.configuration.object.buildings;
+			},
+
+			buildingStore: function() {
+				return Game.buildings;
 			}
 		},
 

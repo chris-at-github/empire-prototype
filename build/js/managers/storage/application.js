@@ -4,8 +4,18 @@
 // @see: https://www.npmjs.com/package/uuid
 var uuid = require('uuid/v4');
 
-let Application = function() {
+let ApplicationStore = function() {
 	this.storage = null;
+};
+
+/**
+ * setzt den Speicherort fuer ueber Application._store gesetzte Objekte
+ *
+ * @param {object} storage
+ * @return {void}
+ */
+ApplicationStore.prototype.setStorage = function(storage) {
+	this.storage = storage;
 };
 
 /**
@@ -15,7 +25,7 @@ let Application = function() {
  * @param object
  * @return object
  */
-Application.prototype._store = function(object) {
+	ApplicationStore.prototype._store = function(object) {
 
 	if(_.isUndefined(object.id) === true) {
 		object.id = uuid();
@@ -27,4 +37,4 @@ Application.prototype._store = function(object) {
 	return object;
 };
 
-export default Application;
+export default ApplicationStore;
