@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -254,24 +254,71 @@ Application.prototype.createByNamespace = function (namespace, context) {
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(5);
-module.exports = __webpack_require__(46);
+"use strict";
 
+
+// Uuid/v4 Generator
+// @see: https://www.npmjs.com/package/uuid
+
+var uuid = __webpack_require__(37);
+
+var ApplicationStore = function ApplicationStore() {
+  this.storage = null;
+};
+
+/**
+ * setzt den Speicherort fuer ueber Application._store gesetzte Objekte
+ *
+ * @param {object} storage
+ * @return {void}
+ */
+ApplicationStore.prototype.setStorage = function (storage) {
+  this.storage = storage;
+};
+
+/**
+ * Speichert ein Object im angegebenen Storage
+ * Ist es ein neues Object und besitzt noch keine ID, wird eine neue Uuid/v4 erzeugt
+ *
+ * @param object
+ * @return object
+ */
+ApplicationStore.prototype._store = function (object) {
+
+  if (_.isUndefined(object.id) === true) {
+    object.id = uuid();
+  }
+
+  // Object Vue global verfuegbar machen
+  Vue.set(this.storage, object.id, object);
+
+  return object;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (ApplicationStore);
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(6);
+module.exports = __webpack_require__(51);
+
+
+/***/ }),
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__managers_manager__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__factories_factory__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objects_object__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__managers_manager__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__factories_factory__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objects_object__ = __webpack_require__(19);
 // Global libraries
-window.Vue = __webpack_require__(6);
-window._ = __webpack_require__(10);
+window.Vue = __webpack_require__(7);
+window._ = __webpack_require__(11);
 
 // Empire environment
 
@@ -279,21 +326,21 @@ window._ = __webpack_require__(10);
 
 
 Empire = {
-	configuration: __webpack_require__(23),
+	configuration: __webpack_require__(25),
 	manager: __WEBPACK_IMPORTED_MODULE_0__managers_manager__["a" /* default */],
 	factory: __WEBPACK_IMPORTED_MODULE_1__factories_factory__["a" /* default */],
 	object: __WEBPACK_IMPORTED_MODULE_2__objects_object__["a" /* default */]
 };
 
-Game = __webpack_require__(25);
+Game = __webpack_require__(27);
 
 // Layout
-Vue.component('emp-footer', __webpack_require__(26));
+Vue.component('emp-footer', __webpack_require__(28));
 
 // Game Objects
-Vue.component('emp-settlement-listing', __webpack_require__(29));
-Vue.component('emp-settlement-form', __webpack_require__(32));
-Vue.component('emp-settlement', __webpack_require__(40));
+Vue.component('emp-settlement-listing', __webpack_require__(31));
+Vue.component('emp-settlement-form', __webpack_require__(34));
+Vue.component('emp-settlement', __webpack_require__(41));
 
 var vm = new Vue({
 	el: '#application',
@@ -301,7 +348,7 @@ var vm = new Vue({
 });
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11264,10 +11311,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(7).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(8).setImmediate))
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -11323,7 +11370,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(8);
+__webpack_require__(9);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -11337,7 +11384,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -11527,10 +11574,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(9)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(10)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -11720,7 +11767,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -28830,10 +28877,10 @@ process.umask = function() { return 0; };
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(11)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(12)(module)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -28861,12 +28908,12 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__screen__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__activate__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__screen__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__activate__ = __webpack_require__(15);
 
 
 
@@ -28880,7 +28927,7 @@ var managers = {
 /* harmony default export */ __webpack_exports__["a"] = (managers);
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28903,7 +28950,7 @@ Screen.prototype.activate = function (name) {
 /* harmony default export */ __webpack_exports__["a"] = (Screen);
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28929,12 +28976,12 @@ Activate.prototype.deactivateSettlement = function () {
 /* harmony default export */ __webpack_exports__["a"] = (Activate);
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__(18);
 
 
 
@@ -28948,7 +28995,7 @@ var factories = {
 /* harmony default export */ __webpack_exports__["a"] = (factories);
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28981,7 +29028,7 @@ Settlement.prototype.create = function (namespace) {
 /* harmony default export */ __webpack_exports__["a"] = (Settlement);
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29014,14 +29061,14 @@ ObjectFactory.prototype.create = function (namespace) {
 /* harmony default export */ __webpack_exports__["a"] = (ObjectFactory);
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement_colony__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__building_entrance__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__building_livingroom__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__building_storeroom__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement_colony__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__building_entrance__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__building_livingroom__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__building_storeroom__ = __webpack_require__(24);
 
 
 var object = {};
@@ -29049,24 +29096,103 @@ object.building = {
 /* harmony default export */ __webpack_exports__["a"] = (object);
 
 /***/ }),
-/* 19 */
+/* 20 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(21);
+
+
+
+
+var ColonySettlement = function ColonySettlement() {
+
+  // Parent constructor
+  __WEBPACK_IMPORTED_MODULE_0__application__["a" /* default */].call(this);
+
+  // Initialisieren 
+  this.intialize();
+};
+
+/**
+ * Vererbung der Application Eigenschaften und Methoden
+ *
+ * @type {ApplicationSettlement}
+ */
+ColonySettlement.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0__application__["a" /* default */].prototype);
+
+/**
+ * Definition von Event Listenern und Abhaengigkeiten
+ * 
+ * @return {void}
+ */
+ColonySettlement.prototype.intialize = function () {
+  this.listen(this.EVENT_BEFORE_CREATE, this.testBeforeCreate);
+};
+
+ColonySettlement.prototype.testBeforeCreate = function () {
+  console.log('ColonySettlement::testBeforeCreate');
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (ColonySettlement);
+
+/***/ }),
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 
-var Colony = function Colony() {
-	this.icon = 'emp-colony.svg';
+var ApplicationSettlement = function ApplicationSettlement() {
+  this.eventListener = {
+    beforeCreate: []
+  };
 };
 
-Colony.prototype.test = function () {
-	console.log('Colony::test');
+// Konstanten Definition
+ApplicationSettlement.prototype.EVENT_BEFORE_CREATE = 'beforeCreate';
+
+/**
+ * Registriert einen Event Listener und speichert den Callback in einem Array
+ * 
+ * @param {string} event 
+ * @param {function} callback 
+ * @return {void}
+ */
+ApplicationSettlement.prototype.listen = function (event, callback) {
+  if (_.isUndefined(this.eventListener[event]) === false) {
+    this.eventListener[event].push(callback);
+  }
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (Colony);
+/**
+ * Fuehrt alle Events (Callbacks) in einer Eventgruppe aus
+ * 
+ * @param {string} event 
+ * @return {void}
+ */
+ApplicationSettlement.prototype.fire = function (event) {
+  var settlement = this;
+
+  _.forEach(this.eventListener[event], function (callback) {
+    callback.call(settlement);
+  });
+};
+
+/**
+ * Liefert den fest hinterlegten Namen des Objekts
+ *
+ * @return {boolean}
+ */
+ApplicationSettlement.prototype.beforeCreate = function () {
+  this.fire(this.EVENT_BEFORE_CREATE);
+  return true;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (ApplicationSettlement);
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29091,7 +29217,7 @@ Entrance.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_objects_applicati
 /* harmony default export */ __webpack_exports__["a"] = (Entrance);
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29116,7 +29242,7 @@ LivingRoom.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_objects_applica
 /* harmony default export */ __webpack_exports__["a"] = (LivingRoom);
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29141,10 +29267,10 @@ StoreRoom.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_objects_applicat
 /* harmony default export */ __webpack_exports__["a"] = (StoreRoom);
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var configuration = __webpack_require__(24);
+var configuration = __webpack_require__(26);
 
 configuration.settlement = {
 	default: 'settlement.colony'
@@ -29157,7 +29283,7 @@ configuration.object = {
 module.exports = configuration;
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -29166,7 +29292,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -29206,15 +29332,15 @@ module.exports = {
 };
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(27)
+var __vue_script__ = __webpack_require__(29)
 /* template */
-var __vue_template__ = __webpack_require__(28)
+var __vue_template__ = __webpack_require__(30)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29253,7 +29379,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29276,7 +29402,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -29304,15 +29430,15 @@ if (false) {
 }
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(30)
+var __vue_script__ = __webpack_require__(32)
 /* template */
-var __vue_template__ = __webpack_require__(31)
+var __vue_template__ = __webpack_require__(33)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29351,7 +29477,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29380,7 +29506,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -29419,15 +29545,15 @@ if (false) {
 }
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(33)
+var __vue_script__ = __webpack_require__(35)
 /* template */
-var __vue_template__ = __webpack_require__(39)
+var __vue_template__ = __webpack_require__(40)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29466,12 +29592,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_settlement__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_settlement__ = __webpack_require__(36);
 //
 //
 //
@@ -29517,82 +29643,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__ = __webpack_require__(4);
 
 
 
 
 // Settlement Storage Manager
 // Extends Application Storage Manager
-var Settlement = function Settlement() {
+var SettlementStorage = function SettlementStorage() {
 	__WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].call(this);
 	this.storage = Game.settlements;
 };
-Settlement.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].prototype);
-
-Settlement.prototype.store = function (settlement) {
-	return this._store(settlement);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (Settlement);
-
-/***/ }),
-/* 35 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-// Uuid/v4 Generator
-// @see: https://www.npmjs.com/package/uuid
-
-var uuid = __webpack_require__(36);
-
-var ApplicationStore = function ApplicationStore() {
-  this.storage = null;
-};
 
 /**
- * setzt den Speicherort fuer ueber Application._store gesetzte Objekte
- *
- * @param {object} storage
- * @return {void}
+ * Vererbung der ApplicationStorage Methoden
  */
-ApplicationStore.prototype.setStorage = function (storage) {
-  this.storage = storage;
-};
+SettlementStorage.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].prototype);
 
 /**
- * Speichert ein Object im angegebenen Storage
- * Ist es ein neues Object und besitzt noch keine ID, wird eine neue Uuid/v4 erzeugt
- *
- * @param object
- * @return object
+ * Speichert die Daten eines Objekts ApplicationSettlement ab
+ * @param {object} properties 
  */
-ApplicationStore.prototype._store = function (object) {
+SettlementStorage.prototype.store = function (properties) {
 
-  if (_.isUndefined(object.id) === true) {
-    object.id = uuid();
-  }
+	// @todo: throw exception -> falls kein Namespace uebergeben wurde
+	var settlement = Empire.factory.settlement.create(properties.object);
 
-  // Object Vue global verfuegbar machen
-  Vue.set(this.storage, object.id, object);
+	// neues Objekt -> noch keine ID erzeugt
+	if (_.isUndefined(properties.id) === true) {
+		settlement.beforeCreate();
+	}
 
-  return object;
+	// return this._store(properties);
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (ApplicationStore);
+/* harmony default export */ __webpack_exports__["a"] = (SettlementStorage);
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var rng = __webpack_require__(37);
-var bytesToUuid = __webpack_require__(38);
+var rng = __webpack_require__(38);
+var bytesToUuid = __webpack_require__(39);
 
 function v4(options, buf, offset) {
   var i = buf && offset || 0;
@@ -29623,7 +29719,7 @@ module.exports = v4;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports) {
 
 // Unique ID creation requires a high quality random # generator.  In the
@@ -29663,7 +29759,7 @@ if (getRandomValues) {
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 /**
@@ -29693,7 +29789,7 @@ module.exports = bytesToUuid;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -29749,15 +29845,15 @@ if (false) {
 }
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(41)
+var __vue_script__ = __webpack_require__(42)
 /* template */
-var __vue_template__ = __webpack_require__(45)
+var __vue_template__ = __webpack_require__(50)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29796,14 +29892,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_components_object_listing__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_components_object_listing__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_components_object_listing___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_components_object_listing__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_components_object_form__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_components_object_form__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_components_object_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_components_object_form__);
 //
 //
@@ -29904,15 +30000,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(43)
+var __vue_script__ = __webpack_require__(44)
 /* template */
-var __vue_template__ = __webpack_require__(44)
+var __vue_template__ = __webpack_require__(45)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29951,7 +30047,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29983,7 +30079,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -30015,92 +30111,15 @@ if (false) {
 }
 
 /***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.active
-    ? _c(
-        "div",
-        { staticClass: "screen screen--settlement object settlement" },
-        [
-          _c("div", { staticClass: "container" }, [
-            _c("header", { staticClass: "object--header" }, [
-              _c("div", { staticClass: "object--title" }, [
-                _vm._v(_vm._s(_vm.name))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "object--actions" }, [
-              _c("ul", [
-                _c("li", [
-                  _c(
-                    "button",
-                    { staticClass: "button", on: { click: _vm.close } },
-                    [_vm._v("Schliessen")]
-                  )
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "container" }, [
-            _c(
-              "fieldset",
-              { staticClass: "fieldset-default" },
-              [
-                _c("legend", [_vm._v("Gebäude")]),
-                _vm._v(" "),
-                _c("emp-object-listing", { attrs: { objects: _vm.buildings } }),
-                _vm._v(" "),
-                _c("emp-object-form", {
-                  attrs: {
-                    store: _vm.buildingStore,
-                    objects: _vm.availableBuildings,
-                    parent: _vm.id
-                  }
-                })
-              ],
-              1
-            )
-          ])
-        ]
-      )
-    : _vm._e()
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5a016c0e", module.exports)
-  }
-}
-
-/***/ }),
 /* 46 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(52)
+var __vue_script__ = __webpack_require__(47)
 /* template */
-var __vue_template__ = __webpack_require__(53)
+var __vue_template__ = __webpack_require__(49)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -30139,12 +30158,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 52 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_object__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_object__ = __webpack_require__(48);
 //
 //
 //
@@ -30214,7 +30233,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 53 */
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__ = __webpack_require__(4);
+
+
+
+
+// Object Storage Manager
+// Extends Application Storage Manager
+var ObjectStore = function ObjectStore() {
+  __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].call(this);
+};
+
+/**
+ * Vererbung der Application Eigenschaften und Methoden
+ *
+ * @type {ApplicationStore}
+ */
+ObjectStore.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].prototype);
+
+/**
+ * Speichert ein Objekt dem globalen Game.xxx Store hinzu. Das Storage Objekt muss zuvor ueber setStorage gesetzt worden
+ * sein
+ *
+ * @param object
+ * @return {Object}
+ */
+ObjectStore.prototype.store = function (object) {
+  return this._store(object);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (ObjectStore);
+
+/***/ }),
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -30284,40 +30339,77 @@ if (false) {
 }
 
 /***/ }),
-/* 54 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__ = __webpack_require__(35);
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.active
+    ? _c(
+        "div",
+        { staticClass: "screen screen--settlement object settlement" },
+        [
+          _c("div", { staticClass: "container" }, [
+            _c("header", { staticClass: "object--header" }, [
+              _c("div", { staticClass: "object--title" }, [
+                _vm._v(_vm._s(_vm.name))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "object--actions" }, [
+              _c("ul", [
+                _c("li", [
+                  _c(
+                    "button",
+                    { staticClass: "button", on: { click: _vm.close } },
+                    [_vm._v("Schliessen")]
+                  )
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "container" }, [
+            _c(
+              "fieldset",
+              { staticClass: "fieldset-default" },
+              [
+                _c("legend", [_vm._v("Gebäude")]),
+                _vm._v(" "),
+                _c("emp-object-listing", { attrs: { objects: _vm.buildings } }),
+                _vm._v(" "),
+                _c("emp-object-form", {
+                  attrs: {
+                    store: _vm.buildingStore,
+                    objects: _vm.availableBuildings,
+                    parent: _vm.id
+                  }
+                })
+              ],
+              1
+            )
+          ])
+        ]
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5a016c0e", module.exports)
+  }
+}
 
+/***/ }),
+/* 51 */
+/***/ (function(module, exports) {
 
-
-
-// Object Storage Manager
-// Extends Application Storage Manager
-var ObjectStore = function ObjectStore() {
-  __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].call(this);
-};
-
-/**
- * Vererbung der Application Eigenschaften und Methoden
- *
- * @type {ApplicationStore}
- */
-ObjectStore.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].prototype);
-
-/**
- * Speichert ein Objekt dem globalen Game.xxx Store hinzu. Das Storage Objekt muss zuvor ueber setStorage gesetzt worden
- * sein
- *
- * @param object
- * @return {Object}
- */
-ObjectStore.prototype.store = function (object) {
-  return this._store(object);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (ObjectStore);
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
