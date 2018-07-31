@@ -206,7 +206,7 @@ module.exports = g;
 "use strict";
 
 
-var Application = function Application() {
+var ApplicationObject = function ApplicationObject() {
   this.name = null;
 };
 
@@ -215,11 +215,11 @@ var Application = function Application() {
  *
  * @return string
  */
-Application.prototype.getName = function (object) {
+ApplicationObject.prototype.getName = function (object) {
   return this.name;
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (Application);
+/* harmony default export */ __webpack_exports__["a"] = (ApplicationObject);
 
 /***/ }),
 /* 3 */
@@ -29170,9 +29170,9 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = {
-	screen: 'settlement',
+	screen: 'world',
 	activate: {
-		settlement: '0363dec2-e331-4e64-9b06-dce06941095c'
+		settlement: null
 	},
 	settlements: {
 		'0363dec2-e331-4e64-9b06-dce06941095c': {

@@ -1,6 +1,6 @@
 'use strict';
 
-let Application = function() {
+let ApplicationObject = function() {
 	this.name = null;
 };
 
@@ -9,8 +9,8 @@ let Application = function() {
  *
  * @return string
  */
-Application.prototype.getName = function(object) {
+ApplicationObject.prototype.getName = function(object) {
 	return this.name;
 };
 
-export default Application;
+export default ApplicationObject;
