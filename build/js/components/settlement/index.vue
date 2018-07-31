@@ -18,6 +18,7 @@
 			<fieldset class="fieldset-default">
 				<legend>Gebäude</legend>
 				<emp-object-listing v-bind:objects="buildings"></emp-object-listing>
+				<emp-object-form v-bind:objects="availableBuildings"></emp-object-form>
 			</fieldset>
 		</div>
 	</div>
@@ -25,12 +26,14 @@
 
 <script>
 	import ObjectListing from 'components/object/listing';
+	import ObjectForm from 'components/object/form';
 
 	export default {
 
 		// @see: https://vuejs.org/v2/guide/components.html#Local-Registration
 		components: {
-			'emp-object-listing': ObjectListing
+			'emp-object-listing': ObjectListing,
+			'emp-object-form': ObjectForm
 		},
 
 		data: function() {
@@ -70,6 +73,10 @@
 						return building;
 					}
 				});
+			},
+
+			availableBuildings: function() {
+				return Empire.configuration.object.buildings;
 			}
 		},
 

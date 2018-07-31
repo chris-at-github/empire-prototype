@@ -4,4 +4,12 @@ configuration.settlement = {
 	default: 'settlement.colony'
 };
 
+configuration.object = {
+	buildings: [
+		'building.entrance',
+		'building.livingRoom',
+		'building.storeRoom'
+	]
+};
+
 module.exports = configuration;
