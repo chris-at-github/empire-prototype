@@ -22,7 +22,7 @@
 		},
 
 		computed: {
-			object: function() {
+			qcn: function() {
 				return Empire.configuration.settlement.default;
 			}
 		},
@@ -36,7 +36,7 @@
 			toJson: function() {
 				return  {
 					name: this.name,
-					object: this.object
+					qcn: this.qcn
 				}
 			}
 		}

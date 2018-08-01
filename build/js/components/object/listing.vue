@@ -16,7 +16,7 @@
 		methods: {
 			getObject: function(object) {
 				if(_.isUndefined(this.objectCache[object.id]) === true) {
-					this.objectCache[object.id] = Empire.factory.object.create(object.object);
+					this.objectCache[object.id] = Empire.factory.object.create(object.qcn);
 				}
 
 				return this.objectCache[object.id];

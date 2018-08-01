@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -257,12 +257,48 @@ Application.prototype.createByNamespace = function (namespace, context) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__ = __webpack_require__(5);
+
+
+
+
+// Object Storage Manager
+// Extends Application Storage Manager
+var ObjectStore = function ObjectStore() {
+  __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].call(this);
+};
+
+/**
+ * Vererbung der Application Eigenschaften und Methoden
+ *
+ * @type {ApplicationStore}
+ */
+ObjectStore.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].prototype);
+
+/**
+ * Speichert ein Objekt dem globalen Game.xxx Store hinzu. Das Storage Objekt muss zuvor ueber setStorage gesetzt worden
+ * sein
+ *
+ * @param object
+ * @return {Object}
+ */
+ObjectStore.prototype.store = function (object) {
+  return this._store(object);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (ObjectStore);
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 
 
 // Uuid/v4 Generator
 // @see: https://www.npmjs.com/package/uuid
 
-var uuid = __webpack_require__(37);
+var uuid = __webpack_require__(23);
 
 var ApplicationStore = function ApplicationStore() {
   this.storage = null;
@@ -300,25 +336,25 @@ ApplicationStore.prototype._store = function (object) {
 /* harmony default export */ __webpack_exports__["a"] = (ApplicationStore);
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(6);
+__webpack_require__(7);
 module.exports = __webpack_require__(51);
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__managers_manager__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__factories_factory__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objects_object__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__managers_manager__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__factories_factory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objects_object__ = __webpack_require__(20);
 // Global libraries
-window.Vue = __webpack_require__(7);
-window._ = __webpack_require__(11);
+window.Vue = __webpack_require__(8);
+window._ = __webpack_require__(12);
 
 // Empire environment
 
@@ -326,21 +362,21 @@ window._ = __webpack_require__(11);
 
 
 Empire = {
-	configuration: __webpack_require__(25),
+	configuration: __webpack_require__(29),
 	manager: __WEBPACK_IMPORTED_MODULE_0__managers_manager__["a" /* default */],
 	factory: __WEBPACK_IMPORTED_MODULE_1__factories_factory__["a" /* default */],
 	object: __WEBPACK_IMPORTED_MODULE_2__objects_object__["a" /* default */]
 };
 
-Game = __webpack_require__(27);
+Game = __webpack_require__(31);
 
 // Layout
-Vue.component('emp-footer', __webpack_require__(28));
+Vue.component('emp-footer', __webpack_require__(32));
 
 // Game Objects
-Vue.component('emp-settlement-listing', __webpack_require__(31));
-Vue.component('emp-settlement-form', __webpack_require__(34));
-Vue.component('emp-settlement', __webpack_require__(41));
+Vue.component('emp-settlement-listing', __webpack_require__(35));
+Vue.component('emp-settlement-form', __webpack_require__(38));
+Vue.component('emp-settlement', __webpack_require__(42));
 
 var vm = new Vue({
 	el: '#application',
@@ -348,7 +384,7 @@ var vm = new Vue({
 });
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11311,10 +11347,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(8).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(9).setImmediate))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -11370,7 +11406,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(9);
+__webpack_require__(10);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -11384,7 +11420,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -11574,10 +11610,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(11)))
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -11767,7 +11803,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -28877,10 +28913,10 @@ process.umask = function() { return 0; };
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(12)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(13)(module)))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -28908,12 +28944,12 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__screen__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__activate__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__screen__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__activate__ = __webpack_require__(16);
 
 
 
@@ -28927,7 +28963,7 @@ var managers = {
 /* harmony default export */ __webpack_exports__["a"] = (managers);
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28950,7 +28986,7 @@ Screen.prototype.activate = function (name) {
 /* harmony default export */ __webpack_exports__["a"] = (Screen);
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28976,12 +29012,12 @@ Activate.prototype.deactivateSettlement = function () {
 /* harmony default export */ __webpack_exports__["a"] = (Activate);
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__(19);
 
 
 
@@ -28995,7 +29031,7 @@ var factories = {
 /* harmony default export */ __webpack_exports__["a"] = (factories);
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29028,7 +29064,7 @@ Settlement.prototype.create = function (namespace) {
 /* harmony default export */ __webpack_exports__["a"] = (Settlement);
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29061,14 +29097,14 @@ ObjectFactory.prototype.create = function (namespace) {
 /* harmony default export */ __webpack_exports__["a"] = (ObjectFactory);
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement_colony__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__building_entrance__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__building_livingroom__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__building_storeroom__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settlement_colony__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__building_entrance__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__building_livingroom__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__building_storeroom__ = __webpack_require__(28);
 
 
 var object = {};
@@ -29096,12 +29132,12 @@ object.building = {
 /* harmony default export */ __webpack_exports__["a"] = (object);
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_managers_storage_object__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_managers_storage_object__ = __webpack_require__(4);
 
 
 
@@ -29146,16 +29182,20 @@ ColonySettlement.prototype.testBeforeCreate = function () {
  */
 ColonySettlement.prototype.createInitalBuilding = function () {
 
+	// @todo: abgeleitetes Objekt BuildingObjectStore erstellen
+	// @todo: sollte hier mit dem richtigen Objekt gearbeitet werden?
 	var objectStorage = new __WEBPACK_IMPORTED_MODULE_1_managers_storage_object__["a" /* default */]();
-	console.log(objectStorage);
-	// console.log(this.id);
-	// console.log(this.name);
+	objectStorage.setStorage(Game.buildings);
+	objectStorage.store({
+		qcn: 'building.entrance',
+		parent: this.id
+	});
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (ColonySettlement);
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29239,527 +29279,11 @@ ApplicationSettlement.prototype.afterCreate = function () {
 /* harmony default export */ __webpack_exports__["a"] = (ApplicationSettlement);
 
 /***/ }),
-/* 22 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_objects_application__ = __webpack_require__(2);
-
-
-
-
-var Entrance = function Entrance() {
-  __WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].call(this);
-
-  this.name = 'Eingang';
-};
-
-/**
- * Vererbung der Application Eigenschaften und Methoden
- *
- * @type {Application}
- */
-Entrance.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].prototype);
-
-/* harmony default export */ __webpack_exports__["a"] = (Entrance);
-
-/***/ }),
 /* 23 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_objects_application__ = __webpack_require__(2);
-
-
-
-
-var LivingRoom = function LivingRoom() {
-  __WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].call(this);
-
-  this.name = 'Wohnraum';
-};
-
-/**
- * Vererbung der Application Eigenschaften und Methoden
- *
- * @type {Application}
- */
-LivingRoom.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].prototype);
-
-/* harmony default export */ __webpack_exports__["a"] = (LivingRoom);
-
-/***/ }),
-/* 24 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_objects_application__ = __webpack_require__(2);
-
-
-
-
-var StoreRoom = function StoreRoom() {
-  __WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].call(this);
-
-  this.name = 'Lagerraum';
-};
-
-/**
- * Vererbung der Application Eigenschaften und Methoden
- *
- * @type {Application}
- */
-StoreRoom.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].prototype);
-
-/* harmony default export */ __webpack_exports__["a"] = (StoreRoom);
-
-/***/ }),
-/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var configuration = __webpack_require__(26);
-
-configuration.settlement = {
-	default: 'settlement.colony'
-};
-
-configuration.object = {
-	buildings: ['building.entrance', 'building.livingRoom', 'building.storeRoom']
-};
-
-module.exports = configuration;
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-module.exports = {
-	version: '0.0.3',
-	name: 'Empire'
-};
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports) {
-
-module.exports = {
-	screen: 'world',
-	activate: {
-		settlement: null
-	},
-	settlements: {
-		'0363dec2-e331-4e64-9b06-dce06941095c': {
-			id: '0363dec2-e331-4e64-9b06-dce06941095c',
-			name: 'Blatthausen',
-			object: 'settlement.colony'
-		}
-	},
-	buildings: {
-		'c999ae6b-d5cc-46fb-91c3-dccf2860f56d': {
-			id: 'c999ae6b-d5cc-46fb-91c3-dccf2860f56d',
-			object: 'building.entrance',
-			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
-		},
-		'2c872351-e7b6-4998-aaf1-ac1c9513d9a6': {
-			id: '2c872351-e7b6-4998-aaf1-ac1c9513d9a6',
-			object: 'building.livingRoom',
-			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
-		},
-		'938f3cc9-a14e-4f74-9768-3d348b0a65df': {
-			id: '938f3cc9-a14e-4f74-9768-3d348b0a65df',
-			object: 'building.livingRoom',
-			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
-		},
-		'1f60519b-adea-4c2f-b780-f81c6e5b68ad': {
-			id: '1f60519b-adea-4c2f-b780-f81c6e5b68ad',
-			object: 'building.storeRoom',
-			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
-		}
-	}
-};
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(29)
-/* template */
-var __vue_template__ = __webpack_require__(30)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "build\\js\\components\\layout\\footer.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-12a48d6e", Component.options)
-  } else {
-    hotAPI.reload("data-v-12a48d6e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 29 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			version: Empire.configuration.version,
-			name: Empire.configuration.name
-		};
-	}
-});
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "d-flex", attrs: { id: "empire-footer" } }, [
-    _c("div", { staticClass: "empire-footer--version" }, [
-      _vm._v(_vm._s(_vm.version))
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "empire-footer--name" }, [
-      _vm._v(_vm._s(_vm.name))
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-12a48d6e", module.exports)
-  }
-}
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(32)
-/* template */
-var __vue_template__ = __webpack_require__(33)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "build\\js\\components\\settlement\\listing.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1ce20880", Component.options)
-  } else {
-    hotAPI.reload("data-v-1ce20880", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 32 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			settlements: Game.settlements
-		};
-	},
-	methods: {
-		activate: function activate(id) {
-			Empire.manager.screen.activate(Empire.manager.screen.SETTLEMENT);
-			Empire.manager.activate.activateSettlement(id);
-		}
-	}
-});
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "card-container settlement-container" },
-    _vm._l(_vm.settlements, function(settlement, id) {
-      return _c("div", { staticClass: "card card-settlement" }, [
-        _c(
-          "header",
-          {
-            staticClass: "card--header",
-            on: {
-              click: function($event) {
-                _vm.activate(id)
-              }
-            }
-          },
-          [_vm._v(_vm._s(settlement.name))]
-        )
-      ])
-    })
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1ce20880", module.exports)
-  }
-}
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(35)
-/* template */
-var __vue_template__ = __webpack_require__(40)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "build\\js\\components\\settlement\\form.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7334af38", Component.options)
-  } else {
-    hotAPI.reload("data-v-7334af38", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 35 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_settlement__ = __webpack_require__(36);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			name: 'Krabblingen'
-		};
-	},
-
-	computed: {
-		object: function object() {
-			return Empire.configuration.settlement.default;
-		}
-	},
-
-	methods: {
-		create: function create() {
-			var manager = new __WEBPACK_IMPORTED_MODULE_0_managers_storage_settlement__["a" /* default */]();
-			manager.store(this.toJson());
-		},
-
-		toJson: function toJson() {
-			return {
-				name: this.name,
-				object: this.object
-			};
-		}
-	}
-});
-
-/***/ }),
-/* 36 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__ = __webpack_require__(4);
-
-
-
-
-// Settlement Storage Manager
-// Extends Application Storage Manager
-var SettlementStorage = function SettlementStorage() {
-	__WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].call(this);
-	this.storage = Game.settlements;
-};
-
-/**
- * Vererbung der ApplicationStorage Methoden
- */
-SettlementStorage.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].prototype);
-
-/**
- * Speichert die Daten eines Objekts ApplicationSettlement ab
- * @param {object} properties 
- */
-SettlementStorage.prototype.store = function (properties) {
-
-	// @todo: throw exception -> falls kein Namespace uebergeben wurde
-	var settlement = Empire.factory.settlement.create(properties.object);
-	settlement.fill(properties);
-
-	var persist = false;
-
-	// neues Objekt -> noch keine ID erzeugt
-	if (_.isUndefined(properties.id) === true) {
-
-		// 'beforeCreate'-Event feuern
-		settlement.beforeCreate();
-
-		// bestehendes Objekt
-	} else {
-
-		// Flag fuer die spaetere Verarbeitung setzen
-		persist = true;
-
-		// 'beforeUpdate'-Event feuern
-		// settlement.beforeUpdate();
-	}
-
-	// Zwischenspeichern und ID setzen
-	properties = this._store(properties);
-	settlement.id = properties.id;
-
-	if (persist === false) {
-
-		// 'afterCreate'-Event feuern
-		settlement.afterCreate();
-	}
-
-	return this._store(properties);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (SettlementStorage);
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var rng = __webpack_require__(38);
-var bytesToUuid = __webpack_require__(39);
+var rng = __webpack_require__(24);
+var bytesToUuid = __webpack_require__(25);
 
 function v4(options, buf, offset) {
   var i = buf && offset || 0;
@@ -29790,7 +29314,7 @@ module.exports = v4;
 
 
 /***/ }),
-/* 38 */
+/* 24 */
 /***/ (function(module, exports) {
 
 // Unique ID creation requires a high quality random # generator.  In the
@@ -29830,7 +29354,7 @@ if (getRandomValues) {
 
 
 /***/ }),
-/* 39 */
+/* 25 */
 /***/ (function(module, exports) {
 
 /**
@@ -29860,7 +29384,523 @@ module.exports = bytesToUuid;
 
 
 /***/ }),
+/* 26 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_objects_application__ = __webpack_require__(2);
+
+
+
+
+var Entrance = function Entrance() {
+  __WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].call(this);
+
+  this.name = 'Eingang';
+};
+
+/**
+ * Vererbung der Application Eigenschaften und Methoden
+ *
+ * @type {Application}
+ */
+Entrance.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].prototype);
+
+/* harmony default export */ __webpack_exports__["a"] = (Entrance);
+
+/***/ }),
+/* 27 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_objects_application__ = __webpack_require__(2);
+
+
+
+
+var LivingRoom = function LivingRoom() {
+  __WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].call(this);
+
+  this.name = 'Wohnraum';
+};
+
+/**
+ * Vererbung der Application Eigenschaften und Methoden
+ *
+ * @type {Application}
+ */
+LivingRoom.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].prototype);
+
+/* harmony default export */ __webpack_exports__["a"] = (LivingRoom);
+
+/***/ }),
+/* 28 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_objects_application__ = __webpack_require__(2);
+
+
+
+
+var StoreRoom = function StoreRoom() {
+  __WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].call(this);
+
+  this.name = 'Lagerraum';
+};
+
+/**
+ * Vererbung der Application Eigenschaften und Methoden
+ *
+ * @type {Application}
+ */
+StoreRoom.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_objects_application__["a" /* default */].prototype);
+
+/* harmony default export */ __webpack_exports__["a"] = (StoreRoom);
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var configuration = __webpack_require__(30);
+
+configuration.settlement = {
+	default: 'settlement.colony'
+};
+
+configuration.object = {
+	buildings: ['building.entrance', 'building.livingRoom', 'building.storeRoom']
+};
+
+module.exports = configuration;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	version: '0.0.3',
+	name: 'Empire'
+};
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	screen: 'world',
+	activate: {
+		settlement: null
+	},
+	settlements: {
+		'0363dec2-e331-4e64-9b06-dce06941095c': {
+			id: '0363dec2-e331-4e64-9b06-dce06941095c',
+			name: 'Blatthausen',
+			qcn: 'settlement.colony'
+		}
+	},
+	buildings: {
+		'c999ae6b-d5cc-46fb-91c3-dccf2860f56d': {
+			id: 'c999ae6b-d5cc-46fb-91c3-dccf2860f56d',
+			qcn: 'building.entrance',
+			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
+		},
+		'2c872351-e7b6-4998-aaf1-ac1c9513d9a6': {
+			id: '2c872351-e7b6-4998-aaf1-ac1c9513d9a6',
+			qcn: 'building.livingRoom',
+			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
+		},
+		'938f3cc9-a14e-4f74-9768-3d348b0a65df': {
+			id: '938f3cc9-a14e-4f74-9768-3d348b0a65df',
+			qcn: 'building.livingRoom',
+			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
+		},
+		'1f60519b-adea-4c2f-b780-f81c6e5b68ad': {
+			id: '1f60519b-adea-4c2f-b780-f81c6e5b68ad',
+			qcn: 'building.storeRoom',
+			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
+		}
+	}
+};
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(33)
+/* template */
+var __vue_template__ = __webpack_require__(34)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "build\\js\\components\\layout\\footer.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-12a48d6e", Component.options)
+  } else {
+    hotAPI.reload("data-v-12a48d6e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			version: Empire.configuration.version,
+			name: Empire.configuration.name
+		};
+	}
+});
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "d-flex", attrs: { id: "empire-footer" } }, [
+    _c("div", { staticClass: "empire-footer--version" }, [
+      _vm._v(_vm._s(_vm.version))
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "empire-footer--name" }, [
+      _vm._v(_vm._s(_vm.name))
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-12a48d6e", module.exports)
+  }
+}
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(36)
+/* template */
+var __vue_template__ = __webpack_require__(37)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "build\\js\\components\\settlement\\listing.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1ce20880", Component.options)
+  } else {
+    hotAPI.reload("data-v-1ce20880", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			settlements: Game.settlements
+		};
+	},
+	methods: {
+		activate: function activate(id) {
+			Empire.manager.screen.activate(Empire.manager.screen.SETTLEMENT);
+			Empire.manager.activate.activateSettlement(id);
+		}
+	}
+});
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "card-container settlement-container" },
+    _vm._l(_vm.settlements, function(settlement, id) {
+      return _c("div", { staticClass: "card card-settlement" }, [
+        _c(
+          "header",
+          {
+            staticClass: "card--header",
+            on: {
+              click: function($event) {
+                _vm.activate(id)
+              }
+            }
+          },
+          [_vm._v(_vm._s(settlement.name))]
+        )
+      ])
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1ce20880", module.exports)
+  }
+}
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(39)
+/* template */
+var __vue_template__ = __webpack_require__(41)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "build\\js\\components\\settlement\\form.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7334af38", Component.options)
+  } else {
+    hotAPI.reload("data-v-7334af38", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_settlement__ = __webpack_require__(40);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			name: 'Krabblingen'
+		};
+	},
+
+	computed: {
+		qcn: function qcn() {
+			return Empire.configuration.settlement.default;
+		}
+	},
+
+	methods: {
+		create: function create() {
+			var manager = new __WEBPACK_IMPORTED_MODULE_0_managers_storage_settlement__["a" /* default */]();
+			manager.store(this.toJson());
+		},
+
+		toJson: function toJson() {
+			return {
+				name: this.name,
+				qcn: this.qcn
+			};
+		}
+	}
+});
+
+/***/ }),
 /* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__ = __webpack_require__(5);
+
+
+
+
+// Settlement Storage Manager
+// Extends Application Storage Manager
+var SettlementStorage = function SettlementStorage() {
+	__WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].call(this);
+	this.storage = Game.settlements;
+};
+
+/**
+ * Vererbung der ApplicationStorage Methoden
+ */
+SettlementStorage.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].prototype);
+
+/**
+ * Speichert die Daten eines Objekts ApplicationSettlement ab
+ * @param {object} properties 
+ */
+SettlementStorage.prototype.store = function (properties) {
+
+	// @todo: throw exception -> falls kein Namespace uebergeben wurde
+	var settlement = Empire.factory.settlement.create(properties.qcn);
+	settlement.fill(properties);
+
+	var persist = false;
+
+	// neues Objekt -> noch keine ID erzeugt
+	if (_.isUndefined(properties.id) === true) {
+
+		// 'beforeCreate'-Event feuern
+		settlement.beforeCreate();
+
+		// bestehendes Objekt
+	} else {
+
+		// Flag fuer die spaetere Verarbeitung setzen
+		persist = true;
+
+		// 'beforeUpdate'-Event feuern
+		// settlement.beforeUpdate();
+	}
+
+	// Zwischenspeichern und ID setzen
+	properties = this._store(properties);
+	settlement.id = properties.id;
+
+	if (persist === false) {
+
+		// 'afterCreate'-Event feuern
+		settlement.afterCreate();
+	}
+
+	return this._store(properties);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (SettlementStorage);
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -29916,13 +29956,13 @@ if (false) {
 }
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(42)
+var __vue_script__ = __webpack_require__(43)
 /* template */
 var __vue_template__ = __webpack_require__(50)
 /* template functional */
@@ -29963,14 +30003,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_components_object_listing__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_components_object_listing__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_components_object_listing___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_components_object_listing__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_components_object_form__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_components_object_form__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_components_object_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_components_object_form__);
 //
 //
@@ -30032,7 +30072,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 
 		object: function object() {
-			return Empire.factory.settlement.create(this.properties.object);
+			return Empire.factory.settlement.create(this.properties.qcn);
 		},
 
 		id: function id() {
@@ -30071,15 +30111,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(44)
+var __vue_script__ = __webpack_require__(45)
 /* template */
-var __vue_template__ = __webpack_require__(45)
+var __vue_template__ = __webpack_require__(46)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -30118,7 +30158,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30141,7 +30181,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	methods: {
 		getObject: function getObject(object) {
 			if (_.isUndefined(this.objectCache[object.id]) === true) {
-				this.objectCache[object.id] = Empire.factory.object.create(object.object);
+				this.objectCache[object.id] = Empire.factory.object.create(object.qcn);
 			}
 
 			return this.objectCache[object.id];
@@ -30150,7 +30190,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -30182,13 +30222,13 @@ if (false) {
 }
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(47)
+var __vue_script__ = __webpack_require__(48)
 /* template */
 var __vue_template__ = __webpack_require__(49)
 /* template functional */
@@ -30229,12 +30269,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_object__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_object__ = __webpack_require__(4);
 //
 //
 //
@@ -30263,7 +30303,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			object: ''
+			qcn: ''
 		};
 	},
 
@@ -30273,11 +30313,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		options: function options() {
 			var options = [];
 
-			_.forEach(this.objects, function (namespace) {
-				var object = Empire.factory.object.create(namespace);
+			_.forEach(this.objects, function (qcn) {
+				var object = Empire.factory.object.create(qcn);
 
 				options.push({
-					value: namespace,
+					value: qcn,
 					title: object.getName()
 				});
 			});
@@ -30296,48 +30336,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		toJson: function toJson() {
 			return {
-				object: this.object,
+				qcn: this.qcn,
 				parent: this.parent
 			};
 		}
 	}
 });
-
-/***/ }),
-/* 48 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__ = __webpack_require__(4);
-
-
-
-
-// Object Storage Manager
-// Extends Application Storage Manager
-var ObjectStore = function ObjectStore() {
-  __WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].call(this);
-};
-
-/**
- * Vererbung der Application Eigenschaften und Methoden
- *
- * @type {ApplicationStore}
- */
-ObjectStore.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0_managers_storage_application__["a" /* default */].prototype);
-
-/**
- * Speichert ein Objekt dem globalen Game.xxx Store hinzu. Das Storage Objekt muss zuvor ueber setStorage gesetzt worden
- * sein
- *
- * @param object
- * @return {Object}
- */
-ObjectStore.prototype.store = function (object) {
-  return this._store(object);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (ObjectStore);
 
 /***/ }),
 /* 49 */
@@ -30351,7 +30355,7 @@ var render = function() {
     _c("div", { staticClass: "form--item" }, [
       _c(
         "label",
-        { staticClass: "form--label", attrs: { for: "object-object" } },
+        { staticClass: "form--label", attrs: { for: "object-qcn" } },
         [_vm._v("Typ")]
       ),
       _vm._v(" "),
@@ -30362,12 +30366,12 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.object,
-              expression: "object"
+              value: _vm.qcn,
+              expression: "qcn"
             }
           ],
           staticClass: "form--field",
-          attrs: { id: "object-object" },
+          attrs: { id: "object-qcn" },
           on: {
             change: function($event) {
               var $$selectedVal = Array.prototype.filter
@@ -30378,7 +30382,7 @@ var render = function() {
                   var val = "_value" in o ? o._value : o.value
                   return val
                 })
-              _vm.object = $event.target.multiple
+              _vm.qcn = $event.target.multiple
                 ? $$selectedVal
                 : $$selectedVal[0]
             }

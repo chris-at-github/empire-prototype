@@ -58,7 +58,7 @@
 			},
 
 			object: function() {
-				return Empire.factory.settlement.create(this.properties.object);
+				return Empire.factory.settlement.create(this.properties.qcn);
 			},
 
 			id: function() {

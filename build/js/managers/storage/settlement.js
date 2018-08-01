@@ -21,7 +21,7 @@ SettlementStorage.prototype = Object.create(ApplicationStorage.prototype);
 SettlementStorage.prototype.store = function(properties) {
 
 	// @todo: throw exception -> falls kein Namespace uebergeben wurde
-	let settlement = Empire.factory.settlement.create(properties.object);
+	let settlement = Empire.factory.settlement.create(properties.qcn);
 			settlement.fill(properties);
 
 	let persist = false;

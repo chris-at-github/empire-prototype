@@ -42,10 +42,14 @@ ColonySettlement.prototype.testBeforeCreate = function() {
  */
 ColonySettlement.prototype.createInitalBuilding = function() {
 
+	// @todo: abgeleitetes Objekt BuildingObjectStore erstellen
+	// @todo: sollte hier mit dem richtigen Objekt gearbeitet werden?
 	let objectStorage = new ObjectStorage();
-	console.log(objectStorage);
-	// console.log(this.id);
-	// console.log(this.name);
+	objectStorage.setStorage(Game.buildings);
+	objectStorage.store({
+		qcn: 'building.entrance',
+		parent: this.id
+	});
 };
 
 export default ColonySettlement;
