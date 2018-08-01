@@ -2,12 +2,14 @@
 
 let ApplicationSettlement = function() {
 	this.eventListener = {
-		beforeCreate: []
+		beforeCreate: [],
+		afterCreate: []
 	};
 };
 
 // Konstanten Definition
 ApplicationSettlement.prototype.EVENT_BEFORE_CREATE = 'beforeCreate';
+ApplicationSettlement.prototype.EVENT_AFTER_CREATE = 'afterCreate';
 
 /**
  * Registriert einen Event Listener und speichert den Callback in einem Array
@@ -37,13 +39,22 @@ ApplicationSettlement.prototype.fire = function(event) {
 };
 
 /**
- * Liefert den fest hinterlegten Namen des Objekts
+ * Wird VOR dem Einfuegen des Objekts durchgefuehrt
  *
  * @return {boolean}
  */
 ApplicationSettlement.prototype.beforeCreate = function() {
 	this.fire(this.EVENT_BEFORE_CREATE);
 	return true;
+};
+
+/**
+ * Wird NACH dem Einfuegen des Objekts durchgefuehrt
+ *
+ * @return {void}
+ */
+ApplicationSettlement.prototype.afterCreate = function() {
+	this.fire(this.EVENT_AFTER_CREATE);
 };
 
 export default ApplicationSettlement;

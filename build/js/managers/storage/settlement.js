@@ -21,14 +21,30 @@ SettlementStorage.prototype = Object.create(ApplicationStorage.prototype);
 SettlementStorage.prototype.store = function(properties) {
 
 	// @todo: throw exception -> falls kein Namespace uebergeben wurde
-	var settlement = Empire.factory.settlement.create(properties.object);
+	let settlement = Empire.factory.settlement.create(properties.object);
+	let persist = false;
 
 	// neues Objekt -> noch keine ID erzeugt
 	if(_.isUndefined(properties.id) === true) {
+
+		// 'beforeCreate'-Event feuern
 		settlement.beforeCreate();
+
+	// bestehendes Objekt
+	} else {
+
+		// Flag fuer die spaetere Verarbeitung setzen
+		persist = true;
+
+		// 'beforeUpdate'-Event feuern
+		// settlement.beforeUpdate();
 	}
 
-	// return this._store(properties);
+	return this._store(properties);
+
+	if(persist === false) {
+		settlement.afterCreate();
+	}
 };
 
 export default SettlementStorage;

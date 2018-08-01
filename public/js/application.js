@@ -29107,11 +29107,11 @@ object.building = {
 
 var ColonySettlement = function ColonySettlement() {
 
-  // Parent constructor
-  __WEBPACK_IMPORTED_MODULE_0__application__["a" /* default */].call(this);
+	// Parent constructor
+	__WEBPACK_IMPORTED_MODULE_0__application__["a" /* default */].call(this);
 
-  // Initialisieren 
-  this.intialize();
+	// Initialisieren 
+	this.intialize();
 };
 
 /**
@@ -29127,11 +29127,17 @@ ColonySettlement.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0__applicat
  * @return {void}
  */
 ColonySettlement.prototype.intialize = function () {
-  this.listen(this.EVENT_BEFORE_CREATE, this.testBeforeCreate);
+	this.listen(this.EVENT_BEFORE_CREATE, this.testBeforeCreate);
+
+	this.listen(this.EVENT_BEFORE_CREATE, this.testAfterCreate);
 };
 
 ColonySettlement.prototype.testBeforeCreate = function () {
-  console.log('ColonySettlement::testBeforeCreate');
+	console.log('ColonySettlement::testBeforeCreate');
+};
+
+ColonySettlement.prototype.testAfterCreate = function () {
+	console.log('ColonySettlement::testAfterCreate');
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (ColonySettlement);
@@ -29145,12 +29151,14 @@ ColonySettlement.prototype.testBeforeCreate = function () {
 
 var ApplicationSettlement = function ApplicationSettlement() {
   this.eventListener = {
-    beforeCreate: []
+    beforeCreate: [],
+    afterCreate: []
   };
 };
 
 // Konstanten Definition
 ApplicationSettlement.prototype.EVENT_BEFORE_CREATE = 'beforeCreate';
+ApplicationSettlement.prototype.EVENT_AFTER_CREATE = 'afterCreate';
 
 /**
  * Registriert einen Event Listener und speichert den Callback in einem Array
@@ -29180,13 +29188,22 @@ ApplicationSettlement.prototype.fire = function (event) {
 };
 
 /**
- * Liefert den fest hinterlegten Namen des Objekts
+ * Wird VOR dem Einfuegen des Objekts durchgefuehrt
  *
  * @return {boolean}
  */
 ApplicationSettlement.prototype.beforeCreate = function () {
   this.fire(this.EVENT_BEFORE_CREATE);
   return true;
+};
+
+/**
+ * Wird NACH dem Einfuegen des Objekts durchgefuehrt
+ *
+ * @return {void}
+ */
+ApplicationSettlement.prototype.afterCreate = function () {
+  this.fire(this.EVENT_AFTER_CREATE);
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (ApplicationSettlement);
@@ -29617,7 +29634,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			name: ''
+			name: 'Krabblingen'
 		};
 	},
 
@@ -29672,13 +29689,29 @@ SettlementStorage.prototype.store = function (properties) {
 
 	// @todo: throw exception -> falls kein Namespace uebergeben wurde
 	var settlement = Empire.factory.settlement.create(properties.object);
+	var persist = false;
 
 	// neues Objekt -> noch keine ID erzeugt
 	if (_.isUndefined(properties.id) === true) {
+
+		// 'beforeCreate'-Event feuern
 		settlement.beforeCreate();
+
+		// bestehendes Objekt
+	} else {
+
+		// Flag fuer die spaetere Verarbeitung setzen
+		persist = true;
+
+		// 'beforeUpdate'-Event feuern
+		// settlement.beforeUpdate();
 	}
 
-	// return this._store(properties);
+	return this._store(properties);
+
+	if (persist === false) {
+		settlement.afterCreate();
+	}
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (SettlementStorage);
