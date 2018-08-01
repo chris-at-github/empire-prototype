@@ -43,6 +43,8 @@ SettlementStorage.prototype.store = function(properties) {
 	return this._store(properties);
 
 	if(persist === false) {
+
+		// 'afterCreate'-Event feuern
 		settlement.afterCreate();
 	}
 };

@@ -29129,15 +29129,15 @@ ColonySettlement.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0__applicat
 ColonySettlement.prototype.intialize = function () {
 	this.listen(this.EVENT_BEFORE_CREATE, this.testBeforeCreate);
 
-	this.listen(this.EVENT_BEFORE_CREATE, this.testAfterCreate);
+	this.listen(this.EVENT_AFTER_CREATE, this.createInitalBuilding);
 };
 
 ColonySettlement.prototype.testBeforeCreate = function () {
 	console.log('ColonySettlement::testBeforeCreate');
 };
 
-ColonySettlement.prototype.testAfterCreate = function () {
-	console.log('ColonySettlement::testAfterCreate');
+ColonySettlement.prototype.createInitalBuilding = function () {
+	console.log(this);
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (ColonySettlement);
@@ -29710,6 +29710,8 @@ SettlementStorage.prototype.store = function (properties) {
 	return this._store(properties);
 
 	if (persist === false) {
+
+		// 'afterCreate'-Event feuern
 		settlement.afterCreate();
 	}
 };
