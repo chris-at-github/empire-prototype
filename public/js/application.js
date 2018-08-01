@@ -29101,6 +29101,8 @@ object.building = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_managers_storage_object__ = __webpack_require__(48);
+
 
 
 
@@ -29143,8 +29145,11 @@ ColonySettlement.prototype.testBeforeCreate = function () {
  * fuegt die Gebaeude (Eingang), die direkt nach der Erstellung vorhanden sein sollen hinzu
  */
 ColonySettlement.prototype.createInitalBuilding = function () {
-	console.log(this.id);
-	console.log(this.name);
+
+	var objectStorage = new __WEBPACK_IMPORTED_MODULE_1_managers_storage_object__["a" /* default */]();
+	console.log(objectStorage);
+	// console.log(this.id);
+	// console.log(this.name);
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (ColonySettlement);

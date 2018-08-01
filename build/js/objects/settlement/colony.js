@@ -1,6 +1,7 @@
 'use strict';
 
 import ApplicationSettlement from './application';
+import ObjectStorage from 'managers/storage/object';
 
 let ColonySettlement = function() {
 	
@@ -40,8 +41,11 @@ ColonySettlement.prototype.testBeforeCreate = function() {
  * fuegt die Gebaeude (Eingang), die direkt nach der Erstellung vorhanden sein sollen hinzu
  */
 ColonySettlement.prototype.createInitalBuilding = function() {
-	console.log(this.id);
-	console.log(this.name);
+
+	let objectStorage = new ObjectStorage();
+	console.log(objectStorage);
+	// console.log(this.id);
+	// console.log(this.name);
 };
 
 export default ColonySettlement;
