@@ -40,13 +40,16 @@ SettlementStorage.prototype.store = function(properties) {
 		// settlement.beforeUpdate();
 	}
 
-	return this._store(properties);
+	// Zwischenspeichern
+	this._store(properties);
 
 	if(persist === false) {
 
 		// 'afterCreate'-Event feuern
 		settlement.afterCreate();
 	}
+
+	return this._store(properties);
 };
 
 export default SettlementStorage;

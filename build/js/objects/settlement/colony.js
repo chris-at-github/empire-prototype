@@ -30,11 +30,14 @@ ColonySettlement.prototype.intialize = function() {
 };
 
 ColonySettlement.prototype.testBeforeCreate = function() {
-	console.log('ColonySettlement::testBeforeCreate');
+	console.log('ColonySettlement::beforeCreate');
 };
 
+/**
+ * fuegt die Gebaeude (Eingang), die direkt nach der Erstellung vorhanden sein sollen hinzu
+ */
 ColonySettlement.prototype.createInitalBuilding = function() {
-	console.log(this);
+	console.log(this.id);
 };
 
 export default ColonySettlement;

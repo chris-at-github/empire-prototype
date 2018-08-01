@@ -29107,11 +29107,11 @@ object.building = {
 
 var ColonySettlement = function ColonySettlement() {
 
-	// Parent constructor
-	__WEBPACK_IMPORTED_MODULE_0__application__["a" /* default */].call(this);
+  // Parent constructor
+  __WEBPACK_IMPORTED_MODULE_0__application__["a" /* default */].call(this);
 
-	// Initialisieren 
-	this.intialize();
+  // Initialisieren 
+  this.intialize();
 };
 
 /**
@@ -29127,17 +29127,20 @@ ColonySettlement.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0__applicat
  * @return {void}
  */
 ColonySettlement.prototype.intialize = function () {
-	this.listen(this.EVENT_BEFORE_CREATE, this.testBeforeCreate);
+  this.listen(this.EVENT_BEFORE_CREATE, this.testBeforeCreate);
 
-	this.listen(this.EVENT_AFTER_CREATE, this.createInitalBuilding);
+  this.listen(this.EVENT_AFTER_CREATE, this.createInitalBuilding);
 };
 
 ColonySettlement.prototype.testBeforeCreate = function () {
-	console.log('ColonySettlement::testBeforeCreate');
+  console.log('ColonySettlement::beforeCreate');
 };
 
+/**
+ * fuegt die Gebaeude (Eingang), die direkt nach der Erstellung vorhanden sein sollen hinzu
+ */
 ColonySettlement.prototype.createInitalBuilding = function () {
-	console.log(this);
+  console.log(this.id);
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (ColonySettlement);
@@ -29707,13 +29710,16 @@ SettlementStorage.prototype.store = function (properties) {
 		// settlement.beforeUpdate();
 	}
 
-	return this._store(properties);
+	// Zwischenspeichern
+	this._store(properties);
 
 	if (persist === false) {
 
 		// 'afterCreate'-Event feuern
 		settlement.afterCreate();
 	}
+
+	return this._store(properties);
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (SettlementStorage);
