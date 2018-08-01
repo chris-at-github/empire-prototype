@@ -7,6 +7,9 @@ let ColonySettlement = function() {
 	// Parent constructor
 	ApplicationSettlement.call(this);
 
+	// Definition von Eigenschaften ueberschreiben
+	this.properties = ['id', 'name'];
+
 	// Initialisieren 
 	this.intialize();
 };
@@ -38,6 +41,7 @@ ColonySettlement.prototype.testBeforeCreate = function() {
  */
 ColonySettlement.prototype.createInitalBuilding = function() {
 	console.log(this.id);
+	console.log(this.name);
 };
 
 export default ColonySettlement;

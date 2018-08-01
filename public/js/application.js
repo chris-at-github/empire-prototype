@@ -29107,11 +29107,14 @@ object.building = {
 
 var ColonySettlement = function ColonySettlement() {
 
-  // Parent constructor
-  __WEBPACK_IMPORTED_MODULE_0__application__["a" /* default */].call(this);
+	// Parent constructor
+	__WEBPACK_IMPORTED_MODULE_0__application__["a" /* default */].call(this);
 
-  // Initialisieren 
-  this.intialize();
+	// Definition von Eigenschaften ueberschreiben
+	this.properties = ['id', 'name'];
+
+	// Initialisieren 
+	this.intialize();
 };
 
 /**
@@ -29127,20 +29130,21 @@ ColonySettlement.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0__applicat
  * @return {void}
  */
 ColonySettlement.prototype.intialize = function () {
-  this.listen(this.EVENT_BEFORE_CREATE, this.testBeforeCreate);
+	this.listen(this.EVENT_BEFORE_CREATE, this.testBeforeCreate);
 
-  this.listen(this.EVENT_AFTER_CREATE, this.createInitalBuilding);
+	this.listen(this.EVENT_AFTER_CREATE, this.createInitalBuilding);
 };
 
 ColonySettlement.prototype.testBeforeCreate = function () {
-  console.log('ColonySettlement::beforeCreate');
+	console.log('ColonySettlement::beforeCreate');
 };
 
 /**
  * fuegt die Gebaeude (Eingang), die direkt nach der Erstellung vorhanden sein sollen hinzu
  */
 ColonySettlement.prototype.createInitalBuilding = function () {
-  console.log(this.id);
+	console.log(this.id);
+	console.log(this.name);
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (ColonySettlement);
@@ -29157,11 +29161,29 @@ var ApplicationSettlement = function ApplicationSettlement() {
     beforeCreate: [],
     afterCreate: []
   };
+
+  this.properties = ['id'];
 };
 
 // Konstanten Definition
 ApplicationSettlement.prototype.EVENT_BEFORE_CREATE = 'beforeCreate';
 ApplicationSettlement.prototype.EVENT_AFTER_CREATE = 'afterCreate';
+
+/**
+ * fuellt ein Objekt mit den unter this.properties definierten Eigenschaften
+ *
+ * @param {object} properties
+ * @return {void}
+ */
+ApplicationSettlement.prototype.fill = function (properties) {
+  var settlement = this;
+
+  _.forEach(properties, function (property, key) {
+    if (_.includes(settlement.properties, key) === true) {
+      settlement[key] = property;
+    }
+  });
+};
 
 /**
  * Registriert einen Event Listener und speichert den Callback in einem Array
@@ -29692,6 +29714,8 @@ SettlementStorage.prototype.store = function (properties) {
 
 	// @todo: throw exception -> falls kein Namespace uebergeben wurde
 	var settlement = Empire.factory.settlement.create(properties.object);
+	settlement.fill(properties);
+
 	var persist = false;
 
 	// neues Objekt -> noch keine ID erzeugt
@@ -29710,8 +29734,9 @@ SettlementStorage.prototype.store = function (properties) {
 		// settlement.beforeUpdate();
 	}
 
-	// Zwischenspeichern
-	this._store(properties);
+	// Zwischenspeichern und ID setzen
+	properties = this._store(properties);
+	settlement.id = properties.id;
 
 	if (persist === false) {
 

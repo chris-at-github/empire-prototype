@@ -22,6 +22,8 @@ SettlementStorage.prototype.store = function(properties) {
 
 	// @todo: throw exception -> falls kein Namespace uebergeben wurde
 	let settlement = Empire.factory.settlement.create(properties.object);
+			settlement.fill(properties);
+
 	let persist = false;
 
 	// neues Objekt -> noch keine ID erzeugt
@@ -40,8 +42,9 @@ SettlementStorage.prototype.store = function(properties) {
 		// settlement.beforeUpdate();
 	}
 
-	// Zwischenspeichern
-	this._store(properties);
+	// Zwischenspeichern und ID setzen
+	properties = this._store(properties);
+	settlement.id = properties.id;
 
 	if(persist === false) {
 

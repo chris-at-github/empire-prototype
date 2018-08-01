@@ -5,11 +5,29 @@ let ApplicationSettlement = function() {
 		beforeCreate: [],
 		afterCreate: []
 	};
+
+	this.properties = ['id'];
 };
 
 // Konstanten Definition
 ApplicationSettlement.prototype.EVENT_BEFORE_CREATE = 'beforeCreate';
 ApplicationSettlement.prototype.EVENT_AFTER_CREATE = 'afterCreate';
+
+/**
+ * fuellt ein Objekt mit den unter this.properties definierten Eigenschaften
+ *
+ * @param {object} properties
+ * @return {void}
+ */
+ApplicationSettlement.prototype.fill = function(properties) {
+	let settlement = this;
+
+	_.forEach(properties, function(property, key) {
+		if(_.includes(settlement.properties, key) === true) {
+			settlement[key] = property;
+		}
+	});
+};
 
 /**
  * Registriert einen Event Listener und speichert den Callback in einem Array
