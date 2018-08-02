@@ -8,6 +8,9 @@ let ColonySettlement = function() {
 	// Parent constructor
 	ApplicationSettlement.call(this);
 
+	// Qualified class name
+	this.qcn = 'settlement.colony';
+
 	// Definition von Eigenschaften ueberschreiben
 	this.properties = ['id', 'name'];
 
