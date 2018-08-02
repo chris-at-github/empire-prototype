@@ -24,7 +24,15 @@ ApplicationSettlement.prototype.fill = function(properties) {
 
 	_.forEach(properties, function(property, key) {
 		if(_.includes(settlement.properties, key) === true) {
-			settlement[key] = property;
+			let method = 'set' + _.capitalize(_.camelCase(key));
+
+			// gibt es eine eigene Setter-Methode, soll diese verwendet werden
+			if(typeof(settlement[method]) === 'function') {
+				settlement[method](property);
+
+			} else {
+				settlement[key] = property;
+			}
 		}
 	});
 };

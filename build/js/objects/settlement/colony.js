@@ -11,7 +11,7 @@ let ColonySettlement = function() {
 	// Definition von Eigenschaften ueberschreiben
 	this.properties = ['id', 'name'];
 
-	// Initialisieren 
+	// Event Listener registrieren
 	this.intialize();
 };
 
@@ -28,7 +28,7 @@ ColonySettlement.prototype = Object.create(ApplicationSettlement.prototype);
  * @return {void}
  */
 ColonySettlement.prototype.intialize = function() {
-	this.listen(this.EVENT_BEFORE_CREATE, this.testBeforeCreate);
+	// this.listen(this.EVENT_BEFORE_CREATE, this.testBeforeCreate);
 
 	this.listen(this.EVENT_AFTER_CREATE, this.createInitalBuilding);
 };
