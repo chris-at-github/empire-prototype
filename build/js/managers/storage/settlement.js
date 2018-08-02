@@ -43,8 +43,7 @@ SettlementStorage.prototype.store = function(properties) {
 	}
 
 	// Zwischenspeichern und ID setzen
-	properties = this._store(properties);
-	settlement.id = properties.id;
+	settlement.fill(this._store(settlement.toJson()));
 
 	if(persist === false) {
 
@@ -52,7 +51,7 @@ SettlementStorage.prototype.store = function(properties) {
 		settlement.afterCreate();
 	}
 
-	return this._store(properties);
+	return this._store(settlement.toJson());
 };
 
 export default SettlementStorage;

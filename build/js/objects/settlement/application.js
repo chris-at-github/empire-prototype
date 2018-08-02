@@ -42,9 +42,20 @@ ApplicationSettlement.prototype.toJson = function() {
 	let json = {};
 
 	// falls Qcn vorhanden, immer mit exportieren -> auch wenn nicht in den Properties definiert
+	if(_.isUndefined(settlement.qcn) === false) {
+		json.qcn = settlement.qcn;
+	}
 
-	_.forEach(properties, function(property, key) {
+	_.forEach(this.properties, function(property) {
+		let method = 'get' + _.capitalize(_.camelCase(property));
 
+		// gibt es eine eigene Setter-Methode, soll diese verwendet werden
+		if(typeof(settlement[method]) === 'function') {
+			json[property] = settlement[method]();
+
+		} else {
+			json[property] = settlement[property];
+		}
 	});
 
 	return json;
