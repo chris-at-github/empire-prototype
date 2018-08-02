@@ -1,7 +1,7 @@
 'use strict';
 
 import ApplicationSettlement from './application';
-import ObjectStorage from 'managers/storage/object';
+import BuildingObjectStore from 'managers/storage/building';
 
 let ColonySettlement = function() {
 	
@@ -42,10 +42,8 @@ ColonySettlement.prototype.testBeforeCreate = function() {
  */
 ColonySettlement.prototype.createInitalBuilding = function() {
 
-	// @todo: abgeleitetes Objekt BuildingObjectStore erstellen
 	// @todo: sollte hier mit dem richtigen Objekt gearbeitet werden?
-	let objectStorage = new ObjectStorage();
-	objectStorage.setStorage(Game.buildings);
+	let objectStorage = new BuildingObjectStore();
 	objectStorage.store({
 		qcn: 'building.entrance',
 		parent: this.id

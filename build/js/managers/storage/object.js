@@ -1,6 +1,6 @@
 'use strict';
 
-import ApplicationStore from 'managers/storage/application';
+import ApplicationStore from './application';
 
 // Object Storage Manager
 // Extends Application Storage Manager
