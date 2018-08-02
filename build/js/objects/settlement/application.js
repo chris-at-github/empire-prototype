@@ -37,6 +37,19 @@ ApplicationSettlement.prototype.fill = function(properties) {
 	});
 };
 
+ApplicationSettlement.prototype.toJson = function() {
+	let settlement = this;
+	let json = {};
+
+	// falls Qcn vorhanden, immer mit exportieren -> auch wenn nicht in den Properties definiert
+
+	_.forEach(properties, function(property, key) {
+
+	});
+
+	return json;
+};
+
 /**
  * Registriert einen Event Listener und speichert den Callback in einem Array
  * 
