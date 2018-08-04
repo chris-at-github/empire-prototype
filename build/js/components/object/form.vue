@@ -51,10 +51,12 @@
 
 		methods: {
 			create: function() {
-				var manager = new ObjectStore();
+				let object = Empire.factory.object.create(this.qcn);
+				object.fill(this.toJson());
 
+				let manager = new ObjectStore();
 				manager.setStorage(this.store);
-				manager.store(this.toJson());
+				manager.store(object);
 			},
 
 			toJson: function() {

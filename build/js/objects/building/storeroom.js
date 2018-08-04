@@ -5,6 +5,7 @@ import Application from 'objects/application';
 let StoreRoom = function() {
 	Application.call(this);
 
+	this.qcn = 'building.storeRoom';
 	this.name = 'Lagerraum';
 };
 

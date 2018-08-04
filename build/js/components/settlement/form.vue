@@ -29,8 +29,11 @@
 
 		methods: {
 			create: function() {
-				var manager = new StorageManager();
-						manager.store(this.toJson());
+				let settlement = Empire.factory.settlement.create(this.qcn);
+						settlement.fill(this.toJson());
+
+				let manager = new StorageManager();
+						manager.store(settlement);
 			},
 
 			toJson: function() {

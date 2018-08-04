@@ -47,10 +47,13 @@ ColonySettlement.prototype.createInitalBuilding = function() {
 
 	// @todo: sollte hier mit dem richtigen Objekt gearbeitet werden?
 	let objectStorage = new BuildingObjectStore();
-	objectStorage.store({
-		qcn: 'building.entrance',
+	let entrance = Empire.factory.object.create('building.entrance');
+
+	entrance.fill({
 		parent: this.id
 	});
+
+	objectStorage.store(entrance);
 };
 
 export default ColonySettlement;

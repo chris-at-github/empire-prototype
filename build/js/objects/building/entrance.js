@@ -5,6 +5,7 @@ import Application from 'objects/application';
 let Entrance = function() {
 	Application.call(this);
 
+	this.qcn = 'building.entrance';
 	this.name = 'Eingang';
 };
 

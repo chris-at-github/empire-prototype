@@ -16,18 +16,13 @@ SettlementStorage.prototype = Object.create(ApplicationStorage.prototype);
 
 /**
  * Speichert die Daten eines Objekts ApplicationSettlement ab
- * @param {object} properties 
+ * @param {object} settlement 
  */
-SettlementStorage.prototype.store = function(properties) {
-
-	// @todo: throw exception -> falls kein Namespace uebergeben wurde
-	let settlement = Empire.factory.settlement.create(properties.qcn);
-			settlement.fill(properties);
-
+SettlementStorage.prototype.store = function(settlement) {
 	let persist = false;
 
 	// neues Objekt -> noch keine ID erzeugt
-	if(_.isUndefined(properties.id) === true) {
+	if(_.isUndefined(settlement.id) === true) {
 
 		// 'beforeCreate'-Event feuern
 		settlement.beforeCreate();
@@ -43,7 +38,7 @@ SettlementStorage.prototype.store = function(properties) {
 	}
 
 	// Zwischenspeichern und ID setzen
-	settlement.fill(this._store(settlement.toJson()));
+	settlement = this._store(settlement);
 
 	if(persist === false) {
 
@@ -51,7 +46,7 @@ SettlementStorage.prototype.store = function(properties) {
 		settlement.afterCreate();
 	}
 
-	return this._store(settlement.toJson());
+	return this._store(settlement);
 };
 
 export default SettlementStorage;

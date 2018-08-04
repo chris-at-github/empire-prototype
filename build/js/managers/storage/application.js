@@ -32,7 +32,7 @@ ApplicationStore.prototype.setStorage = function(storage) {
 	}
 
 	// Object Vue global verfuegbar machen
-	Vue.set(this.storage, object.id, object);
+	Vue.set(this.storage, object.id, object.toJson());
 
 	return object;
 };
