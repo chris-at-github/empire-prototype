@@ -32,8 +32,9 @@ var vm = new Vue({
 });
 
 
-
+// import ResourceValue from './resources/value';
+// let waterResource = new ResourceValue('resource.water', 2.5)
 
 
 // let water = Empire.factory.resource.create('resource.water');
-// console.log(water);
+// console.log(waterResource);
