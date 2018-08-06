@@ -20,7 +20,8 @@ ResourceFactory.prototype = Object.create(ApplicationFactory.prototype);
  * @return {object}
  */
 ResourceFactory.prototype.create = function(namespace) {
-	return this.createByNamespace(namespace, Empire.resource);
+	return this.createByNamespace(namespace, Empire);
+	// console.log(namespace, Empire);
 };
 
 export default ResourceFactory;

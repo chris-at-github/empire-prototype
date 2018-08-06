@@ -9,6 +9,9 @@ let WaterResource = function() {
 
 	// Qualified class name
 	this.qcn = 'resource.water';
+
+	// Name
+	this.name = 'Wasser';
 };
 
 /**

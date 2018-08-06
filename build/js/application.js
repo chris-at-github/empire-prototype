@@ -6,12 +6,14 @@ window._ = require('lodash');
 import managers from './managers/manager';
 import factories from './factories/factory';
 import objects from './objects/object';
+import resources from './resources/resource';
 
 Empire = {
 	configuration: require('./configuration'),
 	manager: managers,
 	factory: factories,
-	object: objects
+	object: objects,
+	resource: resources
 };
 
 Game = require('./game');
@@ -28,3 +30,10 @@ var vm = new Vue({
 	el: '#application',
 	data: Game
 });
+
+
+
+
+
+let water = Empire.factory.resource.create('resource.water');
+console.log(water);
