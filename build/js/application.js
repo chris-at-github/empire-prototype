@@ -35,5 +35,5 @@ var vm = new Vue({
 
 
 
-let water = Empire.factory.resource.create('resource.water');
-console.log(water);
+// let water = Empire.factory.resource.create('resource.water');
+// console.log(water);
