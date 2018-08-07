@@ -41,6 +41,17 @@ ResourceCollection.prototype.addResourceValue = function(value) {
 };
 
 /**
+ * Subtrahiert ein ResourceValue Objekt von einem bestehenden Objekt
+ *
+ * @param {object} ResourceValue
+ */
+ResourceCollection.prototype.subResourceValue = function(value) {
+	if(_.isUndefined(this.resources[value.qcn]) === false) {
+		this.resources[value.qcn].subValue(value);
+	}
+};
+
+/**
  * Fuellt die Collection anhand eines JSON Objekts
  * 
  * @param {object} json

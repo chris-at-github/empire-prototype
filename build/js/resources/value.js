@@ -40,4 +40,13 @@ ResourceValue.prototype.addValue = function(value) {
 	this.value = this.value + value.value;
 };
 
+/**
+ * subtrahiert eine Resourcen Anzahl von einer bestehenden Menge
+ * 
+ * @param {ResourceValue} value 
+ */
+ResourceValue.prototype.subValue = function(value) {
+	this.value = this.value - value.value;
+};
+
 export default ResourceValue;
