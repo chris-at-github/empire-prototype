@@ -40,7 +40,6 @@ let collection = new ResourceCollection();
 
 collection.setResource(waterResource);
 console.log(collection.toJson());
-console.log(123);
 
 
 // let water = Empire.factory.resource.create('resource.water');
