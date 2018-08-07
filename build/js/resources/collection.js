@@ -30,6 +30,19 @@ ResourceCollection.prototype.setResource = function(value) {
 };
 
 /**
+ * Fuellt die Collection anhand eines JSON Objekts
+ * 
+ * @param {object} json
+ */
+ResourceCollection.prototype.fill = function(json) {
+	let collection = this;
+
+	_.forEach(json, function(value, qcn) {
+		collection.setResource(new ResourceValue(qcn, value));
+	});
+};
+
+/**
  * Serialisiert die Collection zu einem JSON Objekt
  *
  * @return {object}

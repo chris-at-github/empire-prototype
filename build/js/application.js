@@ -38,9 +38,11 @@ import ResourceCollection from './resources/collection';
 let waterResource = new ResourceValue('resource.water', 2.5);
 let collection = new ResourceCollection();
 
-collection.setResource(waterResource);
+//collection.setResource(waterResource);
+collection.fill({
+	'resource.water': 10
+});
 console.log(collection.toJson());
-console.log(12345);
 
 
 // let water = Empire.factory.resource.create('resource.water');
