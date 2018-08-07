@@ -1,6 +1,7 @@
 'use strict';
 
 import ResourceValue from './value';
+import Exception from 'exceptions/resourcecollection';
 
 let ResourceCollection = function() {
 
@@ -19,6 +20,24 @@ let ResourceCollection = function() {
 	 */
 	this.maxResources = null;
 };
+
+/**
+ * Setzt das maximale Limit von Resourcen Einheiten
+ * 
+ * @param {float} max
+ */
+ResourceCollection.prototype.setMaxValue = function(max) {
+	this.maxValue = max;
+};
+
+/**
+ * prueft ob eine Aktion, die minimale oder maximale Menge ueberschreiten wuerde
+ * 
+ * @throws {ResourceCollectionException}
+ * @param {float} value
+ * @return {boolean}
+ */
+
 
 /**
  * Fuegt ein ResourceValue Objekt der Collection hinzu
