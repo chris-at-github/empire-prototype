@@ -24,15 +24,6 @@ ResourceValue.prototype.getResource = function() {
 	}
 
 	return this.resource;
-}
-
-/**
- * Liefert den hinterlegten Wert
- *
- * @return {float}
- */
-ResourceValue.prototype.getValue = function() {
-	return this.value;
 };
 
 export default ResourceValue;
