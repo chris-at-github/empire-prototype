@@ -42,6 +42,9 @@ let collection = new ResourceCollection();
 collection.fill({
 	'resource.water': 10
 });
+
+collection.addResourceValue(waterResource);
+
 console.log(collection.toJson());
 
 
