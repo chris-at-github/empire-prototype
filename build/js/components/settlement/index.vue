@@ -25,6 +25,8 @@
 					</div>
 				</div>
 
+				<hr>
+
 				<emp-resource-listing v-bind:resources="resources"></emp-resource-listing>
 			</fieldset>
 		</div>
