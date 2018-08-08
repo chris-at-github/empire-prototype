@@ -1,0 +1,23 @@
+.resource {
+	& {
+		@include clearfix();
+	}
+
+	.resource--title {
+		float: left;
+		margin: 0 3px 0 0;
+		font-weight: 700;
+	}
+}
+
+.resource-listing {
+	& {
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	.resource {
+		flex: 1 1 25%;
+		margin: 5px 0 0 0;
+	}
+}

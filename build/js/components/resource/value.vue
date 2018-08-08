@@ -1,6 +1,7 @@
 <template>
 	<div class="resource">
-		{{object.name}}: {{value}}
+		<div class="resource--title">{{object.name}}:</div>
+		<div class="resource--value">{{value}}</div>
 	</div>
 </template>
 <script>

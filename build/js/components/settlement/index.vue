@@ -16,7 +16,7 @@
 
 		<div class="container">
 			<fieldset class="fieldset-default">
-				<legend>Resourcen</legend>
+				<legend>Lager</legend>
 				<emp-resource-listing v-bind:resources="resources"></emp-resource-listing>
 			</fieldset>
 		</div>

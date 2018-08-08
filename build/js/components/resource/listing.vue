@@ -1,5 +1,5 @@
 <template>
-	<div class="resource-container" v-if="resources.length !== 0">
+	<div class="resource-listing" v-if="resources.length !== 0">
 		<emp-resource-value v-for="(value, key) in resources"
 			v-bind:key="key"
 			v-bind:qcn="key"
