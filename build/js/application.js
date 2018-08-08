@@ -41,7 +41,10 @@ collection.setMaxValue(20);
 
 //collection.setResource(waterResource);
 collection.fill({
-	'resource.water': 10
+	'resource.water': 8,
+	'resource.stone': 12,
+	'resource.wood': 7,
+	'resource.food': 17
 });
 collection.subResourceValue(waterResource);
 
