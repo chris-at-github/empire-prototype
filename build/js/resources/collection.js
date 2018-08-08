@@ -54,9 +54,9 @@ ResourceCollection.prototype.checkResourceValue = function(value) {
  *
  * @param {object} ResourceValue
  */
-ResourceCollection.prototype.setResourceValue = function(value) {
-	if(this.checkResourceValue(value.value) === true) {
-		this.resources[value.qcn] = value;
+ResourceCollection.prototype.setResourceValue = function(resource) {
+	if(this.checkResourceValue(resource.value) === true) {
+		this.resources[resource.qcn] = resource;
 	}
 };
 
@@ -65,9 +65,14 @@ ResourceCollection.prototype.setResourceValue = function(value) {
  *
  * @param {object} ResourceValue
  */
-ResourceCollection.prototype.addResourceValue = function(value) {
-	if(_.isUndefined(this.resources[value.qcn]) === false) {
-		this.resources[value.qcn].addValue(value);
+ResourceCollection.prototype.addResourceValue = function(resource) {
+	if(_.isUndefined(this.resources[resource.qcn]) === false) {
+		if(this.checkResourceValue(this.resources[resource.qcn].value + resource.value)) {
+			this.resources[resource.qcn].addValue(resource);
+		}
+
+	} else {
+		this.setResourceValue(resource);
 	}
 };
 
@@ -76,9 +81,14 @@ ResourceCollection.prototype.addResourceValue = function(value) {
  *
  * @param {object} ResourceValue
  */
-ResourceCollection.prototype.subResourceValue = function(value) {
-	if(_.isUndefined(this.resources[value.qcn]) === false) {
-		this.resources[value.qcn].subValue(value);
+ResourceCollection.prototype.subResourceValue = function(resource) {
+	if(_.isUndefined(this.resources[resource.qcn]) === false) {
+		if(this.checkResourceValue(this.resources[resource.qcn].value - resource.value)) {
+			this.resources[resource.qcn].subValue(resource);
+		}
+
+	} else {
+		this.setResourceValue(resource);
 	}
 };
 

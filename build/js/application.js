@@ -35,14 +35,15 @@ var vm = new Vue({
 import ResourceValue from './resources/value';
 import ResourceCollection from './resources/collection';
 
-let waterResource = new ResourceValue('resource.water', 2.5);
+let waterResource = new ResourceValue('resource.water', 5.5);
 let collection = new ResourceCollection();
-collection.setMaxValue(10);
+collection.setMaxValue(20);
 
 //collection.setResource(waterResource);
 collection.fill({
 	'resource.water': 10
 });
+collection.subResourceValue(waterResource);
 
 console.log(collection.toJson());
 
