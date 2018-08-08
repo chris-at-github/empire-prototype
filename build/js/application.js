@@ -37,7 +37,7 @@ import ResourceCollection from './resources/collection';
 
 let waterResource = new ResourceValue('resource.water', 2.5);
 let collection = new ResourceCollection();
-collection.setMaxValue(5);
+collection.setMaxValue(10);
 
 //collection.setResource(waterResource);
 collection.fill({

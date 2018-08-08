@@ -1,7 +1,7 @@
 'use strict';
 
 import ResourceValue from './value';
-import Exception from 'exceptions/resourcecollection';
+import ResourceCollectionException from 'exceptions/resourcecollection';
 
 let ResourceCollection = function() {
 
@@ -37,7 +37,17 @@ ResourceCollection.prototype.setMaxValue = function(max) {
  * @param {float} value
  * @return {boolean}
  */
+ResourceCollection.prototype.checkResourceValue = function(value) {
+	if(value > this.maxValue) {
+		throw new ResourceCollectionException(ResourceCollectionException.MAX_VALUE);
+	}
 
+	if(value < 0) {
+		throw new ResourceCollectionException(ResourceCollectionException.MIN_VALUE);
+	}
+
+	return true;
+};
 
 /**
  * Fuegt ein ResourceValue Objekt der Collection hinzu
@@ -45,7 +55,9 @@ ResourceCollection.prototype.setMaxValue = function(max) {
  * @param {object} ResourceValue
  */
 ResourceCollection.prototype.setResourceValue = function(value) {
-	this.resources[value.qcn] = value;
+	if(this.checkResourceValue(value.value) === true) {
+		this.resources[value.qcn] = value;
+	}
 };
 
 /**
