@@ -21,7 +21,7 @@
 				<div class="properties">
 					<div class="property">
 						<div class="property--title">maximale Lagerkapazität:</div>
-						<div class="property--value">{{maxStorage}}</div>
+						<div class="property--value">{{storageCapacity}}</div>
 					</div>
 				</div>
 
@@ -77,7 +77,10 @@
 			},
 
 			object: function() {
-				return Empire.factory.settlement.create(this.properties.qcn);
+				let object = Empire.factory.settlement.create(this.properties.qcn);
+						object.fill(this.properties);
+
+				return object;
 			},
 
 			id: function() {
@@ -110,8 +113,8 @@
 				return this.properties.resources;
 			},
 
-			maxStorage: function() {
-				return this.object.getMaxStorage();
+			storageCapacity: function() {
+				return this.object.getStorageCapacity();
 			}
 		},
 

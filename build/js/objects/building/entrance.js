@@ -16,4 +16,13 @@ let Entrance = function() {
  */
 Entrance.prototype = Object.create(Application.prototype);
 
+/**
+ * Lagerkapazitaet, die dieses Gebaeude zur Verfuegng stellt
+ *
+ * @return {float}
+ */
+Entrance.prototype.getStorageCapacity = function() {
+	return 10;
+};
+
 export default Entrance;

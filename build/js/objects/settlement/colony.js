@@ -44,8 +44,6 @@ ColonySettlement.prototype.testBeforeCreate = function() {
  * fuegt die Gebaeude (Eingang), die direkt nach der Erstellung vorhanden sein sollen hinzu
  */
 ColonySettlement.prototype.createInitalBuilding = function() {
-
-	// @todo: sollte hier mit dem richtigen Objekt gearbeitet werden?
 	let objectStorage = new BuildingObjectStore();
 	let entrance = Empire.factory.object.create('building.entrance');
 
@@ -54,6 +52,25 @@ ColonySettlement.prototype.createInitalBuilding = function() {
 	});
 
 	objectStorage.store(entrance);
+};
+
+/**
+ * Berechnet den verfuegbaren Lagerplatz fuer Rohstoffe
+ *
+ * @return {float}
+ */
+ApplicationSettlement.prototype.getStorageCapacity = function() {
+	let storageCapacity = 0.0;
+
+	// Berechnung der Lagerkapazitaeten durch die Gebaeude, wenn diese die Methode getStorageCapacity zur
+	// Verfuegung stellen
+	_.forEach(this.getBuildings(), function(building, id) {
+		if(typeof(building['getStorageCapacity']) === 'function') {
+			storageCapacity += building.getStorageCapacity();
+		}
+	});
+
+	return storageCapacity;
 };
 
 export default ColonySettlement;

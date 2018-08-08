@@ -14,7 +14,7 @@ let ApplicationSettlement = function() {
 	 *
 	 * @type {float}
 	 */
-	this.maxStorage = 0.0;
+	this.storageCapacity = 0.0;
 };
 
 // Konstanten Definition
@@ -49,8 +49,32 @@ ApplicationSettlement.prototype.afterCreate = function() {
  *
  * @return {float}
  */
-ApplicationSettlement.prototype.getMaxStorage = function() {
-	return this.maxStorage;
+ApplicationSettlement.prototype.getStorageCapacity = function() {
+	return this.storageCapacity;
+};
+
+/**
+ * Gebaeude zur diesem Objekt
+ *
+ * @return {array}
+ */
+ApplicationSettlement.prototype.getBuildings = function() {
+	let settlement = this;
+	let buildings = {};
+
+	// Vorfilterung
+	// @todo: Caching
+	_.forEach(_.filter(Game.buildings, function(building) {
+		if(building.parent === settlement.id) {
+			return building;
+		}
+
+	// Objekterstellung
+	}), function(building) {
+		buildings[building.id] = Empire.factory.object.create(building.qcn);
+	});
+
+	return buildings;
 };
 
 export default ApplicationSettlement;

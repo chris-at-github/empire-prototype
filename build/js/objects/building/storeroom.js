@@ -16,4 +16,13 @@ let StoreRoom = function() {
  */
 StoreRoom.prototype = Object.create(Application.prototype);
 
+/**
+ * Lagerkapazitaet, die dieses Gebaeude zur Verfuegng stellt
+ *
+ * @return {float}
+ */
+StoreRoom.prototype.getStorageCapacity = function() {
+	return 40;
+};
+
 export default StoreRoom;
