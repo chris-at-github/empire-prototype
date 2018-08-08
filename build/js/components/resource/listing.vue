@@ -1,7 +1,5 @@
 <template>
-	<div class="resource-container" v-if="resources.length !== 0">{{resources}}
-		<emp-resource-value f-for="resource in resources"></emp-resource-value>
-
+	<div class="resource-container" v-if="resources.length !== 0">
 		<emp-resource-value v-for="(value, key) in resources"
 			v-bind:key="key"
 			v-bind:qcn="key"
@@ -20,6 +18,7 @@
 		data: function() {
 			return {};
 		},
+
 		props: ['resources']
 	}
 </script>

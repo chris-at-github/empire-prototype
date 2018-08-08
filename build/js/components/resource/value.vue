@@ -1,6 +1,6 @@
 <template>
 	<div class="resource">
-		{{qcn}}: {{value}}
+		{{object.name}}: {{value}}
 	</div>
 </template>
 <script>
@@ -8,6 +8,11 @@
 		data:  function() {
 			return {};
 		},
-		props: ['qcn', 'value']
+		props: ['qcn', 'value'],
+		computed: {
+			object: function() {
+				return Empire.factory.resource.create(this.qcn);
+			},
+		}
 	}
 </script>
