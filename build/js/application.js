@@ -32,24 +32,24 @@ var vm = new Vue({
 });
 
 
-import ResourceValue from './resources/value';
-import ResourceCollection from './resources/collection';
-
-let waterResource = new ResourceValue('resource.water', 5.5);
-let collection = new ResourceCollection();
-collection.setMaxValue(20);
-
-//collection.setResource(waterResource);
-collection.fill({
-	'resource.water': 8,
-	'resource.stone': 12,
-	'resource.wood': 7,
-	'resource.food': 17
-});
-collection.subResourceValue(waterResource);
-
-console.log(collection.toJson());
-
-
-// let water = Empire.factory.resource.create('resource.water');
-// console.log(waterResource);
+// import ResourceValue from './resources/value';
+// import ResourceCollection from './resources/collection';
+//
+// let waterResource = new ResourceValue('resource.water', 5.5);
+// let collection = new ResourceCollection();
+// collection.setMaxValue(20);
+//
+// //collection.setResource(waterResource);
+// collection.fill({
+// 	'resource.water': 8,
+// 	'resource.stone': 12,
+// 	'resource.wood': 7,
+// 	'resource.food': 17
+// });
+// collection.subResourceValue(waterResource);
+//
+// console.log(collection.toJson());
+//
+//
+// // let water = Empire.factory.resource.create('resource.water');
+// // console.log(waterResource);
