@@ -17,6 +17,14 @@
 		<div class="container">
 			<fieldset class="fieldset-default">
 				<legend>Lager</legend>
+
+				<div class="properties">
+					<div class="property">
+						<div class="property--title">maximale Lagerkapazität:</div>
+						<div class="property--value">{{maxStorage}}</div>
+					</div>
+				</div>
+
 				<emp-resource-listing v-bind:resources="resources"></emp-resource-listing>
 			</fieldset>
 		</div>
@@ -98,6 +106,10 @@
 
 			resources: function() {
 				return this.properties.resources;
+			},
+
+			maxStorage: function() {
+				return this.object.getMaxStorage();
 			}
 		},
 

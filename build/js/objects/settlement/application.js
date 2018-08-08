@@ -8,6 +8,13 @@ let ApplicationSettlement = function() {
 		beforeCreate: [],
 		afterCreate: []
 	};
+
+	/**
+	 * maximale Lagermenge
+	 *
+	 * @type {float}
+	 */
+	this.maxStorage = 0.0;
 };
 
 // Konstanten Definition
@@ -35,6 +42,15 @@ ApplicationSettlement.prototype.beforeCreate = function() {
  */
 ApplicationSettlement.prototype.afterCreate = function() {
 	this.fire(this.EVENT_AFTER_CREATE);
+};
+
+/**
+ * Berechnet den verfuegbaren Lagerplatz fuer Rohstoffe
+ *
+ * @return {float}
+ */
+ApplicationSettlement.prototype.getMaxStorage = function() {
+	return this.maxStorage;
 };
 
 export default ApplicationSettlement;

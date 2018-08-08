@@ -1,0 +1,15 @@
+.property {
+	& {
+		@include clearfix();
+	}
+
+	& + .property {
+		margin: 5px 0 0 0;
+	}
+
+	.property--title {
+		float: left;
+		margin: 0 3px 0 0;
+		font-weight: 700;
+	}
+}
