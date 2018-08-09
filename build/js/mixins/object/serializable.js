@@ -52,6 +52,9 @@ let Serializable = {
 			if(typeof(settlement[method]) === 'function') {
 				json[property] = settlement[method]();
 
+			} else if(typeof(settlement[property]) === 'object' && typeof(settlement[property].toJson) === 'function') {
+				json[property] = settlement[property].toJson();
+
 			} else {
 				json[property] = settlement[property];
 			}
