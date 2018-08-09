@@ -21,6 +21,9 @@ let Serializable = {
 				if(typeof(settlement[method]) === 'function') {
 					settlement[method](property);
 
+				} else if(typeof(settlement[key]) === 'object' && typeof(settlement[key].fill) === 'function') {
+					settlement[key].fill(property);
+
 				} else {
 					settlement[key] = property;
 				}
@@ -29,7 +32,7 @@ let Serializable = {
 	},
 
 	/**
-	 * fasst die Objekteigenschaften zu einem JSON Obejkt zusammen
+	 * fasst die Objekteigenschaften zu einem JSON Objekt zusammen
 	 * 
 	 * @return {object}
 	 */

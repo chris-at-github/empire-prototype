@@ -6,7 +6,8 @@ import EventMixin from 'mixins/object/event';
 let ApplicationSettlement = function() {
 	this.eventListener = {
 		beforeCreate: [],
-		afterCreate: []
+		afterCreate: [],
+		afterIdentification: []
 	};
 
 	/**
@@ -20,6 +21,7 @@ let ApplicationSettlement = function() {
 // Konstanten Definition
 ApplicationSettlement.prototype.EVENT_BEFORE_CREATE = 'beforeCreate';
 ApplicationSettlement.prototype.EVENT_AFTER_CREATE = 'afterCreate';
+ApplicationSettlement.prototype.EVENT_AFTER_IDENTIFICATION = 'afterIdentification';
 
 // Einbindung Mixins
 Object.assign(ApplicationSettlement.prototype, SerializableMixin);
@@ -42,6 +44,17 @@ ApplicationSettlement.prototype.beforeCreate = function() {
  */
 ApplicationSettlement.prototype.afterCreate = function() {
 	this.fire(this.EVENT_AFTER_CREATE);
+};
+
+/**
+ * Setzen der Id als Methode -> damit ein feuern Nach-Id-Setzen Events moeglich ist -> erst dann ist die Zuordnung von
+ * Relationen (z.B. Gebaeuden) moeglich
+ *
+ * @param {int} id
+ */
+ApplicationSettlement.prototype.setId = function(id) {
+	this.id = id;
+	this.fire(this.EVENT_AFTER_IDENTIFICATION);
 };
 
 /**

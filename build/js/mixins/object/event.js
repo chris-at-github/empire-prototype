@@ -11,6 +11,8 @@ let Event = {
 	 * @return {void}
 	 */
 	listen: function(event, callback) {
+
+		// @todo: throw Exception -> kein Event Listener definiert
 		if(_.isUndefined(this.eventListener[event]) === false) {
 			this.eventListener[event].push(callback);
 		}

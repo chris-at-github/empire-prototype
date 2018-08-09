@@ -2,6 +2,7 @@
 
 import ApplicationSettlement from './application';
 import BuildingObjectStore from 'managers/storage/building';
+import ResourceCollection from 'resources/collection';
 
 let ColonySettlement = function() {
 	
@@ -11,8 +12,12 @@ let ColonySettlement = function() {
 	// Qualified class name
 	this.qcn = 'settlement.colony';
 
+	// Definiere Resourcen als in Instanz von ResourceCollection und lege die maximale Speichermenge fest
+	// die Befuellung erfolgt ueber die Fill-Methode oder einen direkten Setter
+	this.resources = new ResourceCollection();
+
 	// Definition von Eigenschaften ueberschreiben
-	this.properties = ['id', 'name'];
+	this.properties = ['id', 'name', 'resources'];
 
 	// Event Listener registrieren
 	this.intialize();
@@ -31,13 +36,15 @@ ColonySettlement.prototype = Object.create(ApplicationSettlement.prototype);
  * @return {void}
  */
 ColonySettlement.prototype.intialize = function() {
-	// this.listen(this.EVENT_BEFORE_CREATE, this.testBeforeCreate);
-
 	this.listen(this.EVENT_AFTER_CREATE, this.createInitalBuilding);
+	this.listen(this.EVENT_AFTER_IDENTIFICATION, this.setResourceCollectionMaxValue);
 };
 
-ColonySettlement.prototype.testBeforeCreate = function() {
-	console.log('ColonySettlement::beforeCreate');
+/**
+ * Setzt das maximale Speicherlimit in der ResourceCollection -> ist erst nach dem setzen der Id moeglich
+ */
+ColonySettlement.prototype.setResourceCollectionMaxValue = function() {
+	this.resources.setMaxValue(this.getStorageCapacity());
 };
 
 /**
