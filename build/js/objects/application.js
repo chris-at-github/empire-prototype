@@ -14,6 +14,15 @@ Object.assign(ApplicationObject.prototype, SerializableMixin);
 Object.assign(ApplicationObject.prototype, EventMixin);
 
 /**
+ * Setzen der Id als Methode -> damit ein feuern Nach-Id-Setzen Events moeglich ist
+ *
+ * @param {int} id
+ */
+ApplicationObject.prototype.setId = function(id) {
+	this.id = id;
+};
+
+/**
  * Liefert den fest hinterlegten Namen des Objekts
  *
  * @return string

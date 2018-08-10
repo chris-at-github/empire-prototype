@@ -37,6 +37,7 @@ ColonySettlement.prototype = Object.create(ApplicationSettlement.prototype);
  */
 ColonySettlement.prototype.intialize = function() {
 	this.listen(this.EVENT_AFTER_CREATE, this.createInitalBuilding);
+	this.listen(this.EVENT_AFTER_CREATE, this.fillInitalResources);
 	this.listen(this.EVENT_AFTER_IDENTIFICATION, this.setResourceCollectionMaxValue);
 };
 
@@ -59,6 +60,7 @@ ColonySettlement.prototype.createInitalBuilding = function() {
 	});
 
 	objectStorage.store(entrance);
+	
 };
 
 /**
@@ -66,7 +68,7 @@ ColonySettlement.prototype.createInitalBuilding = function() {
  *
  * @return {float}
  */
-ApplicationSettlement.prototype.getStorageCapacity = function() {
+ColonySettlement.prototype.getStorageCapacity = function() {
 	let storageCapacity = 0.0;
 
 	// Berechnung der Lagerkapazitaeten durch die Gebaeude, wenn diese die Methode getStorageCapacity zur
@@ -78,6 +80,22 @@ ApplicationSettlement.prototype.getStorageCapacity = function() {
 	});
 
 	return storageCapacity;
+};
+
+/**
+ * fuegt die Gebaeude (Eingang), die direkt nach der Erstellung vorhanden sein sollen hinzu
+ */
+ColonySettlement.prototype.fillInitalResources = function() {
+
+	// die Lagerkapazitaet des Eingangs mit einberechnen
+	this.setResourceCollectionMaxValue();
+
+	this.resources.fill({
+		'resource.water': 10,
+		'resource.stone': 10,
+		'resource.wood': 10,
+		'resource.food': 10
+	});
 };
 
 export default ColonySettlement;

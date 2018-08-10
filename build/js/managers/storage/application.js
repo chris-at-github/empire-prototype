@@ -28,7 +28,7 @@ ApplicationStore.prototype.setStorage = function(storage) {
 	ApplicationStore.prototype._store = function(object) {
 
 	if(_.isUndefined(object.id) === true) {
-		object.id = uuid();
+		object.setId(uuid());
 	}
 
 	// Object Vue global verfuegbar machen
