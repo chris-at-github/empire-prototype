@@ -25,9 +25,7 @@ StoreRoom.prototype = Object.create(Application.prototype);
  * @return {void}
  */
 StoreRoom.prototype.intialize = function() {
-	this.addDependency(new SettlementResourceDependency());
-
-	console.log(this.checkDependencies());
+	this.addDependency(new SettlementResourceDependency('resource.stone', 3));
 };
 
 /**

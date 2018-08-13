@@ -18,4 +18,11 @@ Activate.prototype.deactivateSettlement = function() {
 	Game.activate.settlement = null;
 };
 
+/**
+ * @return {string}
+ */
+Activate.prototype.getSettlement = function() {
+	return Game.activate.settlement;
+};
+
 export default Activate;

@@ -61,6 +61,19 @@ ResourceCollection.prototype.setResourceValue = function(resource) {
 };
 
 /**
+ * Liefert ein ResourceValue Objekt anhand des QCN zurueck
+ *
+ * @return {object} ResourceValue
+ */
+ResourceCollection.prototype.getResourceValue = function(qcn) {
+	if(_.isUndefined(this.resources[qcn]) === false) {
+		return this.resources[qcn];
+	}
+
+	return null;
+};
+
+/**
  * Addiert ein ResourceValue Objekt zu einem bestehenden Objekt
  *
  * @param {object} ResourceValue
