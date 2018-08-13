@@ -6,8 +6,7 @@ let Dependency = {
 	/**
 	 * Fuegt eine neue Objektabhaengigkeit hinzu
 	 * 
-	 * @param {object} event
-	 * @param {function} callback 
+	 * @param {object} dependency
 	 * @return {void}
 	 */
 	addDependency: function(dependency) {
