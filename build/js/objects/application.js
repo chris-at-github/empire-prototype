@@ -2,6 +2,7 @@
 
 import SerializableMixin from 'mixins/object/serializable';
 import EventMixin from 'mixins/object/event';
+import DependencyMixin from 'mixins/object/dependency';
 
 let ApplicationObject = function() {
 	// Definition von Eigenschaften ueberschreiben
@@ -12,6 +13,7 @@ let ApplicationObject = function() {
 // Einbindung Mixins
 Object.assign(ApplicationObject.prototype, SerializableMixin);
 Object.assign(ApplicationObject.prototype, EventMixin);
+Object.assign(ApplicationObject.prototype, DependencyMixin);
 
 /**
  * Setzen der Id als Methode -> damit ein feuern Nach-Id-Setzen Events moeglich ist

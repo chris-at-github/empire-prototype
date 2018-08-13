@@ -1,7 +1,7 @@
 module.exports = {
-	screen: 'world',
+	screen: 'settlement',
 	activate: {
-		settlement: null
+		settlement: '0363dec2-e331-4e64-9b06-dce06941095c'
 	},
 	settlements: {
 		'0363dec2-e331-4e64-9b06-dce06941095c': {
@@ -9,10 +9,10 @@ module.exports = {
 			name: 'Blatthausen',
 			qcn: 'settlement.colony',
 			resources: {
-				'resource.water': 8,
-				'resource.stone': 12,
-				'resource.wood': 7,
-				'resource.food': 15
+				'resource.water': 5,
+				'resource.stone': 5,
+				'resource.wood': 5,
+				'resource.food': 5
 			}
 		}
 	},
@@ -26,16 +26,11 @@ module.exports = {
 			id: '2c872351-e7b6-4998-aaf1-ac1c9513d9a6',
 			qcn: 'building.livingRoom',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
-		},
-		'938f3cc9-a14e-4f74-9768-3d348b0a65df': {
-			id: '938f3cc9-a14e-4f74-9768-3d348b0a65df',
-			qcn: 'building.livingRoom',
-			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
-		},
-		'1f60519b-adea-4c2f-b780-f81c6e5b68ad': {
-			id: '1f60519b-adea-4c2f-b780-f81c6e5b68ad',
-			qcn: 'building.storeRoom',
-			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
 		}
+		// ,'1f60519b-adea-4c2f-b780-f81c6e5b68ad': {
+		// 	id: '1f60519b-adea-4c2f-b780-f81c6e5b68ad',
+		// 	qcn: 'building.storeRoom',
+		// 	parent: '0363dec2-e331-4e64-9b06-dce06941095c'
+		// }
 	}
 };
