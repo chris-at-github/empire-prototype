@@ -11,6 +11,24 @@ let Dependency = {
 	 */
 	addDependency: function(dependency) {
 		this.dependencies.push(dependency);
+	},
+
+	/**
+	 * Prueft alle hinterlegten Abhaengigkeiten
+	 *
+	 * @return {boolean}
+	 */
+	checkDependencies: function() {
+		let object = this;
+		let check = true;
+
+		_.forEach(this.dependencies, function(dependency) {
+			if(dependency.check(object) === false) {
+				check = false;
+			}
+		});
+
+		return check;
 	}
 };
 

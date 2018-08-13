@@ -3,7 +3,7 @@
 		<div class="form--item">
 			<label class="form--label" for="object-qcn">Typ</label>
 			<select v-model="qcn" id="object-qcn" class="form--field">
-				<option v-for="option in options" v-bind:value="option.value">{{option.title}}</option>
+				<option v-for="option in options" v-bind:value="option.value" v-bind:disabled="option.disabled">{{option.title}}</option>
 			</select>
 		</div>
 
@@ -41,7 +41,8 @@
 
 					options.push({
 						value: qcn,
-						title: object.getName()
+						title: object.getName(),
+						disabled: object.checkDependencies() ? false : true
 					});
 				});
 
