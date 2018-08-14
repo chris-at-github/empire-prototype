@@ -18,3 +18,18 @@
 		}
 	}
 }
+
+.object-wizard {
+	.object {
+		& + .object {
+			margin: 10px 0 0 0;
+			padding: 10px 0 0 0;
+			border-top: 1px solid $gray-500;
+		}
+
+		.object--title {
+			font-size: inherit;
+			font-weight: 700;
+		}
+	}
+}
