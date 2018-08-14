@@ -14,6 +14,15 @@ let Dependency = {
 	},
 
 	/**
+	 * Liefert alle hinterlegten Abhaengigkeiten
+	 *
+	 * @return {array}
+	 */
+	getDependencies: function() {
+		return this.dependencies;
+	},
+
+	/**
 	 * Prueft alle hinterlegten Abhaengigkeiten
 	 *
 	 * @return {boolean}

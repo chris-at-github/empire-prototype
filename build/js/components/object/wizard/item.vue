@@ -2,6 +2,10 @@
 	<div class="object">
 		<div class="object--title">{{object.name}}</div>
 
+		<div class="object--dependencies" v-if="getDependencies().length !== 0">
+			XXX
+		</div>
+
 		<div class="object--actions">
 			<ul>
 				<li><button class="button" v-on:click="create">Erstellen</button></li>
@@ -11,9 +15,14 @@
 </template>
 
 <script>
+	import ObjectWizardItemDependency from './dependency';
 	import ObjectStore from 'managers/storage/object';
 
 	export default {
+		components: {
+			'emp-object-wizard-item-dependency': ObjectWizardItemDependency
+		},
+
 		data: function() {
 			return {
 				parent: this.$parent.parent,
@@ -26,6 +35,10 @@
 		computed: {
 			object: function() {
 				return Empire.factory.object.create(this.qcn);
+			},
+
+			dependencies: function() {
+				return this.object.getDependencies();
 			}
 		},
 
@@ -44,6 +57,10 @@
 					qcn: this.qcn,
 					parent: this.parent
 				}
+			},
+
+			getDependencies: function() {
+				return this.object.getDependencies();
 			}
 		}
 	}
