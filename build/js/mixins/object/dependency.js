@@ -16,9 +16,14 @@ let Dependency = {
 	/**
 	 * Liefert alle hinterlegten Abhaengigkeiten
 	 *
+	 * @param {boolean} check
 	 * @return {array}
 	 */
-	getDependencies: function() {
+	getDependencies: function(check) {
+		if(check === true) {
+			this.checkDependencies();
+		}
+
 		return this.dependencies;
 	},
 

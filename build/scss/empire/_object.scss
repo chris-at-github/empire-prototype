@@ -33,3 +33,9 @@
 		}
 	}
 }
+
+.object-dependency {
+	&.object-dependency--not-fulfilled {
+		color: #f00;
+	}
+}

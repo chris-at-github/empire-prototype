@@ -2,8 +2,11 @@
 	<div class="object">
 		<div class="object--title">{{object.name}}</div>
 
-		<div class="object--dependencies" v-if="getDependencies().length !== 0">
-			XXX
+		<div class="object--dependencies" v-if="object.getDependencies(true).length !== 0">
+			<emp-object-wizard-item-dependency v-for="(dependency, key) in object.getDependencies(true)"
+				v-bind:key="key"
+				v-bind:dependency="dependency"
+			></emp-object-wizard-item-dependency>
 		</div>
 
 		<div class="object--actions">
@@ -35,10 +38,6 @@
 		computed: {
 			object: function() {
 				return Empire.factory.object.create(this.qcn);
-			},
-
-			dependencies: function() {
-				return this.object.getDependencies();
 			}
 		},
 
@@ -57,10 +56,6 @@
 					qcn: this.qcn,
 					parent: this.parent
 				}
-			},
-
-			getDependencies: function() {
-				return this.object.getDependencies();
 			}
 		}
 	}
