@@ -35,7 +35,10 @@
 			<fieldset class="fieldset-default">
 				<legend>Gebäude</legend>
 				<emp-object-listing v-bind:objects="buildings"></emp-object-listing>
-				<emp-object-form v-bind:store="buildingStore" v-bind:objects="availableBuildings" v-bind:parent="id"></emp-object-form>
+
+				<hr>
+
+				<emp-object-wizard v-bind:store="buildingStore" v-bind:objects="availableBuildings" v-bind:parent="id"></emp-object-wizard>
 			</fieldset>
 		</div>
 	</div>
@@ -43,7 +46,7 @@
 
 <script>
 	import ObjectListing from 'components/object/listing';
-	import ObjectForm from 'components/object/form';
+	import ObjectWizard from 'components/object/wizard';
 	import ResourceListing from 'components/resource/listing';
 
 	export default {
@@ -51,7 +54,7 @@
 		// @see: https://vuejs.org/v2/guide/components.html#Local-Registration
 		components: {
 			'emp-object-listing': ObjectListing,
-			'emp-object-form': ObjectForm,
+			'emp-object-wizard': ObjectWizard,
 			'emp-resource-listing': ResourceListing
 		},
 
