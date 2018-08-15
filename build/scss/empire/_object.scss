@@ -39,3 +39,15 @@
 		color: #f00;
 	}
 }
+
+.object--dependencies {
+	& {
+		margin: 5px 0 0 0;
+		@include clearfix();
+	}
+
+	.object-dependency {
+		float: left;
+		margin: 0 20px 0 0;
+	}
+}

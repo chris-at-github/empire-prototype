@@ -1,6 +1,6 @@
 <template>
 	<div v-bind:class="cssClass">
-		<div class="object-dependency--inner" v-if="isSettlementResource">
+		<div class="object-dependency--label" v-if="isSettlementResource">
 			{{dependency.resource.getResource().name}}: {{dependency.resource.value}}
 		</div>
 	</div>
@@ -20,8 +20,7 @@
 			cssClass: function() {
 				return {
 					'object-dependency': true,
-					'object-dependency--not-fulfilled': !this.dependency.fulfilled,
-					'object-dependency--settlement-resource': this.isSettlementResource
+					'object-dependency--not-fulfilled': !this.dependency.fulfilled
 				};
 			},
 
