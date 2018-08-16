@@ -7,12 +7,17 @@
 		<div class="object-dependency--title" v-if="isSettlementBuilding">
 			Gebäude: {{dependency.building.name}}
 		</div>
+
+		<div class="object-dependency--title" v-if="isSettlementBuildingSite">
+			Bauplatz: {{dependency.number}}
+		</div>
 	</div>
 </template>
 
 <script>
 	import SettlementResource from 'dependencies/settlementresource';
 	import SettlementBuilding from 'dependencies/settlementbuilding';
+	import SettlementBuildingSite from 'dependencies/settlementbuildingsite';
 
 	export default {
 		data: function() {
@@ -35,6 +40,10 @@
 
 			isSettlementBuilding: function() {
 				return (this.dependency instanceof SettlementBuilding);
+			},
+
+			isSettlementBuildingSite: function() {
+				return (this.dependency instanceof SettlementBuildingSite);
 			}
 		}
 	}

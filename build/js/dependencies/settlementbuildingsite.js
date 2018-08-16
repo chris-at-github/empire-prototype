@@ -25,17 +25,13 @@ SettlementBuildingSiteDependency.prototype = Object.create(EmpireDependency.prot
  * @return {boolean}
  */
 SettlementBuildingSiteDependency.prototype.check = function(object) {
-	// let settlement = this.getSettlement();
-	// let dependency = this;
-	//
-	// if(settlement !== null) {
-	// 	_.forEach(settlement.getBuildings(), function(building) {
-	// 		if(building.qcn === dependency.building.qcn) {
-	// 			dependency.fulfilled = true;
-	// 		}
-	// 	});
-	// }
-	this.fulfilled = true;
+	let settlement = this.getSettlement();
+
+	if(settlement !== null) {
+		if((settlement.getAvailableBuildingSite() - this.number) >= 0) {
+			this.fulfilled = true;
+		}
+	}
 
 	return this.fulfilled;
 };
