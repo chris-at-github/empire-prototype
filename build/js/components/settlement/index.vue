@@ -34,6 +34,16 @@
 		<div class="container">
 			<fieldset class="fieldset-default">
 				<legend>Gebäude</legend>
+
+				<div class="properties">
+					<div class="property">
+						<div class="property--title">Bauplätze:</div>
+						<div class="property--value">gesamt: {{buildingSite.total}} / verfügbar: {{buildingSite.available}}</div>
+					</div>
+				</div>
+
+				<hr>
+
 				<emp-object-listing v-bind:objects="buildings"></emp-object-listing>
 
 				<hr>
@@ -118,6 +128,13 @@
 
 			storageCapacity: function() {
 				return this.object.getStorageCapacity();
+			},
+
+			buildingSite: function() {
+				return {
+					total: this.object.buildingSite,
+					available: this.object.getAvailableBuildingSite()
+				};
 			}
 		},
 

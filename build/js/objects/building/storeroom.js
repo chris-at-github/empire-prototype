@@ -3,6 +3,7 @@
 import Application from 'objects/application';
 import SettlementResourceDependency from "dependencies/settlementresource";
 import SettlementBuildingDependency from "dependencies/settlementbuilding";
+import SettlementBuildingSiteDependency from "dependencies/settlementbuildingsite";
 
 let StoreRoom = function() {
 	Application.call(this);
@@ -29,6 +30,7 @@ StoreRoom.prototype.intialize = function() {
 	this.addDependency(new SettlementResourceDependency('resource.stone', 3));
 	this.addDependency(new SettlementResourceDependency('resource.wood', 3));
 	this.addDependency(new SettlementBuildingDependency('building.entrance'));
+	this.addDependency(new SettlementBuildingSiteDependency(1));
 };
 
 /**

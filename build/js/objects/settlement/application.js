@@ -2,6 +2,7 @@
 
 import SerializableMixin from 'mixins/object/serializable';
 import EventMixin from 'mixins/object/event';
+import SettlementBuildingSiteDependency from "dependencies/settlementbuildingsite";
 
 let ApplicationSettlement = function() {
 	this.eventListener = {
@@ -16,6 +17,13 @@ let ApplicationSettlement = function() {
 	 * @type {float}
 	 */
 	this.storageCapacity = 0.0;
+
+	/**
+	 * maximale Bauplaetze
+	 *
+	 * @type {int}
+	 */
+	this.buildingSite = 0;
 };
 
 // Konstanten Definition
@@ -88,6 +96,26 @@ ApplicationSettlement.prototype.getBuildings = function() {
 	});
 
 	return buildings;
+};
+
+/**
+ * Berechnet die verfuegbaren Bauplaetze.
+ * aus allen bestehenden Gebaeuden werden die Bauplatzabhaengigkeiten zusammengezaehlt
+ *
+ * @return {int}
+ */
+ApplicationSettlement.prototype.getAvailableBuildingSite = function() {
+	let occupied = 0;
+
+	_.forEach(this.getBuildings(), function(building) {
+		_.forEach(building.getDependencies(), function(dependency) {
+			if(dependency instanceof SettlementBuildingSiteDependency) {
+				occupied += dependency.number;
+			}
+		});
+	});
+
+	return this.buildingSite - occupied;
 };
 
 export default ApplicationSettlement;

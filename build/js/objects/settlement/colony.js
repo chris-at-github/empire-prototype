@@ -19,6 +19,9 @@ let ColonySettlement = function() {
 	// Definition von Eigenschaften ueberschreiben
 	this.properties = ['id', 'name', 'resources'];
 
+	// freie Bauplaetze
+	this.buildingSite = 16;
+
 	// Event Listener registrieren
 	this.intialize();
 };
@@ -49,21 +52,6 @@ ColonySettlement.prototype.setResourceCollectionMaxValue = function() {
 };
 
 /**
- * fuegt die Gebaeude (Eingang), die direkt nach der Erstellung vorhanden sein sollen hinzu
- */
-ColonySettlement.prototype.createInitalBuilding = function() {
-	let objectStorage = new BuildingObjectStore();
-	let entrance = Empire.factory.object.create('building.entrance');
-
-	entrance.fill({
-		parent: this.id
-	});
-
-	objectStorage.store(entrance);
-	
-};
-
-/**
  * Berechnet den verfuegbaren Lagerplatz fuer Rohstoffe
  *
  * @return {float}
@@ -80,6 +68,21 @@ ColonySettlement.prototype.getStorageCapacity = function() {
 	});
 
 	return storageCapacity;
+};
+
+/**
+ * fuegt die Gebaeude (Eingang), die direkt nach der Erstellung vorhanden sein sollen hinzu
+ */
+ColonySettlement.prototype.createInitalBuilding = function() {
+	let objectStorage = new BuildingObjectStore();
+	let entrance = Empire.factory.object.create('building.entrance');
+
+	entrance.fill({
+		parent: this.id
+	});
+
+	objectStorage.store(entrance);
+	
 };
 
 /**

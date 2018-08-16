@@ -8,6 +8,9 @@ let ApplicationObject = function() {
 	// Definition von Eigenschaften ueberschreiben
 	this.properties = ['id', 'name', 'parent'];
 	this.name = null;
+
+	// Zuruecksetzen der Abhaengigkeiten -> ueber das Mixin ist es sonst eine globale Variable
+	this.dependencies = [];
 };
 
 // Einbindung Mixins
