@@ -11,7 +11,7 @@
 
 		<div class="object--actions">
 			<ul>
-				<li><button class="button" v-on:click="create">Erstellen</button></li>
+				<li><button class="button" v-on:click="create" v-bind:disabled="createEnabled">Erstellen</button></li>
 			</ul>
 		</div>
 	</div>
@@ -38,6 +38,17 @@
 		computed: {
 			object: function() {
 				return Empire.factory.object.create(this.qcn);
+			},
+
+			createEnabled: function() {
+				let check = this.object.checkDependencies();
+
+				// verdrehte Logik -> return true = disabled
+				if(check === true) {
+					return false;
+				}
+
+				return true;
 			}
 		},
 

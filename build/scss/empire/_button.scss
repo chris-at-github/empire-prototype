@@ -10,8 +10,10 @@
 	}
 
 	&:hover {
-		cursor: pointer;
-		background: $gray-500;
+		&:not([disabled]) {
+			cursor: pointer;
+			background: $gray-500;
+		}
 	}
 
 	&:focus,
