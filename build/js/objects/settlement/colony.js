@@ -20,7 +20,7 @@ let ColonySettlement = function() {
 	this.properties = ['id', 'name', 'resources'];
 
 	// freie Bauplaetze
-	this.buildingSite = 3;
+	this.buildingSite = 16;
 
 	// Event Listener registrieren
 	this.intialize();
