@@ -1,9 +1,12 @@
 <template>
-	<div class="object-wizard" v-if="objects.length !== 0">
+	<!-- objects.length !== 0 -->
+	<div class="object-wizard" v-if="display">
 		<emp-object-wizard-item v-for="object in objects"
 			v-bind:key="object"
 			v-bind:qcn="object"
 		></emp-object-wizard-item>
+
+		<button class="button" v-on:click="rerender">Re-Render</button>
 	</div>
 </template>
 
@@ -23,9 +26,22 @@
 		},
 
 		data: function() {
-			return {};
+			return {
+				display: true
+			};
 		},
 
-		props: ['objects', 'parent', 'store']
+		props: ['objects', 'parent', 'store'],
+
+		methods: {
+
+			// @see: https://github.com/vuejs/Discussion/issues/356#issuecomment-312529480
+			rerender: function() {
+				this.display = false;
+				this.$nextTick(() => {
+					this.display = true;
+				});
+			}
+		}
 	}
 </script>
