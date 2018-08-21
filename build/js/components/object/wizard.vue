@@ -2,10 +2,14 @@
 	<!--  -->
 	<div class="object-wizard" v-if="objects.length !== 0">
 		<div class="modal" v-if="modal">
-			<emp-object-wizard-item v-for="object in objects"
-				v-bind:key="object"
-				v-bind:qcn="object"
-			></emp-object-wizard-item>
+			<div class="modal--container">
+				<div class="modal--body">
+					<emp-object-wizard-item v-for="object in objects"
+						v-bind:key="object"
+						v-bind:qcn="object"
+					></emp-object-wizard-item>
+				</div>
+			</div>
 		</div>
 
 		<button class="button" v-on:click="modalOpen">Errichten</button>
@@ -30,7 +34,7 @@
 		data: function() {
 			return {
 				// rerender: false,
-				modal: false
+				modal: true
 			};
 		},
 
