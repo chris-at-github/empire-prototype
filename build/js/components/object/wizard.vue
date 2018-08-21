@@ -1,13 +1,18 @@
 <template>
-	<!--  -->
 	<div class="object-wizard" v-if="objects.length !== 0">
 		<div class="modal" v-if="modal">
 			<div class="modal--container">
+				<div class="modal--header">
+					<div class="modal--title">Gebäude errichten</div>
+				</div>
 				<div class="modal--body">
 					<emp-object-wizard-item v-for="object in objects"
 						v-bind:key="object"
 						v-bind:qcn="object"
 					></emp-object-wizard-item>
+				</div>
+				<div class="modal--footer">
+					<button class="button" v-on:click="modalClose">Abbrechen</button>
 				</div>
 			</div>
 		</div>
@@ -34,7 +39,7 @@
 		data: function() {
 			return {
 				// rerender: false,
-				modal: true
+				modal: false
 			};
 		},
 
