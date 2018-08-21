@@ -1,12 +1,14 @@
 <template>
-	<!-- objects.length !== 0 -->
-	<div class="object-wizard" v-if="display">
-		<emp-object-wizard-item v-for="object in objects"
-			v-bind:key="object"
-			v-bind:qcn="object"
-		></emp-object-wizard-item>
+	<!--  -->
+	<div class="object-wizard" v-if="objects.length !== 0">
+		<div class="modal" v-if="modal">
+			<emp-object-wizard-item v-for="object in objects"
+				v-bind:key="object"
+				v-bind:qcn="object"
+			></emp-object-wizard-item>
+		</div>
 
-		<button class="button" v-on:click="rerender">Re-Render</button>
+		<button class="button" v-on:click="modalOpen">Errichten</button>
 	</div>
 </template>
 
@@ -27,7 +29,8 @@
 
 		data: function() {
 			return {
-				display: true
+				// rerender: false,
+				modal: false
 			};
 		},
 
@@ -35,12 +38,20 @@
 
 		methods: {
 
-			// @see: https://github.com/vuejs/Discussion/issues/356#issuecomment-312529480
-			rerender: function() {
-				this.display = false;
-				this.$nextTick(() => {
-					this.display = true;
-				});
+			// // @see: https://github.com/vuejs/Discussion/issues/356#issuecomment-312529480
+			// rerender: function() {
+			// 	this.rerender = true;
+			// 	this.$nextTick(() => {
+			// 		this.rerender = false;
+			// 	});
+			// },
+
+			modalOpen: function() {
+				this.modal = true;
+			},
+
+			modalClose: function() {
+				this.modal = false;
 			}
 		}
 	}

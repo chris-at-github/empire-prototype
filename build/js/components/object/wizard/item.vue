@@ -60,7 +60,10 @@
 				let manager = new ObjectStore();
 						manager.setStorage(this.store);
 						manager.store(object);
+
+				this.$parent.modalClose();
 			},
+
 
 			toJson: function() {
 				return  {
