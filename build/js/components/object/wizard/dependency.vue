@@ -11,6 +11,10 @@
 		<div class="object-dependency--title" v-if="isSettlementBuildingSite">
 			Bauplatz: {{dependency.number}}
 		</div>
+
+		<div class="object-dependency--title" v-if="isSettlementBuildingSingleton">
+			Einmalig pro Siedlung
+		</div>
 	</div>
 </template>
 
@@ -18,6 +22,7 @@
 	import SettlementResource from 'dependencies/settlementresource';
 	import SettlementBuilding from 'dependencies/settlementbuilding';
 	import SettlementBuildingSite from 'dependencies/settlementbuildingsite';
+	import SettlementBuildingSingleton from 'dependencies/settlementbuildingsingleton';
 
 	export default {
 		data: function() {
@@ -44,6 +49,10 @@
 
 			isSettlementBuildingSite: function() {
 				return (this.dependency instanceof SettlementBuildingSite);
+			},
+
+			isSettlementBuildingSingleton: function() {
+				return (this.dependency instanceof SettlementBuildingSingleton);
 			}
 		}
 	}

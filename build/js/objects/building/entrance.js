@@ -2,6 +2,7 @@
 
 import Application from 'objects/application';
 import SettlementBuildingSiteDependency from "dependencies/settlementbuildingsite";
+import SettlementBuildingSingletonDependency from "dependencies/settlementbuildingsingleton";
 
 let Entrance = function() {
 	Application.call(this);
@@ -26,6 +27,7 @@ Entrance.prototype = Object.create(Application.prototype);
  */
 Entrance.prototype.intialize = function() {
 	this.addDependency(new SettlementBuildingSiteDependency(1));
+	this.addDependency(new SettlementBuildingSingletonDependency(this));
 };
 
 /**

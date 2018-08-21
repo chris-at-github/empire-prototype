@@ -1,7 +1,7 @@
 module.exports = {
-	screen: 'settlement',
+	screen: 'world',
 	activate: {
-		settlement: '0363dec2-e331-4e64-9b06-dce06941095c'
+		settlement: null
 	},
 	settlements: {
 		'0363dec2-e331-4e64-9b06-dce06941095c': {
@@ -26,11 +26,11 @@ module.exports = {
 			id: '2c872351-e7b6-4998-aaf1-ac1c9513d9a6',
 			qcn: 'building.livingRoom',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
+		},
+		'1f60519b-adea-4c2f-b780-f81c6e5b68ad': {
+			id: '1f60519b-adea-4c2f-b780-f81c6e5b68ad',
+			qcn: 'building.storeRoom',
+			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
 		}
-		// ,'1f60519b-adea-4c2f-b780-f81c6e5b68ad': {
-		// 	id: '1f60519b-adea-4c2f-b780-f81c6e5b68ad',
-		// 	qcn: 'building.storeRoom',
-		// 	parent: '0363dec2-e331-4e64-9b06-dce06941095c'
-		// }
 	}
 };
