@@ -1,0 +1,20 @@
+.turn {
+	& {
+		@include clearfix();
+	}
+
+	.turn--title, .turn--number, .turn--action {
+		float: left;
+	}
+
+	.turn--title {
+		margin: 0 3px 0 0;
+		line-height: 27px;
+		font-weight: 700;
+	}
+
+	.turn--number {
+		margin: 0 10px 0 0;
+		line-height: 27px;
+	}
+}
