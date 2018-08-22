@@ -11,11 +11,11 @@ let Event = {
 	 * @return {void}
 	 */
 	listen: function(event, callback) {
-
-		// @todo: throw Exception -> kein Event Listener definiert
-		if(_.isUndefined(this.eventListener[event]) === false) {
-			this.eventListener[event].push(callback);
+		if(this.hasListener(event) === false) {
+			this.eventListener[event] = [];
 		}
+
+		this.eventListener[event].push(callback);
 	},
 
 	/**
@@ -30,6 +30,19 @@ let Event = {
 		_.forEach(this.eventListener[event], function(callback) {
 			callback.call(settlement);
 		});
+	},
+
+	/**
+	 * Prueft ob es zu einem Event bereits einen Listener gibt
+	 * @param {string} event
+	 * @return {boolean}
+	 */
+	hasListener: function(event) {
+		if(_.isUndefined(this.eventListener[event]) === false && this.eventListener[event].length !== 0) {
+			return true;
+		}
+
+		return false;
 	}
 };
 

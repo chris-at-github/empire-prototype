@@ -42,6 +42,8 @@ ColonySettlement.prototype.intialize = function() {
 	this.listen(this.EVENT_AFTER_CREATE, this.createInitalBuilding);
 	this.listen(this.EVENT_AFTER_CREATE, this.fillInitalResources);
 	this.listen(this.EVENT_AFTER_IDENTIFICATION, this.setResourceCollectionMaxValue);
+
+	this.listen(Empire.manager.turn.EVENT_BEFORE_TURN, this.addResourcesBeforeTurn);
 };
 
 /**
@@ -99,6 +101,13 @@ ColonySettlement.prototype.fillInitalResources = function() {
 		'resource.wood': 10,
 		'resource.food': 10
 	});
+};
+
+/**
+ * TEST
+ */
+ColonySettlement.prototype.addResourcesBeforeTurn = function() {
+	console.log('ColonySettlement::beforeTurn')
 };
 
 export default ColonySettlement;

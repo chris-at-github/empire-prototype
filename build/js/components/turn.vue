@@ -22,7 +22,7 @@
 
 		methods: {
 			next: function() {
-				Game.turn += 1;
+				Empire.manager.turn.next();
 			}
 		}
 	}
