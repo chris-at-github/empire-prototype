@@ -43,7 +43,7 @@ ColonySettlement.prototype.intialize = function() {
 	this.listen(this.EVENT_AFTER_CREATE, this.fillInitalResources);
 	this.listen(this.EVENT_AFTER_IDENTIFICATION, this.setResourceCollectionMaxValue);
 
-	this.listen(Empire.manager.turn.EVENT_AFTER_TURN, this.addResourcesAfterTurn);
+	this.listen(Empire.manager.turn.EVENT_BEFORE_TURN, this.addResourcesBeforeTurn);
 };
 
 /**
@@ -106,7 +106,7 @@ ColonySettlement.prototype.fillInitalResources = function() {
 /**
  * TEST
  */
-ColonySettlement.prototype.addResourcesAfterTurn = function() {
+ColonySettlement.prototype.addResourcesBeforeTurn = function() {
 	console.log('ColonySettlement::beforeTurn')
 };
 
