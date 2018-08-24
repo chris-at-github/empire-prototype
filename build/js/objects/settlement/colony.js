@@ -3,6 +3,7 @@
 import ApplicationSettlement from './application';
 import BuildingObjectStore from 'managers/storage/building';
 import ResourceCollection from 'resources/collection';
+import ResourceValue from 'resources/value';
 
 let ColonySettlement = function() {
 	
@@ -107,7 +108,9 @@ ColonySettlement.prototype.fillInitalResources = function() {
  * TEST
  */
 ColonySettlement.prototype.addResourcesBeforeTurn = function() {
-	console.log('ColonySettlement::beforeTurn')
+	let water = new ResourceValue('resource.water', 10);
+
+	this.resources.addResourceValue(water);
 };
 
 export default ColonySettlement;

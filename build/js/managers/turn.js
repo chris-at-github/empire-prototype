@@ -1,5 +1,8 @@
 'use strict';
 
+import SettlementStorageManager from 'managers/storage/settlement';
+import ObjectStorageManager from 'managers/storage/object';
+
 let Turn = function() {
 	this.beforeTurnObjects = {
 		settlements: [],
@@ -17,7 +20,8 @@ let Turn = function() {
 
 	this.objectTypes = {
 		buildings: {
-			factoryName: 'building'
+			factoryName: 'building',
+			storage: Game.buildings
 		}
 	};
 };
@@ -34,6 +38,8 @@ Turn.prototype.EVENT_AFTER_TURN = 'afterTurn';
 Turn.prototype.next = function() {
 
 	this.getEventObjects();
+
+	this.objectTypes.buildings.storage = Game.buildings;
 
 	// Uberpruefe alle After Turn (= nachdem der User alle manuellen Schritte durchgefuehrt hat) Objekte
 	// Siedlungen
@@ -60,12 +66,16 @@ Turn.prototype.next = function() {
  * @param {array} objects
  */
 Turn.prototype.fireSettlementEvent = function(event, objects) {
+	let storage = new SettlementStorageManager();
+
 	_.forEach(Game.settlements, function(properties, id) {
 		if(_.indexOf(objects, properties.qcn) !== - 1) {
 			let object = Empire.factory.settlement.create(properties.qcn);
 
 			object.fill(properties);
 			object.fire(event);
+
+			storage.store(object);
 		}
 	});
 };
@@ -78,8 +88,13 @@ Turn.prototype.fireSettlementEvent = function(event, objects) {
  */
 Turn.prototype.fireObjectEvent = function(event, objects) {
 	let turn = this;
+	let storage = new ObjectStorageManager();
 
 	_.forEach(turn.objectTypes, function(objectProperties, type) {
+		storage.setStorage(objectProperties.storage);
+
+		console.log(objectProperties);
+
 		_.forEach(Game[type], function(properties, id) {
 
 			if(_.indexOf(objects[type], properties.qcn) !== - 1) {
@@ -87,6 +102,8 @@ Turn.prototype.fireObjectEvent = function(event, objects) {
 
 				object.fill(properties);
 				object.fire(event);
+
+				storage.store(object);
 			}
 		});
 	});
