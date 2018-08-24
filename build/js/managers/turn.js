@@ -24,6 +24,14 @@ let Turn = function() {
 			storage: Game.buildings
 		}
 	};
+
+	let turn = this;
+
+	document.body.addEventListener('build', function(e) {
+		console.log(Game.buildings);
+
+		turn.objectTypes.buildings.storage = Game.buildings;
+	}, false);
 };
 
 // Konstanten Definition
@@ -39,7 +47,7 @@ Turn.prototype.next = function() {
 
 	this.getEventObjects();
 
-	this.objectTypes.buildings.storage = Game.buildings;
+	// this.objectTypes.buildings.storage = Game.buildings;
 
 	// Uberpruefe alle After Turn (= nachdem der User alle manuellen Schritte durchgefuehrt hat) Objekte
 	// Siedlungen

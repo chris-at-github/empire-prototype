@@ -31,6 +31,17 @@ var vm = new Vue({
 	data: Game
 });
 
+var event = new Event('build');
+console.log(document.body);
+
+// // Listen for the event.
+document.body.addEventListener('build', function(e) {
+	console.log('application.js')
+}, false);
+
+// Dispatch the event.
+document.body.dispatchEvent(event);
+
 
 // import ResourceValue from './resources/value';
 // import ResourceCollection from './resources/collection';
