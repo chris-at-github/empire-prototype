@@ -27,11 +27,17 @@ let Turn = function() {
 
 	let turn = this;
 
-	document.body.addEventListener('build', function(e) {
-		console.log(Game.buildings);
+	console.log(Empire.event);
 
-		turn.objectTypes.buildings.storage = Game.buildings;
-	}, false);
+	Empire.event.listen(Empire.event.EVENT_BEFORE_TURN, function(event) {
+		console.log(event);
+	});
+
+	// document.body.addEventListener('build', function(e) {
+	// 	// console.log(E);
+	//
+	// 	turn.objectTypes.buildings.storage = Game.buildings;
+	// }, false);
 };
 
 // Konstanten Definition

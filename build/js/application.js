@@ -2,19 +2,19 @@
 window.Vue = require('vue');
 window._ = require('lodash');
 
+
 // Empire environment
+import event from './events/empire';
 import managers from './managers/manager';
 import factories from './factories/factory';
 import objects from './objects/object';
 import resources from './resources/resource';
 
-Empire = {
-	configuration: require('./configuration'),
-	manager: managers,
-	factory: factories,
-	object: objects,
-	resource: resources
-};
+Empire.configuration = require('./configuration');
+Empire.manager = managers;
+Empire.factory = factories;
+Empire.object = objects;
+Empire.resource = resources;
 
 Game = require('./game');
 
@@ -31,16 +31,16 @@ var vm = new Vue({
 	data: Game
 });
 
-var event = new Event('build');
-console.log(document.body);
-
-// // Listen for the event.
-document.body.addEventListener('build', function(e) {
-	console.log('application.js')
-}, false);
-
-// Dispatch the event.
-document.body.dispatchEvent(event);
+// var event = new Event('build');
+// console.log(document.body);
+//
+// // // Listen for the event.
+// document.body.addEventListener('build', function(e) {
+// 	console.log('application.js')
+// }, false);
+//
+// // Dispatch the event.
+// document.body.dispatchEvent(event);
 
 
 // import ResourceValue from './resources/value';
