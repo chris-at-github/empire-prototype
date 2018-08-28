@@ -51,6 +51,24 @@
 				<emp-object-wizard v-bind:store="buildingStore" v-bind:objects="availableBuildings" v-bind:parent="id"></emp-object-wizard>
 			</fieldset>
 		</div>
+
+		<div class="container">
+			<fieldset class="fieldset-default">
+				<legend>Einwohner</legend>
+
+				<div class="properties">
+					<div class="property">
+						<div class="property--title">Einwohlerzahl:</div>
+						<div class="property--value">{{unitCount}}</div>
+					</div>
+
+					<div class="property">
+						<div class="property--title">Kapazität:</div>
+						<div class="property--value">gesamt: {{unitCapacity.total}} / verfügbar: {{unitCapacity.available}}</div>
+					</div>
+				</div>
+			</fieldset>
+		</div>
 	</div>
 </template>
 
@@ -135,6 +153,17 @@
 					total: this.object.buildingSite,
 					available: this.object.getAvailableBuildingSite()
 				};
+			},
+
+			unitCount: function() {
+				return 4;
+			},
+
+			unitCapacity: function() {
+				return {
+					total: 5,
+					available: 4
+				}
 			}
 		},
 
