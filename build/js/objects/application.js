@@ -10,12 +10,11 @@ let ApplicationObject = function() {
 	this.properties = ['id', 'name', 'parent'];
 	this.name = null;
 
-	// Zuruecksetzen der Abhaengigkeiten -> ueber das Mixin ist es sonst eine globale Variable
+	// Zuruecksetzen der Abhaengigkeiten | Event-Listener -> ueber das Mixin ist es sonst eine globale Variable
 	this.dependencies = [];
+	this.eventListener = {};
 
-	this.eventListener = {
-		afterCreate: []
-	};
+	this._initialize();
 };
 
 // Konstanten Definition
@@ -25,6 +24,14 @@ ApplicationObject.prototype.EVENT_AFTER_CREATE = 'afterCreate';
 Object.assign(ApplicationObject.prototype, SerializableMixin);
 Object.assign(ApplicationObject.prototype, EventMixin);
 Object.assign(ApplicationObject.prototype, DependencyMixin);
+
+/**
+ * Initialisierung
+ *
+ * @return {void}
+ */
+ApplicationObject.prototype._initialize = function() {
+};
 
 /**
  * Wird VOR dem Einfuegen des Objekts durchgefuehrt
