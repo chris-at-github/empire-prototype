@@ -4,6 +4,8 @@ import SettlementStorageManager from 'managers/storage/settlement';
 import ObjectStorageManager from 'managers/storage/object';
 
 let Turn = function() {
+	let turn = this;
+
 	this.beforeTurnObjects = {
 		settlements: [],
 		object: {
@@ -21,23 +23,18 @@ let Turn = function() {
 	this.objectTypes = {
 		buildings: {
 			factoryName: 'building',
-			storage: Game.buildings
+			storage: null
 		}
 	};
 
-	let turn = this;
+	Empire.event.listen(Empire.event.EVENT_CREATE_APPLICATION, function(event) {
 
-	console.log(Empire.event);
+		// Speicherpfad fuer Gebauede setzen
+		turn.objectTypes.buildings.storage = Game.buildings;
 
-	Empire.event.listen(Empire.event.EVENT_BEFORE_TURN, function(event) {
-		console.log(event);
+		// Before- und After-Turn Events auslesen
+		turn.getEventObjects();
 	});
-
-	// document.body.addEventListener('build', function(e) {
-	// 	// console.log(E);
-	//
-	// 	turn.objectTypes.buildings.storage = Game.buildings;
-	// }, false);
 };
 
 // Konstanten Definition
@@ -51,7 +48,7 @@ Turn.prototype.EVENT_AFTER_TURN = 'afterTurn';
  */
 Turn.prototype.next = function() {
 
-	this.getEventObjects();
+
 
 	// this.objectTypes.buildings.storage = Game.buildings;
 
@@ -106,8 +103,6 @@ Turn.prototype.fireObjectEvent = function(event, objects) {
 
 	_.forEach(turn.objectTypes, function(objectProperties, type) {
 		storage.setStorage(objectProperties.storage);
-
-		console.log(objectProperties);
 
 		_.forEach(Game[type], function(properties, id) {
 
