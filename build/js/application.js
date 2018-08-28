@@ -8,12 +8,14 @@ import event from './events/empire';
 import managers from './managers/manager';
 import factories from './factories/factory';
 import objects from './objects/object';
+import units from './units/unit';
 import resources from './resources/resource';
 
 Empire.configuration = require('./configuration');
 Empire.manager = managers;
 Empire.factory = factories;
 Empire.object = objects;
+Empire.units = units;
 Empire.resource = resources;
 
 Game = require('./game');

@@ -33,5 +33,27 @@ module.exports = {
 			qcn: 'building.storeRoom',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
 		}
+	},
+	units: {
+		'802afac4-2288-450f-b46e-778bf5e6af63': {
+			id: '802afac4-2288-450f-b46e-778bf5e6af63',
+			qcn: 'unit.worker',
+			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
+		},
+		'7f10de8d-b44f-44b2-83c7-28bb333c61e2': {
+			id:     '7f10de8d-b44f-44b2-83c7-28bb333c61e2',
+			qcn:    'unit.worker',
+			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
+		},
+		'b952cc95-4bbe-431e-b852-183995bd9734': {
+			id:     'b952cc95-4bbe-431e-b852-183995bd9734',
+			qcn:    'unit.worker',
+			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
+		},
+		'c1b94f80-87b9-421d-a76a-07ac14cf6983': {
+			id:     'c1b94f80-87b9-421d-a76a-07ac14cf6983',
+			qcn:    'unit.worker',
+			parent: '0363dec2-e331-4e64-9b06-dce06941095c'
+		}
 	}
 };
