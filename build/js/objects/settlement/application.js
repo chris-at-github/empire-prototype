@@ -118,4 +118,37 @@ ApplicationSettlement.prototype.getAvailableBuildingSite = function() {
 	return this.buildingSite - occupied;
 };
 
+/**
+ * Der Siedlung zugeordnete Einheiten
+ *
+ * @return {object}
+ */
+ApplicationSettlement.prototype.getUnits = function() {
+	let settlement = this;
+	let units = {};
+
+	// Vorfilterung
+	// @todo: Caching
+	_.forEach(_.filter(Game.units, function(unit) {
+		if(unit.parent === settlement.id) {
+			return unit;
+		}
+
+		// Objekterstellung
+	}), function(unit) {
+		units[unit.id] = Empire.factory.unit.create(unit.qcn);
+	});
+
+	return units;
+};
+
+/**
+ * Anzahl der zugeordneten Einheiten
+ *
+ * @return {object}
+ */
+ApplicationSettlement.prototype.getUnitCount = function() {
+	return _.size(this.getUnits());
+};
+
 export default ApplicationSettlement;

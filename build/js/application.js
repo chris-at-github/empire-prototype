@@ -15,7 +15,7 @@ Empire.configuration = require('./configuration');
 Empire.manager = managers;
 Empire.factory = factories;
 Empire.object = objects;
-Empire.units = units;
+Empire.unit = units;
 Empire.resource = resources;
 
 Game = require('./game');

@@ -156,7 +156,7 @@
 			},
 
 			unitCount: function() {
-				return 4;
+				return this.object.getUnitCount();
 			},
 
 			unitCapacity: function() {
