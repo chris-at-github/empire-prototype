@@ -19,6 +19,13 @@ let ApplicationSettlement = function() {
 	this.storageCapacity = 0.0;
 
 	/**
+	 * Einheitenkapazitaet
+	 *
+	 * @type {float}
+	 */
+	this.unitCapacity = 0;
+
+	/**
 	 * maximale Bauplaetze
 	 *
 	 * @type {int}
@@ -72,6 +79,15 @@ ApplicationSettlement.prototype.setId = function(id) {
  */
 ApplicationSettlement.prototype.getStorageCapacity = function() {
 	return this.storageCapacity;
+};
+
+/**
+ * Berechnet die verfuegbare Einheitenkapazitaet fuer diese Siedlung
+ *
+ * @return {int}
+ */
+ApplicationSettlement.prototype.getUnitCapacity = function() {
+	return this.unitCapacity;
 };
 
 /**

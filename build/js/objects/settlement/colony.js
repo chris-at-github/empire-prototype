@@ -64,7 +64,7 @@ ColonySettlement.prototype.getStorageCapacity = function() {
 
 	// Berechnung der Lagerkapazitaeten durch die Gebaeude, wenn diese die Methode getStorageCapacity zur
 	// Verfuegung stellen
-	_.forEach(this.getBuildings(), function(building, id) {
+	_.forEach(this.getBuildings(), function(building) {
 		if(typeof(building['getStorageCapacity']) === 'function') {
 			storageCapacity += building.getStorageCapacity();
 		}
@@ -72,6 +72,26 @@ ColonySettlement.prototype.getStorageCapacity = function() {
 
 	return storageCapacity;
 };
+
+/**
+ * Berechnet die verfuegbare Einheitenkapazitaet fuer diese Siedlung
+ *
+ * @return {int}
+ */
+ApplicationSettlement.prototype.getUnitCapacity = function() {
+	let unitCapacity = 0;
+
+		// Berechnung der Einheitenkapazitaeten durch die Gebaeude, wenn diese die Methode getUnitCapacity zur
+	// Verfuegung stellen
+	_.forEach(this.getBuildings(), function(building) {
+		if(typeof(building['getUnitCapacity']) === 'function') {
+			unitCapacity += building.getUnitCapacity();
+		}
+	});
+
+	return unitCapacity;
+};
+
 
 /**
  * fuegt die Gebaeude (Eingang), die direkt nach der Erstellung vorhanden sein sollen hinzu
