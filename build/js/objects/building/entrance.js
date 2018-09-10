@@ -33,10 +33,19 @@ Entrance.prototype.intialize = function() {
 /**
  * Lagerkapazitaet, die dieses Gebaeude zur Verfuegng stellt
  *
- * @return {float}
+ * @return {number}
  */
 Entrance.prototype.getStorageCapacity = function() {
 	return 10;
+};
+
+/**
+ * Einheitenkapazitaet, die dieses Gebaeude zur Verfuegng stellt
+ *
+ * @return {number}
+ */
+Entrance.prototype.getUnitCapacity = function() {
+	return 5;
 };
 
 export default Entrance;
