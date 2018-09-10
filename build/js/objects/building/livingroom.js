@@ -37,4 +37,13 @@ LivingRoom.prototype.intialize = function() {
 	this.addDependency(new SettlementBuildingSiteDependency(1));
 };
 
+/**
+ * Einheitenkapazitaet, die dieses Gebaeude zur Verfuegng stellt
+ *
+ * @return {number}
+ */
+LivingRoom.prototype.getUnitCapacity = function() {
+	return 12;
+};
+
 export default LivingRoom;
