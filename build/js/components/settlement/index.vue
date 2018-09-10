@@ -162,7 +162,7 @@
 			unitCapacity: function() {
 				return {
 					total: this.object.getUnitCapacity(),
-					available: 4
+					available: this.object.getAvailableUnits()
 				}
 			}
 		},

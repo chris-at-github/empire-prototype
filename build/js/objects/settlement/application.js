@@ -167,4 +167,15 @@ ApplicationSettlement.prototype.getUnitCount = function() {
 	return _.size(this.getUnits());
 };
 
+/**
+ * Berechnet die verfuegbaren Einwohner / Arbeiter
+ *
+ * @return {int}
+ */
+ApplicationSettlement.prototype.getAvailableUnits = function() {
+	let occupied = 0;
+
+	return this.getUnitCount() - occupied;
+};
+
 export default ApplicationSettlement;
