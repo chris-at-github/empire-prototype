@@ -14,14 +14,14 @@ let ApplicationSettlement = function() {
 	/**
 	 * maximale Lagermenge
 	 *
-	 * @type {float}
+	 * @type {number}
 	 */
 	this.storageCapacity = 0.0;
 
 	/**
 	 * Einheitenkapazitaet
 	 *
-	 * @type {float}
+	 * @type {int}
 	 */
 	this.unitCapacity = 0;
 
@@ -31,6 +31,13 @@ let ApplicationSettlement = function() {
 	 * @type {int}
 	 */
 	this.buildingSite = 0;
+
+	/**
+	 * prozentualer Einheitenzuwachs
+	 *
+	 * @type {number}
+	 */
+	this.unitIncreamentRate = 0.25;
 };
 
 // Konstanten Definition
@@ -176,6 +183,15 @@ ApplicationSettlement.prototype.getAvailableUnits = function() {
 	let occupied = 0;
 
 	return this.getUnitCount() - occupied;
+};
+
+/**
+ * Berechnet den prozentualen Einheitenzuwachs
+ *
+ * @return {number}
+ */
+ApplicationSettlement.prototype.getUnitIncreamentRate = function() {
+	return this.unitIncreamentRate;
 };
 
 export default ApplicationSettlement;

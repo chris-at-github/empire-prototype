@@ -66,6 +66,11 @@
 						<div class="property--title">Kapazität:</div>
 						<div class="property--value">gesamt: {{unitCapacity.total}} / verfügbar: {{unitCapacity.available}}</div>
 					</div>
+
+					<div class="property">
+						<div class="property--title">Zuwachs:</div>
+						<div class="property--value">pro Runde: {{unitIncreament.rate}} / aktuell: {{unitIncreament.status}}</div>
+					</div>
 				</div>
 			</fieldset>
 		</div>
@@ -163,6 +168,13 @@
 				return {
 					total: this.object.getUnitCapacity(),
 					available: this.object.getAvailableUnits()
+				}
+			},
+
+			unitIncreament: function() {
+				return {
+					rate: this.object.getUnitIncreamentRate(),
+					status: this.properties.unitIncreamentStatus
 				}
 			}
 		},

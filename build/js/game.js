@@ -14,7 +14,8 @@ module.exports = {
 				'resource.stone': 5,
 				'resource.wood': 5,
 				'resource.food': 5
-			}
+			},
+			unitIncreamentStatus: 0.5
 		}
 	},
 	buildings: {

@@ -18,7 +18,7 @@ let ColonySettlement = function() {
 	this.resources = new ResourceCollection();
 
 	// Definition von Eigenschaften ueberschreiben
-	this.properties = ['id', 'name', 'resources'];
+	this.properties = ['id', 'name', 'resources', 'unitIncreamentStatus'];
 
 	// freie Bauplaetze
 	this.buildingSite = 16;
@@ -45,6 +45,7 @@ ColonySettlement.prototype.intialize = function() {
 	this.listen(this.EVENT_AFTER_IDENTIFICATION, this.setResourceCollectionMaxValue);
 
 	this.listen(Empire.manager.turn.EVENT_BEFORE_TURN, this.addResourcesBeforeTurn);
+	this.listen(Empire.manager.turn.EVENT_BEFORE_TURN, this.increaseUnitBeforeTurn);
 };
 
 /**
@@ -125,10 +126,35 @@ ColonySettlement.prototype.fillInitalResources = function() {
 };
 
 /**
+ * Erhoeht die Einheitenzahl bevor eine neue Runde gestartet wird
+ */
+ColonySettlement.prototype.increaseUnitBeforeTurn = function() {
+
+	// nicht ueber das Limit hinaus erhoehen
+	if(this.getUnitCount() >= this.getUnitCapacity()) {
+		this.unitIncreamentStatus = 0.0;
+		return false;
+	}
+
+	// Einheitenzuwachs um Rate erhoehen
+	this.unitIncreamentStatus += this.getUnitIncreamentRate();
+
+	if(this.unitIncreamentStatus >= 1) {
+		for(let x = 0; x < this.unitIncreamentStatus; x++) {
+
+			console.log(x);
+
+			// Nach Erstellung Zuwachs wieder minimieren
+			this.unitIncreamentStatus -= 1;
+		}
+	}
+};
+
+/**
  * TEST
  */
 ColonySettlement.prototype.addResourcesBeforeTurn = function() {
-	let water = new ResourceValue('resource.water', 10);
+	let water = new ResourceValue('resource.water', 1);
 
 	this.resources.addResourceValue(water);
 };
