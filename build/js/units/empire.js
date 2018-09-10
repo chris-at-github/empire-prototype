@@ -15,6 +15,10 @@ let EmpireUnit = function() {
 	this._initialize();
 };
 
+// Konstanten Definition
+EmpireUnit.prototype.EVENT_BEFORE_CREATE = 'beforeCreate';
+EmpireUnit.prototype.EVENT_AFTER_CREATE = 'afterCreate';
+
 // Einbindung Mixins
 Object.assign(EmpireUnit.prototype, SerializableMixin);
 Object.assign(EmpireUnit.prototype, EventMixin);
@@ -25,6 +29,25 @@ Object.assign(EmpireUnit.prototype, EventMixin);
  * @return {void}
  */
 EmpireUnit.prototype._initialize = function() {
+};
+
+/**
+ * Wird VOR dem Einfuegen des Objekts durchgefuehrt
+ *
+ * @return {boolean}
+ */
+EmpireUnit.prototype.beforeCreate = function() {
+	this.fire(this.EVENT_BEFORE_CREATE);
+	return true;
+};
+
+/**
+ * Wird NACH dem Einfuegen des Objekts durchgefuehrt
+ *
+ * @return {void}
+ */
+EmpireUnit.prototype.afterCreate = function() {
+	this.fire(this.EVENT_AFTER_CREATE);
 };
 
 /**

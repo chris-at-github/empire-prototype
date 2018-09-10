@@ -1,6 +1,6 @@
 'use strict';
 
-import EmpireUnit from 'units/empire';
+import EmpireUnit from './empire';
 
 let WorkerUnit = function() {
 	EmpireUnit.call(this);

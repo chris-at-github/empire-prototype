@@ -2,6 +2,7 @@
 
 import ApplicationSettlement from './application';
 import BuildingObjectStore from 'managers/storage/building';
+import UnitStore from 'managers/storage/unit';
 import ResourceCollection from 'resources/collection';
 import ResourceValue from 'resources/value';
 
@@ -142,7 +143,13 @@ ColonySettlement.prototype.increaseUnitBeforeTurn = function() {
 	if(this.unitIncreamentStatus >= 1) {
 		for(let x = 0; x < this.unitIncreamentStatus; x++) {
 
-			console.log(x);
+			// neuen Arbeiter erstellen und der Siedlung zuordnen
+			let unitStore = new UnitStore();
+			let unit = Empire.factory.unit.create('unit.worker');
+					unit.parent = this.id;
+
+			unitStore.store(unit);
+			// console.log(unitStore);
 
 			// Nach Erstellung Zuwachs wieder minimieren
 			this.unitIncreamentStatus -= 1;
