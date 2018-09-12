@@ -7,7 +7,7 @@ import DependencyMixin from 'mixins/object/dependency';
 let ApplicationObject = function() {
 
 	// Definition von Eigenschaften ueberschreiben
-	this.properties = ['id', 'name', 'parent'];
+	this.properties = ['id', 'name', 'parent', 'status'];
 	this.name = null;
 
 	// Zuruecksetzen der Abhaengigkeiten | Event-Listener -> ueber das Mixin ist es sonst eine globale Variable
@@ -18,7 +18,13 @@ let ApplicationObject = function() {
 };
 
 // Konstanten Definition
+// Events
 ApplicationObject.prototype.EVENT_AFTER_CREATE = 'afterCreate';
+
+// Status
+ApplicationObject.prototype.CONSTRUCTION_STATE_PLANNED = 10;
+ApplicationObject.prototype.CONSTRUCTION_STATE_UNDER_CONSTRUCTION = 20;
+ApplicationObject.prototype.CONSTRUCTION_STATE_CREATED = 30;
 
 // Einbindung Mixins
 Object.assign(ApplicationObject.prototype, SerializableMixin);
