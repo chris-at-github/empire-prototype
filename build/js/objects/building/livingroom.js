@@ -10,6 +10,7 @@ let LivingRoom = function() {
 
 	this.qcn = 'building.livingRoom';
 	this.name = 'Wohnraum';
+	this.constructionPoints = 700;
 
 	this.intialize();
 };

@@ -7,7 +7,7 @@ import DependencyMixin from 'mixins/object/dependency';
 let ApplicationObject = function() {
 
 	// Definition von Eigenschaften ueberschreiben
-	this.properties = ['id', 'name', 'parent', 'status'];
+	this.properties = ['id', 'name', 'parent', 'constructionState', 'constructionPoints'];
 	this.name = null;
 
 	// Zuruecksetzen der Abhaengigkeiten | Event-Listener -> ueber das Mixin ist es sonst eine globale Variable
