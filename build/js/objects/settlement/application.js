@@ -170,7 +170,7 @@ ApplicationSettlement.prototype.getUnits = function() {
  *
  * @return {object}
  */
-ApplicationSettlement.prototype.getUnitCount = function() {
+ApplicationSettlement.prototype.countUnits = function() {
 	return _.size(this.getUnits());
 };
 
@@ -182,7 +182,7 @@ ApplicationSettlement.prototype.getUnitCount = function() {
 ApplicationSettlement.prototype.getAvailableUnits = function() {
 	let occupied = 0;
 
-	return this.getUnitCount() - occupied;
+	return this.countUnits() - occupied;
 };
 
 /**
