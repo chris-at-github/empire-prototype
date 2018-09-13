@@ -2,6 +2,8 @@
 window.Vue = require('vue');
 window._ = require('lodash');
 
+require('filter');
+
 
 // Empire environment
 import event from './events/empire';
