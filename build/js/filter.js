@@ -20,7 +20,6 @@ Vue.filter('percentage', function(value, decimals) {
   return value;
 });
 
-
 /**
  * Vue filter to round the decimal to the given place.
  * http://jsfiddle.net/bryan_k/3ova17y9/
@@ -39,4 +38,15 @@ Vue.filter('round', function(value, decimals) {
 
   value = Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
   return value;
+});
+
+
+/**
+ * Vue filter zur Berechnung der Anzahl von Elementen in Arrays oder Objekten
+ * http://jsfiddle.net/bryan_k/3ova17y9/
+ *
+ * @param {object} value
+ */
+Vue.filter('size', function(value) {
+	return _.size(value);
 });

@@ -30,7 +30,8 @@ module.exports = {
 			qcn: 'building.livingRoom',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c',
 			constructionState: 20,
-			constructionPointsCreated: 200
+			constructionPointsCreated: 200,
+			units: ['802afac4-2288-450f-b46e-778bf5e6af63']
 		},
 		'1f60519b-adea-4c2f-b780-f81c6e5b68ad': {
 			id: '1f60519b-adea-4c2f-b780-f81c6e5b68ad',

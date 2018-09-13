@@ -11,6 +11,11 @@
 						<div class="property--title">Baupunkte:</div>
 						<div class="property--value">{{properties.constructionPointsCreated}} / {{object.constructionPoints}} ({{constructionProgress | round(2)}}%)</div>
 					</div>
+
+					<div class="property">
+						<div class="property--title">Arbeiter:</div>
+						<div class="property--value">{{properties.units | size}}</div>
+					</div>
 				</div>
 			</div>
 		</div>
