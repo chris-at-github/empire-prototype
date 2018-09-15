@@ -182,6 +182,8 @@ ApplicationSettlement.prototype.countUnits = function() {
 ApplicationSettlement.prototype.getAvailableUnits = function() {
 	let occupied = 0;
 
+	this.getBuildingUnits();
+
 	return this.countUnits() - occupied;
 };
 
@@ -192,6 +194,15 @@ ApplicationSettlement.prototype.getAvailableUnits = function() {
  */
 ApplicationSettlement.prototype.getUnitIncreamentRate = function() {
 	return this.unitIncreamentRate;
+};
+
+/**
+ * Liefert eine Liste (IDs) von Einheiten, die Gebaueden zugeordnet sind
+ *
+ * @return {array}
+ */
+ApplicationSettlement.prototype.getBuildingUnits = function() {
+	console.log(Empire.manager.finder.building.find());
 };
 
 export default ApplicationSettlement;
