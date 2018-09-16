@@ -132,7 +132,7 @@ ColonySettlement.prototype.fillInitalResources = function() {
 ColonySettlement.prototype.increaseUnitBeforeTurn = function() {
 
 	// nicht ueber das Limit hinaus erhoehen
-	if(this.getUnitCount() >= this.getUnitCapacity()) {
+	if(this.countUnits() >= this.getUnitCapacity()) {
 		this.unitIncreamentStatus = 0.0;
 		return false;
 	}
