@@ -182,7 +182,7 @@ ApplicationSettlement.prototype.countUnits = function() {
 ApplicationSettlement.prototype.getAvailableUnits = function() {
 	let occupied = 0;
 
-	this.getBuildingUnits();
+	this.getBuildingUnitKeys();
 
 	return this.countUnits() - occupied;
 };
@@ -201,10 +201,18 @@ ApplicationSettlement.prototype.getUnitIncreamentRate = function() {
  *
  * @return {array}
  */
-ApplicationSettlement.prototype.getBuildingUnits = function() {
-	let buildings = Empire.manager.object.find({
+ApplicationSettlement.prototype.getBuildingUnitKeys = function() {
+	let units = [];
+
+	_.forEach(Empire.manager.object.find({
 		settlement: this.id
-	}, Empire.manager.object.TYPE_BUILDING, Empire.manager.object.RETURN_TYPE_KEYS);
+	}, Empire.manager.object.TYPE_BUILDING, Empire.manager.object.RETURN_TYPE_JSON), function(building) {
+		if(_.isEmpty(building.units) === false) {
+			units = _.merge(units, building.units);
+		}
+	});
+
+	return units;
 };
 
 export default ApplicationSettlement;
