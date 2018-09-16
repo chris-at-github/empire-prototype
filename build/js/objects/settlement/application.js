@@ -202,7 +202,7 @@ ApplicationSettlement.prototype.getUnitIncreamentRate = function() {
  * @return {array}
  */
 ApplicationSettlement.prototype.getBuildingUnits = function() {
-	console.log(Empire.manager.finder.building.find());
+	console.log(Empire.manager.object.find());
 };
 
 export default ApplicationSettlement;

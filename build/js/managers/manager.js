@@ -3,17 +3,13 @@
 import ScreenManager from './screen';
 import ActivateManager from './activate';
 import TurnManager from './turn';
-
-import BuildingFinder from './finder/building';
+import ObjectManager from './object';
 
 let managers = {
 	screen:   new ScreenManager(),
 	activate: new ActivateManager(),
 	turn: new TurnManager(),
-
-	finder: {
-		building: new BuildingFinder()
-	}
+	object: new ObjectManager()
 };
 
 export default managers;
