@@ -182,6 +182,10 @@ ApplicationSettlement.prototype.countUnits = function() {
 ApplicationSettlement.prototype.getAvailableUnits = function() {
 	let occupied = 0;
 
+	console.log(Empire.manager.unit.find({
+		settlement: this.id
+	}, Empire.manager.unit.RETURN_TYPE_KEYS));
+
 	this.getBuildingUnitKeys();
 
 	return this.countUnits() - occupied;
