@@ -202,7 +202,9 @@ ApplicationSettlement.prototype.getUnitIncreamentRate = function() {
  * @return {array}
  */
 ApplicationSettlement.prototype.getBuildingUnits = function() {
-	console.log(Empire.manager.object.find());
+	let buildings = Empire.manager.object.find({
+		settlement: this.id
+	}, Empire.manager.object.TYPE_BUILDING, Empire.manager.object.RETURN_TYPE_KEYS);
 };
 
 export default ApplicationSettlement;
