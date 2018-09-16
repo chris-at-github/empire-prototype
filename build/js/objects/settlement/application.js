@@ -177,18 +177,21 @@ ApplicationSettlement.prototype.countUnits = function() {
 /**
  * Berechnet die verfuegbaren Einwohner / Arbeiter
  *
- * @return {int}
+ * @return {object}
  */
 ApplicationSettlement.prototype.getAvailableUnits = function() {
-	let occupied = 0;
 
-	console.log(Empire.manager.unit.find({
+	// Einheiten sammeln, die dieser Siedlung zugeordnet sind
+	let units = Empire.manager.unit.find({
 		settlement: this.id
-	}, Empire.manager.unit.RETURN_TYPE_KEYS));
+	}, Empire.manager.unit.RETURN_TYPE_JSON);
 
-	this.getBuildingUnitKeys();
+	// Einheiten abziehen, die bereits Gebaeuden zugeordnet sind
+	_.forEach(this.getBuildingUnitKeys(), function(id) {
+		delete units[id];
+	});
 
-	return this.countUnits() - occupied;
+	return units;
 };
 
 /**

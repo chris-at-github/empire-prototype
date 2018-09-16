@@ -167,7 +167,7 @@
 			unitCapacity: function() {
 				return {
 					total: this.object.getUnitCapacity(),
-					available: this.object.getAvailableUnits()
+					available: _.size(this.object.getAvailableUnits())
 				}
 			},
 
