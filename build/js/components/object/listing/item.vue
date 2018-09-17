@@ -4,9 +4,8 @@
 
 		<div class="card--body">
 			<div class="card--body-item" v-if="isUnderConstruction">
-				<div>Im Bau</div>
-
 				<div class="properties">
+					<div class="properties--title">Im Bau</div>
 					<div class="property">
 						<div class="property--title">Baupunkte:</div>
 						<div class="property--value">{{properties.constructionPointsCreated}} / {{object.constructionPoints}} ({{constructionProgress | round(2)}}%)</div>
@@ -16,6 +15,12 @@
 						<div class="property--title">Arbeiter:</div>
 						<div class="property--value">{{properties.units | size}}</div>
 					</div>
+				</div>
+
+				<div class="object--actions">
+					<ul>
+						<li><button class="button">Errichten</button></li>
+					</ul>
 				</div>
 			</div>
 		</div>

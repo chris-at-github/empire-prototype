@@ -59,7 +59,7 @@ ColonySettlement.prototype.setResourceCollectionMaxValue = function() {
 /**
  * Berechnet den verfuegbaren Lagerplatz fuer Rohstoffe
  *
- * @return {float}
+ * @return {number}
  */
 ColonySettlement.prototype.getStorageCapacity = function() {
 	let storageCapacity = 0.0;
@@ -83,7 +83,7 @@ ColonySettlement.prototype.getStorageCapacity = function() {
 ApplicationSettlement.prototype.getUnitCapacity = function() {
 	let unitCapacity = 0;
 
-		// Berechnung der Einheitenkapazitaeten durch die Gebaeude, wenn diese die Methode getUnitCapacity zur
+	// Berechnung der Einheitenkapazitaeten durch die Gebaeude, wenn diese die Methode getUnitCapacity zur
 	// Verfuegung stellen
 	_.forEach(this.getBuildings(), function(building) {
 		if(typeof(building['getUnitCapacity']) === 'function') {
@@ -107,7 +107,6 @@ ColonySettlement.prototype.createInitalBuilding = function() {
 	});
 
 	objectStorage.store(entrance);
-	
 };
 
 /**

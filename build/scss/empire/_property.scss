@@ -13,3 +13,15 @@
 		font-weight: 700;
 	}
 }
+
+.properties {
+	.properties--title {
+		& {
+			font-weight: 700;
+		}
+
+		& + .property {
+			margin-top: 10px;
+		}
+	}
+}
