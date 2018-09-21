@@ -33,7 +33,7 @@ WorkerUnit.prototype.intialize = function() {
  * @return {number}
  */
 WorkerUnit.prototype.getConstructionRate = function() {
-	return 1;
+	return 0.5;
 };
 
 export default WorkerUnit;

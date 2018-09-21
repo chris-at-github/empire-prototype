@@ -95,6 +95,7 @@ let Building = {
 
 			// Arbeiter durchlaufen und Actions Points abfragen
 			// IF Actions Points > 0 -> Construction Points =- AP * Construction Rate
+			// @todo: this.constructionState !== this.CONSTRUCTION_STATE_UNDER_CONSTRUCTION hier verwenden
 			if(unit.getActionPoints() !== 0) {
 				let unitConstructionPoints = unit.getActionPoints() * unit.getConstructionRate();
 
@@ -109,13 +110,20 @@ let Building = {
 
 				} else {
 
+					// AP der Einheit (anteilig) abziehen
+					// Wichtig vor dem Baufortschritt die Berechnung durchfuehren -> sonst kommt hier 0 raus
+					unit.setActionPoints(unit.getActionPoints() - ((building.constructionPoints - building.constructionPointsCreated) / unit.getConstructionRate()));
+
+					// Fortschritt verarbeiten
+					building.constructionPointsCreated = building.constructionPoints;
 				}
 
 				// AP der Einheit speichern
 				unitStorage.store(unit);
 			}
 
-			console.log(building);
+			// @todo: Wenn building.constructionPoints == building.constructionPointsCreated -> State aendern
+			// @todo: Eigenschaft constructionPointsCreated entfernen
 		});
 
 		return true;
