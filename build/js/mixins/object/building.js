@@ -2,7 +2,7 @@
 
 import SettlementResourceDependency from "dependencies/settlementresource";
 import SettlementStorageManager from 'managers/storage/settlement';
-import ApplicationObject from "../../objects/application";
+import UnitStorageManager from 'managers/storage/unit';
 
 let Building = {
 
@@ -88,6 +88,7 @@ let Building = {
 		}
 
 		let building = this;
+		let unitStorage = new UnitStorageManager();
 
 		// Arbeiter laden (Objekte -> getUnits())
 		_.forEach(this.getUnits(), function(unit) {
@@ -97,14 +98,24 @@ let Building = {
 			if(unit.getActionPoints() !== 0) {
 				let unitConstructionPoints = unit.getActionPoints() * unit.getConstructionRate();
 
-				console.log(unitConstructionPoints);
+				// Wenn durch die AP der Einheit das Gebaeude noch nicht fertiggestellt wird
+				if(building.constructionPoints >= (unitConstructionPoints + building.constructionPointsCreated)) {
+
+					// Fortschritt verarbeiten
+					building.constructionPointsCreated += unitConstructionPoints;
+
+					// AP der Einheit abziehen
+					unit.setActionPoints(0);
+
+				} else {
+
+				}
+
+				// AP der Einheit speichern
+				unitStorage.store(unit);
 			}
 
-			// console.log(unit.getActionPoints(), unit.getConstructionRate());
-
-
-
-
+			console.log(building);
 		});
 
 		return true;

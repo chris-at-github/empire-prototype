@@ -68,4 +68,15 @@ EmpireUnit.prototype.getActionPoints = function() {
 	return this.actionPoints;
 };
 
+/**
+ * Setzt die verfuegbaren AP der Einheit
+ *
+ * @param {int} actionPoints
+ * @return {object} unit
+ */
+EmpireUnit.prototype.setActionPoints = function(actionPoints) {
+	this.actionPoints = actionPoints;
+	return this;
+};
+
 export default EmpireUnit;

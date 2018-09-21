@@ -28,6 +28,8 @@
 </template>
 
 <script>
+	import BuildingStore from 'managers/storage/building';
+
 	export default {
 		data: function() {
 			return {};
@@ -60,6 +62,9 @@
 		methods: {
 			construct: function() {
 				this.object.construct();
+
+				let manager = new BuildingStore();
+						manager.store(this.object);
 			}
 		}
 	}
