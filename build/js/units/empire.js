@@ -59,4 +59,13 @@ EmpireUnit.prototype.setId = function(id) {
 	this.id = id;
 };
 
+/**
+ * Liefert die verfuegbaren AP der Einheit
+ *
+ * @return {int}
+ */
+EmpireUnit.prototype.getActionPoints = function() {
+	return this.actionPoints;
+};
+
 export default EmpireUnit;

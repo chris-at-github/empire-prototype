@@ -27,4 +27,13 @@ WorkerUnit.prototype = Object.create(EmpireUnit.prototype);
 WorkerUnit.prototype.intialize = function() {
 };
 
+/**
+ * Liefert die Erstellungsrate (= Faktor Construction Points zu Action Points)
+ *
+ * @return {number}
+ */
+WorkerUnit.prototype.getConstructionRate = function() {
+	return 1;
+};
+
 export default WorkerUnit;

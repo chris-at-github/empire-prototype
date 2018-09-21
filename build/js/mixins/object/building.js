@@ -2,8 +2,23 @@
 
 import SettlementResourceDependency from "dependencies/settlementresource";
 import SettlementStorageManager from 'managers/storage/settlement';
+import ApplicationObject from "../../objects/application";
 
 let Building = {
+
+	/**
+	 * Initializierung des Gebauede Objektes
+	 *
+	 * @return {void}
+	 */
+	initializeBuilding: function() {
+
+		// Einheiten (units) als Eigenschaft registieren
+		this.addProperty('units');
+
+		// Rohstoffverbrauch nach Erstellungsauftrag verarbeiten
+		this.listen(this.EVENT_AFTER_CREATE, this.processDependencyResources);
+	},
 
 	/**
 	 * liefert das aktive Settlement Objekt zurueck
@@ -25,6 +40,26 @@ let Building = {
 	},
 
 	/**
+	 * liefert die Arbeiter, die dem Gebaeude zugeordnet sind zurueck
+	 *
+	 * @return {object}
+	 */
+	getUnits: function() {
+		let units = {};
+
+		_.forEach(this.units, function(id) {
+			if(_.isUndefined(Game.units[id]) === false) {
+				let data = Game.units[id];
+
+				units[id] = Empire.factory.unit.create(data.qcn);
+				units[id].fill(data);
+			}
+		});
+
+		return units;
+	},
+
+	/**
 	 * Verarbeitet nach Erstellung die abhaengigen Resourcen
 	 *
 	 * @return {void}
@@ -40,6 +75,39 @@ let Building = {
 		});
 
 		manager.store(settlement);
+	},
+
+	/**
+	 * Erstellt ein Objekt
+	 *
+	 * @return {boolean}
+	 */
+	construct: function() {
+		if(this.constructionState !== this.CONSTRUCTION_STATE_UNDER_CONSTRUCTION) {
+			return false;
+		}
+
+		let building = this;
+
+		// Arbeiter laden (Objekte -> getUnits())
+		_.forEach(this.getUnits(), function(unit) {
+
+			// Arbeiter durchlaufen und Actions Points abfragen
+			// IF Actions Points > 0 -> Construction Points =- AP * Construction Rate
+			if(unit.getActionPoints() !== 0) {
+				let unitConstructionPoints = unit.getActionPoints() * unit.getConstructionRate();
+
+				console.log(unitConstructionPoints);
+			}
+
+			// console.log(unit.getActionPoints(), unit.getConstructionRate());
+
+
+
+
+		});
+
+		return true;
 	}
 };
 

@@ -19,7 +19,7 @@
 
 				<div class="object--actions">
 					<ul>
-						<li><button class="button">Errichten</button></li>
+						<li><button class="button" v-on:click="construct">Errichten</button></li>
 					</ul>
 				</div>
 			</div>
@@ -54,6 +54,12 @@
 			// @see: https://www.blitzrechner.de/prozent/#prozentsatz
 			constructionProgress: function() {
 				return (this.properties.constructionPointsCreated / this.object.constructionPoints) * 100;
+			}
+		},
+
+		methods: {
+			construct: function() {
+				this.object.construct();
 			}
 		}
 	}

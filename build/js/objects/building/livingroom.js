@@ -13,6 +13,7 @@ let LivingRoom = function() {
 	this.constructionPoints = 700;
 
 	this.intialize();
+	this.initializeBuilding();
 };
 
 /**
@@ -31,8 +32,6 @@ Object.assign(LivingRoom.prototype, BuildingMixin);
  * @return {void}
  */
 LivingRoom.prototype.intialize = function() {
-	this.listen(this.EVENT_AFTER_CREATE, this.processDependencyResources);
-
 	this.addDependency(new SettlementResourceDependency('resource.stone', 3));
 	this.addDependency(new SettlementResourceDependency('resource.wood', 3));
 	this.addDependency(new SettlementBuildingSiteDependency(1));

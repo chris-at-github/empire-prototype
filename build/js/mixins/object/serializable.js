@@ -2,7 +2,19 @@
 
 let Serializable = {
 
-	properties: [],	
+	properties: [],
+
+	/**
+	 * Fuegt einen neuen Eintrag zu den Eigenschaften hinzu
+	 *
+	 * @param {string} property
+	 * @return {object} Serializable
+	 */
+	addProperty: function(property) {
+		this.properties.push(property);
+
+		return this;
+	},
 
 	/**
 	 * fuellt ein Objekt mit den unter this.properties definierten Eigenschaften
@@ -11,21 +23,21 @@ let Serializable = {
 	 * @return {void}
 	 */
 	fill: function(properties) {
-		let settlement = this;
+		let object = this;
 
 		_.forEach(properties, function(property, key) {
-			if(_.includes(settlement.properties, key) === true) {
+			if(_.includes(object.properties, key) === true) {
 				let method = 'set' + _.capitalize(_.camelCase(key));
 
 				// gibt es eine eigene Setter-Methode, soll diese verwendet werden
-				if(typeof(settlement[method]) === 'function') {
-					settlement[method](property);
+				if(typeof(object[method]) === 'function') {
+					object[method](property);
 
-				} else if(typeof(settlement[key]) === 'object' && typeof(settlement[key].fill) === 'function') {
-					settlement[key].fill(property);
+				} else if(typeof(object[key]) === 'object' && typeof(object[key].fill) === 'function') {
+					object[key].fill(property);
 
 				} else {
-					settlement[key] = property;
+					object[key] = property;
 				}
 			}
 		});
@@ -37,26 +49,26 @@ let Serializable = {
 	 * @return {object}
 	 */
 	toJson: function() {
-		let settlement = this;
+		let object = this;
 		let json = {};
 
 		// falls Qcn vorhanden, immer mit exportieren -> auch wenn nicht in den Properties definiert
-		if(_.isUndefined(settlement.qcn) === false) {
-			json.qcn = settlement.qcn;
+		if(_.isUndefined(object.qcn) === false) {
+			json.qcn = object.qcn;
 		}
 
 		_.forEach(this.properties, function(property) {
 			let method = 'get' + _.capitalize(_.camelCase(property));
 
 			// gibt es eine eigene Setter-Methode, soll diese verwendet werden
-			if(typeof(settlement[method]) === 'function') {
-				json[property] = settlement[method]();
+			if(typeof(object[method]) === 'function') {
+				json[property] = object[method]();
 
-			} else if(typeof(settlement[property]) === 'object' && typeof(settlement[property].toJson) === 'function') {
-				json[property] = settlement[property].toJson();
+			} else if(typeof(object[property]) === 'object' && typeof(object[property].toJson) === 'function') {
+				json[property] = object[property].toJson();
 
 			} else {
-				json[property] = settlement[property];
+				json[property] = object[property];
 			}
 		});
 

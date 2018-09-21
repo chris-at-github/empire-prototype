@@ -42,11 +42,10 @@ ApplicationObject.prototype._initialize = function() {
 /**
  * Wird VOR dem Einfuegen des Objekts durchgefuehrt
  *
- * @return {boolean}
+ * @return {void}
  */
 ApplicationObject.prototype.beforeCreate = function() {
 	this.fire(this.EVENT_BEFORE_CREATE);
-	return true;
 };
 
 /**
@@ -72,7 +71,7 @@ ApplicationObject.prototype.setId = function(id) {
  *
  * @return string
  */
-ApplicationObject.prototype.getName = function(object) {
+ApplicationObject.prototype.getName = function() {
 	return this.name;
 };
 
