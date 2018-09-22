@@ -23,22 +23,21 @@ module.exports = {
 			id: 'c999ae6b-d5cc-46fb-91c3-dccf2860f56d',
 			qcn: 'building.entrance',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c',
-			constructionState: 10
+			constructionState: 'object.constructionState.created'
 		},
 		'2c872351-e7b6-4998-aaf1-ac1c9513d9a6': {
 			id: '2c872351-e7b6-4998-aaf1-ac1c9513d9a6',
 			qcn: 'building.livingRoom',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c',
-			constructionState: 20,
+			constructionState: 'object.constructionState.underConstruction',
 			constructionPointsCreated: 650,
 			units: ['802afac4-2288-450f-b46e-778bf5e6af63']
-
 		},
 		'1f60519b-adea-4c2f-b780-f81c6e5b68ad': {
 			id: '1f60519b-adea-4c2f-b780-f81c6e5b68ad',
 			qcn: 'building.storeRoom',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c',
-			constructionState: 10
+			constructionState: 'object.constructionState.created'
 		}
 	},
 	units: {
@@ -46,7 +45,7 @@ module.exports = {
 			id: '802afac4-2288-450f-b46e-778bf5e6af63',
 			qcn: 'unit.worker',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c',
-			actionPoints: 200
+			actionPoints: 100
 		},
 		'7f10de8d-b44f-44b2-83c7-28bb333c61e2': {
 			id:     '7f10de8d-b44f-44b2-83c7-28bb333c61e2',

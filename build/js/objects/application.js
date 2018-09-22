@@ -22,9 +22,9 @@ let ApplicationObject = function() {
 ApplicationObject.prototype.EVENT_AFTER_CREATE = 'afterCreate';
 
 // Status
-ApplicationObject.prototype.CONSTRUCTION_STATE_PLANNED = 10;
-ApplicationObject.prototype.CONSTRUCTION_STATE_UNDER_CONSTRUCTION = 20;
-ApplicationObject.prototype.CONSTRUCTION_STATE_CREATED = 30;
+ApplicationObject.prototype.CONSTRUCTION_STATE_PLANNED = 'object.constructionState.planned';
+ApplicationObject.prototype.CONSTRUCTION_STATE_UNDER_CONSTRUCTION = 'object.constructionState.underConstruction';
+ApplicationObject.prototype.CONSTRUCTION_STATE_CREATED = 'object.constructionState.created';
 
 // Einbindung Mixins
 Object.assign(ApplicationObject.prototype, SerializableMixin);

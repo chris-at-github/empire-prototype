@@ -95,8 +95,7 @@ let Building = {
 
 			// Arbeiter durchlaufen und Actions Points abfragen
 			// IF Actions Points > 0 -> Construction Points =- AP * Construction Rate
-			// @todo: this.constructionState !== this.CONSTRUCTION_STATE_UNDER_CONSTRUCTION hier verwenden
-			if(unit.getActionPoints() !== 0) {
+			if(building.constructionState === building.CONSTRUCTION_STATE_UNDER_CONSTRUCTION && unit.getActionPoints() !== 0) {
 				let unitConstructionPoints = unit.getActionPoints() * unit.getConstructionRate();
 
 				// Wenn durch die AP der Einheit das Gebaeude noch nicht fertiggestellt wird
@@ -129,7 +128,8 @@ let Building = {
 				building.constructionState = building.CONSTRUCTION_STATE_CREATED;
 				delete building.constructionPointsCreated;
 
-				// @todo: Arbeiter wieder freistellen
+				// @todo: Arbeiter (korrekt) wieder freistellen -> wenn es ueber eine Collection geloest wurde
+				//building.units = [];
 			}
 		});
 

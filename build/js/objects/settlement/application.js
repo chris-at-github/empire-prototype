@@ -116,6 +116,7 @@ ApplicationSettlement.prototype.getBuildings = function() {
 	// Objekterstellung
 	}), function(building) {
 		buildings[building.id] = Empire.factory.object.create(building.qcn);
+		buildings[building.id].fill(building);
 	});
 
 	return buildings;

@@ -13,6 +13,7 @@ let StoreRoom = function() {
 	this.name = 'Lagerraum';
 
 	this.intialize();
+	this.initializeBuilding();
 };
 
 /**
@@ -31,8 +32,6 @@ Object.assign(StoreRoom.prototype, BuildingMixin);
  * @return {void}
  */
 StoreRoom.prototype.intialize = function() {
-	this.listen(this.EVENT_AFTER_CREATE, this.processDependencyResources);
-
 	this.addDependency(new SettlementResourceDependency('resource.stone', 3));
 	this.addDependency(new SettlementResourceDependency('resource.wood', 3));
 	this.addDependency(new SettlementBuildingDependency('building.entrance'));
@@ -42,10 +41,14 @@ StoreRoom.prototype.intialize = function() {
 /**
  * Lagerkapazitaet, die dieses Gebaeude zur Verfuegng stellt
  *
- * @return {float}
+ * @return {number}
  */
 StoreRoom.prototype.getStorageCapacity = function() {
-	return 40;
+	if(this.constructionState === this.CONSTRUCTION_STATE_CREATED) {
+		return 40;
+	}
+
+	return 0;
 };
 
 export default StoreRoom;

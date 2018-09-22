@@ -60,12 +60,11 @@ let Serializable = {
 		_.forEach(this.properties, function(property) {
 			let method = 'get' + _.capitalize(_.camelCase(property));
 
-			// gibt es eine eigene Setter-Methode, soll diese verwendet werden
-			if(typeof(object[method]) === 'function') {
-				json[property] = object[method]();
-
-			} else if(typeof(object[property]) === 'object' && typeof(object[property].toJson) === 'function') {
+			if(typeof(object[property]) === 'object' && typeof(object[property].toJson) === 'function') {
 				json[property] = object[property].toJson();
+
+			} else if(typeof(object[method]) === 'function') {
+				json[property] = object[method]();
 
 			} else {
 				json[property] = object[property];

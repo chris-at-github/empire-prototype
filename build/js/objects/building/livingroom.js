@@ -43,7 +43,11 @@ LivingRoom.prototype.intialize = function() {
  * @return {number}
  */
 LivingRoom.prototype.getUnitCapacity = function() {
-	return 12;
+	if(this.constructionState === this.CONSTRUCTION_STATE_CREATED) {
+		return 12;
+	}
+
+	return 0;
 };
 
 export default LivingRoom;
