@@ -11,6 +11,7 @@ let StoreRoom = function() {
 
 	this.qcn = 'building.storeRoom';
 	this.name = 'Lagerraum';
+	this.constructionPoints = 500;
 
 	this.intialize();
 	this.initializeBuilding();
