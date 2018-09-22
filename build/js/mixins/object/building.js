@@ -122,8 +122,15 @@ let Building = {
 				unitStorage.store(unit);
 			}
 
-			// @todo: Wenn building.constructionPoints == building.constructionPointsCreated -> State aendern
-			// @todo: Eigenschaft constructionPointsCreated entfernen
+			// Gebaeude fertiggestellt
+			if(building.constructionPoints === building.constructionPointsCreated) {
+
+				// Status auf Fertig stellen und Eigenschaft constructionPointsCreated entfernen
+				building.constructionState = building.CONSTRUCTION_STATE_CREATED;
+				delete building.constructionPointsCreated;
+
+				// @todo: Arbeiter wieder freistellen
+			}
 		});
 
 		return true;
