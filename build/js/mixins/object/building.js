@@ -3,6 +3,7 @@
 import SettlementResourceDependency from "dependencies/settlementresource";
 import SettlementStorageManager from 'managers/storage/settlement';
 import UnitStorageManager from 'managers/storage/unit';
+import Collection from 'collection/collection';
 
 let Building = {
 
@@ -12,6 +13,9 @@ let Building = {
 	 * @return {void}
 	 */
 	initializeBuilding: function() {
+
+		// Eigenschaft units als Collection Objekt definieren
+		this.units = new Collection();
 
 		// Einheiten (units) als Eigenschaft registieren
 		this.addProperty('units');
@@ -46,6 +50,8 @@ let Building = {
 	 */
 	getUnits: function() {
 		let units = {};
+
+		console.log(this.units);
 
 		_.forEach(this.units, function(id) {
 			if(_.isUndefined(Game.units[id]) === false) {
