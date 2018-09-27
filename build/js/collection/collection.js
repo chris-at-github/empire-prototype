@@ -64,4 +64,36 @@ Collection.prototype.toJson = function() {
 	return json;
 };
 
+/**
+ * Liefert alle Eintraege
+ *
+ * @return {object}
+ */
+Collection.prototype.all = function() {
+	return this.items;
+};
+
+/**
+ * Entfernt einen Eintrag
+ *
+ * @param {mixed} key
+ * @return {object}
+ */
+Collection.prototype.remove = function(key) {
+	delete this.items[key];
+
+	return this;
+};
+
+/**
+ * Entfernt alle Eintraege
+ *
+ * @return {object}
+ */
+Collection.prototype.empty = function(key) {
+	this.items = {};
+
+	return this;
+};
+
 export default Collection;
