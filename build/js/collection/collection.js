@@ -1,11 +1,24 @@
 'use strict';
 
-let Collection = function() {
+let Collection = function(options = {}) {
 
 	/**
 	 * @var {object}
 	 */
 	this.items = {};
+
+	this.initialize(options);
+};
+
+/**
+ * Initialisierung
+ *
+ * @param {object} options
+ */
+Collection.prototype.initialize = function(options) {
+	if(typeof(options.fill) === 'function') {
+		this.fill = options.fill;
+	}
 };
 
 /**
@@ -41,6 +54,8 @@ Collection.prototype.get = function(key) {
  */
 Collection.prototype.fill = function(json) {
 	let collection = this;
+
+	console.log('Collection::fill');
 
 	_.forEach(json, function(value, key) {
 		collection.set(key, value);

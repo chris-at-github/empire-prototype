@@ -14,8 +14,14 @@ let Building = {
 	 */
 	initializeBuilding: function() {
 
+		let building = this;
+
 		// Eigenschaft units als Collection Objekt definieren
-		this.units = new Collection();
+		this.units = new Collection({
+			fill: function(json) {
+				building.fillUnits(this, json);
+			}
+		});
 
 		// Einheiten (units) als Eigenschaft registieren
 		this.addProperty('units');
@@ -44,25 +50,31 @@ let Building = {
 	},
 
 	/**
+	 * befuellt die (Collection-) Eigenschaft units
+	 *
+	 * @param {object} collection
+	 * @param {object} json
+	 */
+	fillUnits: function(collection, json) {
+		_.forEach(json, function(id) {
+			if(_.isUndefined(Game.units[id]) === false) {
+				let data = Game.units[id];
+
+				let object = Empire.factory.unit.create(data.qcn);
+						object.fill(data);
+
+				collection.set(id, object);
+			}
+		});
+	},
+
+	/**
 	 * liefert die Arbeiter, die dem Gebaeude zugeordnet sind zurueck
 	 *
 	 * @return {object}
 	 */
 	getUnits: function() {
-		let units = {};
-
-		console.log(this.units);
-
-		_.forEach(this.units, function(id) {
-			if(_.isUndefined(Game.units[id]) === false) {
-				let data = Game.units[id];
-
-				units[id] = Empire.factory.unit.create(data.qcn);
-				units[id].fill(data);
-			}
-		});
-
-		return units;
+		return this.units;
 	},
 
 	/**
@@ -97,7 +109,7 @@ let Building = {
 		let unitStorage = new UnitStorageManager();
 
 		// Arbeiter laden (Objekte -> getUnits())
-		_.forEach(this.getUnits(), function(unit) {
+		_.forEach(this.getUnits().all(), function(unit) {
 
 			// Arbeiter durchlaufen und Actions Points abfragen
 			// IF Actions Points > 0 -> Construction Points =- AP * Construction Rate
