@@ -61,10 +61,10 @@
 
 		methods: {
 			construct: function() {
-				this.object.construct();
+				let object = this.object.construct();
 
 				let manager = new BuildingStore();
-						manager.store(this.object);
+						manager.store(object);
 			}
 		}
 	}

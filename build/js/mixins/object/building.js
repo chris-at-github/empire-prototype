@@ -98,7 +98,7 @@ let Building = {
 	/**
 	 * Erstellt ein Objekt
 	 *
-	 * @return {boolean}
+	 * @return {object} building
 	 */
 	construct: function() {
 		if(this.constructionState !== this.CONSTRUCTION_STATE_UNDER_CONSTRUCTION) {
@@ -146,12 +146,12 @@ let Building = {
 				building.constructionState = building.CONSTRUCTION_STATE_CREATED;
 				delete building.constructionPointsCreated;
 
-				// @todo: Arbeiter (korrekt) wieder freistellen -> wenn es ueber eine Collection geloest wurde
-				//building.units = [];
+				// Arbeiter wieder freistellen
+				building.units.empty();
 			}
 		});
 
-		return true;
+		return building;
 	}
 };
 
