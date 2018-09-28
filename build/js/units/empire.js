@@ -29,6 +29,7 @@ Object.assign(EmpireUnit.prototype, EventMixin);
  * @return {void}
  */
 EmpireUnit.prototype._initialize = function() {
+	this.listen(Empire.manager.turn.EVENT_BEFORE_TURN, this.fillUpActionPoints);
 };
 
 /**
@@ -77,6 +78,15 @@ EmpireUnit.prototype.getActionPoints = function() {
 EmpireUnit.prototype.setActionPoints = function(actionPoints) {
 	this.actionPoints = actionPoints;
 	return this;
+};
+
+/**
+ * Fuellt die AP vor der Runde wieder auf
+ *
+ * @return {void}
+ */
+EmpireUnit.prototype.fillUpActionPoints = function() {
+	console.log('fillUpActionPoints::fillUpActionPoints');
 };
 
 export default EmpireUnit;
