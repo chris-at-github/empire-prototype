@@ -3,7 +3,7 @@
 import SettlementResourceDependency from "dependencies/settlementresource";
 import SettlementStorageManager from 'managers/storage/settlement';
 import UnitStorageManager from 'managers/storage/unit';
-import Collection from 'collection/collection';
+import ForeignCollection from 'collection/foreign';
 
 let Building = {
 
@@ -17,7 +17,7 @@ let Building = {
 		let building = this;
 
 		// Eigenschaft units als Collection Objekt definieren
-		this.units = new Collection({
+		this.units = new ForeignCollection({
 			fill: function(json) {
 				building.fillUnits(this, json);
 			}

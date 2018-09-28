@@ -111,4 +111,13 @@ Collection.prototype.empty = function(key) {
 	return this;
 };
 
+/**
+ * Liefert die Schluessel aller Eintraege als Array
+ *
+ * @return {array}
+ */
+Collection.prototype.keys = function() {
+	return _.keys(this.items);
+};
+
 export default Collection;
