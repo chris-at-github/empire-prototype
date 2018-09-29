@@ -74,7 +74,7 @@ Turn.prototype.next = function() {
 	this.fireObjectEvent(this.EVENT_BEFORE_TURN, this.beforeTurnObjects.object);
 
 	// Einheiten
-	this.fireUnitEvent(this.EVENT_AFTER_TURN, this.beforeTurnObjects.units);
+	this.fireUnitEvent(this.EVENT_BEFORE_TURN, this.beforeTurnObjects.units);
 };
 
 /**
