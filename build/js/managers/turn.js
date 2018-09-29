@@ -2,6 +2,7 @@
 
 import SettlementStorageManager from 'managers/storage/settlement';
 import ObjectStorageManager from 'managers/storage/object';
+import UnitStorageManager from 'managers/storage/unit';
 
 let Turn = function() {
 	let turn = this;
@@ -10,14 +11,16 @@ let Turn = function() {
 		settlements: [],
 		object: {
 			buildings: []
-		}
+		},
+		units: []
 	};
 
 	this.afterTurnObjects = {
 		settlements: [],
 		object: {
 			buildings: []
-		}
+		},
+		units:  []
 	};
 
 	this.objectTypes = {
@@ -48,8 +51,6 @@ Turn.prototype.EVENT_AFTER_TURN = 'afterTurn';
  */
 Turn.prototype.next = function() {
 
-
-
 	// this.objectTypes.buildings.storage = Game.buildings;
 
 	// Uberpruefe alle After Turn (= nachdem der User alle manuellen Schritte durchgefuehrt hat) Objekte
@@ -58,6 +59,9 @@ Turn.prototype.next = function() {
 
 	// Objekte
 	this.fireObjectEvent(this.EVENT_AFTER_TURN, this.afterTurnObjects.object);
+
+	// Einheiten
+	this.fireUnitEvent(this.EVENT_AFTER_TURN, this.afterTurnObjects.units);
 
 	// Rundeneinheit anheben
 	Game.turn = Game.turn + 1;
@@ -68,6 +72,9 @@ Turn.prototype.next = function() {
 
 	// Objekte
 	this.fireObjectEvent(this.EVENT_BEFORE_TURN, this.beforeTurnObjects.object);
+
+	// Einheiten
+	this.fireUnitEvent(this.EVENT_AFTER_TURN, this.beforeTurnObjects.units);
 };
 
 /**
@@ -119,6 +126,27 @@ Turn.prototype.fireObjectEvent = function(event, objects) {
 };
 
 /**
+ * Startet ein Event auf allen relevanten Einheiten-Instanzen
+ *
+ * @param {string} event
+ * @param {array} units
+ */
+Turn.prototype.fireUnitEvent = function(event, units) {
+	let storage = new UnitStorageManager();
+
+	_.forEach(Game.units, function(properties, id) {
+		if(_.indexOf(units, properties.qcn) !== - 1) {
+			let unit = Empire.factory.unit.create(properties.qcn);
+
+			unit.fill(properties);
+			unit.fire(event);
+
+			storage.store(unit);
+		}
+	});
+};
+
+/**
  * Geht alle Objekte (Gebaeude, Objekte, Einheiten) durch und ueberprueft ob es einen EventListener fuer After- bzw. Before-
  * Turn gibt
  */
@@ -152,6 +180,19 @@ Turn.prototype.getEventObjects = function() {
 				turn.afterTurnObjects.object[type].push(object.qcn);
 			}
 		});
+	});
+
+	// Einheiten
+	_.forEach(Empire.unit, function(Unit) {
+		let unit = new Unit();
+
+		if(unit.hasListener(turn.EVENT_BEFORE_TURN) === true) {
+			turn.beforeTurnObjects.units.push(unit.qcn);
+		}
+
+		if(unit.hasListener(turn.EVENT_AFTER_TURN) === true) {
+			turn.afterTurnObjects.units.push(unit.qcn);
+		}
 	});
 };
 
