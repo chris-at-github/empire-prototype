@@ -2,6 +2,7 @@
 
 import SettlementResourceDependency from "dependencies/settlementresource";
 import SettlementStorageManager from 'managers/storage/settlement';
+import BuildingStorageManager from 'managers/storage/building';
 import UnitStorageManager from 'managers/storage/unit';
 import ForeignCollection from 'collection/foreign';
 
@@ -28,6 +29,19 @@ let Building = {
 
 		// Rohstoffverbrauch nach Erstellungsauftrag verarbeiten
 		this.listen(this.EVENT_AFTER_CREATE, this.processDependencyResources);
+
+		// initialen Erstellungs-Status setzen
+		this.listen(this.EVENT_AFTER_CREATE, this.initializeConstructionState);
+	},
+
+	/**
+	 * Speichert das aktuelle Objekt
+	 *
+	 * @return {object} building
+	 */
+	store: function() {
+		let manager = new BuildingStorageManager();
+				manager.store(this);
 	},
 
 	/**
@@ -181,6 +195,16 @@ let Building = {
 		}
 
 		return false;
+	},
+
+	/**
+	 * Setzt die Erstellungs-Status auf geplant
+	 *
+	 * @return {void}
+	 */
+	initializeConstructionState: function() {
+		this.constructionState = this.CONSTRUCTION_STATE_PLANNED;
+		this.store();
 	}
 };
 

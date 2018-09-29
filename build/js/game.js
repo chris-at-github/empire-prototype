@@ -29,9 +29,9 @@ module.exports = {
 			id: '2c872351-e7b6-4998-aaf1-ac1c9513d9a6',
 			qcn: 'building.livingRoom',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c',
-			constructionState: 'object.constructionState.underConstruction',
-			constructionPointsCreated: 550,
-			units: ['802afac4-2288-450f-b46e-778bf5e6af63']
+			constructionState: 'object.constructionState.planned',
+			constructionPointsCreated: 0,
+			units: []
 		},
 		'1f60519b-adea-4c2f-b780-f81c6e5b68ad': {
 			id: '1f60519b-adea-4c2f-b780-f81c6e5b68ad',

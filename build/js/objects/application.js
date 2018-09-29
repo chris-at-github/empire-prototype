@@ -67,6 +67,15 @@ ApplicationObject.prototype.setId = function(id) {
 };
 
 /**
+ * Speichert das aktuelle Objekt
+ *
+ * @return {object} building
+ */
+ApplicationObject.prototype.store = function() {
+	console.log('ApplicationObject::store');
+};
+
+/**
  * Liefert den fest hinterlegten Namen des Objekts
  *
  * @return string

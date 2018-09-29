@@ -23,13 +23,23 @@
 					</ul>
 				</div>
 			</div>
+
+			<div class="card--body-item" v-if="isPlanned">
+				<div><strong>Geplant</strong></div>
+
+				<div class="object--actions">
+					<ul>
+						<li>
+							<button class="button" v-on:click="assignUnits" v-bind:disabled="assignUnitsDisabled">Arbeiter zuteilen</button>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import BuildingStore from 'managers/storage/building';
-
 	export default {
 		data: function() {
 			return {};
@@ -53,6 +63,14 @@
 				return false;
 			},
 
+			isPlanned: function() {
+				if(this.properties.constructionState === this.object.CONSTRUCTION_STATE_PLANNED) {
+					return true;
+				}
+
+				return false;
+			},
+
 			// @see: https://www.blitzrechner.de/prozent/#prozentsatz
 			constructionProgress: function() {
 				return (this.properties.constructionPointsCreated / this.object.constructionPoints) * 100;
@@ -64,15 +82,21 @@
 				}
 
 				return true;
+			},
+
+			assignUnitsDisabled: function() {
+				return false;
 			}
 		},
 
 		methods: {
 			construct: function() {
 				let object = this.object.construct();
+						object.store();
+			},
 
-				let manager = new BuildingStore();
-						manager.store(object);
+			assignUnits: function() {
+
 			}
 		}
 	}
