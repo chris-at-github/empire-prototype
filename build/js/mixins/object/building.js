@@ -152,6 +152,35 @@ let Building = {
 		});
 
 		return building;
+	},
+
+	/**
+	 * Prueft ob ein Weiterbau moeglich ist
+	 *
+	 * @return {boolean}
+	 */
+	constructEnabled: function() {
+		if(this.constructionState !== this.CONSTRUCTION_STATE_UNDER_CONSTRUCTION) {
+			return false;
+		}
+
+		let unitConstructionPoints = 0;
+
+		// Arbeiter laden (Objekte -> getUnits())
+		_.forEach(this.getUnits().all(), function(unit) {
+
+			// Arbeiter durchlaufen und Actions Points aller Arbeiter zusammenfassen
+			if(unit.getActionPoints() !== 0) {
+				unitConstructionPoints += unit.getActionPoints() * unit.getConstructionRate();
+			}
+		});
+
+		// mindestens eine Einheit hat AP zum Weiterbau vorhanden
+		if(unitConstructionPoints !== 0) {
+			return true;
+		}
+
+		return false;
 	}
 };
 
