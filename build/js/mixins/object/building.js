@@ -204,6 +204,7 @@ let Building = {
 	 */
 	initializeConstructionState: function() {
 		this.constructionState = this.CONSTRUCTION_STATE_PLANNED;
+		this.constructionPointsCreated = 0;
 	},
 
 	/**

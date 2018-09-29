@@ -29,16 +29,25 @@ module.exports = {
 			id: '2c872351-e7b6-4998-aaf1-ac1c9513d9a6',
 			qcn: 'building.livingRoom',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c',
-			constructionState: 'object.constructionState.planned',
-			constructionPointsCreated: 0,
-			units: []
+			constructionState: 'object.constructionState.underConstruction',
+			constructionPointsCreated: 50,
+			units: ['802afac4-2288-450f-b46e-778bf5e6af63']
 		},
 		'1f60519b-adea-4c2f-b780-f81c6e5b68ad': {
 			id: '1f60519b-adea-4c2f-b780-f81c6e5b68ad',
 			qcn: 'building.storeRoom',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c',
 			constructionState: 'object.constructionState.created'
+		},
+		'2f60519b-adea-4c2f-b780-f81c6e5b68ad': {
+			id:                '2f60519b-adea-4c2f-b780-f81c6e5b68ad',
+			qcn:               'building.storeRoom',
+			parent:            '0363dec2-e331-4e64-9b06-dce06941095c',
+			constructionState: 'object.constructionState.underConstruction',
+			constructionPointsCreated: 50,
+			units: ['7f10de8d-b44f-44b2-83c7-28bb333c61e2']
 		}
+
 	},
 	units: {
 		'802afac4-2288-450f-b46e-778bf5e6af63': {

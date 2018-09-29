@@ -216,7 +216,10 @@ ApplicationSettlement.prototype.getBuildingUnitKeys = function() {
 		settlement: this.id
 	}, Empire.manager.object.TYPE_BUILDING, Empire.manager.object.RETURN_TYPE_JSON), function(building) {
 		if(_.isEmpty(building.units) === false) {
-			units = _.merge(units, building.units);
+
+			_.forEach(building.units, function(unit) {
+				units.push(unit);
+			});
 		}
 	});
 
