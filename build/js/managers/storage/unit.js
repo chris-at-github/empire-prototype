@@ -51,7 +51,7 @@ UnitStore.prototype.store = function(unit) {
 		unit.afterCreate();
 	}
 
-	return unit;
+	return this._store(unit);
 };
 
 export default UnitStore;

@@ -49,7 +49,7 @@ ObjectStore.prototype.store = function(object) {
 		object.afterCreate();
 	}
 
-	return object;
+	return this._store(object);
 };
 
 export default ObjectStore;
