@@ -148,7 +148,6 @@ ColonySettlement.prototype.increaseUnitBeforeTurn = function() {
 					unit.parent = this.id;
 
 			unitStore.store(unit);
-			// console.log(unitStore);
 
 			// Nach Erstellung Zuwachs wieder minimieren
 			this.unitIncreamentStatus -= 1;

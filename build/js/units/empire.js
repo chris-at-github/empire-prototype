@@ -47,6 +47,9 @@ Object.assign(EmpireUnit.prototype, EventMixin);
  * @return {void}
  */
 EmpireUnit.prototype._initialize = function() {
+
+	// AP vor Rundenanfang | bei Erstellung wieder auffuellen
+	this.listen(this.EVENT_AFTER_CREATE, this.fillUpActionPoints);
 	this.listen(Empire.manager.turn.EVENT_BEFORE_TURN, this.fillUpActionPoints);
 };
 
