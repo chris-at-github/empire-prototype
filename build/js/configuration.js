@@ -13,7 +13,6 @@ configuration.object = {
 };
 
 configuration.unit = {
-	defaultActionPoints: 100
 };
 
 module.exports = configuration;

@@ -5,7 +5,25 @@ import EventMixin from 'mixins/object/event';
 
 let EmpireUnit = function() {
 
-	// Definition von Eigenschaften ueberschreiben
+	/**
+	 * Aktionspunkte der Einheit
+	 *
+	 * @type {number}
+	 */
+	this.actionPoints = 0;
+
+	/**
+	 * Initiale Aktionspunkte, die beim Erstellen und am Rundenanfang gesetzt werden
+	 * kann in den Kindobjekten abweichend definiert werden
+	 *
+	 * @type {number}
+	 */
+	this.initialActionPoints = 100;
+
+	/**
+	 * Definition von Eigenschaften ueberschreiben
+	 * @type {string[]}
+	 */
 	this.properties = ['id', 'name', 'parent', 'actionPoints'];
 
 	// Zuruecksetzen der Event-Listener -> ueber das Mixin ist es sonst eine globale Variable
@@ -86,7 +104,7 @@ EmpireUnit.prototype.setActionPoints = function(actionPoints) {
  * @return {void}
  */
 EmpireUnit.prototype.fillUpActionPoints = function() {
-	console.log('fillUpActionPoints::fillUpActionPoints');
+	this.actionPoints = this.initialActionPoints;
 };
 
 export default EmpireUnit;

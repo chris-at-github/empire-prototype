@@ -7,7 +7,6 @@ let WorkerUnit = function() {
 
 	this.qcn = 'unit.worker';
 	this.name = 'Arbeiter';
-	this.actionPoints = 100;
 
 	this.intialize();
 };
