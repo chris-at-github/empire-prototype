@@ -204,6 +204,37 @@ let Building = {
 	 */
 	initializeConstructionState: function() {
 		this.constructionState = this.CONSTRUCTION_STATE_PLANNED;
+	},
+
+	/**
+	 * Fuegt freie Arbeiter dem Gebaeude zu
+	 *
+	 * @return {void}
+	 */
+	assignUnits: function() {
+		let units = this.getSettlement().getAvailableUnits();
+
+		// mindestens ein verfuegbarer Arbeiter
+		if(_.size(units) !== 0) {
+			let worker = Object.values(units)[0];
+
+			// fuegt den Arbeiter der Unit-Collection hinzu
+			this.units.set(worker.id, worker);
+		}
+	},
+
+	/**
+	 * Stellt das Gebaeude von geplant auf im Bau um
+	 *
+	 * @return void
+	 */
+	prepareConstruction: function() {
+
+		// Status umstellen
+		this.constructionState = this.CONSTRUCTION_STATE_UNDER_CONSTRUCTION;
+
+		// freien Arbeiter zuweisen
+		this.assignUnits();
 	}
 };
 

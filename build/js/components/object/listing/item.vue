@@ -30,7 +30,7 @@
 				<div class="object--actions">
 					<ul>
 						<li>
-							<button class="button" v-on:click="assignUnits" v-bind:disabled="assignUnitsDisabled">Arbeiter zuteilen</button>
+							<button class="button" v-on:click="prepareConstruction" v-bind:disabled="assignUnitsDisabled">Arbeiter zuteilen</button>
 						</li>
 					</ul>
 				</div>
@@ -95,8 +95,9 @@
 						object.store();
 			},
 
-			assignUnits: function() {
-
+			prepareConstruction: function() {
+				this.object.prepareConstruction();
+				this.object.store();
 			}
 		}
 	}
