@@ -43,6 +43,7 @@ module.exports = {
 			id: '8207762f-5a13-4265-a66b-ce6cf6459fe2',
 			qcn: 'building.storeRoom',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c',
+			constructionPointsCreated: 0,
 			constructionState: 'object.constructionState.planned'
 		},
 	},

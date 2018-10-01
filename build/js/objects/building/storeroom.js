@@ -45,7 +45,7 @@ StoreRoom.prototype.intialize = function() {
  * @return {number}
  */
 StoreRoom.prototype.getStorageCapacity = function() {
-	if(this.constructionState === this.CONSTRUCTION_STATE_CREATED) {
+	if(this.constructionState === Empire.object.CONSTRUCTION_STATE_CREATED) {
 		return 40;
 	}
 
