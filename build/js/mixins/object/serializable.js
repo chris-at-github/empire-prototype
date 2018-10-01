@@ -27,14 +27,18 @@ let Serializable = {
 
 		_.forEach(properties, function(property, key) {
 			if(_.includes(object.properties, key) === true) {
-				let method = 'set' + _.capitalize(_.camelCase(key));
+				let fillMethod = 'beforeFill' + _.capitalize(_.camelCase(key));
+				let setMethod = 'set' + _.capitalize(_.camelCase(key));
 
 				// gibt es eine eigene Setter-Methode, soll diese verwendet werden
-				if(typeof(object[method]) === 'function') {
-					object[method](property);
+				if(typeof(object[fillMethod]) === 'function') {
+					object[fillMethod](property);
 
 				} else if(typeof(object[key]) === 'object' && typeof(object[key].fill) === 'function') {
 					object[key].fill(property);
+
+				} else if(typeof(object[setMethod]) === 'function') {
+					object[setMethod](property);
 
 				} else {
 					object[key] = property;
@@ -45,7 +49,7 @@ let Serializable = {
 
 	/**
 	 * fasst die Objekteigenschaften zu einem JSON Objekt zusammen
-	 * 
+	 *
 	 * @return {object}
 	 */
 	toJson: function() {
@@ -58,13 +62,17 @@ let Serializable = {
 		}
 
 		_.forEach(this.properties, function(property) {
-			let method = 'get' + _.capitalize(_.camelCase(property));
+			let toJsonMethod = 'beforeToJson' + _.capitalize(_.camelCase(property));
+			let getMethod = 'get' + _.capitalize(_.camelCase(property));
 
-			if(typeof(object[property]) === 'object' && typeof(object[property].toJson) === 'function') {
+			if(typeof(object[toJsonMethod]) === 'function') {
+				json[property] = object[toJsonMethod]();
+
+			} else if(typeof(object[property]) === 'object' && typeof(object[property].toJson) === 'function') {
 				json[property] = object[property].toJson();
 
-			} else if(typeof(object[method]) === 'function') {
-				json[property] = object[method]();
+			} else if(typeof(object[getMethod]) === 'function') {
+				json[property] = object[getMethod]();
 
 			} else {
 				json[property] = object[property];

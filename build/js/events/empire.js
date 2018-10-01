@@ -12,6 +12,9 @@ EmpireEvent.prototype.EVENT_CREATE_APPLICATION = 'createApplication';
 EmpireEvent.prototype.EVENT_BEFORE_TURN = 'beforeTurn';
 EmpireEvent.prototype.EVENT_AFTER_TURN = 'afterTurn';
 
+EmpireEvent.prototype.EVENT_BEFORE_CREATE = 'beforeCreate';
+EmpireEvent.prototype.EVENT_AFTER_CREATE = 'beforeCreate';
+
 /**
  * Registriert einen Event Listener auf dem globalen Body Element
  *

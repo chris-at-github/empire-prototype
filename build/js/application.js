@@ -12,6 +12,7 @@ import factories from './factories/factory';
 import objects from './objects/object';
 import units from './units/unit';
 import resources from './resources/resource';
+import expedition from './expeditions/bootstrap';
 
 Empire.configuration = require('./configuration');
 Empire.manager = managers;
@@ -19,8 +20,11 @@ Empire.factory = factories;
 Empire.object = objects;
 Empire.unit = units;
 Empire.resource = resources;
+Empire.expedition = expedition;
 
 Game = require('./game');
+
+let ex = new Empire.expedition();
 
 // Layout
 Vue.component('emp-footer', require('./components/layout/footer'));
