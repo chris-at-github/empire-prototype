@@ -244,7 +244,13 @@ ApplicationSettlement.prototype.getBuildingUnitKeys = function() {
  * @return {void}
  */
 ApplicationSettlement.prototype.processBuildingQueue = function() {
-	console.log('ApplicationSettlement::processBuildingQueue');
+
+	_.forEach(Empire.manager.object.find({
+		settlement: this.id,
+		constructionState: ''
+	}, Empire.manager.object.TYPE_BUILDING, Empire.manager.object.RETURN_TYPE_JSON), function(building) {
+		console.log(building);
+	});
 };
 
 export default ApplicationSettlement;

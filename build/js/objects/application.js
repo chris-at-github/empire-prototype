@@ -21,11 +21,6 @@ let ApplicationObject = function() {
 // Events
 ApplicationObject.prototype.EVENT_AFTER_CREATE = 'afterCreate';
 
-// Status
-ApplicationObject.prototype.CONSTRUCTION_STATE_PLANNED = 'object.constructionState.planned';
-ApplicationObject.prototype.CONSTRUCTION_STATE_UNDER_CONSTRUCTION = 'object.constructionState.underConstruction';
-ApplicationObject.prototype.CONSTRUCTION_STATE_CREATED = 'object.constructionState.created';
-
 // Einbindung Mixins
 Object.assign(ApplicationObject.prototype, SerializableMixin);
 Object.assign(ApplicationObject.prototype, EventMixin);

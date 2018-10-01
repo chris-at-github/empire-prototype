@@ -115,7 +115,7 @@ let Building = {
 	 * @return {object} building
 	 */
 	construct: function() {
-		if(this.constructionState !== this.CONSTRUCTION_STATE_UNDER_CONSTRUCTION) {
+		if(this.constructionState !== Empire.object.CONSTRUCTION_STATE_UNDER_CONSTRUCTION) {
 			return false;
 		}
 
@@ -127,7 +127,7 @@ let Building = {
 
 			// Arbeiter durchlaufen und Actions Points abfragen
 			// IF Actions Points > 0 -> Construction Points =- AP * Construction Rate
-			if(building.constructionState === building.CONSTRUCTION_STATE_UNDER_CONSTRUCTION && unit.getActionPoints() !== 0) {
+			if(building.constructionState === Empire.object.CONSTRUCTION_STATE_UNDER_CONSTRUCTION && unit.getActionPoints() !== 0) {
 				let unitConstructionPoints = unit.getActionPoints() * unit.getConstructionRate();
 
 				// Wenn durch die AP der Einheit das Gebaeude noch nicht fertiggestellt wird
@@ -157,7 +157,7 @@ let Building = {
 			if(building.constructionPoints === building.constructionPointsCreated) {
 
 				// Status auf Fertig stellen und Eigenschaft constructionPointsCreated entfernen
-				building.constructionState = building.CONSTRUCTION_STATE_CREATED;
+				building.constructionState = Empire.object.CONSTRUCTION_STATE_CREATED;
 				delete building.constructionPointsCreated;
 
 				// Arbeiter wieder freistellen
@@ -174,7 +174,7 @@ let Building = {
 	 * @return {boolean}
 	 */
 	constructEnabled: function() {
-		if(this.constructionState !== this.CONSTRUCTION_STATE_UNDER_CONSTRUCTION) {
+		if(this.constructionState !== Empire.object.CONSTRUCTION_STATE_UNDER_CONSTRUCTION) {
 			return false;
 		}
 
@@ -203,7 +203,7 @@ let Building = {
 	 * @return {void}
 	 */
 	initializeConstructionState: function() {
-		this.constructionState = this.CONSTRUCTION_STATE_PLANNED;
+		this.constructionState = Empire.object.CONSTRUCTION_STATE_PLANNED;
 		this.constructionPointsCreated = 0;
 	},
 

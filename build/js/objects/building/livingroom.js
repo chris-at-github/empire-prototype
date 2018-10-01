@@ -43,7 +43,7 @@ LivingRoom.prototype.intialize = function() {
  * @return {number}
  */
 LivingRoom.prototype.getUnitCapacity = function() {
-	if(this.constructionState === this.CONSTRUCTION_STATE_CREATED) {
+	if(this.constructionState === Empire.object.CONSTRUCTION_STATE_CREATED) {
 		return 12;
 	}
 

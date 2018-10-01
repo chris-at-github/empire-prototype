@@ -56,7 +56,7 @@
 			},
 
 			isUnderConstruction: function() {
-				if(this.properties.constructionState === this.object.CONSTRUCTION_STATE_UNDER_CONSTRUCTION) {
+				if(this.properties.constructionState === Empire.object.CONSTRUCTION_STATE_UNDER_CONSTRUCTION) {
 					return true;
 				}
 
@@ -64,7 +64,7 @@
 			},
 
 			isPlanned: function() {
-				if(this.properties.constructionState === this.object.CONSTRUCTION_STATE_PLANNED) {
+				if(this.properties.constructionState === Empire.object.CONSTRUCTION_STATE_PLANNED) {
 					return true;
 				}
 
@@ -124,7 +124,7 @@
 
 			assignUnits: function() {
 				if(this.isPlanned === true) {
-					this.object.setConstructionState(this.object.CONSTRUCTION_STATE_UNDER_CONSTRUCTION);
+					this.object.setConstructionState(Empire.object.CONSTRUCTION_STATE_UNDER_CONSTRUCTION);
 				}
 
 				this.object.assignUnits();
