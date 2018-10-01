@@ -250,7 +250,8 @@ ApplicationSettlement.prototype.processBuildingQueue = function() {
 		settlement: this.id,
 		constructionState: Empire.object.CONSTRUCTION_STATE_UNDER_CONSTRUCTION
 	}, Empire.manager.object.TYPE_BUILDING, Empire.manager.object.RETURN_TYPE_OBJECT), function(building) {
-		console.log(building);
+		building.construct();
+		building.store();
 	});
 };
 
