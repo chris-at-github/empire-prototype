@@ -21,6 +21,7 @@
 					<ul>
 						<li><button class="button" v-on:click="construct" v-bind:disabled="constructDisabled">Errichten</button></li>
 						<li v-if="assignUnitsButtonVisible"><button class="button" v-on:click="assignUnits" v-bind:disabled="assignUnitsButtonDisabled">Arbeiter zuteilen</button></li>
+						<li v-if="removeUnitsButtonVisible"><button class="button" v-on:click="removeUnits">Arbeiter abziehen</button></li>
 					</ul>
 				</div>
 			</div>
@@ -102,6 +103,16 @@
 				}
 
 				return true;
+			},
+
+			removeUnitsButtonVisible: function() {
+
+				// Sind Arbeiter zugewiesen
+				if(_.size(this.object.getUnits().all()) === 0) {
+					return false;
+				}
+
+				return true;
 			}
 		},
 
@@ -112,11 +123,16 @@
 			},
 
 			assignUnits: function() {
-				if(this.isPlanned() === true) {
+				if(this.isPlanned === true) {
 					this.object.setConstructionState(this.object.CONSTRUCTION_STATE_UNDER_CONSTRUCTION);
 				}
 
 				this.object.assignUnits();
+				this.object.store();
+			},
+
+			removeUnits: function() {
+				this.object.getUnits().empty();
 				this.object.store();
 			}
 		}
