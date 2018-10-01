@@ -20,7 +20,7 @@
 				<div class="object--actions">
 					<ul>
 						<li><button class="button" v-on:click="construct" v-bind:disabled="constructDisabled">Errichten</button></li>
-						<li><button class="button" v-on:click="assignUnits" v-bind:disabled="assignUnitsButtonDisabled">Arbeiter zuteilen</button></li>
+						<li v-if="assignUnitsButtonVisible"><button class="button" v-on:click="assignUnits" v-bind:disabled="assignUnitsButtonDisabled">Arbeiter zuteilen</button></li>
 					</ul>
 				</div>
 			</div>
@@ -30,7 +30,7 @@
 
 				<div class="object--actions">
 					<ul>
-						<li><button class="button" v-on:click="assignUnits" v-bind:disabled="assignUnitsButtonDisabled">Arbeiter zuteilen</button></li>
+						<li v-if="assignUnitsButtonVisible"><button class="button" v-on:click="assignUnits" v-bind:disabled="assignUnitsButtonDisabled">Arbeiter zuteilen</button></li>
 					</ul>
 				</div>
 			</div>
@@ -83,6 +83,7 @@
 				return true;
 			},
 
+			// umgedrehte Logik -> return true -> Button disabled
 			assignUnitsButtonDisabled: function() {
 
 				// Freie Arbeiter vorhanden?
@@ -91,6 +92,16 @@
 				}
 
 				return false;
+			},
+
+			assignUnitsButtonVisible: function() {
+
+				// Bereits Arbeiter zugewiesen
+				if(_.size(this.object.getUnits().all()) !== 0) {
+					return false;
+				}
+
+				return true;
 			}
 		},
 
