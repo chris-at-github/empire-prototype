@@ -222,20 +222,6 @@ let Building = {
 			// fuegt den Arbeiter der Unit-Collection hinzu
 			this.units.set(worker.id, worker);
 		}
-	},
-
-	/**
-	 * Stellt das Gebaeude von geplant auf im Bau um
-	 *
-	 * @return void
-	 */
-	prepareConstruction: function() {
-
-		// Status umstellen
-		this.constructionState = this.CONSTRUCTION_STATE_UNDER_CONSTRUCTION;
-
-		// freien Arbeiter zuweisen
-		this.assignUnits();
 	}
 };
 

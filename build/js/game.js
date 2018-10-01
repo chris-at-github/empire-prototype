@@ -39,15 +39,12 @@ module.exports = {
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c',
 			constructionState: 'object.constructionState.created'
 		},
-		'2f60519b-adea-4c2f-b780-f81c6e5b68ad': {
-			id:                '2f60519b-adea-4c2f-b780-f81c6e5b68ad',
-			qcn:               'building.storeRoom',
-			parent:            '0363dec2-e331-4e64-9b06-dce06941095c',
-			constructionState: 'object.constructionState.underConstruction',
-			constructionPointsCreated: 50,
-			units: ['7f10de8d-b44f-44b2-83c7-28bb333c61e2']
-		}
-
+		'8207762f-5a13-4265-a66b-ce6cf6459fe2': {
+			id: '8207762f-5a13-4265-a66b-ce6cf6459fe2',
+			qcn: 'building.storeRoom',
+			parent: '0363dec2-e331-4e64-9b06-dce06941095c',
+			constructionState: 'object.constructionState.planned'
+		},
 	},
 	units: {
 		'802afac4-2288-450f-b46e-778bf5e6af63': {

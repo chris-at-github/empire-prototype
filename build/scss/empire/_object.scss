@@ -9,12 +9,15 @@
 		}
 
 		ul {
-			@include list-unstyled();
-			@include clearfix();
-		}
+			& {
+				@include list-unstyled();
+				@include clearfix();
+			}
 
-		li {
-			float: left;
+			li {
+				float: left;
+				margin: 0 5px 0 0;
+			}
 		}
 	}
 }

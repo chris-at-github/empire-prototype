@@ -20,6 +20,7 @@
 				<div class="object--actions">
 					<ul>
 						<li><button class="button" v-on:click="construct" v-bind:disabled="constructDisabled">Errichten</button></li>
+						<li><button class="button" v-on:click="assignUnits" v-bind:disabled="assignUnitsButtonDisabled">Arbeiter zuteilen</button></li>
 					</ul>
 				</div>
 			</div>
@@ -29,9 +30,7 @@
 
 				<div class="object--actions">
 					<ul>
-						<li>
-							<button class="button" v-on:click="prepareConstruction" v-bind:disabled="assignUnitsDisabled">Arbeiter zuteilen</button>
-						</li>
+						<li><button class="button" v-on:click="assignUnits" v-bind:disabled="assignUnitsButtonDisabled">Arbeiter zuteilen</button></li>
 					</ul>
 				</div>
 			</div>
@@ -84,7 +83,13 @@
 				return true;
 			},
 
-			assignUnitsDisabled: function() {
+			assignUnitsButtonDisabled: function() {
+
+				// Freie Arbeiter vorhanden?
+				if(_.size(this.object.getSettlement().getAvailableUnits()) === 0) {
+					return true;
+				}
+
 				return false;
 			}
 		},
@@ -95,8 +100,12 @@
 						object.store();
 			},
 
-			prepareConstruction: function() {
-				this.object.prepareConstruction();
+			assignUnits: function() {
+				if(this.isPlanned() === true) {
+					this.object.setConstructionState(this.object.CONSTRUCTION_STATE_UNDER_CONSTRUCTION);
+				}
+
+				this.object.assignUnits();
 				this.object.store();
 			}
 		}

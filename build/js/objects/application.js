@@ -58,15 +58,6 @@ ApplicationObject.prototype.afterCreate = function() {
 };
 
 /**
- * Setzen der Id als Methode -> damit ein feuern Nach-Id-Setzen Events moeglich ist
- *
- * @param {int} id
- */
-ApplicationObject.prototype.setId = function(id) {
-	this.id = id;
-};
-
-/**
  * Speichert das aktuelle Objekt
  *
  * @return {object} building
@@ -76,12 +67,30 @@ ApplicationObject.prototype.store = function() {
 };
 
 /**
+ * Setzen der Id als Methode -> damit ein feuern Nach-Id-Setzen Events moeglich ist
+ *
+ * @param {int} id
+ */
+ApplicationObject.prototype.setId = function(id) {
+	this.id = id;
+};
+
+/**
  * Liefert den fest hinterlegten Namen des Objekts
  *
  * @return string
  */
 ApplicationObject.prototype.getName = function() {
 	return this.name;
+};
+
+/**
+ * @param {string} constructionState
+ * @return {object} object
+ */
+ApplicationObject.prototype.setConstructionState = function(constructionState) {
+	this.constructionState = constructionState;
+	return this;
 };
 
 export default ApplicationObject;
