@@ -5,11 +5,12 @@ import EventMixin from 'mixins/object/event';
 import SettlementBuildingSiteDependency from "dependencies/settlementbuildingsite";
 
 let ApplicationSettlement = function() {
-	this.eventListener = {
-		beforeCreate: [],
-		afterCreate: [],
-		afterIdentification: []
-	};
+
+	/**
+	 * Zuruecksetzen der Event-Listener (ist sonst eine globale Mixin-Varible)
+	 * @type {object}
+	 */
+	this.eventListener = {};
 
 	/**
 	 * maximale Lagermenge
@@ -38,6 +39,8 @@ let ApplicationSettlement = function() {
 	 * @type {number}
 	 */
 	this.unitIncreamentRate = 0.25;
+
+	this._initialize();
 };
 
 // Konstanten Definition
@@ -48,6 +51,15 @@ ApplicationSettlement.prototype.EVENT_AFTER_IDENTIFICATION = 'afterIdentificatio
 // Einbindung Mixins
 Object.assign(ApplicationSettlement.prototype, SerializableMixin);
 Object.assign(ApplicationSettlement.prototype, EventMixin);
+
+/**
+ * Initiale Arbeiten ausfuehren
+ *
+ * @return {void}
+ */
+ApplicationSettlement.prototype._initialize = function() {
+	this.listen(Empire.event.EVENT_AFTER_TURN, this.processBuildingQueue);
+};
 
 /**
  * Wird VOR dem Einfuegen des Objekts durchgefuehrt
@@ -224,6 +236,15 @@ ApplicationSettlement.prototype.getBuildingUnitKeys = function() {
 	});
 
 	return units;
+};
+
+/**
+ * Verarbeitet offene Bauauftraege (falls bei Arbeitern noch AP vorhanden sind)
+ *
+ * @return {void}
+ */
+ApplicationSettlement.prototype.processBuildingQueue = function() {
+	console.log('ApplicationSettlement::processBuildingQueue');
 };
 
 export default ApplicationSettlement;
