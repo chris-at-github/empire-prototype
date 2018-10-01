@@ -27,14 +27,14 @@ let Serializable = {
 
 		_.forEach(properties, function(property, key) {
 			if(_.includes(object.properties, key) === true) {
-				let fillMethod = 'beforeFill' + _.capitalize(_.camelCase(key));
+				let fillMethod = 'before' + _.capitalize(_.camelCase(key)) + 'Fill';
 				let setMethod = 'set' + _.capitalize(_.camelCase(key));
 
 				// gibt es eine eigene Setter-Methode, soll diese verwendet werden
 				if(typeof(object[fillMethod]) === 'function') {
 					object[fillMethod](property);
 
-				} else if(typeof(object[key]) === 'object' && typeof(object[key].fill) === 'function') {
+				} else if(object[key] !== null && typeof(object[key]) === 'object' && typeof(object[key].fill) === 'function') {
 					object[key].fill(property);
 
 				} else if(typeof(object[setMethod]) === 'function') {
@@ -62,7 +62,7 @@ let Serializable = {
 		}
 
 		_.forEach(this.properties, function(property) {
-			let toJsonMethod = 'beforeToJson' + _.capitalize(_.camelCase(property));
+			let toJsonMethod = 'before' + _.capitalize(_.camelCase(property)) + 'ToJson';
 			let getMethod = 'get' + _.capitalize(_.camelCase(property));
 
 			if(typeof(object[toJsonMethod]) === 'function') {

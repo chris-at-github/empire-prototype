@@ -62,7 +62,6 @@ Object.assign(EmpireExpedition.prototype, EventMixin);
  * @return {void}
  */
 EmpireExpedition.prototype.initialize = function() {
-	console.log(Empire.expedition.TYPE_SEARCH);
 };
 
 /**
@@ -75,12 +74,22 @@ EmpireExpedition.prototype.beforeCreate = function() {
 };
 
 /**
- * Wird aufgerufen bevor das Objekt mit Daten befuellt wird
+ * Wird NACH dem Einfuegen der Expedition ausgefuehrt
  *
- * @param {*} value
  * @return {void}
  */
-EmpireExpedition.prototype.beforeUnitFill = function(value) {
+EmpireExpedition.prototype.afterCreate = function() {
+	this.fire(Empire.event.EVENT_AFTER_CREATE);
+};
+
+/**
+ * Wird aufgerufen bevor das Objekt mit Daten befuellt wird
+ *
+ * @param {string} id
+ * @return {void}
+ */
+EmpireExpedition.prototype.beforeUnitFill = function(id) {
+	console.log(id);
 };
 
 /**
@@ -89,15 +98,6 @@ EmpireExpedition.prototype.beforeUnitFill = function(value) {
  * @return {*}
  */
 EmpireExpedition.prototype.beforeUnitToJson = function() {
-};
-
-/**
- * Wird NACH dem Einfuegen der Expedition ausgefuehrt
- *
- * @return {void}
- */
-EmpireExpedition.prototype.afterCreate = function() {
-	this.fire(Empire.event.EVENT_AFTER_CREATE);
 };
 
 /**
