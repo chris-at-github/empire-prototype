@@ -245,10 +245,11 @@ ApplicationSettlement.prototype.getBuildingUnitKeys = function() {
  */
 ApplicationSettlement.prototype.processBuildingQueue = function() {
 
+	// Lade alle Status Bau befindlichen Gebaeude
 	_.forEach(Empire.manager.object.find({
 		settlement: this.id,
-		constructionState: ''
-	}, Empire.manager.object.TYPE_BUILDING, Empire.manager.object.RETURN_TYPE_JSON), function(building) {
+		constructionState: Empire.object.CONSTRUCTION_STATE_UNDER_CONSTRUCTION
+	}, Empire.manager.object.TYPE_BUILDING, Empire.manager.object.RETURN_TYPE_OBJECT), function(building) {
 		console.log(building);
 	});
 };

@@ -35,16 +35,24 @@ ObjectManager.prototype.getObjectsData = function(type) {
  */
 ObjectManager.prototype.filter = function(data, options) {
 	return _.filter(data, function(value) {
-		let relevant = null;
+		let hit = null;
 
 		// einer Siedlung zugeordnet
-		if(_.isUndefined(options.settlement) === false && relevant !== false) {
-			if(options.settlement === value.parent) {
-				relevant = true;
-			}
+		if(_.isUndefined(options.settlement) === false && hit !== false) {
+			hit = options.settlement === value.parent;
 		}
 
-		if(relevant === true || _.isEmpty(options) === true) {
+		// Baustatus
+		// Uebergabe als String oder als Array -> wird immer in ein Array umgewandelt
+		if(_.isUndefined(options.constructionState) === false && hit !== false) {
+			if(typeof(options.constructionState) === 'string') {
+				options.constructionState = [options.constructionState];
+			}
+
+			hit = _.indexOf(options.constructionState, value.constructionState) !== -1;
+		}
+
+		if(hit === true || _.isEmpty(options) === true) {
 			return value;
 		}
 	});
@@ -76,6 +84,7 @@ ObjectManager.prototype.find = function(options = {}, type = null, returnType) {
 	if(returnType === this.RETURN_TYPE_OBJECT) {
 		_.forEach(data, function(data) {
 			objects[data.id] = Empire.factory.object.create(data.qcn);
+			objects[data.id].fill(data);
 		});
 	}
 
