@@ -24,6 +24,9 @@ let ColonySettlement = function() {
 	// freie Bauplaetze
 	this.buildingSite = 16;
 
+	// Aktueller Stand des Bevoelkerungswachstums
+	this.unitIncreamentStatus = 0;
+
 	// Event Listener registrieren
 	this.intialize();
 };
@@ -41,8 +44,10 @@ ColonySettlement.prototype = Object.create(ApplicationSettlement.prototype);
  * @return {void}
  */
 ColonySettlement.prototype.intialize = function() {
-	this.listen(this.EVENT_AFTER_CREATE, this.createInitalBuilding);
-	this.listen(this.EVENT_AFTER_CREATE, this.fillInitalResources);
+	this.listen(this.EVENT_AFTER_CREATE, this.createInitialBuilding);
+	this.listen(this.EVENT_AFTER_CREATE, this.fillInitialResources);
+	this.listen(this.EVENT_AFTER_CREATE, this.createInitialUnits);
+
 	this.listen(this.EVENT_AFTER_IDENTIFICATION, this.setResourceCollectionMaxValue);
 
 	this.listen(Empire.manager.turn.EVENT_BEFORE_TURN, this.addResourcesBeforeTurn);
@@ -98,7 +103,7 @@ ApplicationSettlement.prototype.getUnitCapacity = function() {
 /**
  * fuegt die Gebaeude (Eingang), die direkt nach der Erstellung vorhanden sein sollen hinzu
  */
-ColonySettlement.prototype.createInitalBuilding = function() {
+ColonySettlement.prototype.createInitialBuilding = function() {
 	let objectStorage = new BuildingObjectStore();
 	let entrance = Empire.factory.object.create('building.entrance');
 
@@ -112,7 +117,7 @@ ColonySettlement.prototype.createInitalBuilding = function() {
 /**
  * fuegt die Gebaeude (Eingang), die direkt nach der Erstellung vorhanden sein sollen hinzu
  */
-ColonySettlement.prototype.fillInitalResources = function() {
+ColonySettlement.prototype.fillInitialResources = function() {
 
 	// die Lagerkapazitaet des Eingangs mit einberechnen
 	this.setResourceCollectionMaxValue();
@@ -123,6 +128,12 @@ ColonySettlement.prototype.fillInitalResources = function() {
 		'resource.wood': 10,
 		'resource.food': 10
 	});
+};
+
+/**
+ * Erstellt die noetigen Einheiten-Einstellungen / -Objekte
+ */
+ColonySettlement.prototype.createInitialUnits = function() {
 };
 
 /**
@@ -159,9 +170,9 @@ ColonySettlement.prototype.increaseUnitBeforeTurn = function() {
  * TEST
  */
 ColonySettlement.prototype.addResourcesBeforeTurn = function() {
-	let water = new ResourceValue('resource.water', 1);
-
-	this.resources.addResourceValue(water);
+	// let water = new ResourceValue('resource.water', 1);
+	//
+	// this.resources.addResourceValue(water);
 };
 
 export default ColonySettlement;
