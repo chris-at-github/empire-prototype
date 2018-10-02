@@ -51,7 +51,6 @@ let EmpireExpedition = function() {
 	this.initialize();
 };
 
-
 // Einbindung Mixins
 Object.assign(EmpireExpedition.prototype, SerializableMixin);
 Object.assign(EmpireExpedition.prototype, EventMixin);
@@ -82,23 +81,7 @@ EmpireExpedition.prototype.afterCreate = function() {
 	this.fire(Empire.event.EVENT_AFTER_CREATE);
 };
 
-/**
- * Wird aufgerufen bevor das Objekt mit Daten befuellt wird
- *
- * @param {string} id
- * @return {void}
- */
-EmpireExpedition.prototype.beforeUnitFill = function(id) {
-	console.log(id);
-};
 
-/**
- * Wird aufgerufen bevor das Objekt zu einem JSON Objekt umgewandelt wird
- *
- * @return {*}
- */
-EmpireExpedition.prototype.beforeUnitToJson = function() {
-};
 
 /**
  * Setzen der Id als Methode -> damit ein feuern Nach-Id-Setzen Events moeglich ist
@@ -107,6 +90,80 @@ EmpireExpedition.prototype.beforeUnitToJson = function() {
  */
 EmpireExpedition.prototype.setId = function(id) {
 	this.id = id;
+};
+
+/**
+ * Liefert ein Unit Objekt zurueck
+ *
+ * @return {object} CollectorUnit
+ */
+EmpireExpedition.prototype.getUnit = function() {
+	return this.unit;
+};
+
+/**
+ * Wird aufgerufen bevor das Objekt mit Daten befuellt wird
+ *
+ * @param {string} id
+ * @return {void}
+ */
+EmpireExpedition.prototype.beforeUnitFill = function(id) {
+	if(_.isUndefined(Game.units[id]) === false) {
+		let data = Game.units[id];
+
+		this.unit = Empire.factory.unit.create(data.qcn);
+		this.unit.fill(data);
+	}
+};
+
+/**
+ * Wird aufgerufen bevor das (Einheiten-) Objekt zu einem JSON Objekt umgewandelt wird
+ *
+ * @return {string|null} id
+ */
+EmpireExpedition.prototype.beforeUnitToJson = function() {
+	if((this.unit instanceof Empire.unit.collector) === true) {
+		return this.unit.id;
+	}
+
+	return null;
+};
+
+/**
+ * Liefert ein Settlement Objekt zurueck
+ *
+ * @return {object} ApplicationSettlement
+ */
+EmpireExpedition.prototype.getSettlement = function() {
+	return this.settlement;
+};
+
+/**
+ * Wird aufgerufen bevor das Objekt mit Daten befuellt wird
+ *
+ * @param {string} id
+ * @return {void}
+ */
+EmpireExpedition.prototype.beforeSettlementFill = function(id) {
+	if(_.isUndefined(Game.settlements[id]) === false) {
+		let data = Game.settlements[id];
+
+		this.settlement = Empire.factory.settlement.create(data.qcn);
+		this.settlement.fill(data);
+	}
+};
+
+/**
+ * Wird aufgerufen bevor das (Siedlungs-) Objekt zu einem JSON Objekt umgewandelt wird
+ *
+ * @return {string|null} id
+ */
+EmpireExpedition.prototype.beforeSettlementToJson = function() {
+	if((this.settlement instanceof Empire.object.settlement.colony) === true) {
+		return this.settlement.id;
+	}
+
+	return null;
 };
 
 

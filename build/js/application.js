@@ -27,7 +27,7 @@ Game = require('./game');
 let ex = new Empire.expedition();
 		ex.fill(Game.expeditions['eadb0907-0343-4d64-be73-89431d71ccc6']);
 
-		console.log(ex);
+console.log(ex.toJson());
 
 // Layout
 Vue.component('emp-footer', require('./components/layout/footer'));
