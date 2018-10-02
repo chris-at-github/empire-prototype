@@ -2,6 +2,7 @@
 
 import SerializableMixin from 'mixins/object/serializable';
 import EventMixin from 'mixins/object/event';
+import ExpeditionStorage from 'managers/storage/expedition';
 import ResourceCollection from 'resources/collection';
 
 let EmpireExpedition = function() {
@@ -91,7 +92,17 @@ EmpireExpedition.prototype.afterCreate = function() {
 	this.fire(Empire.event.EVENT_AFTER_CREATE);
 };
 
+/**
+ * Speichert die aktuelle Expedition
+ *
+ * @return {object} EmpireExpedition
+ */
+EmpireExpedition.prototype.store = function() {
+	let storage = new ExpeditionStorage();
+			storage.store(this);
 
+	return this;
+};
 
 /**
  * Setzen der Id als Methode -> damit ein feuern Nach-Id-Setzen Events moeglich ist

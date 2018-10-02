@@ -24,10 +24,19 @@ Empire.expedition = expedition;
 
 Game = require('./game');
 
-let ex = new Empire.expedition();
-		ex.fill(Game.expeditions['eadb0907-0343-4d64-be73-89431d71ccc6']);
-
-console.log(ex.toJson());
+// let ex = new Empire.expedition();
+// 		// ex.fill(Game.expeditions['eadb0907-0343-4d64-be73-89431d71ccc6']);
+// ex.fill({
+// 	type: 'expedition.type.search',
+// 	state: 'expedition.state.returnToHome',
+// 	unit:       '3e000db1-c7ec-4b06-8dc9-f6609bd0ae8c',
+// 	settlement: '0363dec2-e331-4e64-9b06-dce06941095c',
+// 	resources:  {
+// 		'resource.stone': 1
+// 	}
+// });
+//
+// console.log(ex.store());
 
 // Layout
 Vue.component('emp-footer', require('./components/layout/footer'));

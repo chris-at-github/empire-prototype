@@ -80,15 +80,15 @@ module.exports = {
 		}
 	},
 	expeditions: {
-		'eadb0907-0343-4d64-be73-89431d71ccc6': {
-			id: 'eadb0907-0343-4d64-be73-89431d71ccc6',
-			type: 'expedition.type.search',
-			state: 'expedition.state.search',
-			unit: '3e000db1-c7ec-4b06-8dc9-f6609bd0ae8c',
-			settlement: '0363dec2-e331-4e64-9b06-dce06941095c',
-			resources: {
-				'resource.wood': 1
-			}
-		}
+		// 'eadb0907-0343-4d64-be73-89431d71ccc6': {
+		// 	id: 'eadb0907-0343-4d64-be73-89431d71ccc6',
+		// 	type: 'expedition.type.search',
+		// 	state: 'expedition.state.search',
+		// 	unit: '3e000db1-c7ec-4b06-8dc9-f6609bd0ae8c',
+		// 	settlement: '0363dec2-e331-4e64-9b06-dce06941095c',
+		// 	resources: {
+		// 		'resource.wood': 1
+		// 	}
+		// }
 	}
 };
