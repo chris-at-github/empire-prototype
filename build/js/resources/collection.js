@@ -24,10 +24,23 @@ let ResourceCollection = function() {
 /**
  * Setzt das maximale Limit von Resourcen Einheiten
  *
- * @param {float} max
+ * @param {number} max
+ * @return {object} ResourceCollection
  */
 ResourceCollection.prototype.setMaxValue = function(max) {
 	this.maxValue = max;
+	return this;
+};
+
+/**
+ * Setzt das maximale Limit von Resourcen Einheiten
+ *
+ * @param {int} max
+ * @return {object} ResourceCollection
+ */
+ResourceCollection.prototype.setMaxResources = function(max) {
+	this.maxResources = max;
+	return this;
 };
 
 /**

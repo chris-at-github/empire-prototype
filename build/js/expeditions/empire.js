@@ -2,6 +2,7 @@
 
 import SerializableMixin from 'mixins/object/serializable';
 import EventMixin from 'mixins/object/event';
+import ResourceCollection from 'resources/collection';
 
 let EmpireExpedition = function() {
 
@@ -10,7 +11,7 @@ let EmpireExpedition = function() {
 	 *
 	 * @type {string[]}
 	 */
-	this.properties = ['id', 'type', 'state', 'unit', 'settlement'];
+	this.properties = ['id', 'type', 'state', 'unit', 'settlement', 'resources'];
 
 	/**
 	 * Zuruecksetzen der Event-Listener -> ueber das Mixin ist es sonst eine globale Variable
@@ -47,6 +48,13 @@ let EmpireExpedition = function() {
 	 */
 	this.settlement = null;
 
+	/**
+	 * gefundene Resourcen
+	 *
+	 * @type {object} ResourceCollection
+	 */
+	this.resources = new ResourceCollection();
+
 	// Initialisierung
 	this.initialize();
 };
@@ -61,6 +69,8 @@ Object.assign(EmpireExpedition.prototype, EventMixin);
  * @return {void}
  */
 EmpireExpedition.prototype.initialize = function() {
+	this.resources.setMaxValue(1);
+	this.resources.setMaxResources(1);
 };
 
 /**

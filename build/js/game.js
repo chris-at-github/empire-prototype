@@ -85,7 +85,10 @@ module.exports = {
 			type: 'expedition.type.search',
 			state: 'expedition.state.search',
 			unit: '3e000db1-c7ec-4b06-8dc9-f6609bd0ae8c',
-			settlement: '0363dec2-e331-4e64-9b06-dce06941095c'
+			settlement: '0363dec2-e331-4e64-9b06-dce06941095c',
+			resources: {
+				'resource.wood': 1
+			}
 		}
 	}
 };
