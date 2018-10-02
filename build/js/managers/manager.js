@@ -6,6 +6,7 @@ import TurnManager from './turn';
 
 import ObjectManager from './object';
 import UnitManager from './unit';
+import ExpeditionManager from './expedition';
 
 let managers = {
 	screen:   new ScreenManager(),
@@ -13,7 +14,8 @@ let managers = {
 	turn: new TurnManager(),
 
 	object: new ObjectManager(),
-	unit: new UnitManager()
+	unit: new UnitManager(),
+	expedition: new ExpeditionManager()
 };
 
 export default managers;
