@@ -74,6 +74,13 @@
 				</div>
 			</fieldset>
 		</div>
+
+		<div class="container">
+			<fieldset class="fieldset-default">
+				<legend>Expeditionen</legend>
+				<emp-expedition-listing v-bind:expeditions="expeditions"></emp-expedition-listing>
+			</fieldset>
+		</div>
 	</div>
 </template>
 
@@ -81,6 +88,7 @@
 	import ObjectListing from 'components/object/listing';
 	import ObjectWizard from 'components/object/wizard';
 	import ResourceListing from 'components/resource/listing';
+	import ExpeditionListing from 'components/expedition/listing';
 
 	export default {
 
@@ -88,7 +96,8 @@
 		components: {
 			'emp-object-listing': ObjectListing,
 			'emp-object-wizard': ObjectWizard,
-			'emp-resource-listing': ResourceListing
+			'emp-resource-listing': ResourceListing,
+			'emp-expedition-listing': ExpeditionListing
 		},
 
 		data: function() {
@@ -176,7 +185,13 @@
 					rate: this.object.getUnitIncreamentRate(),
 					status: this.properties.unitIncreamentStatus
 				}
-			}
+			},
+
+			expeditions: function() {
+				return Empire.manager.expedition.find({
+					settlement: this.id
+				});
+			},
 		},
 
 		methods: {

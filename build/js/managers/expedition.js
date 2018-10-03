@@ -19,7 +19,7 @@ ExpeditionManager.prototype.filter = function(data, options) {
 
 		// einer Siedlung zugeordnet
 		if(_.isUndefined(options.settlement) === false && hit !== false) {
-			hit = options.settlement === value.parent;
+			hit = options.settlement === value.settlement;
 		}
 
 		if(hit === true || _.isEmpty(options) === true) {
@@ -52,7 +52,6 @@ ExpeditionManager.prototype.find = function(options = {}, returnType) {
 	}
 
 	if(returnType === this.RETURN_TYPE_OBJECT) {
-
 		_.forEach(data, function(data) {
 			expeditions[data.id] = new Empire.expedition();
 			expeditions[data.id].fill(data);
