@@ -1,21 +1,18 @@
 <template>
 	<div class="card-container expedition-container" v-if="expeditions.length !== 0">
-<!--
-		<emp-object-listing-item v-for="object in objects"
-														 v-bind:key="object.id"
-														 v-bind:properties="object"
-		></emp-object-listing-item>
--->
-		EXPEDITIONS
+		<emp-expedition-listing-item v-for="expedition in expeditions"
+			v-bind:key="expedition.id"
+			v-bind:properties="expedition"
+		></emp-expedition-listing-item>
 	</div>
 </template>
 <script>
-	// import ObjectListingItem from './listing/item';
+	import ExpeditionListingItem from './listing/item';
 
 	export default {
-		// components: {
-		// 	'emp-object-listing-item': ObjectListingItem
-		// },
+		components: {
+			'emp-expedition-listing-item': ExpeditionListingItem
+		},
 		data: function() {
 			return {};
 		},
