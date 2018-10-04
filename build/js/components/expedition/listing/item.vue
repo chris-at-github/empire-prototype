@@ -11,13 +11,34 @@
 					<div class="property--title">Status:</div>
 					<div class="property--value">{{state}}</div>
 				</div>
+
+				<div class="property" v-if="expedition.unit !== null">
+					<div class="property--title">Arbeiter:</div>
+					<div class="property--value">1 ({{expedition.getUnit().getActionPoints()}} AP)</div>
+				</div>
+
+				<div class="property" v-if="expedition.getResources().count() !== 0">
+					<div class="property--title">Resource:</div>
+					<div class="property--value">
+						<emp-resource-value v-for="(value, key) in properties.resources"
+							v-bind:key="key"
+							v-bind:qcn="key"
+							v-bind:value="value"></emp-resource-value>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import ResourceValue from 'components/resource/value';
+
 	export default {
+		components: {
+			'emp-resource-value': ResourceValue
+		},
+
 		data: function() {
 			return {};
 		},
@@ -45,6 +66,8 @@
 						state[Empire.expedition.STATE_SEARCH] = 'Auf der Suche';
 						state[Empire.expedition.STATE_MOVE_TO_TARGET] = 'Auf dem Weg zur Resource';
 						state[Empire.expedition.STATE_RETURN_TO_SETTLEMENT] = 'Auf dem Rückweg';
+
+						console.log(this.expedition.getResources())
 
 				return state[this.properties.state];
 			}

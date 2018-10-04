@@ -146,4 +146,13 @@ ResourceCollection.prototype.toJson = function() {
 	return json;
 };
 
+/**
+ * Liefert die Anzahl an Resourcen (nicht Mengen) in der Collection zurueck
+ *
+ * @return {int}
+ */
+ResourceCollection.prototype.count = function() {
+	return _.size(this.resources);
+};
+
 export default ResourceCollection;

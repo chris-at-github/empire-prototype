@@ -187,6 +187,15 @@ EmpireExpedition.prototype.beforeSettlementToJson = function() {
 	return null;
 };
 
+/**
+ * Liefert die Resource Collection zurueck
+ *
+ * @return {object} ResourceCollection
+ */
+EmpireExpedition.prototype.getResources = function() {
+	return this.resources;
+};
+
 
 
 export default EmpireExpedition;
