@@ -79,6 +79,11 @@
 			<fieldset class="fieldset-default">
 				<legend>Expeditionen</legend>
 				<emp-expedition-listing v-bind:expeditions="expeditions"></emp-expedition-listing>
+
+				<hr>
+
+
+				<emp-expedition-wizard v-bind:settlement="properties"></emp-expedition-wizard>
 			</fieldset>
 		</div>
 	</div>
@@ -89,6 +94,7 @@
 	import ObjectWizard from 'components/object/wizard';
 	import ResourceListing from 'components/resource/listing';
 	import ExpeditionListing from 'components/expedition/listing';
+	import ExpeditionWizard from 'components/expedition/wizard';
 
 	export default {
 
@@ -97,7 +103,8 @@
 			'emp-object-listing': ObjectListing,
 			'emp-object-wizard': ObjectWizard,
 			'emp-resource-listing': ResourceListing,
-			'emp-expedition-listing': ExpeditionListing
+			'emp-expedition-listing': ExpeditionListing,
+			'emp-expedition-wizard': ExpeditionWizard
 		},
 
 		data: function() {
