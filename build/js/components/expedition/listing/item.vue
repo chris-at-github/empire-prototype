@@ -67,8 +67,6 @@
 						state[Empire.expedition.STATE_MOVE_TO_TARGET] = 'Auf dem Weg zur Resource';
 						state[Empire.expedition.STATE_RETURN_TO_SETTLEMENT] = 'Auf dem Rückweg';
 
-						console.log(this.expedition.getResources())
-
 				return state[this.properties.state];
 			}
 		},

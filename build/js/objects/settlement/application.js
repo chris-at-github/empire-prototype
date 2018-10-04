@@ -204,6 +204,11 @@ ApplicationSettlement.prototype.getAvailableUnits = function() {
 		delete units[id];
 	});
 
+	// Einheiten abziehen, die bereits Expeditionen zugeordnet sind
+	_.forEach(this.getExpeditionUnitKeys(), function(id) {
+		delete units[id];
+	});
+
 	return units;
 };
 
@@ -253,6 +258,25 @@ ApplicationSettlement.prototype.processBuildingQueue = function() {
 		building.construct();
 		building.store();
 	});
+};
+
+/**
+ * Liefert eine Liste (IDs) von Einheiten, die in Expeditionen eingesetzt sind
+ *
+ * @return {array}
+ */
+ApplicationSettlement.prototype.getExpeditionUnitKeys = function() {
+	let units = [];
+
+	_.forEach(Empire.manager.expedition.find({
+		settlement: this.id
+	}, Empire.manager.expedition.RETURN_TYPE_JSON), function(expedition) {
+		if(_.isEmpty(expedition.unit) === false) {
+			units.push(expedition.unit);
+		}
+	});
+
+	return units;
 };
 
 export default ApplicationSettlement;

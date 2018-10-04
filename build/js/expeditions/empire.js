@@ -38,7 +38,7 @@ let EmpireExpedition = function() {
 	/**
 	 * Eingesetzte Einheit
 	 *
-	 * @type {object} CollectorUnit
+	 * @type {object} WorkerUnit
 	 */
 	this.unit = null;
 
