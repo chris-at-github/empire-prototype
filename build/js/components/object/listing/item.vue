@@ -85,6 +85,7 @@
 			},
 
 			// umgedrehte Logik -> return true -> Button disabled
+			// @todo: Umbenennung in assignWorkerButtonDisabled
 			assignUnitsButtonDisabled: function() {
 
 				// Freie Arbeiter vorhanden?
@@ -95,6 +96,7 @@
 				return false;
 			},
 
+			// @todo: Umbenennung in assignWorkerButtonVisible
 			assignUnitsButtonVisible: function() {
 
 				// Bereits Arbeiter zugewiesen
@@ -105,6 +107,7 @@
 				return true;
 			},
 
+			// @todo: Umbennenung in removeWorkerButtonVisible
 			removeUnitsButtonVisible: function() {
 
 				// Sind Arbeiter zugewiesen
@@ -122,6 +125,7 @@
 						object.store();
 			},
 
+			// @todo: Umbenennung in assignWorker
 			assignUnits: function() {
 				if(this.isPlanned === true) {
 					this.object.setConstructionState(Empire.object.CONSTRUCTION_STATE_UNDER_CONSTRUCTION);
@@ -131,6 +135,7 @@
 				this.object.store();
 			},
 
+			// @todo: Umbenennung in removeWorker
 			removeUnits: function() {
 				this.object.getUnits().empty();
 				this.object.store();

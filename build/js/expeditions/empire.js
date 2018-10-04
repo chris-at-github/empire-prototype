@@ -38,7 +38,7 @@ let EmpireExpedition = function() {
 	/**
 	 * Eingesetzte Einheit
 	 *
-	 * @type {object} WorkerUnit
+	 * @type {object} CollectorUnit
 	 */
 	this.unit = null;
 
@@ -143,7 +143,7 @@ EmpireExpedition.prototype.beforeUnitFill = function(id) {
  * @return {string|null} id
  */
 EmpireExpedition.prototype.beforeUnitToJson = function() {
-	if((this.unit instanceof Empire.unit.worker) === true) {
+	if(_.isUndefined(this.unit.id) === false) {
 		return this.unit.id;
 	}
 
@@ -180,7 +180,7 @@ EmpireExpedition.prototype.beforeSettlementFill = function(id) {
  * @return {string|null} id
  */
 EmpireExpedition.prototype.beforeSettlementToJson = function() {
-	if((this.settlement instanceof Empire.object.settlement.colony) === true) {
+	if(_.isUndefined(this.settlement.id) === false) {
 		return this.settlement.id;
 	}
 

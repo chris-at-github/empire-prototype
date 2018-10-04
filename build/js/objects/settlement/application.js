@@ -189,6 +189,9 @@ ApplicationSettlement.prototype.countUnits = function() {
 
 /**
  * Berechnet die verfuegbaren Einwohner / Arbeiter
+ * @todo Umbennenung in getAvailableWorker
+ * @todo in find-Methode die qcn Eigenschaft unit.worker mit aufnehmen
+ * @todo Expeditions-Einheiten muessen nicht mehr abgefragt werden
  *
  * @return {object}
  */
@@ -223,6 +226,7 @@ ApplicationSettlement.prototype.getUnitIncreamentRate = function() {
 
 /**
  * Liefert eine Liste (IDs) von Einheiten, die Gebaueden zugeordnet sind
+ * @todo Umbenennung in getBuildingWorkerKeys
  *
  * @return {array}
  */
@@ -262,6 +266,7 @@ ApplicationSettlement.prototype.processBuildingQueue = function() {
 
 /**
  * Liefert eine Liste (IDs) von Einheiten, die in Expeditionen eingesetzt sind
+ * @todo: wird nicht mehr benoetigt
  *
  * @return {array}
  */
