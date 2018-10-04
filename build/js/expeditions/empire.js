@@ -143,7 +143,7 @@ EmpireExpedition.prototype.beforeUnitFill = function(id) {
  * @return {string|null} id
  */
 EmpireExpedition.prototype.beforeUnitToJson = function() {
-	if((this.unit instanceof Empire.unit.collector) === true) {
+	if((this.unit instanceof Empire.unit.worker) === true) {
 		return this.unit.id;
 	}
 

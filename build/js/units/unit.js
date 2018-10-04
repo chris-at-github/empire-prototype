@@ -1,11 +1,9 @@
 'use strict';
 
 import WorkerUnit from './worker';
-import CollectorUnit from './collector';
 
 let unit = {
-	worker: WorkerUnit,
-	collector: CollectorUnit
+	worker: WorkerUnit
 };
 
 export default unit;
