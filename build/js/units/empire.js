@@ -110,4 +110,16 @@ EmpireUnit.prototype.fillUpActionPoints = function() {
 	this.actionPoints = this.initialActionPoints;
 };
 
+/**
+ * Wandelt eine Einheit in einen anderen Typ um
+ *
+ * @param {string} qcn
+ * @return {object} Instanz der neuen Einheit
+ */
+EmpireUnit.prototype.convert = function(qcn) {
+	// @todo: this.setQcn(qcn) -> this.store
+	// @todo: neue Instanz ueber Empire.manager.unit.find erstellen und zurueck geben.
+	// @todo Entfernung von unnoetigen Eigenschaften (this.properties) noetig?
+};
+
 export default EmpireUnit;

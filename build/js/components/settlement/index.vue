@@ -211,6 +211,7 @@
 			createExpedition: function() {
 				let expedition = Empire.factory.expedition.create();
 
+				// @todo: Uebergabe des Settlement-Objektes {settlement: this.object}
 				expedition.create();
 			}
 		}

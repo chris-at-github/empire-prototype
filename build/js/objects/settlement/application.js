@@ -189,7 +189,6 @@ ApplicationSettlement.prototype.countUnits = function() {
 
 /**
  * Berechnet die verfuegbaren Einwohner / Arbeiter
- * @todo Umbennenung in getAvailableWorker
  *
  * @return {object}
  */

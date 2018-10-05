@@ -199,10 +199,18 @@ EmpireExpedition.prototype.getResources = function() {
 /**
  * Erstellt eine neue Expedition
  *
+ * @param {object} options
  * @return {object} EmpireExpedition
  */
-EmpireExpedition.prototype.create = function() {
-	console.log('EmpireExpedition::create');
+EmpireExpedition.prototype.create = function(options = {}) {
+
+	// @todo neue Expedition ueber die Factory erstellen
+	// @todo initialen Status auf Empire.expedition.TYPE_SEARCH stellen (falls nicht per Option uebergeben)
+	// @todo uebergebene Siedlung (options.settlement) setzen, siehe todo settlement::index (vue)
+	// @todo freien Arbeiter identifizieren -> settlement.getAvailableWorker
+	// @todo Umwandlung der Einheit in einen Sammler (qcn: unit.collector), siehe todo EmpireUnit::convert
+	// @todo Speichern -> this.store
+
 	return this;
 };
 
