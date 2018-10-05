@@ -122,6 +122,19 @@ EmpireExpedition.prototype.getUnit = function() {
 	return this.unit;
 };
 
+
+/**
+ * Speichert das Unit Objekt
+ *
+ * @param {object} unit CollectorUnit
+ * @return {object} EmpireExpedition
+ */
+EmpireExpedition.prototype.setUnit = function(unit) {
+	this.unit = unit;
+
+	return this;
+};
+
 /**
  * Wird aufgerufen bevor das Objekt mit Daten befuellt wird
  *
@@ -157,6 +170,17 @@ EmpireExpedition.prototype.beforeUnitToJson = function() {
  */
 EmpireExpedition.prototype.getSettlement = function() {
 	return this.settlement;
+};
+
+/**
+ * Setzt das Settlement Objekt
+ *
+ * @param {object} ApplicationSettlement
+ * @return {object} EmpireExpedition
+ */
+EmpireExpedition.prototype.setSettlement = function(settlement) {
+	this.settlement = settlement;
+	return this;
 };
 
 /**
@@ -223,8 +247,17 @@ EmpireExpedition.prototype.create = function(options = {}) {
 		}
 	}
 
-	// @todo neue Expedition ueber die Factory erstellen
-	// @todo Speichern -> this.store
+	let expedition = Empire.factory.expedition.create();
+
+	expedition.fill({
+		state: Empire.expedition.STATE_ON_HOLD,
+		type: options.type
+	});
+
+	expedition.setSettlement(options.settlement);
+	expedition.setUnit(options.unit);
+
+	expedition.store();
 
 	return this;
 };
