@@ -223,6 +223,16 @@ EmpireExpedition.prototype.search = function() {
 
 	// @todo befindet sich die Expedition im Suchmodus -> ansonsten return false
 	// @todo reichen die bestehenden AP aus um eine Suche zu starten, siehe todo CollectorUnit::searchEnabled
+	// @todo Suche starten
+	// 	-> Speicherung der vorherigen Suchaktion -> unit.setPreviousSearchState
+	//  -> if: previousSearchState = moveToSearch -> zufaellige Suche nach einer Resource -> todo: eigene Klasse hierfuer erstellen
+	//	-> if: previousSearchState = search -> unit.move und unit.setPreviousSearchState zu moveToSearch setzen
+	//  -> Suche durchlaufen bis CollectorUnit::searchEnabled = false -> unit.store()
+
+	// @todo if: Suche erfolgreich
+	// -> Resource hinterlegen
+	// -> Status auf Empire.expedition.RETURN_TO_SETTLEMENT stellen
+	// -> Speichern unit.store() + this.store()
 
 	return false;
 };
