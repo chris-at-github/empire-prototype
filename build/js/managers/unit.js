@@ -11,20 +11,28 @@ UnitManager.prototype.RETURN_TYPE_OBJECT = 'objectManager.returnType.object';
 /**
  * @param {object} data
  * @param {object} options
- * @return {mixed}
+ * @return {*}
  */
 UnitManager.prototype.filter = function(data, options) {
 	return _.filter(data, function(value) {
-		let relevant = null;
+		let hit = null;
 
-		// einer Siedlung zugeordnet
-		if(_.isUndefined(options.settlement) === false && relevant !== false) {
-			if(options.settlement === value.parent) {
-				relevant = true;
+		// QCN
+		// Uebergabe als String oder als Array -> wird immer in ein Array umgewandelt
+		if(_.isUndefined(options.qcn) === false && hit !== false) {
+			if(typeof(options.qcn) === 'string') {
+				options.qcn = [options.qcn];
 			}
+
+			hit = _.indexOf(options.qcn, value.qcn) !== - 1;
 		}
 
-		if(relevant === true || _.isEmpty(options) === true) {
+		// einer Siedlung zugeordnet
+		if(_.isUndefined(options.settlement) === false && hit !== false) {
+			hit = options.settlement === value.parent;
+		}
+
+		if(hit === true || _.isEmpty(options) === true) {
 			return value;
 		}
 	});
@@ -33,7 +41,7 @@ UnitManager.prototype.filter = function(data, options) {
 /**
  * @param {object} options
  * @param {string} returnType
- * @return {mixed}
+ * @return {*}
  */
 UnitManager.prototype.find = function(options = {}, returnType) {
 	let data = this.filter(Game.units, options);

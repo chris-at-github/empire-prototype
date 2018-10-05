@@ -31,7 +31,7 @@ ObjectManager.prototype.getObjectsData = function(type) {
 /**
  * @param {object} data
  * @param {object} options
- * @return {mixed}
+ * @return {*}
  */
 ObjectManager.prototype.filter = function(data, options) {
 	return _.filter(data, function(value) {
@@ -62,7 +62,7 @@ ObjectManager.prototype.filter = function(data, options) {
  * @param {object} options
  * @param {string} type
  * @param {string} returnType
- * @return {mixed}
+ * @return {*}
  */
 ObjectManager.prototype.find = function(options = {}, type = null, returnType) {
 	let data = this.filter(this.getObjectsData(type), options);

@@ -190,8 +190,6 @@ ApplicationSettlement.prototype.countUnits = function() {
 /**
  * Berechnet die verfuegbaren Einwohner / Arbeiter
  * @todo Umbennenung in getAvailableWorker
- * @todo in find-Methode die qcn Eigenschaft unit.worker mit aufnehmen
- * @todo Expeditions-Einheiten muessen nicht mehr abgefragt werden
  *
  * @return {object}
  */
@@ -199,16 +197,12 @@ ApplicationSettlement.prototype.getAvailableUnits = function() {
 
 	// Einheiten sammeln, die dieser Siedlung zugeordnet sind
 	let units = Empire.manager.unit.find({
+		qcn: 'unit.worker',
 		settlement: this.id
 	}, Empire.manager.unit.RETURN_TYPE_JSON);
 
 	// Einheiten abziehen, die bereits Gebaeuden zugeordnet sind
-	_.forEach(this.getBuildingUnitKeys(), function(id) {
-		delete units[id];
-	});
-
-	// Einheiten abziehen, die bereits Expeditionen zugeordnet sind
-	_.forEach(this.getExpeditionUnitKeys(), function(id) {
+	_.forEach(this.getBuildingWorkerKeys(), function(id) {
 		delete units[id];
 	});
 
@@ -226,11 +220,10 @@ ApplicationSettlement.prototype.getUnitIncreamentRate = function() {
 
 /**
  * Liefert eine Liste (IDs) von Einheiten, die Gebaueden zugeordnet sind
- * @todo Umbenennung in getBuildingWorkerKeys
  *
  * @return {array}
  */
-ApplicationSettlement.prototype.getBuildingUnitKeys = function() {
+ApplicationSettlement.prototype.getBuildingWorkerKeys = function() {
 	let units = [];
 
 	_.forEach(Empire.manager.object.find({
@@ -262,26 +255,6 @@ ApplicationSettlement.prototype.processBuildingQueue = function() {
 		building.construct();
 		building.store();
 	});
-};
-
-/**
- * Liefert eine Liste (IDs) von Einheiten, die in Expeditionen eingesetzt sind
- * @todo: wird nicht mehr benoetigt
- *
- * @return {array}
- */
-ApplicationSettlement.prototype.getExpeditionUnitKeys = function() {
-	let units = [];
-
-	_.forEach(Empire.manager.expedition.find({
-		settlement: this.id
-	}, Empire.manager.expedition.RETURN_TYPE_JSON), function(expedition) {
-		if(_.isEmpty(expedition.unit) === false) {
-			units.push(expedition.unit);
-		}
-	});
-
-	return units;
 };
 
 export default ApplicationSettlement;
