@@ -35,7 +35,7 @@ CollectorUnit.prototype.searchEnabled = function() {
 
 	// @todo AP zur Bewegung auslesen, siehe todo EmpireUnit::getMoveActionPoints
 	// @todo AP zur Suchaktion auslesen this.getSearchActionPoints()
-	// @todo Pruefung: moveAp + searchAp > unitAp -> return false
+	// @todo Pruefung (mit Beruecksichtigung der previousSearchState-Eigenschaft): moveAp + searchAp > unitAp -> return false
 
 	return true;
 };
