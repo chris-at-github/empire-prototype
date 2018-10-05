@@ -204,11 +204,26 @@ EmpireExpedition.prototype.getResources = function() {
  */
 EmpireExpedition.prototype.create = function(options = {}) {
 
+	// initialen Status auf Empire.expedition.TYPE_SEARCH stellen (falls nicht per Option uebergeben)
+	if(_.isUndefined(options.type) === true) {
+		options.type = Empire.expedition.TYPE_SEARCH;
+	}
+
+	if(_.isUndefined(options.settlement) === false) {
+		let workers = options.settlement.getAvailableWorker();
+
+		if(_.size(workers) !== 0) {
+
+			// ersten verfuegbaren Arbeiter auswaehlen und einen Sammler umwandeln
+			let data = Object.values(workers)[0];
+			let worker = Empire.factory.unit.create(data.qcn);
+					worker.fill(data);
+
+			options.unit = worker.convert('unit.collector');		
+		}
+	}
+
 	// @todo neue Expedition ueber die Factory erstellen
-	// @todo initialen Status auf Empire.expedition.TYPE_SEARCH stellen (falls nicht per Option uebergeben)
-	// @todo uebergebene Siedlung (options.settlement) setzen, siehe todo settlement::index (vue)
-	// @todo freien Arbeiter identifizieren -> settlement.getAvailableWorker
-	// @todo Umwandlung der Einheit in einen Sammler (qcn: unit.collector), siehe todo EmpireUnit::convert
 	// @todo Speichern -> this.store
 
 	return this;

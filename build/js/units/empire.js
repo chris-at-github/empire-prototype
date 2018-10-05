@@ -2,6 +2,7 @@
 
 import SerializableMixin from 'mixins/object/serializable';
 import EventMixin from 'mixins/object/event';
+import UnitStorage from 'managers/storage/unit';
 
 let EmpireUnit = function() {
 
@@ -54,6 +55,17 @@ EmpireUnit.prototype._initialize = function() {
 };
 
 /**
+ * Speichert das aktuelle Objekt
+ *
+ * @return {object} building
+ */
+EmpireUnit.prototype.store = function() {
+	let storage = new UnitStorage();
+			storage.store(this);
+},
+
+
+/**
  * Wird VOR dem Einfuegen des Objekts durchgefuehrt
  *
  * @return {boolean}
@@ -79,6 +91,14 @@ EmpireUnit.prototype.afterCreate = function() {
  */
 EmpireUnit.prototype.setId = function(id) {
 	this.id = id;
+};
+
+/**
+ * @param {string} qcn
+ * @return {object} EmpireUnit
+ */
+EmpireUnit.prototype.setQcn = function(qcn) {
+	this.qcn = qcn;
 };
 
 /**
@@ -117,9 +137,17 @@ EmpireUnit.prototype.fillUpActionPoints = function() {
  * @return {object} Instanz der neuen Einheit
  */
 EmpireUnit.prototype.convert = function(qcn) {
-	// @todo: this.setQcn(qcn) -> this.store
-	// @todo: neue Instanz ueber Empire.manager.unit.find erstellen und zurueck geben.
+
+	// QCN aendern und direkt speichern -> damit es als neue Instanz geladen werden kann
+	this.setQcn(qcn);
+	this.store();
+
+	// Neue Instanz mit der neuen QCN erzeugen
 	// @todo Entfernung von unnoetigen Eigenschaften (this.properties) noetig?
+	let converted = Empire.factory.unit.create(qcn);
+			converted.fill(this.toJson());
+
+	return converted;
 };
 
 /**
