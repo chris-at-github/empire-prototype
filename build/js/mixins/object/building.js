@@ -213,7 +213,7 @@ let Building = {
 	 * @return {void}
 	 */
 	assignUnits: function() {
-		let units = this.getSettlement().getAvailableUnits();
+		let units = this.getSettlement().getAvailableWorker();
 
 		// mindestens ein verfuegbarer Arbeiter
 		if(_.size(units) !== 0) {

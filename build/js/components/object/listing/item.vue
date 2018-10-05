@@ -89,7 +89,7 @@
 			assignUnitsButtonDisabled: function() {
 
 				// Freie Arbeiter vorhanden?
-				if(_.size(this.object.getSettlement().getAvailableUnits()) === 0) {
+				if(_.size(this.object.getSettlement().getAvailableWorker()) === 0) {
 					return true;
 				}
 

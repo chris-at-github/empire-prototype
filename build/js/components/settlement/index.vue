@@ -82,7 +82,6 @@
 
 				<hr>
 
-
 				<emp-expedition-wizard v-bind:settlement="properties"></emp-expedition-wizard>
 			</fieldset>
 		</div>
@@ -183,7 +182,7 @@
 			unitCapacity: function() {
 				return {
 					total: this.object.getUnitCapacity(),
-					available: _.size(this.object.getAvailableUnits())
+					available: _.size(this.object.getAvailableWorker())
 				}
 			},
 

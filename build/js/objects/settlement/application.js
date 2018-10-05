@@ -193,7 +193,7 @@ ApplicationSettlement.prototype.countUnits = function() {
  *
  * @return {object}
  */
-ApplicationSettlement.prototype.getAvailableUnits = function() {
+ApplicationSettlement.prototype.getAvailableWorker = function() {
 
 	// Einheiten sammeln, die dieser Siedlung zugeordnet sind
 	let units = Empire.manager.unit.find({
