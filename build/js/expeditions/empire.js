@@ -214,4 +214,17 @@ EmpireExpedition.prototype.create = function(options = {}) {
 	return this;
 };
 
+/**
+ * Fuehrt eine neue Suchaktion aus
+ *
+ * @return {boolean}
+ */
+EmpireExpedition.prototype.search = function() {
+
+	// @todo befindet sich die Expedition im Suchmodus -> ansonsten return false
+	// @todo reichen die bestehenden AP aus um eine Suche zu starten, siehe todo CollectorUnit::searchEnabled
+
+	return false;
+};
+
 export default EmpireExpedition;

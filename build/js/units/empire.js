@@ -122,4 +122,16 @@ EmpireUnit.prototype.convert = function(qcn) {
 	// @todo Entfernung von unnoetigen Eigenschaften (this.properties) noetig?
 };
 
+/**
+ * Liefert die AP zurueck, die fuer die naechste Bewegung noetig ist
+ *
+ * @return {int}
+ */
+EmpireUnit.prototype.getMoveActionPoints = function() {
+
+	// @todo Implementierung mit dem Map-Update (0.0.9)
+
+	return 0;
+};
+
 export default EmpireUnit;
