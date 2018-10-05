@@ -210,6 +210,8 @@
 
 			createExpedition: function() {
 				let expedition = Empire.factory.expedition.create();
+
+				expedition.create();
 			}
 		}
 	}

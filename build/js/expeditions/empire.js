@@ -196,6 +196,14 @@ EmpireExpedition.prototype.getResources = function() {
 	return this.resources;
 };
 
-
+/**
+ * Erstellt eine neue Expedition
+ *
+ * @return {object} EmpireExpedition
+ */
+EmpireExpedition.prototype.create = function() {
+	console.log('EmpireExpedition::create');
+	return this;
+};
 
 export default EmpireExpedition;
