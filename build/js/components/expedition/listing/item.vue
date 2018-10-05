@@ -47,14 +47,14 @@
 
 		computed: {
 			expedition: function() {
-				let expedition = new Empire.expedition();
-				expedition.fill(this.properties);
+				let expedition = Empire.factory.expedition.create();
+						expedition.fill(this.properties);
 
 				return expedition;
 			},
 
 			type: function() {
-				let types = {}
+				let types = {};
 						types[Empire.expedition.TYPE_SEARCH] = 'Suche';
 						types[Empire.expedition.TYPE_TARGET] = 'Vorgegebene Resource';
 

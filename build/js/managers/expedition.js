@@ -53,7 +53,7 @@ ExpeditionManager.prototype.find = function(options = {}, returnType) {
 
 	if(returnType === this.RETURN_TYPE_OBJECT) {
 		_.forEach(data, function(data) {
-			expeditions[data.id] = new Empire.expedition();
+			expeditions[data.id] = new Empire.factory.expedition.create();
 			expeditions[data.id].fill(data);
 		});
 	}

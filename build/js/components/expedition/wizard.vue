@@ -23,7 +23,6 @@
 	export default {
 		data: function() {
 			return {
-				// rerender: false,
 				modal: false
 			};
 		},

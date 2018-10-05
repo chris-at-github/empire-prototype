@@ -82,7 +82,9 @@
 
 				<hr>
 
-				<emp-expedition-wizard v-bind:settlement="properties"></emp-expedition-wizard>
+				<button class="button" v-on:click="createExpedition">Neue Expedition starten</button>
+
+				<!--<emp-expedition-wizard v-bind:settlement="properties"></emp-expedition-wizard>-->
 			</fieldset>
 		</div>
 	</div>
@@ -204,6 +206,10 @@
 			close: function() {
 				Empire.manager.screen.activate(Empire.manager.screen.WORLD);
 				Empire.manager.activate.deactivateSettlement();
+			},
+
+			createExpedition: function() {
+				let expedition = Empire.factory.expedition.create();
 			}
 		}
 	}
