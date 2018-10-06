@@ -270,15 +270,27 @@ EmpireExpedition.prototype.create = function(options = {}) {
 EmpireExpedition.prototype.search = function() {
 
 	// befindet sich die Expedition im Suchmodus -> ansonsten return false
-	if(this.state !== Empire.expedition.STATE_ON_HOLD && this.state !== Empire.expedition.STATE_SEARCH && this.state === Empire.expedition.STATE_SEARCH) {
+	if(this.state !== Empire.expedition.STATE_ON_HOLD && this.state !== Empire.expedition.STATE_SEARCH && this.state === Empire.expedition.STATE_MOVE_TO_SEARCH) {
 		return false;
 	}
 
 	// reichen die bestehenden AP der Einheit aus um eine Suche zu starten
-	if(this.getUnit().isSearchEnabled() === true) {
+	while(this.getUnit().isSearchEnabled() === true) {
+		if(this.getUnit().isSearchEnabled() === true && this.getUnit().getPreviousSearchState() === Empire.expedition.STATE_MOVE_TO_SEARCH) {
+			this.getUnit().subActionPoints(this.getUnit().getSearchActionPoints());
+			this.getUnit().setPreviousSearchState(Empire.expedition.STATE_SEARCH);
+		}
 
+		if(this.getUnit().isSearchEnabled() === true && (this.getUnit().getPreviousSearchState() === Empire.expedition.STATE_SEARCH || this.getUnit().getPreviousSearchState() === Empire.expedition.STATE_ON_HOLD)) {
+			this.getUnit().subActionPoints(this.getUnit().getMoveActionPoints());
+			this.getUnit().setPreviousSearchState(Empire.expedition.STATE_MOVE_TO_SEARCH);
+		}
 	}
-	console.log(this.getUnit().isSearchEnabled());
+
+	// aktuellen Status der Einheit zwischenspeichern
+	this.getUnit().store();
+
+	// console.log(this.getUnit().isSearchEnabled());
 
 	// @todo
 	// @todo reichen die bestehenden AP aus um eine Suche zu starten, siehe todo CollectorUnit::searchEnabled

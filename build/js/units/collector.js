@@ -74,7 +74,7 @@ CollectorUnit.prototype.isSearchEnabled = function() {
  * @return {int}
  */
 CollectorUnit.prototype.getSearchActionPoints = function() {
-	return 50;
+	return 40;
 };
 
 /**

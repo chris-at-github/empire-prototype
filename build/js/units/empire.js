@@ -122,6 +122,18 @@ EmpireUnit.prototype.setActionPoints = function(actionPoints) {
 };
 
 /**
+ * Zieht AP von dem bestehenden APs ab
+ * @todo throw Exception wenn die AP unter 0 fallen
+ *
+ * @param {int} actionPoints
+ * @return {object} unit
+ */
+EmpireUnit.prototype.subActionPoints = function(actionPoints) {
+	this.actionPoints -= actionPoints;
+	return this;
+};
+
+/**
  * Fuellt die AP vor der Runde wieder auf
  *
  * @return {void}
@@ -159,7 +171,7 @@ EmpireUnit.prototype.getMoveActionPoints = function() {
 
 	// @todo Implementierung mit dem Map-Update (0.0.9)
 
-	return 0;
+	return 25;
 };
 
 export default EmpireUnit;
