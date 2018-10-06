@@ -27,6 +27,12 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="object--actions">
+				<ul>
+					<li><button class="button" v-on:click="search">Suchen</button></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </template>
@@ -73,6 +79,9 @@
 		},
 
 		methods: {
+			search: function() {
+				this.expedition.search();
+			}
 		}
 	}
 </script>

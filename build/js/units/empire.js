@@ -25,7 +25,7 @@ let EmpireUnit = function() {
 	 * Definition von Eigenschaften ueberschreiben
 	 * @type {string[]}
 	 */
-	this.properties = ['id', 'name', 'parent', 'actionPoints'];
+	this.properties = ['id', 'parent', 'actionPoints'];
 
 	// Zuruecksetzen der Event-Listener -> ueber das Mixin ist es sonst eine globale Variable
 	this.eventListener = {};

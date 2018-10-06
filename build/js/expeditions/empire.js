@@ -269,6 +269,8 @@ EmpireExpedition.prototype.create = function(options = {}) {
  */
 EmpireExpedition.prototype.search = function() {
 
+	console.log('EmpireExpedition::search');
+
 	// @todo befindet sich die Expedition im Suchmodus -> ansonsten return false
 	// @todo reichen die bestehenden AP aus um eine Suche zu starten, siehe todo CollectorUnit::searchEnabled
 	// @todo Suche starten
