@@ -5,8 +5,26 @@ import EmpireUnit from './empire';
 let CollectorUnit = function() {
 	EmpireUnit.call(this);
 
+	/**
+	 * Qualifed Class Name
+	 *
+	 * @type {string}
+	 */
 	this.qcn = 'unit.collector';
+
+	/**
+	 * Offizielle Bezeichnung
+	 *
+	 * @type {string}
+	 */
 	this.name = 'Sammler';
+
+	/**
+	 * Vorherige Suchaktion
+	 *
+	 * @type {string}
+	 */
+	this.previousSearchState = Empire.expedition.STATE_ON_HOLD;
 
 	this.intialize();
 };
@@ -24,6 +42,7 @@ CollectorUnit.prototype = Object.create(EmpireUnit.prototype);
  * @return {void}
  */
 CollectorUnit.prototype.intialize = function() {
+	this.addProperty('previousSearchState');
 };
 
 /**
@@ -31,13 +50,22 @@ CollectorUnit.prototype.intialize = function() {
  *
  * @return {boolean}
  */
-CollectorUnit.prototype.searchEnabled = function() {
+CollectorUnit.prototype.isSearchEnabled = function() {
 
-	// @todo AP zur Bewegung auslesen, siehe todo EmpireUnit::getMoveActionPoints
-	// @todo AP zur Suchaktion auslesen this.getSearchActionPoints()
-	// @todo Pruefung (mit Beruecksichtigung der previousSearchState-Eigenschaft): moveAp + searchAp > unitAp -> return false
+	// Hat sich der Sammler zuvor auf ein neues Feld bewegt und reichen die AP fuer einen erneuten Suchlauf
+	if(this.previousSearchState === Empire.expedition.STATE_MOVE_TO_SEARCH && this.getActionPoints() >= this.getSearchActionPoints()) {
+		return true;
+	}
 
-	return true;
+	// Befindet sich der Sammler im Wartemodus oder hat bereits das Feld abgesucht und reichen die AP fuer eine Bewegung zum naechsten Feld
+	if(
+		(this.previousSearchState === Empire.expedition.STATE_SEARCH || this.previousSearchState === Empire.expedition.STATE_ON_HOLD) &&
+		this.getActionPoints() >= this.getMoveActionPoints())
+	{
+		return true;
+	}
+
+	return false;
 };
 
 /**
@@ -47,6 +75,26 @@ CollectorUnit.prototype.searchEnabled = function() {
  */
 CollectorUnit.prototype.getSearchActionPoints = function() {
 	return 50;
+};
+
+/**
+ * Vorherige Suchaktion
+ *
+ * @param {string} previousSearchState
+ * @return {object} CollectorUnit
+ */
+CollectorUnit.prototype.setPreviousSearchState = function(previousSearchState) {
+	this.previousSearchState = previousSearchState;
+	return this;
+};
+
+/**
+ * Vorherige Suchaktion
+ *
+ * @return {string} CollectorUnit
+ */
+CollectorUnit.prototype.getPreviousSearchState = function() {
+	return this.previousSearchState;
 };
 
 export default CollectorUnit;

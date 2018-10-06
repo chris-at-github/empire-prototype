@@ -269,9 +269,18 @@ EmpireExpedition.prototype.create = function(options = {}) {
  */
 EmpireExpedition.prototype.search = function() {
 
-	console.log('EmpireExpedition::search');
+	// befindet sich die Expedition im Suchmodus -> ansonsten return false
+	if(this.state !== Empire.expedition.STATE_ON_HOLD && this.state !== Empire.expedition.STATE_SEARCH && this.state === Empire.expedition.STATE_SEARCH) {
+		return false;
+	}
 
-	// @todo befindet sich die Expedition im Suchmodus -> ansonsten return false
+	// reichen die bestehenden AP der Einheit aus um eine Suche zu starten
+	if(this.getUnit().isSearchEnabled() === true) {
+
+	}
+	console.log(this.getUnit().isSearchEnabled());
+
+	// @todo
 	// @todo reichen die bestehenden AP aus um eine Suche zu starten, siehe todo CollectorUnit::searchEnabled
 	// @todo Suche starten
 	// 	-> Speicherung der vorherigen Suchaktion -> unit.setPreviousSearchState
