@@ -276,20 +276,32 @@ EmpireExpedition.prototype.search = function() {
 
 	// reichen die bestehenden AP der Einheit aus um eine Suche zu starten
 	while(this.getUnit().isSearchEnabled() === true) {
-		if(this.getUnit().isSearchEnabled() === true && this.getUnit().getPreviousSearchState() === Empire.expedition.STATE_MOVE_TO_SEARCH) {
-			this.getUnit().subActionPoints(this.getUnit().getSearchActionPoints());
-			this.getUnit().setPreviousSearchState(Empire.expedition.STATE_SEARCH);
-		}
 
+		// zuerst die Bewegung, danach die Suche
 		if(this.getUnit().isSearchEnabled() === true && (this.getUnit().getPreviousSearchState() === Empire.expedition.STATE_SEARCH || this.getUnit().getPreviousSearchState() === Empire.expedition.STATE_ON_HOLD)) {
 			this.getUnit().subActionPoints(this.getUnit().getMoveActionPoints());
 			this.getUnit().setPreviousSearchState(Empire.expedition.STATE_MOVE_TO_SEARCH);
+
+			this.state = Empire.expedition.STATE_MOVE_TO_SEARCH;
+		}
+
+		if(this.getUnit().isSearchEnabled() === true && this.getUnit().getPreviousSearchState() === Empire.expedition.STATE_MOVE_TO_SEARCH) {
+			this.getUnit().subActionPoints(this.getUnit().getSearchActionPoints());
+			this.getUnit().setPreviousSearchState(Empire.expedition.STATE_SEARCH);
+
+			this.state = Empire.expedition.STATE_SEARCH;
 		}
 	}
 
 	// aktuellen Status der Einheit zwischenspeichern
 	this.getUnit().store();
 
+	// Suche erfolgreich
+	if(this.getResources().count() !== 0) {
+		this.state = Empire.expedition.STATE_RETURN_TO_SETTLEMENT;
+	}
+
+	this.store();
 	// console.log(this.getUnit().isSearchEnabled());
 
 	// @todo

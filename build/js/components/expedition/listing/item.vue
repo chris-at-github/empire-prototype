@@ -70,6 +70,7 @@
 			state: function() {
 				let state = {};
 						state[Empire.expedition.STATE_SEARCH] = 'Auf der Suche';
+						state[Empire.expedition.STATE_MOVE_TO_SEARCH] = 'Auf der Suche';
 						state[Empire.expedition.STATE_MOVE_TO_TARGET] = 'Auf dem Weg zur Resource';
 						state[Empire.expedition.STATE_RETURN_TO_SETTLEMENT] = 'Auf dem Rückweg';
 						state[Empire.expedition.STATE_ON_HOLD] = 'Warten';
