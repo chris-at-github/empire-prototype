@@ -263,6 +263,28 @@ EmpireExpedition.prototype.create = function(options = {}) {
 };
 
 /**
+ * Prueft ob eine Suchaktion moeglich ist -> reichen die bestehenden AP fuer einen neuen Vorgang aus?
+ *
+ * @return {boolean}
+ */
+EmpireExpedition.prototype.isSearchEnabled = function() {
+
+	// Hat sich der Sammler zuvor auf ein neues Feld bewegt und reichen die AP fuer einen erneuten Suchlauf
+	if(this.state === Empire.expedition.STATE_MOVE_TO_SEARCH && this.getUnit().getActionPoints() >= this.getUnit().getSearchActionPoints()) {
+		return true;
+	}
+
+	// Befindet sich der Sammler im Wartemodus oder hat bereits das Feld abgesucht und reichen die AP fuer eine Bewegung zum naechsten Feld
+	if(
+		(this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD) &&
+		this.getUnit().getActionPoints() >= this.getUnit().getMoveActionPoints()) {
+		return true;
+	}
+
+	return false;
+};
+
+/**
  * Fuehrt eine neue Suchaktion aus
  *
  * @return {boolean}
@@ -275,23 +297,21 @@ EmpireExpedition.prototype.search = function() {
 	}
 
 	// reichen die bestehenden AP der Einheit aus um eine Suche zu starten
-	while(this.getUnit().isSearchEnabled() === true) {
+	// while(this.isSearchEnabled() === true) {
 
 		// zuerst die Bewegung, danach die Suche
-		if(this.getUnit().isSearchEnabled() === true && (this.getUnit().getPreviousSearchState() === Empire.expedition.STATE_SEARCH || this.getUnit().getPreviousSearchState() === Empire.expedition.STATE_ON_HOLD)) {
-			this.getUnit().subActionPoints(this.getUnit().getMoveActionPoints());
-			this.getUnit().setPreviousSearchState(Empire.expedition.STATE_MOVE_TO_SEARCH);
-
+		if(this.isSearchEnabled() === true && (this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD)) {
+			console.log(1);
 			this.state = Empire.expedition.STATE_MOVE_TO_SEARCH;
+			this.getUnit().subActionPoints(this.getUnit().getMoveActionPoints());
 		}
 
-		if(this.getUnit().isSearchEnabled() === true && this.getUnit().getPreviousSearchState() === Empire.expedition.STATE_MOVE_TO_SEARCH) {
-			this.getUnit().subActionPoints(this.getUnit().getSearchActionPoints());
-			this.getUnit().setPreviousSearchState(Empire.expedition.STATE_SEARCH);
-
+		if(this.isSearchEnabled() === true && this.state === Empire.expedition.STATE_MOVE_TO_SEARCH) {
+			console.log(2);
 			this.state = Empire.expedition.STATE_SEARCH;
+			this.getUnit().subActionPoints(this.getUnit().getSearchActionPoints());
 		}
-	}
+	// }
 
 	// aktuellen Status der Einheit zwischenspeichern
 	this.getUnit().store();
