@@ -5,6 +5,7 @@ import EventMixin from 'mixins/object/event';
 import ExpeditionStorage from 'managers/storage/expedition';
 import ResourceValue from 'resources/value';
 import ResourceCollection from 'resources/collection';
+import ProbabilityManager from 'managers/probability';
 
 let EmpireExpedition = function() {
 
@@ -309,6 +310,18 @@ EmpireExpedition.prototype.search = function() {
 		if(this.isSearchEnabled() === true && (this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD)) {
 			this.state = Empire.expedition.STATE_MOVE_TO_SEARCH;
 			this.getUnit().subActionPoints(this.getUnit().getMoveActionPoints());
+
+			let probability = new ProbabilityManager();
+
+			probability.add(function() {
+				return 'resource.stone'
+			}, 1);
+
+			probability.add(function() {
+				return 'resource.wood'
+			}, 1);
+
+			console.log(probability.execute(50));
 
 			// Treffer
 			this.getResources().addResourceValue(new ResourceValue('resource.stone', 1));
