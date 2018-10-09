@@ -55,8 +55,6 @@ Collection.prototype.get = function(key) {
 Collection.prototype.fill = function(json) {
 	let collection = this;
 
-	console.log('Collection::fill');
-
 	_.forEach(json, function(value, key) {
 		collection.set(key, value);
 	});
