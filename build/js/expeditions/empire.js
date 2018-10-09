@@ -311,17 +311,25 @@ EmpireExpedition.prototype.search = function() {
 			this.state = Empire.expedition.STATE_MOVE_TO_SEARCH;
 			this.getUnit().subActionPoints(this.getUnit().getMoveActionPoints());
 
+			// Fuer Expeditionen verfuegbare Resourcen als Option hinlegen
 			let probability = new ProbabilityManager();
 
-			probability.add(function() {
-				return 'resource.stone'
-			}, 1);
+			_.forEach(Empire.configuration.expedition.resources, function(resource) {
+				probability.add(function() {
+					return resource
+				}, 1);
+			});
 
-			probability.add(function() {
-				return 'resource.wood'
-			}, 1);
 
-			console.log(probability.execute(50));
+			// probability.add(function() {
+			// 	return 'resource.stone'
+			// }, 1);
+			//
+			// probability.add(function() {
+			// 	return 'resource.wood'
+			// }, 1);
+
+			console.log(probability.execute(100));
 
 			// Treffer
 			this.getResources().addResourceValue(new ResourceValue('resource.stone', 1));
@@ -342,20 +350,6 @@ EmpireExpedition.prototype.search = function() {
 	}
 
 	this.store();
-	// console.log(this.getUnit().isSearchEnabled());
-
-	// @todo
-	// @todo reichen die bestehenden AP aus um eine Suche zu starten, siehe todo CollectorUnit::searchEnabled
-	// @todo Suche starten
-	// 	-> Speicherung der vorherigen Suchaktion -> unit.setPreviousSearchState
-	//  -> if: previousSearchState = moveToSearch -> zufaellige Suche nach einer Resource -> todo: eigene Klasse hierfuer erstellen
-	//	-> if: previousSearchState = search -> unit.move und unit.setPreviousSearchState zu moveToSearch setzen
-	//  -> Suche durchlaufen bis CollectorUnit::searchEnabled = false -> unit.store()
-
-	// @todo if: Suche erfolgreich
-	// -> Resource hinterlegen
-	// -> Status auf Empire.expedition.RETURN_TO_SETTLEMENT stellen
-	// -> Speichern unit.store() + this.store()
 
 	return false;
 };

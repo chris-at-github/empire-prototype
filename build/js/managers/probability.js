@@ -49,8 +49,13 @@ ProbabilityManager.prototype.addCallback = function(callback) {
  * @return {*}
  */
 ProbabilityManager.prototype.execute = function(probability = 0) {
+
+	// Anzahl der Optionen ist der Prozentwert. Anhand der uebergebenen Wahrscheinlichkeit wird der Grundwert ermittelt.
+	// Aus diesem Grundwert z.B. 80 wird von 0-80 eine Zufallszahl erzeugt -> result
 	let result = Math.floor((Math.random() * ((this.options.length / probability) * 100)));
 
+	// Stimmt die Zufallszahl mit einem Callback-Index zusammen, wird die Callback-Funktion ausgefuehrt und deren Ergebnis
+	// zurueckgeliefert
 	if(this.options.indexOf(result) !== -1) {
 		return this.callbacks[this.options[result]]();
 	}

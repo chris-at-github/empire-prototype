@@ -15,4 +15,13 @@ configuration.object = {
 configuration.unit = {
 };
 
+configuration.expedition = {
+	resources: [
+		'resource.wood',
+		'resource.food',
+		'resource.stone',
+		'resource.water'
+	]
+};
+
 module.exports = configuration;
