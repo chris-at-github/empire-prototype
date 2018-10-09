@@ -2,10 +2,12 @@
 
 import SerializableMixin from 'mixins/object/serializable';
 import EventMixin from 'mixins/object/event';
+import ActionMixin from 'mixins/object/action';
 import ExpeditionStorage from 'managers/storage/expedition';
 import ResourceValue from 'resources/value';
 import ResourceCollection from 'resources/collection';
 import ProbabilityManager from 'managers/probability';
+import Collection from 'collection/collection';
 
 let EmpireExpedition = function() {
 
@@ -58,6 +60,13 @@ let EmpireExpedition = function() {
 	 */
 	this.resources = new ResourceCollection();
 
+	/**
+	 * Aktionen die in der Expedition moeglich sind
+	 *
+	 * @type {object} Collection
+	 */
+	this.actions = new Collection();
+
 	// Initialisierung
 	this.initialize();
 };
@@ -65,6 +74,7 @@ let EmpireExpedition = function() {
 // Einbindung Mixins
 Object.assign(EmpireExpedition.prototype, SerializableMixin);
 Object.assign(EmpireExpedition.prototype, EventMixin);
+Object.assign(EmpireExpedition.prototype, ActionMixin);
 
 /**
  * Initialisierung
@@ -74,6 +84,16 @@ Object.assign(EmpireExpedition.prototype, EventMixin);
 EmpireExpedition.prototype.initialize = function() {
 	this.resources.setMaxValue(1);
 	this.resources.setMaxResources(1);
+
+	this.addAction(new Empire.action({
+		name: Empire.action.EXPEDITION_SEARCH,
+		enable: function() {
+			console.log('Empire.action.EXPEDITION_SEARCH::enable');
+		},
+		visible: function() {
+			console.log('Empire.action.EXPEDITION_SEARCH::visible');
+		}
+	}));
 };
 
 /**
@@ -306,6 +326,8 @@ EmpireExpedition.prototype.isSearchEnabled = function() {
  * @return {object} EmpireExpedition
  */
 EmpireExpedition.prototype.search = function() {
+
+	console.log(this.getActions());
 
 	// befindet sich die Expedition im Suchmodus -> ansonsten return false
 	if(this.state !== Empire.expedition.STATE_ON_HOLD && this.state !== Empire.expedition.STATE_SEARCH && this.state !== Empire.expedition.STATE_MOVE_TO_SEARCH) {
