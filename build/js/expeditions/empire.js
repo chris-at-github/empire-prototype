@@ -223,6 +223,15 @@ EmpireExpedition.prototype.getResources = function() {
 };
 
 /**
+ * Liefert die Wahrscheinlichkeit fuer das Finden einer Resource
+ *
+ * @return {int}
+ */
+EmpireExpedition.prototype.getProbability = function() {
+	return 50;
+};
+
+/**
  * Erstellt eine neue Expedition
  *
  * @param {object} options
@@ -294,7 +303,7 @@ EmpireExpedition.prototype.isSearchEnabled = function() {
 /**
  * Fuehrt eine neue Suchaktion aus
  *
- * @return {boolean}
+ * @return {object} EmpireExpedition
  */
 EmpireExpedition.prototype.search = function() {
 
@@ -320,19 +329,11 @@ EmpireExpedition.prototype.search = function() {
 				}, 1);
 			});
 
-
-			// probability.add(function() {
-			// 	return 'resource.stone'
-			// }, 1);
-			//
-			// probability.add(function() {
-			// 	return 'resource.wood'
-			// }, 1);
-
-			console.log(probability.execute(100));
-
-			// Treffer
-			this.getResources().addResourceValue(new ResourceValue('resource.stone', 1));
+			// Falls eine Resource gefunden wurde, wird diese im Datensatz hinterlegt
+			let resource = probability.execute(this.getProbability());
+			if(resource !== null) {
+				this.getResources().addResourceValue(new ResourceValue(resource, 1));
+			}
 		}
 
 		if(this.isSearchEnabled() === true && this.state === Empire.expedition.STATE_MOVE_TO_SEARCH) {
@@ -351,7 +352,7 @@ EmpireExpedition.prototype.search = function() {
 
 	this.store();
 
-	return false;
+	return this;
 };
 
 export default EmpireExpedition;
