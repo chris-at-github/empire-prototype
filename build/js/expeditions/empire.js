@@ -331,33 +331,6 @@ EmpireExpedition.prototype.create = function(options = {}) {
 };
 
 /**
- * Prueft ob eine Suchaktion moeglich ist -> reichen die bestehenden AP fuer einen neuen Vorgang aus?
- *
- * @return {boolean}
- */
-EmpireExpedition.prototype.isSearchEnabled = function() {
-
-	// Falls bereits etwas gefunden wurde, setze die Suche nicht fort
-	if(this.getResources().count() !== 0) {
-		return false;
-	}
-
-	// Hat sich der Sammler zuvor auf ein neues Feld bewegt und reichen die AP fuer einen erneuten Suchlauf
-	if(this.state === Empire.expedition.STATE_MOVE_TO_SEARCH && this.getUnit().getActionPoints() >= this.getUnit().getSearchActionPoints()) {
-		return true;
-	}
-
-	// Befindet sich der Sammler im Wartemodus oder hat bereits das Feld abgesucht und reichen die AP fuer eine Bewegung zum naechsten Feld
-	if(
-		(this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD) &&
-		this.getUnit().getActionPoints() >= this.getUnit().getMoveActionPoints()) {
-		return true;
-	}
-
-	return false;
-};
-
-/**
  * Fuehrt eine neue Suchaktion aus
  *
  * @return {object} EmpireExpedition
