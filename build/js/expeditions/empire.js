@@ -85,13 +85,27 @@ EmpireExpedition.prototype.initialize = function() {
 	this.resources.setMaxValue(1);
 	this.resources.setMaxResources(1);
 
+	let expedition = this;
+
 	this.addAction(new Empire.action({
 		name: Empire.action.EXPEDITION_SEARCH,
-		enable: function() {
+		label: 'Suchen',
+		onEnabled: function() {
 			console.log('Empire.action.EXPEDITION_SEARCH::enable');
+			return true;
 		},
-		visible: function() {
-			console.log('Empire.action.EXPEDITION_SEARCH::visible');
+
+		onVisible: function() {
+			if(expedition.state === Empire.expedition.STATE_SEARCH || expedition.state === Empire.expedition.STATE_ON_HOLD || expedition.state === Empire.expedition.STATE_MOVE_TO_SEARCH) {
+				return true;
+			}
+
+			return false;
+		},
+
+		onExecute: function() {
+			console.log('Empire.action.EXPEDITION_SEARCH::execute');
+			return false;
 		}
 	}));
 };
@@ -300,24 +314,26 @@ EmpireExpedition.prototype.create = function(options = {}) {
  */
 EmpireExpedition.prototype.isSearchEnabled = function() {
 
-	// Falls bereits etwas gefunden wurde, setze die Suche nicht fort
-	if(this.getResources().count() !== 0) {
-		return false;
-	}
+	console.log(this);
 
-	// Hat sich der Sammler zuvor auf ein neues Feld bewegt und reichen die AP fuer einen erneuten Suchlauf
-	if(this.state === Empire.expedition.STATE_MOVE_TO_SEARCH && this.getUnit().getActionPoints() >= this.getUnit().getSearchActionPoints()) {
-		return true;
-	}
-
-	// Befindet sich der Sammler im Wartemodus oder hat bereits das Feld abgesucht und reichen die AP fuer eine Bewegung zum naechsten Feld
-	if(
-		(this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD) &&
-		this.getUnit().getActionPoints() >= this.getUnit().getMoveActionPoints()) {
-		return true;
-	}
-
-	return false;
+	// // Falls bereits etwas gefunden wurde, setze die Suche nicht fort
+	// if(this.getResources().count() !== 0) {
+	// 	return false;
+	// }
+	//
+	// // Hat sich der Sammler zuvor auf ein neues Feld bewegt und reichen die AP fuer einen erneuten Suchlauf
+	// if(this.state === Empire.expedition.STATE_MOVE_TO_SEARCH && this.getUnit().getActionPoints() >= this.getUnit().getSearchActionPoints()) {
+	// 	return true;
+	// }
+	//
+	// // Befindet sich der Sammler im Wartemodus oder hat bereits das Feld abgesucht und reichen die AP fuer eine Bewegung zum naechsten Feld
+	// if(
+	// 	(this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD) &&
+	// 	this.getUnit().getActionPoints() >= this.getUnit().getMoveActionPoints()) {
+	// 	return true;
+	// }
+	//
+	// return false;
 };
 
 /**

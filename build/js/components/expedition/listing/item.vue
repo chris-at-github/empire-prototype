@@ -28,21 +28,33 @@
 				</div>
 			</div>
 
+			<div class="object--actions" v-if="expedition.getActions()">
+				<ul>
+					<li v-for="(action, name) in expedition.getActions()" v-if="action.isVisible()">
+						<emp-action	v-bind:key="name" v-bind:action="action"></emp-action>
+					</li>
+				</ul>
+			</div>
+
+			<!--
 			<div class="object--actions">
 				<ul>
 					<li><button class="button" v-on:click="search">Suchen</button></li>
 				</ul>
 			</div>
+			-->
 		</div>
 	</div>
 </template>
 
 <script>
 	import ResourceValue from 'components/resource/value';
+	import Action from 'components/action';
 
 	export default {
 		components: {
-			'emp-resource-value': ResourceValue
+			'emp-resource-value': ResourceValue,
+			'emp-action': Action
 		},
 
 		data: function() {

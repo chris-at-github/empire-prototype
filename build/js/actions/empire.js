@@ -10,18 +10,32 @@ let EmpireAction = function(options = {}) {
 	this.name = '';
 
 	/**
-	 * Callback Funktion fuer die Abfrage ob die Action verfuegbar ist
+	 * Benennung des Buttons
+	 *
+	 * @type {string}
+	 */
+	this.label = '';
+
+	/**
+	 * Callback Funktion fuer die Abfrage ob die Aktion verfuegbar ist
 	 *
 	 * @type {function}
 	 */
-	this.enabled = function() {
+	this.onEnabled = function() {
 		return true;
 	};
 
 	/**
-	 * Callback Funktion fuer die Abfrage ob die Action sichtbar ist
+	 * Callback Funktion fuer die Abfrage ob die Aktion sichtbar ist
 	 */
-	this.visible = function() {
+	this.onVivisible = function() {
+		return true;
+	};
+
+	/**
+	 * Callback Funktion fuer die Durchfuehrung der Aktion
+	 */
+	this.onExecute = function() {
 		return true;
 	};
 
@@ -39,23 +53,56 @@ EmpireAction.prototype.initialize = function(options) {
 		this.name = options.name;
 	}
 
-	if(_.isUndefined(options.enabled) === false) {
-		this.enabled = options.enabled;
+	if(_.isUndefined(options.label) === false) {
+		this.label = options.label;
 	}
 
-	if(_.isUndefined(options.visible) === false) {
-		this.visible = options.visible;
+	if(_.isUndefined(options.onEnabled) === false) {
+		this.onEnabled = options.onEnabled;
+	}
+
+	if(_.isUndefined(options.onVisible) === false) {
+		this.onVisible = options.onVisible;
+	}
+
+	if(_.isUndefined(options.onExecute) === false) {
+		this.onExecute = options.onExecute;
 	}
 };
 
+/**
+ * @return {string}
+ */
 EmpireAction.prototype.getName = function() {
 	return this.name;
 };
 
-EmpireAction.prototype.isEnabled = function() {
+/**
+ * @return {string}
+ */
+EmpireAction.prototype.getLabel = function() {
+	return this.label;
 };
 
+/**
+ * @return {boolean}
+ */
+EmpireAction.prototype.isEnabled = function() {
+	return this.onEnabled();
+};
+
+/**
+ * @return {boolean}
+ */
 EmpireAction.prototype.isVisible = function() {
+	return this.onVivisible();
+};
+
+/**
+ * @return {*}
+ */
+EmpireAction.prototype.execute = function() {
+	return this.onExecute();
 };
 
 export default EmpireAction;
