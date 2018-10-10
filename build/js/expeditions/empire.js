@@ -85,14 +85,40 @@ EmpireExpedition.prototype.initialize = function() {
 	this.resources.setMaxValue(1);
 	this.resources.setMaxResources(1);
 
+	this.initializeSearchAction();
+};
+
+/**
+ * Initialisierung der SearchAction
+ *
+ * @return {void}
+ */
+EmpireExpedition.prototype.initializeSearchAction = function() {
 	let expedition = this;
 
 	this.addAction(new Empire.action({
-		name: Empire.action.EXPEDITION_SEARCH,
-		label: 'Suchen',
+		name:      Empire.action.EXPEDITION_SEARCH,
+		label:     'Suchen',
 		onEnabled: function() {
-			console.log('Empire.action.EXPEDITION_SEARCH::enable');
-			return true;
+
+			// Falls bereits etwas gefunden wurde, setze die Suche nicht fort
+			if(expedition.getResources().count() !== 0) {
+				return false;
+			}
+
+			// Hat sich der Sammler zuvor auf ein neues Feld bewegt und reichen die AP fuer einen erneuten Suchlauf
+			if(expedition.state === Empire.expedition.STATE_MOVE_TO_SEARCH && expedition.getUnit().getActionPoints() >= expedition.getUnit().getSearchActionPoints()) {
+				return true;
+			}
+
+			// Befindet sich der Sammler im Wartemodus oder hat bereits das Feld abgesucht und reichen die AP fuer eine Bewegung zum naechsten Feld
+			if(
+				(expedition.state === Empire.expedition.STATE_SEARCH || expedition.state === Empire.expedition.STATE_ON_HOLD) &&
+				expedition.getUnit().getActionPoints() >= expedition.getUnit().getMoveActionPoints()) {
+				return true;
+			}
+
+			return false;
 		},
 
 		onVisible: function() {
@@ -103,10 +129,7 @@ EmpireExpedition.prototype.initialize = function() {
 			return false;
 		},
 
-		onExecute: function() {
-			console.log('Empire.action.EXPEDITION_SEARCH::execute');
-			return false;
-		}
+		onExecute: _.bind(this.search, this)
 	}));
 };
 
@@ -314,26 +337,24 @@ EmpireExpedition.prototype.create = function(options = {}) {
  */
 EmpireExpedition.prototype.isSearchEnabled = function() {
 
-	console.log(this);
+	// Falls bereits etwas gefunden wurde, setze die Suche nicht fort
+	if(this.getResources().count() !== 0) {
+		return false;
+	}
 
-	// // Falls bereits etwas gefunden wurde, setze die Suche nicht fort
-	// if(this.getResources().count() !== 0) {
-	// 	return false;
-	// }
-	//
-	// // Hat sich der Sammler zuvor auf ein neues Feld bewegt und reichen die AP fuer einen erneuten Suchlauf
-	// if(this.state === Empire.expedition.STATE_MOVE_TO_SEARCH && this.getUnit().getActionPoints() >= this.getUnit().getSearchActionPoints()) {
-	// 	return true;
-	// }
-	//
-	// // Befindet sich der Sammler im Wartemodus oder hat bereits das Feld abgesucht und reichen die AP fuer eine Bewegung zum naechsten Feld
-	// if(
-	// 	(this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD) &&
-	// 	this.getUnit().getActionPoints() >= this.getUnit().getMoveActionPoints()) {
-	// 	return true;
-	// }
-	//
-	// return false;
+	// Hat sich der Sammler zuvor auf ein neues Feld bewegt und reichen die AP fuer einen erneuten Suchlauf
+	if(this.state === Empire.expedition.STATE_MOVE_TO_SEARCH && this.getUnit().getActionPoints() >= this.getUnit().getSearchActionPoints()) {
+		return true;
+	}
+
+	// Befindet sich der Sammler im Wartemodus oder hat bereits das Feld abgesucht und reichen die AP fuer eine Bewegung zum naechsten Feld
+	if(
+		(this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD) &&
+		this.getUnit().getActionPoints() >= this.getUnit().getMoveActionPoints()) {
+		return true;
+	}
+
+	return false;
 };
 
 /**
@@ -342,8 +363,7 @@ EmpireExpedition.prototype.isSearchEnabled = function() {
  * @return {object} EmpireExpedition
  */
 EmpireExpedition.prototype.search = function() {
-
-	console.log(this.getActions());
+	let action = this.getAction(Empire.action.EXPEDITION_SEARCH);
 
 	// befindet sich die Expedition im Suchmodus -> ansonsten return false
 	if(this.state !== Empire.expedition.STATE_ON_HOLD && this.state !== Empire.expedition.STATE_SEARCH && this.state !== Empire.expedition.STATE_MOVE_TO_SEARCH) {
@@ -351,10 +371,10 @@ EmpireExpedition.prototype.search = function() {
 	}
 
 	// reichen die bestehenden AP der Einheit aus um eine Suche zu starten
-	while(this.isSearchEnabled() === true) {
+	while(action.isEnabled() === true) {
 
 		// zuerst die Bewegung, danach die Suche
-		if(this.isSearchEnabled() === true && (this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD)) {
+		if(action.isEnabled() === true && (this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD)) {
 			this.state = Empire.expedition.STATE_MOVE_TO_SEARCH;
 			this.getUnit().subActionPoints(this.getUnit().getMoveActionPoints());
 
@@ -374,7 +394,7 @@ EmpireExpedition.prototype.search = function() {
 			}
 		}
 
-		if(this.isSearchEnabled() === true && this.state === Empire.expedition.STATE_MOVE_TO_SEARCH) {
+		if(action.isEnabled() === true && this.state === Empire.expedition.STATE_MOVE_TO_SEARCH) {
 			this.state = Empire.expedition.STATE_SEARCH;
 			this.getUnit().subActionPoints(this.getUnit().getSearchActionPoints());
 		}

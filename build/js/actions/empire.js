@@ -28,7 +28,7 @@ let EmpireAction = function(options = {}) {
 	/**
 	 * Callback Funktion fuer die Abfrage ob die Aktion sichtbar ist
 	 */
-	this.onVivisible = function() {
+	this.onVisible = function() {
 		return true;
 	};
 
@@ -95,7 +95,7 @@ EmpireAction.prototype.isEnabled = function() {
  * @return {boolean}
  */
 EmpireAction.prototype.isVisible = function() {
-	return this.onVivisible();
+	return this.onVisible();
 };
 
 /**
