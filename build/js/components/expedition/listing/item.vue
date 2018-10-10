@@ -35,14 +35,6 @@
 					</li>
 				</ul>
 			</div>
-
-			<!--
-			<div class="object--actions">
-				<ul>
-					<li><button class="button" v-on:click="search">Suchen</button></li>
-				</ul>
-			</div>
-			-->
 		</div>
 	</div>
 </template>
@@ -86,6 +78,7 @@
 						state[Empire.expedition.STATE_MOVE_TO_TARGET] = 'Auf dem Weg zur Resource';
 						state[Empire.expedition.STATE_RETURN_TO_SETTLEMENT] = 'Auf dem Rückweg';
 						state[Empire.expedition.STATE_ON_HOLD] = 'Warten';
+						state[Empire.expedition.STATE_UNLOAD] = 'Entladen';
 
 				return state[this.properties.state];
 			}

@@ -86,6 +86,7 @@ EmpireExpedition.prototype.initialize = function() {
 	this.resources.setMaxResources(1);
 
 	this.initializeSearchAction();
+	this.initializeReturnToSettlementAction();
 };
 
 /**
@@ -130,6 +131,39 @@ EmpireExpedition.prototype.initializeSearchAction = function() {
 		},
 
 		onExecute: _.bind(this.search, this)
+	}));
+};
+
+/**
+ * Initialisierung der ReturnToSettlementAction
+ *
+ * @return {void}
+ */
+EmpireExpedition.prototype.initializeReturnToSettlementAction = function() {
+	let expedition = this;
+
+	this.addAction(new Empire.action({
+		name:      Empire.action.EXPEDITION_RETURN_TO_SETTLEMENT,
+		label:     'Bewegen',
+		onEnabled: function() {
+
+			// Befindet sich der Sammler im Wartemodus oder hat bereits das Feld abgesucht und reichen die AP fuer eine Bewegung zum naechsten Feld
+			if(expedition.getUnit().getActionPoints() >= expedition.getUnit().getMoveActionPoints()) {
+				return true;
+			}
+
+			return false;
+		},
+
+		onVisible: function() {
+			if(expedition.state === Empire.expedition.STATE_RETURN_TO_SETTLEMENT) {
+				return true;
+			}
+
+			return false;
+		},
+
+		onExecute: _.bind(this.returnToSettlement, this)
 	}));
 };
 
@@ -180,7 +214,6 @@ EmpireExpedition.prototype.setId = function(id) {
 EmpireExpedition.prototype.getUnit = function() {
 	return this.unit;
 };
-
 
 /**
  * Speichert das Unit Objekt
@@ -384,6 +417,21 @@ EmpireExpedition.prototype.search = function() {
 	this.store();
 
 	return this;
+};
+
+/**
+ * Bewegt die Einheit zurueck zur Siedlung
+ * @todo Ausarbeitung mit Map-Update (v0.0.9)
+ *
+ * @return {object} EmpireExpedition
+ */
+EmpireExpedition.prototype.returnToSettlement = function() {
+	this.getUnit().subActionPoints(this.getUnit().getMoveActionPoints());
+	this.getUnit().store();
+
+	// @todo: in Zukunft erst nach Ankunft
+	this.state = Empire.expedition.STATE_UNLOAD;
+	this.store();
 };
 
 export default EmpireExpedition;
