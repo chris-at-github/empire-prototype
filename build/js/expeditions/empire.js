@@ -479,13 +479,14 @@ EmpireExpedition.prototype.unload = function() {
 		expedition.getSettlement().getResources().addResourceValue(resource);
 		expedition.getResources().removeResourceValue(resource.qcn);
 
+		expedition.getSettlement().store();
 		// catch
 
 	});
 
-	// Alles ausgeladen ->
+	// Alles ausgeladen -> erstmal wieder in den Ruhemodus
 	if(this.getResources().count() === 0) {
-
+		this.state = Empire.expedition.STATE_ON_HOLD;
 	}
 
 	return this.store();

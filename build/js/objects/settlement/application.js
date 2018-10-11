@@ -3,6 +3,7 @@
 import SerializableMixin from 'mixins/object/serializable';
 import EventMixin from 'mixins/object/event';
 import SettlementBuildingSiteDependency from "dependencies/settlementbuildingsite";
+import SettlementStore from "managers/storage/settlement";
 
 let ApplicationSettlement = function() {
 
@@ -78,6 +79,18 @@ ApplicationSettlement.prototype.beforeCreate = function() {
  */
 ApplicationSettlement.prototype.afterCreate = function() {
 	this.fire(this.EVENT_AFTER_CREATE);
+};
+
+/**
+ * Speichert die aktuelle Siedlung ab
+ *
+ * @return {object} ApplicationSettlement
+ */
+ApplicationSettlement.prototype.store = function() {
+	let storage = new SettlementStore();
+			storage.store(this);
+
+	return this;
 };
 
 /**
