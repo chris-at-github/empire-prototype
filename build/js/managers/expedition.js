@@ -61,4 +61,18 @@ ExpeditionManager.prototype.find = function(options = {}, returnType) {
 	return expeditions;
 };
 
+/**
+ * Entfernt eine Expedition aus dem Speicher
+ *
+ * @param {string} id
+ * @return {void}
+ */
+ExpeditionManager.prototype.remove = function(id) {
+	if(_.isUndefined(Game.expeditions[id]) === false) {
+
+		// @see https://vuejs.org/v2/api/#Vue-delete
+		Vue.delete(Game.expeditions, id);
+	}
+};
+
 export default ExpeditionManager;

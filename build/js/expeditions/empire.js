@@ -90,6 +90,7 @@ EmpireExpedition.prototype.initialize = function() {
 	this.initializeReturnToSettlementAction();
 	this.initializeUnloadAction();
 	this.initializeRestartAction();
+	this.initializeRemoveAction();
 };
 
 /**
@@ -181,9 +182,6 @@ EmpireExpedition.prototype.initializeUnloadAction = function() {
 	this.addAction(new Empire.action({
 		name:      Empire.action.EXPEDITION_UNLOAD,
 		label:     'Entladen',
-		onEnabled: function() {
-			return true;
-		},
 
 		onVisible: function() {
 			if(expedition.state === Empire.expedition.STATE_UNLOAD) {
@@ -208,9 +206,6 @@ EmpireExpedition.prototype.initializeRestartAction = function() {
 	this.addAction(new Empire.action({
 		name:      Empire.action.EXPEDITION_RESTART,
 		label:     'Erneut suchen',
-		onEnabled: function() {
-			return true;
-		},
 
 		onVisible: function() {
 			if(expedition.state === Empire.expedition.STATE_UNLOAD || expedition.state === Empire.expedition.STATE_RETURN_TO_SETTLEMENT) {
@@ -221,6 +216,19 @@ EmpireExpedition.prototype.initializeRestartAction = function() {
 		},
 
 		onExecute: _.bind(this.restart, this)
+	}));
+};
+
+/**
+ * Initialisierung der RemoveAction
+ *
+ * @return {void}
+ */
+EmpireExpedition.prototype.initializeRemoveAction = function() {
+	this.addAction(new Empire.action({
+		name:      Empire.action.EXPEDITION_REMOVE,
+		label:     'Entfernen',
+		onExecute: _.bind(this.remove, this)
 	}));
 };
 
@@ -536,6 +544,21 @@ EmpireExpedition.prototype.restart = function() {
 
 	// Suche neu starten
 	return this.search();
+};
+
+/**
+ * Entfernt eine neue Expedition
+ * @todo der Sammler muss immer zuerst zurueck zur Siedlung -> erst nach dem Map-Update (v0.0.9)
+ *
+ * @return {void}
+ */
+EmpireExpedition.prototype.remove = function() {
+
+	// Arbeiter zurueck in einen Arbeiter umwandeln
+	this.getUnit().convert('unit.worker');
+
+	// Diese Expediton aufloesen
+	Empire.manager.expedition.remove(this.id);
 };
 
 export default EmpireExpedition;

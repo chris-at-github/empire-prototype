@@ -78,9 +78,11 @@
 		<div class="container">
 			<fieldset class="fieldset-default">
 				<legend>Expeditionen</legend>
-				<emp-expedition-listing v-bind:expeditions="expeditions"></emp-expedition-listing>
 
-				<hr>
+				<div v-if="hasExpeditions">
+					<emp-expedition-listing v-bind:expeditions="expeditions"></emp-expedition-listing>
+					<hr>
+				</div>
 
 				<button class="button" v-on:click="createExpedition">Neue Expedition starten</button>
 
@@ -200,6 +202,13 @@
 					settlement: this.id
 				});
 			},
+
+			hasExpeditions: function() {
+				if(_.size(this.expeditions) !== 0) {
+					return true;
+				}
+				return false;
+			}
 		},
 
 		methods: {
