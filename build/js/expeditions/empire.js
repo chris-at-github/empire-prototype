@@ -473,15 +473,18 @@ EmpireExpedition.prototype.unload = function() {
 
 	_.forEach(this.resources.find(), function(resource) {
 
-		// try
+		try {
+			// Resource von der Expedition ins Lager der Siedlung uebertragen
+			expedition.getSettlement().getResources().addResourceValue(resource);
+			expedition.getResources().removeResourceValue(resource.qcn);
 
-		// Resource von der Expedition ins Lager der Siedlung uebertragen
-		expedition.getSettlement().getResources().addResourceValue(resource);
-		expedition.getResources().removeResourceValue(resource.qcn);
+			expedition.getSettlement().store();
 
-		expedition.getSettlement().store();
-		// catch
+		} catch(exeception) {
 
+			// @todo: Ausgabe Notification
+			console.log(exeception);
+		}
 	});
 
 	// Alles ausgeladen -> erstmal wieder in den Ruhemodus

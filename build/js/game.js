@@ -10,7 +10,7 @@ module.exports = {
 			name: 'Blatthausen',
 			qcn: 'settlement.colony',
 			resources: {
-				'resource.water': 5,
+				'resource.water': 50,
 				'resource.stone': 5,
 				'resource.wood': 5,
 				'resource.food': 5
