@@ -178,4 +178,13 @@ ResourceCollection.prototype.find = function(options) {
 	return this.resources;
 };
 
+/**
+ * Entfernt alle Resourcen aus der Collection
+ *
+ * @return {void}
+ */
+ResourceCollection.prototype.empty = function() {
+	this.resources = {};
+};
+
 export default ResourceCollection;

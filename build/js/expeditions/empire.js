@@ -89,6 +89,7 @@ EmpireExpedition.prototype.initialize = function() {
 	this.initializeSearchAction();
 	this.initializeReturnToSettlementAction();
 	this.initializeUnloadAction();
+	this.initializeRestartAction();
 };
 
 /**
@@ -179,7 +180,7 @@ EmpireExpedition.prototype.initializeUnloadAction = function() {
 
 	this.addAction(new Empire.action({
 		name:      Empire.action.EXPEDITION_UNLOAD,
-		label:     'Ausladen',
+		label:     'Entladen',
 		onEnabled: function() {
 			return true;
 		},
@@ -193,6 +194,33 @@ EmpireExpedition.prototype.initializeUnloadAction = function() {
 		},
 
 		onExecute: _.bind(this.unload, this)
+	}));
+};
+
+/**
+ * Initialisierung der RestartAction
+ *
+ * @return {void}
+ */
+EmpireExpedition.prototype.initializeRestartAction = function() {
+	let expedition = this;
+
+	this.addAction(new Empire.action({
+		name:      Empire.action.EXPEDITION_RESTART,
+		label:     'Erneut suchen',
+		onEnabled: function() {
+			return true;
+		},
+
+		onVisible: function() {
+			if(expedition.state === Empire.expedition.STATE_UNLOAD || expedition.state === Empire.expedition.STATE_RETURN_TO_SETTLEMENT) {
+				return true;
+			}
+
+			return false;
+		},
+
+		onExecute: _.bind(this.restart, this)
 	}));
 };
 
@@ -412,6 +440,11 @@ EmpireExpedition.prototype.search = function() {
 		if(action.isEnabled() === true && (this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD)) {
 			this.state = Empire.expedition.STATE_MOVE_TO_SEARCH;
 			this.getUnit().subActionPoints(this.getUnit().getMoveActionPoints());
+		}
+
+		if(action.isEnabled() === true && this.state === Empire.expedition.STATE_MOVE_TO_SEARCH) {
+			this.state = Empire.expedition.STATE_SEARCH;
+			this.getUnit().subActionPoints(this.getUnit().getSearchActionPoints());
 
 			// Fuer Expeditionen verfuegbare Resourcen als Option hinlegen
 			let probability = new ProbabilityManager();
@@ -427,11 +460,6 @@ EmpireExpedition.prototype.search = function() {
 			if(resource !== null) {
 				this.getResources().addResourceValue(new ResourceValue(resource, 1));
 			}
-		}
-
-		if(action.isEnabled() === true && this.state === Empire.expedition.STATE_MOVE_TO_SEARCH) {
-			this.state = Empire.expedition.STATE_SEARCH;
-			this.getUnit().subActionPoints(this.getUnit().getSearchActionPoints());
 		}
 	}
 
@@ -493,6 +521,21 @@ EmpireExpedition.prototype.unload = function() {
 	}
 
 	return this.store();
+};
+
+/**
+ * Entfernt die Resourcen und startet die Suche erneut
+ *
+ * @return {object} EmpireExpedition
+ */
+EmpireExpedition.prototype.restart = function() {
+
+	// Resourcen entfernen und Status neu setzen
+	this.getResources().empty();
+	this.state = Empire.expedition.STATE_ON_HOLD;
+
+	// Suche neu starten
+	return this.search();
 };
 
 export default EmpireExpedition;

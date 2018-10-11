@@ -10,10 +10,10 @@ module.exports = {
 			name: 'Blatthausen',
 			qcn: 'settlement.colony',
 			resources: {
-				'resource.water': 50,
-				'resource.stone': 5,
-				'resource.wood': 5,
-				'resource.food': 5
+				'resource.water': 20,
+				'resource.stone': 20,
+				'resource.wood': 20,
+				'resource.food': 20
 			},
 			unitIncreamentStatus: 0.75
 		}
@@ -70,14 +70,14 @@ module.exports = {
 			id: '3e000db1-c7ec-4b06-8dc9-f6609bd0ae8c',
 			qcn: 'unit.collector',
 			parent: '0363dec2-e331-4e64-9b06-dce06941095c',
-			actionPoints: 25
+			actionPoints: 100
 		}
 	},
 	expeditions: {
 		'eadb0907-0343-4d64-be73-89431d71ccc6': {
 			id: 'eadb0907-0343-4d64-be73-89431d71ccc6',
 			type: 'expedition.type.search',
-			state: 'expedition.state.unload',
+			state: 'expedition.state.returnToSettlement',
 			unit: '3e000db1-c7ec-4b06-8dc9-f6609bd0ae8c',
 			settlement: '0363dec2-e331-4e64-9b06-dce06941095c',
 			resources: {
