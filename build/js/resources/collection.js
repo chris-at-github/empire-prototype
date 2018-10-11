@@ -87,6 +87,18 @@ ResourceCollection.prototype.getResourceValue = function(qcn) {
 };
 
 /**
+ * Entfernt eine Resource aus der Collection
+ *
+ * @param {string} qcn
+ * @return {void}
+ */
+ResourceCollection.prototype.removeResourceValue = function(qcn) {
+	if(_.isUndefined(this.resources[qcn]) === false) {
+		delete this.resources[qcn];
+	}
+};
+
+/**
  * Addiert ein ResourceValue Objekt zu einem bestehenden Objekt
  *
  * @param {object} ResourceValue
@@ -153,6 +165,17 @@ ResourceCollection.prototype.toJson = function() {
  */
 ResourceCollection.prototype.count = function() {
 	return _.size(this.resources);
+};
+
+/**
+ * Findet die Resourcen anhand der uebergebenen Suchparameter
+ * @todo Implementierung falls noetig, vorerst werden alle Resourcen zurueckgeliefert
+ *
+ * @param {object} options
+ * @return {object}
+ */
+ResourceCollection.prototype.find = function(options) {
+	return this.resources;
 };
 
 export default ResourceCollection;

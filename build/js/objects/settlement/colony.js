@@ -62,6 +62,15 @@ ColonySettlement.prototype.setResourceCollectionMaxValue = function() {
 };
 
 /**
+ * Liefert die ResourceCollection der Siedlung
+ *
+ * @return {object} ResourceCollection
+ */
+ColonySettlement.prototype.getResources = function() {
+	return this.resources;
+};
+
+/**
  * Berechnet den verfuegbaren Lagerplatz fuer Rohstoffe
  *
  * @return {number}

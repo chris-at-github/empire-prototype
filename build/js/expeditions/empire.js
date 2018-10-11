@@ -8,6 +8,7 @@ import ResourceValue from 'resources/value';
 import ResourceCollection from 'resources/collection';
 import ProbabilityManager from 'managers/probability';
 import Collection from 'collection/collection';
+import resource from "../resources/resource";
 
 let EmpireExpedition = function() {
 
@@ -87,6 +88,7 @@ EmpireExpedition.prototype.initialize = function() {
 
 	this.initializeSearchAction();
 	this.initializeReturnToSettlementAction();
+	this.initializeUnloadAction();
 };
 
 /**
@@ -147,7 +149,7 @@ EmpireExpedition.prototype.initializeReturnToSettlementAction = function() {
 		label:     'Bewegen',
 		onEnabled: function() {
 
-			// Befindet sich der Sammler im Wartemodus oder hat bereits das Feld abgesucht und reichen die AP fuer eine Bewegung zum naechsten Feld
+			// Reichen die AP fuer eine Bewegung zur Siedlung
 			if(expedition.getUnit().getActionPoints() >= expedition.getUnit().getMoveActionPoints()) {
 				return true;
 			}
@@ -164,6 +166,33 @@ EmpireExpedition.prototype.initializeReturnToSettlementAction = function() {
 		},
 
 		onExecute: _.bind(this.returnToSettlement, this)
+	}));
+};
+
+/**
+ * Initialisierung der UnloadAction
+ *
+ * @return {void}
+ */
+EmpireExpedition.prototype.initializeUnloadAction = function() {
+	let expedition = this;
+
+	this.addAction(new Empire.action({
+		name:      Empire.action.EXPEDITION_UNLOAD,
+		label:     'Ausladen',
+		onEnabled: function() {
+			return true;
+		},
+
+		onVisible: function() {
+			if(expedition.state === Empire.expedition.STATE_UNLOAD) {
+				return true;
+			}
+
+			return false;
+		},
+
+		onExecute: _.bind(this.unload, this)
 	}));
 };
 
@@ -432,6 +461,34 @@ EmpireExpedition.prototype.returnToSettlement = function() {
 	// @todo: in Zukunft erst nach Ankunft
 	this.state = Empire.expedition.STATE_UNLOAD;
 	this.store();
+};
+
+/**
+ * Laedt die Resourcen in das Lager der Siedlung
+ *
+ * @return {object} EmpireExpedition
+ */
+EmpireExpedition.prototype.unload = function() {
+	let expedition = this;
+
+	_.forEach(this.resources.find(), function(resource) {
+
+		// try
+
+		// Resource von der Expedition ins Lager der Siedlung uebertragen
+		expedition.getSettlement().getResources().addResourceValue(resource);
+		expedition.getResources().removeResourceValue(resource.qcn);
+
+		// catch
+
+	});
+
+	// Alles ausgeladen ->
+	if(this.getResources().count() === 0) {
+
+	}
+
+	return this.store();
 };
 
 export default EmpireExpedition;
