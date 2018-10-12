@@ -8,7 +8,6 @@ import ResourceValue from 'resources/value';
 import ResourceCollection from 'resources/collection';
 import ProbabilityManager from 'managers/probability';
 import Collection from 'collection/collection';
-import resource from "../resources/resource";
 
 let EmpireExpedition = function() {
 
@@ -17,7 +16,7 @@ let EmpireExpedition = function() {
 	 *
 	 * @type {string[]}
 	 */
-	this.properties = ['id', 'type', 'state', 'unit', 'settlement', 'resources'];
+	this.properties = ['id', 'type', 'state', 'unit', 'settlement', 'resources', 'automatic'];
 
 	/**
 	 * Zuruecksetzen der Event-Listener -> ueber das Mixin ist es sonst eine globale Variable
@@ -67,6 +66,13 @@ let EmpireExpedition = function() {
 	 * @type {object} Collection
 	 */
 	this.actions = new Collection();
+
+	/**
+	 * Automatischer Neustart nach erfolgreicher Suche?
+	 *
+	 * @type {boolean}
+	 */
+	this.automatic = true;
 
 	// Initialisierung
 	this.initialize();
@@ -562,9 +568,15 @@ EmpireExpedition.prototype.unload = function() {
 
 	// Alles ausgeladen -> erstmal wieder in den Ruhemodus
 	if(this.getResources().count() === 0) {
-		// @todo: nur wenn Flag Neustart nicht gesetzt ist
-		// @todo: ansonsten STATE_SEARCH
-		this.state = Empire.expedition.STATE_ON_HOLD;
+
+		// Wenn auf Automatik, starte die naechste Suche
+		if(this.automatic === true) {
+			this.state = Empire.expedition.STATE_SEARCH;
+			return this.search();
+
+		} else {
+			this.state = Empire.expedition.STATE_ON_HOLD;
+		}
 	}
 
 	return this.store();
