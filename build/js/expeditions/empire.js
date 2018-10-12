@@ -154,7 +154,7 @@ EmpireExpedition.prototype.initializeReturnToSettlementAction = function() {
 		onEnabled: function() {
 
 			// Reichen die AP fuer eine Bewegung zur Siedlung
-			if(expedition.getUnit().getActionPoints() >= expedition.getUnit().getMoveActionPoints()) {
+			if(expedition.state === Empire.expedition.STATE_RETURN_TO_SETTLEMENT && expedition.getUnit().getActionPoints() >= expedition.getUnit().getMoveActionPoints()) {
 				return true;
 			}
 
@@ -184,6 +184,14 @@ EmpireExpedition.prototype.initializeUnloadAction = function() {
 	this.addAction(new Empire.action({
 		name:      Empire.action.EXPEDITION_UNLOAD,
 		label:     'Entladen',
+
+		onEnabled: function() {
+			if(expedition.state === Empire.expedition.STATE_UNLOAD) {
+				return true;
+			}
+
+			return false;
+		},
 
 		onVisible: function() {
 			if(expedition.state === Empire.expedition.STATE_UNLOAD) {
@@ -568,10 +576,24 @@ EmpireExpedition.prototype.remove = function() {
  *
  * @return {boolean}
  */
-EmpireExpedition.prototype.executeAfterTurn = function(actions = {}) {
-	this.getActions({
-		name: [Empire.action.EXPEDITION_SEARCH, Empire.action.EXPEDITION_RETURN_TO_SETTLEMENT, Empire.action.EXPEDITION_UNLOAD]
+EmpireExpedition.prototype.executeAfterTurn = function() {
+
+	// Erneute Ausfuehrung nur wenn mindestens eine Aktion erfolgreich war -> nur dann macht ein moeglicher Durchlauf nochmal Sinn
+	// -> sonst hat sich ja nichts geaendert
+	let recursive = false;
+	let expedition = this;
+
+	// Sucheablauf durchfuehren bis alle Aktion auf isEnabled == false laufen
+	_.forEach([Empire.action.EXPEDITION_SEARCH, Empire.action.EXPEDITION_RETURN_TO_SETTLEMENT, Empire.action.EXPEDITION_UNLOAD], function(action) {
+		if(expedition.getAction(action).isEnabled() === true) {
+			expedition.getAction(action).execute();
+			recursive = true;
+		}
 	});
+
+	// if(recursive === true) {
+	// 	this.executeAfterTurn();
+	// }
 };
 
 export default EmpireExpedition;
