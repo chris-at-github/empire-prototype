@@ -39,10 +39,21 @@ let Action = {
 		let actions = this.actions.all();
 
 		if(_.size(options) !== 0) {
-
+			return _.findActions(options);
 		}
 
 		return actions;
+	},
+
+	/**
+	 * Filtert die Aktionen nach den uebergebenen Optionen
+	 * @todo Implementierung wenn noetig -> gedachter Aufruf wurde anders geloest
+	 *
+	 * @param {object} options
+	 * @return {object} Collection (EmpireAction)
+	 */
+	findActions: function(options) {
+		return this.actions.all();
 	}
 };
 
