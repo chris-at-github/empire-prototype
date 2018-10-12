@@ -121,9 +121,7 @@ EmpireExpedition.prototype.initializeSearchAction = function() {
 			}
 
 			// Befindet sich der Sammler im Wartemodus oder hat bereits das Feld abgesucht und reichen die AP fuer eine Bewegung zum naechsten Feld
-			if(
-				(expedition.state === Empire.expedition.STATE_SEARCH || expedition.state === Empire.expedition.STATE_ON_HOLD) &&
-				expedition.getUnit().getActionPoints() >= expedition.getUnit().getMoveActionPoints()) {
+			if(expedition.state === Empire.expedition.STATE_SEARCH && expedition.getUnit().getActionPoints() >= expedition.getUnit().getMoveActionPoints()) {
 				return true;
 			}
 
@@ -626,21 +624,22 @@ EmpireExpedition.prototype.executeAfterTurn = function() {
 	let expedition = this;
 
 	// Sucheablauf durchfuehren bis alle Aktion auf isEnabled == false laufen
-	// _.forEach([Empire.action.EXPEDITION_SEARCH, Empire.action.EXPEDITION_RETURN_TO_SETTLEMENT, Empire.action.EXPEDITION_UNLOAD], function(action) {
 	_.forEach([Empire.action.EXPEDITION_SEARCH, Empire.action.EXPEDITION_RETURN_TO_SETTLEMENT, Empire.action.EXPEDITION_UNLOAD], function(action) {
-		console.log(action);
-
 		if(expedition.getAction(action).isEnabled() === true) {
 			expedition.getAction(action).execute();
 			recursive = true;
 		}
 	});
 
-	console.log(recursive);
+	if(recursive === true) {
+		_.forEach([Empire.action.EXPEDITION_SEARCH, Empire.action.EXPEDITION_RETURN_TO_SETTLEMENT, Empire.action.EXPEDITION_UNLOAD], function(action) {
+			if(expedition.getAction(action).isEnabled() === true) {
+				console.log(action, expedition.state);
+			}
+		});
 
-	// if(recursive === true) {
-	// 	this.executeAfterTurn();
-	// }
+		this.executeAfterTurn();
+	}
 };
 
 export default EmpireExpedition;
