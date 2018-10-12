@@ -90,6 +90,7 @@ EmpireExpedition.prototype.initialize = function() {
 	this.initializeReturnToSettlementAction();
 	this.initializeUnloadAction();
 	this.initializeRestartAction();
+	this.initializeReUnloadAction();
 	this.initializeRemoveAction();
 
 	this.listen(Empire.manager.turn.EVENT_BEFORE_TURN, this.executeAfterTurn);
@@ -130,7 +131,7 @@ EmpireExpedition.prototype.initializeSearchAction = function() {
 		},
 
 		onVisible: function() {
-			if(expedition.state === Empire.expedition.STATE_SEARCH || expedition.state === Empire.expedition.STATE_ON_HOLD || expedition.state === Empire.expedition.STATE_MOVE_TO_SEARCH) {
+			if(expedition.state === Empire.expedition.STATE_SEARCH || expedition.state === Empire.expedition.STATE_MOVE_TO_SEARCH) {
 				return true;
 			}
 
@@ -221,7 +222,7 @@ EmpireExpedition.prototype.initializeRestartAction = function() {
 		label:     'Erneut suchen',
 
 		onVisible: function() {
-			if(expedition.state === Empire.expedition.STATE_UNLOAD || expedition.state === Empire.expedition.STATE_RETURN_TO_SETTLEMENT) {
+			if(expedition.state === Empire.expedition.STATE_ON_HOLD || expedition.state === Empire.expedition.STATE_UNLOAD || expedition.state === Empire.expedition.STATE_RETURN_TO_SETTLEMENT) {
 				return true;
 			}
 
@@ -242,6 +243,30 @@ EmpireExpedition.prototype.initializeRemoveAction = function() {
 		name:      Empire.action.EXPEDITION_REMOVE,
 		label:     'Entfernen',
 		onExecute: _.bind(this.remove, this)
+	}));
+};
+
+/**
+ * Initialisierung der ReUnloadAction
+ *
+ * @return {void}
+ */
+EmpireExpedition.prototype.initializeReUnloadAction = function() {
+	let expedition = this;
+
+	this.addAction(new Empire.action({
+		name:  Empire.action.EXPEDITION_REUNLOAD,
+		label: 'Entladen',
+
+		onVisible: function() {
+			if(expedition.state === Empire.expedition.STATE_UNLOAD_ON_HOLD) {
+				return true;
+			}
+
+			return false;
+		},
+
+		onExecute: _.bind(this.reunload, this)
 	}));
 };
 
@@ -428,9 +453,8 @@ EmpireExpedition.prototype.create = function(options = {}) {
 
 	let expedition = Empire.factory.expedition.create();
 
-	// @todo: setze STATE_SEARCH
 	expedition.fill({
-		state: Empire.expedition.STATE_ON_HOLD,
+		state: Empire.expedition.STATE_SEARCH,
 		type: options.type
 	});
 
@@ -451,8 +475,7 @@ EmpireExpedition.prototype.search = function() {
 	let action = this.getAction(Empire.action.EXPEDITION_SEARCH);
 
 	// befindet sich die Expedition im Suchmodus -> ansonsten return false
-	// @todo: entferne STATE_ON_HOLD
-	if(this.state !== Empire.expedition.STATE_ON_HOLD && this.state !== Empire.expedition.STATE_SEARCH && this.state !== Empire.expedition.STATE_MOVE_TO_SEARCH) {
+	if(this.state !== Empire.expedition.STATE_SEARCH && this.state !== Empire.expedition.STATE_MOVE_TO_SEARCH) {
 		return false;
 	}
 
@@ -460,8 +483,7 @@ EmpireExpedition.prototype.search = function() {
 	while(action.isEnabled() === true) {
 
 		// zuerst die Bewegung, danach die Suche
-		// @todo: entferne STATE_ON_HOLD
-		if(action.isEnabled() === true && (this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD)) {
+		if(action.isEnabled() === true && this.state === Empire.expedition.STATE_SEARCH) {
 			this.state = Empire.expedition.STATE_MOVE_TO_SEARCH;
 			this.getUnit().subActionPoints(this.getUnit().getMoveActionPoints());
 		}
@@ -535,6 +557,7 @@ EmpireExpedition.prototype.unload = function() {
 		} catch(exeception) {
 
 			// @todo: Ausgabe Notification
+			expedition.state = Empire.expedition.STATE_UNLOAD_ON_HOLD;
 			console.log(exeception);
 		}
 	});
@@ -550,6 +573,17 @@ EmpireExpedition.prototype.unload = function() {
 };
 
 /**
+ * Erneuter Versuch zum Entladen
+ *
+ * @return {object} EmpireExpedition
+ */
+EmpireExpedition.prototype.reunload = function() {
+	this.state = Empire.expedition.STATE_UNLOAD;
+
+	return this.unload();
+};
+
+/**
  * Entfernt die Resourcen und startet die Suche erneut
  *
  * @return {object} EmpireExpedition
@@ -558,9 +592,7 @@ EmpireExpedition.prototype.restart = function() {
 
 	// Resourcen entfernen und Status neu setzen
 	this.getResources().empty();
-
-	// @todo: STATE_SEARCH
-	this.state = Empire.expedition.STATE_ON_HOLD;
+	this.state = Empire.expedition.STATE_SEARCH;
 
 	// Suche neu starten
 	return this.search();
@@ -595,11 +627,16 @@ EmpireExpedition.prototype.executeAfterTurn = function() {
 
 	// Sucheablauf durchfuehren bis alle Aktion auf isEnabled == false laufen
 	// _.forEach([Empire.action.EXPEDITION_SEARCH, Empire.action.EXPEDITION_RETURN_TO_SETTLEMENT, Empire.action.EXPEDITION_UNLOAD], function(action) {
-	// 	if(expedition.getAction(action).isEnabled() === true) {
-	// 		expedition.getAction(action).execute();
-	// 		recursive = true;
-	// 	}
-	// });
+	_.forEach([Empire.action.EXPEDITION_SEARCH, Empire.action.EXPEDITION_RETURN_TO_SETTLEMENT, Empire.action.EXPEDITION_UNLOAD], function(action) {
+		console.log(action);
+
+		if(expedition.getAction(action).isEnabled() === true) {
+			expedition.getAction(action).execute();
+			recursive = true;
+		}
+	});
+
+	console.log(recursive);
 
 	// if(recursive === true) {
 	// 	this.executeAfterTurn();

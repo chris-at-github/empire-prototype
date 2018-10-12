@@ -79,6 +79,7 @@
 						state[Empire.expedition.STATE_RETURN_TO_SETTLEMENT] = 'Auf dem Rückweg';
 						state[Empire.expedition.STATE_ON_HOLD] = 'Warten';
 						state[Empire.expedition.STATE_UNLOAD] = 'Entladen';
+						state[Empire.expedition.STATE_UNLOAD_ON_HOLD] = 'Auf Entladen warten';
 
 				return state[this.properties.state];
 			}
