@@ -91,6 +91,8 @@ EmpireExpedition.prototype.initialize = function() {
 	this.initializeUnloadAction();
 	this.initializeRestartAction();
 	this.initializeRemoveAction();
+
+	this.listen(Empire.manager.turn.EVENT_BEFORE_TURN, this.executeAfterTurn);
 };
 
 /**
@@ -559,6 +561,15 @@ EmpireExpedition.prototype.remove = function() {
 
 	// Diese Expediton aufloesen
 	Empire.manager.expedition.remove(this.id);
+};
+
+/**
+ * Fuehrt die Expeditonen automatisch nach Beendigung der Runde aus
+ *
+ * @return {void}
+ */
+EmpireExpedition.prototype.executeAfterTurn = function() {
+	console.log('Expedition::executeAfterTurn');
 };
 
 export default EmpireExpedition;

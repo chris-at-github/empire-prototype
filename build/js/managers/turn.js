@@ -12,7 +12,8 @@ let Turn = function() {
 		object: {
 			buildings: []
 		},
-		units: []
+		units: [],
+		expeditions: []
 	};
 
 	this.afterTurnObjects = {
@@ -20,7 +21,8 @@ let Turn = function() {
 		object: {
 			buildings: []
 		},
-		units:  []
+		units: [],
+		expeditions: []
 	};
 
 	this.objectTypes = {
@@ -63,6 +65,9 @@ Turn.prototype.next = function() {
 	// Einheiten
 	this.fireUnitEvent(this.EVENT_AFTER_TURN, this.afterTurnObjects.units);
 
+	// Expeditionen
+	this.fireExpeditionEvent(this.EVENT_AFTER_TURN);
+
 	// Rundeneinheit anheben
 	Game.turn = Game.turn + 1;
 
@@ -75,6 +80,9 @@ Turn.prototype.next = function() {
 
 	// Einheiten
 	this.fireUnitEvent(this.EVENT_BEFORE_TURN, this.beforeTurnObjects.units);
+
+	// Expeditionen
+	this.fireExpeditionEvent(this.EVENT_BEFORE_TURN);
 };
 
 /**
@@ -143,6 +151,26 @@ Turn.prototype.fireUnitEvent = function(event, units) {
 
 			storage.store(unit);
 		}
+	});
+};
+
+/**
+ * Startet ein Event auf allen Expeditionen
+ *
+ * @param {string} event
+ * @param {array} units
+ */
+Turn.prototype.fireExpeditionEvent = function(event) {
+	_.forEach(Game.expeditions, function(properties, id) {
+
+		let expedition = Empire.factory.expedition.create();
+				expedition.fill(properties);
+
+		if(expedition.hasListener(event) === true) {
+			expedition.fire(event)
+		}
+
+		expedition.store();
 	});
 };
 
