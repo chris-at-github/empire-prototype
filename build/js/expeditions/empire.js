@@ -97,6 +97,7 @@ EmpireExpedition.prototype.initialize = function() {
 
 /**
  * Initialisierung der SearchAction
+ * @todo: ohne STATE_ON_HOLD
  *
  * @return {void}
  */
@@ -186,6 +187,8 @@ EmpireExpedition.prototype.initializeUnloadAction = function() {
 		label:     'Entladen',
 
 		onEnabled: function() {
+
+			// @todo: hier muss man sich noch etwas ueberlegen -> sonst Endlosschleife in AfterTurn
 			if(expedition.state === Empire.expedition.STATE_UNLOAD) {
 				return true;
 			}
@@ -425,6 +428,7 @@ EmpireExpedition.prototype.create = function(options = {}) {
 
 	let expedition = Empire.factory.expedition.create();
 
+	// @todo: setze STATE_SEARCH
 	expedition.fill({
 		state: Empire.expedition.STATE_ON_HOLD,
 		type: options.type
@@ -447,6 +451,7 @@ EmpireExpedition.prototype.search = function() {
 	let action = this.getAction(Empire.action.EXPEDITION_SEARCH);
 
 	// befindet sich die Expedition im Suchmodus -> ansonsten return false
+	// @todo: entferne STATE_ON_HOLD
 	if(this.state !== Empire.expedition.STATE_ON_HOLD && this.state !== Empire.expedition.STATE_SEARCH && this.state !== Empire.expedition.STATE_MOVE_TO_SEARCH) {
 		return false;
 	}
@@ -455,6 +460,7 @@ EmpireExpedition.prototype.search = function() {
 	while(action.isEnabled() === true) {
 
 		// zuerst die Bewegung, danach die Suche
+		// @todo: entferne STATE_ON_HOLD
 		if(action.isEnabled() === true && (this.state === Empire.expedition.STATE_SEARCH || this.state === Empire.expedition.STATE_ON_HOLD)) {
 			this.state = Empire.expedition.STATE_MOVE_TO_SEARCH;
 			this.getUnit().subActionPoints(this.getUnit().getMoveActionPoints());
@@ -535,6 +541,8 @@ EmpireExpedition.prototype.unload = function() {
 
 	// Alles ausgeladen -> erstmal wieder in den Ruhemodus
 	if(this.getResources().count() === 0) {
+		// @todo: nur wenn Flag Neustart nicht gesetzt ist
+		// @todo: ansonsten STATE_SEARCH
 		this.state = Empire.expedition.STATE_ON_HOLD;
 	}
 
@@ -550,6 +558,8 @@ EmpireExpedition.prototype.restart = function() {
 
 	// Resourcen entfernen und Status neu setzen
 	this.getResources().empty();
+
+	// @todo: STATE_SEARCH
 	this.state = Empire.expedition.STATE_ON_HOLD;
 
 	// Suche neu starten
@@ -584,12 +594,12 @@ EmpireExpedition.prototype.executeAfterTurn = function() {
 	let expedition = this;
 
 	// Sucheablauf durchfuehren bis alle Aktion auf isEnabled == false laufen
-	_.forEach([Empire.action.EXPEDITION_SEARCH, Empire.action.EXPEDITION_RETURN_TO_SETTLEMENT, Empire.action.EXPEDITION_UNLOAD], function(action) {
-		if(expedition.getAction(action).isEnabled() === true) {
-			expedition.getAction(action).execute();
-			recursive = true;
-		}
-	});
+	// _.forEach([Empire.action.EXPEDITION_SEARCH, Empire.action.EXPEDITION_RETURN_TO_SETTLEMENT, Empire.action.EXPEDITION_UNLOAD], function(action) {
+	// 	if(expedition.getAction(action).isEnabled() === true) {
+	// 		expedition.getAction(action).execute();
+	// 		recursive = true;
+	// 	}
+	// });
 
 	// if(recursive === true) {
 	// 	this.executeAfterTurn();
