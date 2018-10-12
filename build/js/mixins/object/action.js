@@ -32,10 +32,17 @@ let Action = {
 	/**
 	 * Liefert alle hinterlegten Actions zurueck
 	 *
+	 * @param {object} options
 	 * @return {object} Collection (EmpireAction)
 	 */
-	getActions: function() {
-		return this.actions.all();
+	getActions: function(options = {}) {
+		let actions = this.actions.all();
+
+		if(_.size(options) !== 0) {
+
+		}
+
+		return actions;
 	}
 };
 

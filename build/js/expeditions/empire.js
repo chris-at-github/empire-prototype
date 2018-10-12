@@ -566,10 +566,12 @@ EmpireExpedition.prototype.remove = function() {
 /**
  * Fuehrt die Expeditonen automatisch nach Beendigung der Runde aus
  *
- * @return {void}
+ * @return {boolean}
  */
-EmpireExpedition.prototype.executeAfterTurn = function() {
-	console.log('Expedition::executeAfterTurn');
+EmpireExpedition.prototype.executeAfterTurn = function(actions = {}) {
+	this.getActions({
+		name: [Empire.action.EXPEDITION_SEARCH, Empire.action.EXPEDITION_RETURN_TO_SETTLEMENT, Empire.action.EXPEDITION_UNLOAD]
+	});
 };
 
 export default EmpireExpedition;
