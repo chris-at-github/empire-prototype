@@ -28,6 +28,11 @@
 				</div>
 			</div>
 
+			<div class="form--item form--item-checkbox">
+				<input type="checkbox" id="expedition--automatic" class="form--field" v-model="automatic" v-on:change="setAutomatic">
+				<label for="expedition--automatic" class="form--label">Expedition automatisch neu starten</label>
+			</div>
+
 			<div class="object--actions" v-if="expedition.getActions()">
 				<ul>
 					<li v-for="(action, name) in expedition.getActions()" v-if="action.isVisible()">
@@ -50,7 +55,9 @@
 		},
 
 		data: function() {
-			return {};
+			return {
+				automatic: true
+			};
 		},
 
 		props: ['properties'],
@@ -88,7 +95,16 @@
 		methods: {
 			search: function() {
 				this.expedition.search();
+			},
+
+			setAutomatic: function() {
+				this.expedition.setAutomatic(this.automatic);
+				this.expedition.store();
 			}
+		},
+
+		created: function() {
+			this.automatic = this.properties.automatic;
 		}
 	}
 </script>

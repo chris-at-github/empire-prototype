@@ -449,6 +449,26 @@ EmpireExpedition.prototype.getProbability = function() {
 };
 
 /**
+ * Liefert den Flag zum automatischen Neustart
+ *
+ * @return {boolean}
+ */
+EmpireExpedition.prototype.getAutomatic = function() {
+	return this.automatic;
+};
+
+/**
+ * Setzt den Flag zum automatischen Neustart
+ *
+ * @param {boolean} automatic
+ * @return {object} EmpireExpedition
+ */
+EmpireExpedition.prototype.setAutomatic = function(automatic) {
+	this.automatic = automatic;
+	return this;
+};
+
+/**
  * Erstellt eine neue Expedition
  *
  * @param {object} options

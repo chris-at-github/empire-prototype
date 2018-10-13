@@ -66,3 +66,20 @@ select.form--field {
 .form--field-range {
 	display: block;
 }
+
+.form--item-checkbox {
+	& {
+		position: relative;
+		padding: 0 0 0 20px;
+	}
+
+	.form--field {
+		position: absolute;
+		top: 2px; left: 0;
+		width: auto;
+	}
+
+	.form--label {
+		font-weight: 400;
+	}
+}

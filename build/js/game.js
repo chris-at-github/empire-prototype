@@ -83,7 +83,7 @@ module.exports = {
 			resources: {
 				'resource.water': 1
 			},
-			automatic: true
+			automatic: false
 		}
 	}
 };
