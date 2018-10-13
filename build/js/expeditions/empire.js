@@ -99,12 +99,12 @@ EmpireExpedition.prototype.initialize = function() {
 	this.initializeReUnloadAction();
 	this.initializeRemoveAction();
 
+	this.listen(Empire.manager.turn.EVENT_BEFORE_TURN, this.tryUnloadAfterTurn);
 	this.listen(Empire.manager.turn.EVENT_BEFORE_TURN, this.executeAfterTurn);
 };
 
 /**
  * Initialisierung der SearchAction
- * @todo: ohne STATE_ON_HOLD
  *
  * @return {void}
  */
@@ -644,9 +644,28 @@ EmpireExpedition.prototype.remove = function() {
 };
 
 /**
+ * Versucht das erneute Entladen der Expedition, falls dies im vorherigen Durchlauf nicht moeglich war. Damit soll
+ * verhindert werden, dass Expeditionen "stecken" bleiben, obwohl sie wieder eingesetzt werden koennten. Ansonsten wird
+ * der Spieler erneut darueber informiert.
+ *
+ * @return {void}
+ */
+EmpireExpedition.prototype.tryUnloadAfterTurn = function() {
+	let action = this.getAction(Empire.action.EXPEDITION_REUNLOAD);
+
+	if(action.isEnabled() === true) {
+		action.execute();
+
+	} else {
+		// @todo: Ausgabe Notification
+		console.log('EmpireExpedition::tryUnloadAfterTurn');
+	}
+};
+
+/**
  * Fuehrt die Expeditonen automatisch nach Beendigung der Runde aus
  *
- * @return {boolean}
+ * @return {void}
  */
 EmpireExpedition.prototype.executeAfterTurn = function() {
 
@@ -664,12 +683,6 @@ EmpireExpedition.prototype.executeAfterTurn = function() {
 	});
 
 	if(recursive === true) {
-		_.forEach([Empire.action.EXPEDITION_SEARCH, Empire.action.EXPEDITION_RETURN_TO_SETTLEMENT, Empire.action.EXPEDITION_UNLOAD], function(action) {
-			if(expedition.getAction(action).isEnabled() === true) {
-				console.log(action, expedition.state);
-			}
-		});
-
 		this.executeAfterTurn();
 	}
 };
