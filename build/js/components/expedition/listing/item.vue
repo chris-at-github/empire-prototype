@@ -29,8 +29,8 @@
 			</div>
 
 			<div class="form--item form--item-checkbox">
-				<input type="checkbox" id="expedition--automatic" class="form--field" v-model="automatic" v-on:change="setAutomatic">
-				<label for="expedition--automatic" class="form--label">Expedition automatisch neu starten</label>
+				<input type="checkbox" v-bind:id="inputIdentifier" class="form--field" v-model="automatic" v-on:change="setAutomatic">
+				<label v-bind:for="inputIdentifier" class="form--label">Expedition automatisch neu starten</label>
 			</div>
 
 			<div class="object--actions" v-if="expedition.getActions()">
@@ -89,6 +89,10 @@
 						state[Empire.expedition.STATE_UNLOAD_ON_HOLD] = 'Auf Entladen warten';
 
 				return state[this.properties.state];
+			},
+
+			inputIdentifier: function() {
+				return 'expedition--automatic-' + this.properties.id;
 			}
 		},
 
