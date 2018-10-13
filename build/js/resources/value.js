@@ -13,7 +13,7 @@ let ResourceValue = function(qcn, value) {
 	this.resource = null;
 
 	/**
-	 * @var {float}
+	 * @var {number}
 	 */
 	this.value = value;
 };
@@ -29,6 +29,20 @@ ResourceValue.prototype.getResource = function() {
 	}
 
 	return this.resource;
+};
+
+/**
+ * @return {string} qcn
+ */
+ResourceValue.prototype.getQcn = function() {
+	return this.qcn;
+};
+
+/**
+ * @return {number} value
+ */
+ResourceValue.prototype.getValue = function() {
+	return this.value;
 };
 
 /**

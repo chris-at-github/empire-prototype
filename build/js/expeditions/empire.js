@@ -226,7 +226,11 @@ EmpireExpedition.prototype.initializeRestartAction = function() {
 		label:     'Erneut suchen',
 
 		onVisible: function() {
-			if(expedition.state === Empire.expedition.STATE_ON_HOLD || expedition.state === Empire.expedition.STATE_UNLOAD || expedition.state === Empire.expedition.STATE_RETURN_TO_SETTLEMENT) {
+			if(expedition.state === Empire.expedition.STATE_ON_HOLD ||
+				expedition.state === Empire.expedition.STATE_UNLOAD ||
+				expedition.state === Empire.expedition.STATE_RETURN_TO_SETTLEMENT ||
+				expedition.state === Empire.expedition.STATE_UNLOAD_ON_HOLD
+			) {
 				return true;
 			}
 
@@ -261,6 +265,22 @@ EmpireExpedition.prototype.initializeReUnloadAction = function() {
 	this.addAction(new Empire.action({
 		name:  Empire.action.EXPEDITION_REUNLOAD,
 		label: 'Entladen',
+
+		onEnabled: function() {
+			let settlement = expedition.getSettlement();
+			let enabled = false;
+
+			// Gehe alle gefundenen Resourcen durch und ueberpruefe ob sie den maximalen Lagerbestand der Siedlung ueberschreiten
+			// wenn mindestens eine Resource uebertragen werden kann -> return true
+			// @todo: eventuell auch Teilbefuellung aktzeptieren
+			_.forEach(expedition.getResources().find(), function(resource) {
+				if((resource.getValue() + settlement.getResources().getResourceValue(resource.getQcn()).getValue()) <= settlement.getStorageCapacity()) {
+					enabled = true;
+				}
+			});
+
+			return enabled;
+		},
 
 		onVisible: function() {
 			if(expedition.state === Empire.expedition.STATE_UNLOAD_ON_HOLD) {

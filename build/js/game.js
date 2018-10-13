@@ -10,7 +10,7 @@ module.exports = {
 			name: 'Blatthausen',
 			qcn: 'settlement.colony',
 			resources: {
-				'resource.water': 20,
+				'resource.water': 49,
 				'resource.stone': 20,
 				'resource.wood': 20,
 				'resource.food': 20
@@ -77,7 +77,7 @@ module.exports = {
 		'eadb0907-0343-4d64-be73-89431d71ccc6': {
 			id: 'eadb0907-0343-4d64-be73-89431d71ccc6',
 			type: 'expedition.type.search',
-			state: 'expedition.state.returnToSettlement',
+			state: 'expedition.state.unloadOnHold',
 			unit: '3e000db1-c7ec-4b06-8dc9-f6609bd0ae8c',
 			settlement: '0363dec2-e331-4e64-9b06-dce06941095c',
 			resources: {
