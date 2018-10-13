@@ -651,14 +651,16 @@ EmpireExpedition.prototype.remove = function() {
  * @return {void}
  */
 EmpireExpedition.prototype.tryUnloadAfterTurn = function() {
-	let action = this.getAction(Empire.action.EXPEDITION_REUNLOAD);
+	if(this.state === Empire.expedition.STATE_UNLOAD_ON_HOLD) {
+		let action = this.getAction(Empire.action.EXPEDITION_REUNLOAD);
 
-	if(action.isEnabled() === true) {
-		action.execute();
+		if(action.isEnabled() === true) {
+			action.execute();
 
-	} else {
-		// @todo: Ausgabe Notification
-		console.log('EmpireExpedition::tryUnloadAfterTurn');
+		} else {
+			// @todo: Ausgabe Notification
+			console.log('EmpireExpedition::tryUnloadAfterTurn');
+		}
 	}
 };
 
