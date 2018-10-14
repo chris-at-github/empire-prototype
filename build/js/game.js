@@ -1,8 +1,8 @@
 module.exports = {
 	turn: 1,
-	screen: 'settlement',
+	screen: 'world',
 	activate: {
-		settlement: '0363dec2-e331-4e64-9b06-dce06941095c'
+		settlement: null
 	},
 	settlements: {
 		'0363dec2-e331-4e64-9b06-dce06941095c': {
