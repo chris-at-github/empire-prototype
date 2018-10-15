@@ -37,6 +37,7 @@
 		// 	'cs-tile': Tile,
 		// 	'cs-object': Object
 		// },
+		props: ['properties'],
 
 		data: function() {
 			return {
@@ -76,6 +77,10 @@
 		},
 
 		computed: {
+			object: function() {
+
+			},
+
 			styleObject: function() {
 				return {
 					'width': '100px',
