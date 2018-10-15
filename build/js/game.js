@@ -85,5 +85,30 @@ module.exports = {
 			},
 			automatic: false
 		}
+	},
+	map: {
+		id: '44561c9f-7a2b-4a2e-9c56-6cc7e8e559c7',
+		tiles: {
+			'1-1': {
+				x: 1,
+				y: 1,
+				qcn: 'tile.default'
+			},
+			'2-1': {
+				x: 2,
+				y: 1,
+				qcn: 'tile.default'
+			},
+			'1-2': {
+				x: 1,
+				y: 2,
+				qcn: 'tile.default'
+			},
+			'2-2': {
+				x: 2,
+				y: 2,
+				qcn: 'tile.default'
+			}
+		}
 	}
 };
