@@ -88,6 +88,7 @@ module.exports = {
 	},
 	map: {
 		id: '44561c9f-7a2b-4a2e-9c56-6cc7e8e559c7',
+		qcn: 'map.world',
 		tiles: {
 			'1-1': {
 				x: 1,

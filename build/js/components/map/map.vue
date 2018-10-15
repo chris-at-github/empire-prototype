@@ -78,10 +78,17 @@
 
 		computed: {
 			object: function() {
+				let object = Empire.factory.map.create(this.properties.qcn);
+						object.fill(this.properties);
 
+				console.log(object);
+
+				return object;
 			},
 
 			styleObject: function() {
+				this.object;
+
 				return {
 					'width': '100px',
 					'height': '100px',

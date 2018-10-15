@@ -7,7 +7,7 @@ require('filter');
 // Empire environment
 import event from './events/empire';
 import managers from './managers/manager';
-import factories from './factories/factory';
+import factories from './factories/bootstrap';
 import objects from './objects/object';
 import units from './units/unit';
 import resources from './resources/resource';
