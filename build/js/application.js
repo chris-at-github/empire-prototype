@@ -31,6 +31,7 @@ Game = require('./game');
 Vue.component('emp-footer', require('./components/layout/footer'));
 
 // Game Objects
+Vue.component('emp-map', require('./components/map/map'));
 Vue.component('emp-settlement-listing', require('./components/settlement/listing'));
 Vue.component('emp-settlement-form', require('./components/settlement/form'));
 Vue.component('emp-settlement', require('./components/settlement/index'));
