@@ -4,7 +4,6 @@ window._ = require('lodash');
 
 require('filter');
 
-
 // Empire environment
 import event from './events/empire';
 import managers from './managers/manager';
@@ -14,6 +13,7 @@ import units from './units/unit';
 import resources from './resources/resource';
 import expedition from './expeditions/bootstrap';
 import action from './actions/bootstrap';
+import map from './maps/bootstrap';
 
 Empire.configuration = require('./configuration');
 Empire.manager = managers;
@@ -23,6 +23,7 @@ Empire.object = objects;
 Empire.unit = units;
 Empire.resource = resources;
 Empire.expedition = expedition;
+Empire.map = map;
 
 Game = require('./game');
 

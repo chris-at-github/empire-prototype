@@ -1,6 +1,10 @@
 'use strict';
 
-// Basisklasse
-import map from './empire';
+// Basisklassen
+import WorldMap from './world';
+
+let map = {
+	world: WorldMap
+};
 
 export default map;

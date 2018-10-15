@@ -21,7 +21,7 @@ let EmpireMap = function() {
 	this.eventListener = {};
 
 	// Initialisierung
-	this.initialize();
+	this._initialize();
 };
 
 // Einbindung Mixins
@@ -34,7 +34,7 @@ Object.assign(EmpireMap.prototype, ActionMixin);
  *
  * @return {void}
  */
-EmpireMap.prototype.initialize = function() {
+EmpireMap.prototype._initialize = function() {
 };
 
 export default EmpireMap;
