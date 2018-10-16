@@ -1,3 +1,10 @@
 .map {
+	position: relative;
+	height: 400px;
 	background: $gray-200;
+}
+
+.map--scroll-container {
+	position: absolute;
+	background: gold;
 }
