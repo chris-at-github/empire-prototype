@@ -73,6 +73,30 @@
 				// 	'x': (this.windowWidth - this.getMapWidth()) / 2,
 				// 	'y': (this.windowHeight - this.getMapHeight()) / 2
 				// };
+			},
+
+			getMaxX: function() {
+				return _.maxBy(Object.values(this.properties.tiles), function(tile) {
+					return tile.x;
+				}).x;
+			},
+
+			getMaxY: function() {
+				return _.maxBy(Object.values(this.properties.tiles), function(tile) {
+					return tile.y;
+				}).y;
+			},
+
+			getMapWidth: function() {
+				return (this.getMaxX() * this.getTileSize());
+			},
+
+			getMapHeight: function() {
+				return (this.getMaxY() * this.getTileSize());
+			},
+
+			getTileSize: function() {
+				return 100;
 			}
 		},
 
@@ -81,7 +105,7 @@
 				let object = Empire.factory.map.create(this.properties.qcn);
 						object.fill(this.properties);
 
-				console.log(object);
+				// console.log(object);
 
 				return object;
 			},
@@ -90,8 +114,8 @@
 				this.object;
 
 				return {
-					'width': '100px',
-					'height': '100px',
+					'width': this.getMapWidth() + 'px',
+					'height': this.getMapHeight() + 'px',
 					'top': '0px',
 					'left': '0px'
 				};
