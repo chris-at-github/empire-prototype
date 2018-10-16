@@ -43,7 +43,7 @@
 			return {
 				// settings:     {},
 				// scene:        {},
-				windowWidth:  window.innerWidth,
+				windowWidth: window.innerWidth,
 				windowHeight: window.innerHeight
 			}
 		},
@@ -66,13 +66,9 @@
 
 			getMapCenterPosition: function() {
 				return {
-					'x': 100,
-					'y': 100
+					'x': (this.windowWidth - this.getMapWidth()) / 2,
+					'y': (this.windowHeight - this.getMapHeight()) / 2
 				};
-				// return {
-				// 	'x': (this.windowWidth - this.getMapWidth()) / 2,
-				// 	'y': (this.windowHeight - this.getMapHeight()) / 2
-				// };
 			},
 
 			getMaxX: function() {
