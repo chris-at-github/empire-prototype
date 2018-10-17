@@ -1,6 +1,6 @@
 <template>
 	<div class="map" ref="map">
-		<div class="map--scroll-container" v-bind:style="styleObject" ref="scroll">
+		<div class="map--alignment" v-bind:style="styleObject" ref="alignment">
 			<!--<div class="map&#45;&#45;tile-container">-->
 			<!--<cs-tile-->
 			<!--v-for="(tile, index) in tiles"-->
@@ -43,36 +43,32 @@
 
 		data: function() {
 			return {
-				// settings:     {},
-				// scene:        {},
-				windowWidth: window.innerWidth,
-				windowHeight: window.innerHeight
+				containerWidth: 0,
+				containerHeight: 0
 			}
 		},
 
 		beforeDestroy: function() {
-			window.removeEventListener('resize', this.onWindowResize)
+			window.removeEventListener('resize', this.adjustContainerAlignment)
 		},
 
 		mounted: function() {
-			window.addEventListener('resize', this.onWindowResize);
-			this.onWindowResize();
+			window.addEventListener('resize', this.adjustContainerAlignment);
+			window.addEventListener('load', this.adjustContainerAlignment);
 		},
 
 		methods: {
 
 			// @see: https://github.com/vuejs/vue/issues/1915
-			onWindowResize() {
-				console.log(this.$refs.map.clientWidth);
-
-				this.windowWidth = this.$refs.map.clientWidth;
-				this.windowHeight = this.$refs.map.clientHeight;
+			adjustContainerAlignment() {
+				this.containerWidth = this.$refs.map.clientWidth;
+				this.containerHeight = this.$refs.map.clientHeight;
 			},
 
 			getMapCenterPosition: function() {
 				return {
-					'x': (this.windowWidth - this.getMapWidth()) / 2,
-					'y': (this.windowHeight - this.getMapHeight()) / 2
+					'x': (this.containerWidth - this.getMapWidth()) / 2,
+					'y': (this.containerHeight - this.getMapHeight()) / 2
 				};
 			},
 
@@ -110,9 +106,6 @@
 			},
 
 			styleObject: function() {
-				// this.object;
-				this.getMapCenterPosition();
-
 				return {
 					'width': this.getMapWidth() + 'px',
 					'height': this.getMapHeight() + 'px',
