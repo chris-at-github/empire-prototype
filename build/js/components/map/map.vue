@@ -1,6 +1,7 @@
 <template>
 	<div class="map" ref="map">
-		<div class="map--alignment" v-bind:style="styleObject" ref="alignment">
+		<div class="map--alignment" v-bind:style="styleObject">
+			<div class="map--gutter" ref="gutter"></div>
 			<!--<div class="map&#45;&#45;tile-container">-->
 			<!--<cs-tile-->
 			<!--v-for="(tile, index) in tiles"-->
