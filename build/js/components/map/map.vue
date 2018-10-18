@@ -1,7 +1,7 @@
 <template>
 	<div class="map" ref="map">
 		<div class="map--alignment" v-bind:style="styleObject">
-			<div class="map--gutter" ref="gutter"></div>
+			<svg class="map--gutter" ref="gutter"></svg>
 			<!--<div class="map&#45;&#45;tile-container">-->
 			<!--<cs-tile-->
 			<!--v-for="(tile, index) in tiles"-->
@@ -29,6 +29,7 @@
 	// import MapHelper from '../helpers/map';
 	// import Tile from './tile';
 	// import Object from './object'
+	import Svg from 'svg.js';
 
 	export default {
 		// mixins: [
@@ -56,12 +57,22 @@
 		mounted: function() {
 			window.addEventListener('resize', this.adjustContainerAlignment);
 			window.addEventListener('load', this.adjustContainerAlignment);
+
+			this.initializeGutter();
 		},
 
 		methods: {
 
+			initializeGutter: function() {
+				// http://svgjs.com/elements/#svg-pattern
+				let gutter = Svg.adopt(this.$refs.gutter);
+
+				gutter.size(this.getMapWidth(), this.getMapHeight());
+				let rect = gutter.rect(100, 100).attr({fill: '#f06'});
+			},
+
 			// @see: https://github.com/vuejs/vue/issues/1915
-			adjustContainerAlignment() {
+			adjustContainerAlignment: function() {
 				this.containerWidth = this.$refs.map.clientWidth;
 				this.containerHeight = this.$refs.map.clientHeight;
 			},
