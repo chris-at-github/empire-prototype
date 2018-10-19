@@ -2,15 +2,16 @@
 	<div class="map" ref="map">
 		<div class="map--alignment" v-bind:style="styleObject">
 			<svg class="map--gutter" ref="grid"></svg>
-			<!--<div class="map&#45;&#45;tile-container">-->
-			<!--<cs-tile-->
-			<!--v-for="(tile, index) in tiles"-->
-			<!--v-bind:x="tile.x"-->
-			<!--v-bind:y="tile.y"-->
-			<!--v-bind:terrain="tile.terrain"-->
-			<!--v-bind:key="index">-->
-			<!--</cs-tile>-->
-			<!--</div>-->
+			<div class="map--tile-container">
+				<emp-tile
+					v-for="(tile, id) in tiles"
+					v-bind:x="tile.x"
+					v-bind:y="tile.y"
+					v-bind:properties="tile"
+					v-bind:size="getTileSize()"
+					v-bind:key="id">
+				</emp-tile>
+			</div>
 
 			<!--<div class="map&#45;&#45;object-container">-->
 			<!--<cs-object-->
@@ -26,8 +27,7 @@
 </template>
 
 <script>
-	// import MapHelper from '../helpers/map';
-	// import Tile from './tile';
+	import Tile from './tile';
 	// import Object from './object'
 	import Svg from 'svg.js';
 
@@ -37,10 +37,9 @@
 		// ],
 
 		// @see: https://vuejs.org/v2/guide/components.html#Local-Registration
-		// components: {
-		// 	'cs-tile': Tile,
-		// 	'cs-object': Object
-		// },
+		components: {
+			'emp-tile': Tile
+		},
 		props: ['properties'],
 
 		data: function() {
@@ -124,7 +123,14 @@
 
 			getTileSize: function() {
 				return 100;
-			}
+			},
+
+			getTilePosition: function(x, y) {
+				return {
+					'x': this.getTileWidth() * x,
+					'y': this.getTileWidth() * y
+				};
+			},
 		},
 
 		computed: {
@@ -145,7 +151,7 @@
 			},
 
 			tiles: function() {
-				// return this.scene.tiles;
+				return this.properties.tiles;
 			},
 
 			objects: function() {
