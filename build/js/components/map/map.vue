@@ -1,7 +1,7 @@
 <template>
 	<div class="map" ref="map">
 		<div class="map--alignment" v-bind:style="styleObject">
-			<svg class="map--gutter" ref="gutter"></svg>
+			<svg class="map--gutter" ref="grid"></svg>
 			<!--<div class="map&#45;&#45;tile-container">-->
 			<!--<cs-tile-->
 			<!--v-for="(tile, index) in tiles"-->
@@ -64,11 +64,29 @@
 		methods: {
 
 			initializeGutter: function() {
-				// http://svgjs.com/elements/#svg-pattern
-				let gutter = Svg.adopt(this.$refs.gutter);
+				let grid = Svg.adopt(this.$refs.grid);
+				let map = this;
+				let style = {
+					'fill': 'none',
+					'stroke': '#adb5bd',
+					'stroke-width': 1
+				};
 
-				gutter.size(this.getMapWidth(), this.getMapHeight());
-				let rect = gutter.rect(100, 100).attr({fill: '#f06'});
+				// @see: http://svgjs.com/elements/#svg-pattern
+				// @see: https://codepen.io/charlehm/pen/rVemrq
+				grid
+					.size(this.getMapWidth(), this.getMapHeight())
+					.attr(style);
+
+				let pattern = grid.pattern(this.getTileSize(), this.getTileSize(), function(add) {
+					add
+						.path('M ' + map.getTileSize() + ' 0 L 0 0 0 ' + map.getTileSize())
+						.attr(style);
+				});
+
+				grid
+					.rect(this.getMapWidth(), this.getMapHeight())
+					.fill(pattern);
 			},
 
 			// @see: https://github.com/vuejs/vue/issues/1915
